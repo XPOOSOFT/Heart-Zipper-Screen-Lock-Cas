@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_1">
+
+    <include
+        android:id="@+id/top_lay"
+        layout="@layout/top_layout_all" />
+
+    <!--   Enable Lock-->
+    <View
+        android:id="@+id/enableLock"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:background="@drawable/rect_white_item_menu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_lay" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/enableLockImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintBottom_toBottomOf="@id/enableLock"
+        app:layout_constraintStart_toStartOf="@id/enableLock"
+        app:layout_constraintTop_toTopOf="@id/enableLock"
+        app:srcCompat="@drawable/enable_main_icon" />
+
+    <TextView
+        android:id="@+id/enableLockText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin5"
+        android:text="@string/enable_lockscreen"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/enableLock"
+        app:layout_constraintEnd_toStartOf="@id/enableLockSwitch"
+        app:layout_constraintStart_toEndOf="@id/enableLockImage"
+        app:layout_constraintTop_toTopOf="@id/enableLock" />
+
+    <Switch
+        android:id="@+id/enableLockSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:background="@null"
+        android:button="@drawable/checkbox_theme"
+        android:gravity="center"
+        android:thumb="@null"
+        app:layout_constraintBottom_toBottomOf="@id/enableLock"
+        app:layout_constraintEnd_toEndOf="@+id/enableLock"
+        app:layout_constraintStart_toEndOf="@+id/enableLockText"
+        app:layout_constraintTop_toTopOf="@id/enableLock"
+        app:track="@null"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@id/enableLock"
+        app:layout_constraintStart_toStartOf="@id/enableLock"
+        app:layout_constraintTop_toBottomOf="@id/enableLock">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D5000000"
+            >
+
+            <!--            Block One-->
+            <TextView
+                android:id="@+id/topTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:singleLine="true"
+                android:text="@string/preview_lock_screen"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_17sdp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/option1"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/topTitle"
+                app:layout_constraintTop_toBottomOf="@+id/topTitle" />
+
+            <TextView
+                android:id="@+id/optionText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:maxLines="2"
+                android:text="@string/text1"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@id/option1"
+                app:layout_constraintTop_toTopOf="@+id/option1" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/option2"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/option1"
+                app:layout_constraintTop_toBottomOf="@id/optionText" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:maxLines="2"
+                android:text="@string/choose_any_option_from_the_dashboard"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@id/option2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/option2"
+                app:layout_constraintTop_toTopOf="@+id/option2" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/option3"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/option2"
+                app:layout_constraintTop_toBottomOf="@id/option2" />
+
+            <TextView
+                android:id="@+id/option3Text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:maxLines="2"
+                android:text="@string/text13"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/option3"
+                app:layout_constraintTop_toTopOf="@+id/option3" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/option4"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/option3"
+                app:layout_constraintTop_toBottomOf="@id/option3Text" />
+
+            <TextView
+                android:id="@+id/option4Text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:maxLines="2"
+                android:text="@string/text14"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/option4"
+                app:layout_constraintTop_toTopOf="@+id/option4" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/option5"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/option4"
+                app:layout_constraintTop_toBottomOf="@id/option4Text" />
+
+            <TextView
+                android:id="@+id/option5Text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:maxLines="2"
+                android:text="@string/text15"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/option5"
+                app:layout_constraintTop_toTopOf="@+id/option5" />
+
+            <!--            Block Second-->
+            <TextView
+                android:id="@+id/topTitleSecond"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/how_to_set_lock"
+                android:textColor="@color/white"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:textSize="@dimen/_17sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/option5Text" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/optionSecond1"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/topTitleSecond"
+                app:layout_constraintTop_toBottomOf="@+id/topTitleSecond" />
+
+            <TextView
+                android:id="@+id/optionSecondText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:text="@string/text21"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/optionSecond1"
+                app:layout_constraintTop_toTopOf="@+id/optionSecond1" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/optionSecond2"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/optionSecond1"
+                app:layout_constraintTop_toBottomOf="@id/optionSecondText" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:text="@string/text22"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:maxLines="2"
+                app:layout_constraintBottom_toBottomOf="@id/optionSecond2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/optionSecond2"
+                app:layout_constraintTop_toTopOf="@+id/optionSecond2" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/optionSecond3"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/optionSecond2"
+                app:layout_constraintTop_toBottomOf="@id/optionSecond2" />
+
+            <TextView
+                android:id="@+id/optionSecond3Text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:text="@string/text23"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/optionSecond3"
+                app:layout_constraintTop_toTopOf="@+id/optionSecond3" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/optionSecond4"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/optionSecond3"
+                app:layout_constraintTop_toBottomOf="@id/optionSecond3Text" />
+
+            <TextView
+                android:id="@+id/optionSecond4Text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:text="@string/text24"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/optionSecond4"
+                app:layout_constraintTop_toTopOf="@+id/optionSecond4" />
+
+
+            <!--            Block Second-->
+            <TextView
+                android:id="@+id/topTitleThird"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/enjoy_your_new_lock_screen"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:textSize="@dimen/_17sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/optionSecond4Text" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/optionThird1"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/background_text"
+                app:layout_constraintStart_toStartOf="@id/topTitleThird"
+                app:layout_constraintTop_toBottomOf="@+id/topTitleThird" />
+
+            <TextView
+                android:id="@+id/optionThirdText"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="@dimen/_6sdp"
+                android:text="@string/text31"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:maxLines="2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/optionThird1"
+                app:layout_constraintTop_toTopOf="@+id/optionThird1" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:gravity="center"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        android:background="@drawable/round_btn_ads"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ads_lay"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/rect_menu_language"
+        android:backgroundTint="@color/white"
+        android:padding="@dimen/_10sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/animation"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintBottom_toTopOf="@id/warning"
+            app:layout_constraintEnd_toEndOf="@id/ads_lay"
+            app:layout_constraintStart_toStartOf="@id/ads_lay"
+            app:layout_constraintTop_toTopOf="@id/ads_lay" />
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="#00FFFFFF"
+            android:text="@string/loading_ad"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/ads_lay"
+            app:layout_constraintLeft_toLeftOf="@id/ads_lay"
+            app:layout_constraintRight_toRightOf="@id/ads_lay"
+            app:layout_constraintTop_toBottomOf="@id/animation"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

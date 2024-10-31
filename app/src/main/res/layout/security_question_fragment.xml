@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/mainbg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/password_bg">
+
+    <include
+        android:id="@+id/top_lay"
+        layout="@layout/top_layout_all"/>
+
+    <View
+        android:id="@+id/questionView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_130sdp"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/rect_white_exit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/top_lay"
+        />
+
+    <com.skydoves.powerspinner.PowerSpinnerView
+        android:id="@+id/powerSpinnerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="start"
+        android:layout_marginHorizontal="@dimen/_5sdp"
+        android:text="@string/what_is_your_favourite_color"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textSize="14.5sp"
+        app:layout_constraintEnd_toEndOf="@id/questionView"
+        app:layout_constraintStart_toStartOf="@id/questionView"
+        app:layout_constraintTop_toTopOf="@id/questionView"
+        app:spinner_arrow_gravity="end"
+        app:spinner_arrow_padding="8dp"
+        app:spinner_divider_color="@color/black"
+        app:spinner_divider_show="true"
+        app:spinner_divider_size="0.8dp"
+        app:spinner_item_array="@array/questions"
+        app:spinner_item_height="46dp"
+        app:spinner_popup_animation="dropdown"
+        app:spinner_popup_background="@drawable/rect_menu_language"
+        app:spinner_popup_elevation="@dimen/_11sdp"
+        app:layout_constraintBottom_toTopOf="@id/editTextText"
+        />
+
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/rect_menu_edit"
+        android:ems="10"
+        android:textSize="@dimen/_11sdp"
+        android:hint="@string/type_answer_her"
+        android:inputType="text"
+        android:paddingHorizontal="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_10sdp"
+        android:textColorHint="#E4717171"
+        android:textColor="#E4717171"
+        app:layout_constraintBottom_toBottomOf="@+id/questionView"
+        app:layout_constraintEnd_toEndOf="@+id/questionView"
+        app:layout_constraintStart_toStartOf="@+id/questionView"
+        app:layout_constraintTop_toBottomOf="@id/powerSpinnerView" />
+
+    <TextView
+        android:id="@+id/addQuestion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/rect_btn_loading"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_8sdp"
+        android:text="@string/add_question"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.55" />
+
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_70sdp"
+        android:background="@drawable/round_btn_ads"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ads_lay"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/rect_menu_language"
+        android:backgroundTint="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/_10sdp"
+        >
+
+        <ProgressBar
+            android:id="@+id/animation"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintEnd_toEndOf="@id/ads_lay"
+            app:layout_constraintStart_toStartOf="@id/ads_lay"
+            app:layout_constraintTop_toTopOf="@id/ads_lay"
+            app:layout_constraintBottom_toTopOf="@id/warning"
+            />
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:text="@string/loading_ad"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/ads_lay"
+            app:layout_constraintLeft_toLeftOf="@id/ads_lay"
+            app:layout_constraintRight_toRightOf="@id/ads_lay"
+            app:layout_constraintTop_toBottomOf="@id/animation"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

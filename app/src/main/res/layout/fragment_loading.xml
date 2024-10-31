@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainbg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20"
+        app:layout_constraintWidth_percent="0.4"
+        app:srcCompat="@drawable/splash_icon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/app_name_detail"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_11sdp"
+        app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintWidth_percent="0.90" />
+
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_215sdp"
+        android:layout_marginHorizontal="1dp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:background="@drawable/round_btn_ads"
+        android:minHeight="@dimen/_200sdp"
+        app:layout_constraintBottom_toTopOf="@id/next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" >
+<!--        <include layout="@layout/ad_unified_media"/>-->
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
+
+    <TextView
+        android:id="@+id/next"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_margin="@dimen/_20sdp"
+        android:background="@drawable/rect_btn_loding"
+        android:gravity="center"
+        android:text="@string/continue_txt"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.80" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="@id/next"
+        app:layout_constraintBottom_toBottomOf="@id/next"
+        app:layout_constraintEnd_toEndOf="@id/next"
+        app:layout_constraintStart_toStartOf="@id/next"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ads_lay"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/rect_menu_language"
+        android:backgroundTint="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/_10sdp"
+        >
+
+        <ProgressBar
+            android:id="@+id/animation"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintEnd_toEndOf="@id/ads_lay"
+            app:layout_constraintStart_toStartOf="@id/ads_lay"
+            app:layout_constraintTop_toTopOf="@id/ads_lay"
+            app:layout_constraintBottom_toTopOf="@id/warning"
+            />
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:text="@string/loading_ad"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/ads_lay"
+            app:layout_constraintLeft_toLeftOf="@id/ads_lay"
+            app:layout_constraintRight_toRightOf="@id/ads_lay"
+            app:layout_constraintTop_toBottomOf="@id/animation"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

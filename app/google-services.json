@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "507263328240",
+    "project_id": "heartzipperlock",
+    "storage_bucket": "heartzipperlock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:507263328240:android:33f25665fe4cf5657c4735",
+        "android_client_info": {
+          "package_name": "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "507263328240-cudul9rv1e4oa74iagv2agco861ejlfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnECLefMMqsVJSWAXfxP1KegZsx1mb9BM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "507263328240-cudul9rv1e4oa74iagv2agco861ejlfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      },
+      "admob_app_id": "ca-app-pub-9263479717968951~3775848424"
+    }
+  ],
+  "configuration_version": "1"
+}

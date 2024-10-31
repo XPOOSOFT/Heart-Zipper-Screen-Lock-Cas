@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name">Kalp Fermuar Ekran Kilidi Uygulaması</string>
+    <string name="please_wait_app_is_opening">Aşk Yükleniyor... Lütfen bekleyin!</string>
+    <string name="secure_your_screen"><![CDATA[Ekranınızı Koruyun: Fermuarı Kapatın ve Kalbi Serbest Bırakın!]]></string>
+    <string name="protect_your_privacy">Gizliliğinizi Koruyun</string>
+    <string name="would_you_like_to_continue_unlock_heart">Kalbin kilidini açmaya devam etmek ister misiniz?</string>
+    <string name="exit_app">Uygulamadan Çık</string>
+    <string name="tap_to_exit"><u>Çıkmak için dokunun</u></string>
+    <string name="start">Başla</string>
+
+    <string name="yes"><U>Evet</U></string>
+    <string name="no">Hayır</string>
+    <string name="exit">Çıkış</string>
+    <string name="exit_from_app">Çıkmak istiyor musunuz?</string>
+    <string name="enjo_app">Uygulamamızın tadını çıkarın</string>
+    <string name="rating_detail">Uygulamamızı beğendiyseniz, lütfen bizi değerlendirin</string>
+    <string name="rate_us">Bizi Değerlendirin</string>
+    <string name="service">Hizmet</string>
+    <string name="service_disable_dialog">Hizmeti devre dışı bırakmak ister misiniz?</string>
+    <string name="ok">Tamam</string>
+    <string name="permissionDENIED">İzin REDDEDİLDİ</string>
+    <string name="permission_needed">İzin gerekli</string>
+    <string name="camera_permission">Fotoğraflar için kamera izni gerekli</string>
+    <string name="check_ads">Reklamları Kontrol Et</string>
+    <string name="no_internet">İnternet yok</string>
+    <string name="ad">Reklam</string>
+    <string name="notification_permission">Kilit ekranı için bildirim izni gerekli</string>
+
+    <string name="brazil">Brezilya</string>
+    <string name="canada">Kanada</string>
+    <string name="itlay">İtalya</string>
+    <string name="english">İngilizce</string>
+    <string name="france">Fransa</string>
+    <string name="german">Almanca</string>
+    <string name="netherland">Hollanda</string>
+    <string name="spanish">İspanyolca</string>
+    <string name="hindi">Hintçe</string>
+    <string name="bengali">Bengalce</string>
+    <string name="portuguese">Portekizce</string>
+    <string name="russian">Rusça</string>
+    <string name="japanese">Japonca</string>
+    <string name="chinese">Çince</string>
+    <string name="turkish">Türkçe</string>
+    <string name="korean">Korece</string>
+    <string name="vietnamese">Vietnamca</string>
+    <string name="italian">İtalyanca</string>
+    <string name="urdu">Urduca</string>
+    <string name="indonesian">Endonezce</string>
+    <string name="polish">Lehçe</string>
+    <string name="ukrainian">Ukraynaca</string>
+    <string name="turkey">Türkiye</string>
+    <string name="england">İngiltere</string>
+    <string name="usa">ABD</string>
+    <string name="Arabic">Arapça</string>
+
+    <string name="set_app_language">Dil Seçin</string>
+    <string name="continue_txt">Başla</string>
+    <string name="finish">Tamamla</string>
+    <string name="next">Sonraki</string>
+
+    <string name="rate_title">Uygulamamızı Değerlendirin!</string>
+    <string name="exit_title">Çıkmak istediğinizden emin misiniz?</string>
+    <string name="apply">Uygula</string>
+    <string name="skip">Atla</string>
+
+    <string name="notification">Bildirim</string>
+    <string name="share_app">Uygulamayı Paylaş</string>
+    <string name="premium">Premium</string>
+    <string name="language">Dil</string>
+    <string name="more_app">Diğer Uygulamalar (Reklam)</string>
+    <string name="privacy">Gizlilik</string>
+
+    <string name="LOADING">Yükleniyor...</string>
+    <string name="close">Kapat</string>
+    <string name="dialog_cancel">İptal</string>
+    <string name="dialog_default_title">İşte bir mesaj!</string>
+    <string name="dialog_ok">TAMAM</string>
+    <string name="enable_lockscreen">Kilit Ekranını Etkinleştir</string>
+    <string name="enable_pattern_password">Desen parolasını etkinleştir</string>
+    <string name="enter_pattern">Deseni girin</string>
+    <string name="later">Belki sonra</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Yükleniyor</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Daha fazla seçenek</string>
+    <string name="preview">Önizleme</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Gizlilik Politikası</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Bizi Değerlendirin!!</string>
+    <string name="rate_us_message">Uygulamamızı beğenmenizden mutluluk duyuyoruz! Play Store\'da bize bir inceleme yapar mısınız? Bu gerçekten bize yardımcı olur! Destekleriniz için teşekkürler</string>
+    <string name="row_style">Satır Stili</string>
+    <string name="set_wallpaper">Duvar Kağıdını Ayarla</string>
+    <string name="settings">Ayarlar</string>
+    <string name="vibration">Titreşim</string>
+    <string name="wallpapers">Duvar Kağıtları</string>
+    <string name="wlp_set">Duvar kağıdı başarıyla ayarlandı</string>
+    <string name="zipperStyle">Kilit Stili</string>
+    <string name="set_password">Parola Belirle</string>
+    <string name="set_your_password">Parolanızı Belirleyin</string>
+    <string name="enter_your_pass">Parolanızı girin</string>
+    <string name="re_enter_pass">Parolanızı tekrar girin</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Animasyon Hızı</string>
+    <string name="no_thanks">Hayır, teşekkürler</string>
+    <string name="remind_me_later">Sonra hatırlat</string>
+    <string name="cancel">İptal</string>
+    <string name="enter_your_pin_code">PIN kodunuzu girin</string>
+    <string name="enter_your_pin_code_again">PIN kodunuzu tekrar girin</string>
+    <string name="app_name_detail">Cihaz güvenliğinizi artırmak için Aşk Kalp Kilit Ekranını seçin.</string>
+    <string name="change_pin_lock">PIN Kilidini Değiştir</string>
+    <string name="sound">Ses</string>
+    <string name="moreApp">Diğer Uygulamalar (Reklam)</string>
+    <string name="shareApp">Uygulamayı Paylaş</string>
+    <string name="rateUs">Bizi Değerlendirin</string>
+    <string name="thanks_txt">Zamanınız için teşekkürler!</string>
+    <string name="zipper">Kilit</string>
+    <string name="row">Satırlar</string>
+    <string name="wallpaper">4k Duvar Kağıdı</string>
+    <string name="permission_required">İzin Gerekiyor</string>
+    <string name="set_pin">PIN Belirle</string>
+    <string name="confirm_pin">PIN\'i Onayla</string>
+    <string name="add_question">Soru Ekle</string>
+    <string name="type_answer_her">Yanıtı buraya yazın...</string>
+    <string name="what_is_your_favourite_color">Favori renginiz nedir?</string>
+    <string name="security_question">Güvenlik Sorusu</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">Uygulamanın diğer uygulamaların üstünde görüntülenmesi için izin gerekmektedir. Lütfen bunu önce kontrol edin!</string>
+
+    <string-array name="questions">
+        <item>Favori renginiz nedir?</item>
+        <item>Favori yemeğiniz nedir?</item>
+        <item>Favori evcil hayvanınızın adı nedir?</item>
+        <item>Favori kahveniz nedir?</item>
+        <item>Neden Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Müzik Seç</string>
+    <string name="select_sound">Ses Seç</string>
+    <string name="select_speed">Kilit Hızı</string>
+    <string name="first_enable_password">Önce Parolayı Etkinleştir</string>
+    <string name="empty_field">Boş Alan</string>
+    <string name="save_security_question">Güvenlik Sorusunu Kaydet</string>
+    <string name="wrong_ans">Yanlış Cevap</string>
+    <string name="heart_theme">Kalp Teması</string>
+    <string name="heart_lock">Kalp Kilidi</string>
+    <string name="heart_zipper">Kalp Kilidi</string>
+    <string name="loading_ad">Reklam Yükleniyor...</string>
+    <string name="app_security">Uygulama Güvenliği</string>
+    <string name="allow_permission">İzni Ver</string>
+    <string name="text1">Kalp kilidi ekranı uygulamasını açın ve kontrol paneline gidin.</string>
+    <string name="text31">Her şey istediğiniz gibi ayarlandığında, kişiselleştirilmiş kilit ekranınızın tadını çıkarın!</string>
+    <string name="enjoy_your_new_lock_screen">Yeni Kilit Ekranınızın Tadını Çıkarın:</string>
+    <string name="how_to_set_lock">Kilit nasıl ayarlanır:</string>
+    <string name="preview_lock_screen">Kilit Ekranını Önizleyin:</string>
+    <string name="choose_any_option_from_the_dashboard">Kontrol panelinden herhangi bir seçeneği seçin.</string>
+    <string name="text13">İstenirse, kilit ekranı önizlemesi göstermek için uygulamanın izinlerine erişmesine izin verin.</string>
+    <string name="text14">İzinleri verdikten sonra, kalp kilidi uygulamasına geri dönün.</string>
+    <string name="text15">Artık "önizleme" seçeneğini kullanarak önizlemeyi görebilir veya arka plan, kilit ve satır ayarlarını değiştirebilirsiniz.</string>
+    <string name="text21">Kilit ekranı uygulamasını açın ve kontrol paneline gidin.</string>
+    <string name="text22">Kontrol panelinden güvenlik seçeneğini seçin.</string>
+    <string name="text23">PIN kodunu Ayarla seçeneğini seçin ve 4 haneli bir şifre girin</string>
+    <string name="text24">Geri yükleme için güvenlik sorusu belirleyin</string>
+
+    <string name="version">Sürüm:</string>
+    <string name="purchase">Satın Al</string>
+    <string name="with_ads"><u>Reklamlarla Devam Et</u></string>
+    <string name="get_premium">PREMIUM AL</string>
+    <string name="get_premium_detail"><![CDATA[Tüm premium özelliklerin kilidini açın ve üst düzey Kalp Kilit Temaları ve duvar kağıtlarının tadını çıkarın ve reklamsız bir deneyimin keyfini çıkarın.]]></string>
+    <string name="ad_free_app">Reklamları Kaldır</string>
+    <string name="unlock_all_features">Tüm özelliklerin kilidini aç</string>
+    <string name="africa">Güney Afrika</string>
+    <string name="bangladash">Bangladeş</string>
+    <string name="domican_republic">Dominik Cumhuriyeti</string>
+    <string name="keynia">Kenya</string>
+    <string name="mexicon">Meksika</string>
+
+    <string name="customer_support">Müşteri Desteği</string>
+    <string name="feedback">Geri bildirim</string>
+    <string name="how_was_your_overall_experience">Genel deneyiminiz nasıldı?</string>
+    <string name="tell_us_the_problems_you_meet">Karşılaştığınız sorunları bize bildirin.</string>
+    <string name="can_t_lock_screen">Ekranı kilitleyemiyorum</string>
+    <string name="others">Diğerleri</string>
+    <string name="slow_speed">Yavaş hız</string>
+    <string name="difficult_to_use">Kullanımı zor</string>
+    <string name="do_not_display_on_my_phone">Telefonumda görünmüyor</string>
+    <string name="do_not_show_the_wallpaper">Duvar kağıdını göstermiyor</string>
+    <string name="feature_not_working">Özellik çalışmıyor</string>
+    <string name="upload_picture">Resim Yükle</string>
+    <string name="send">Gönder</string>
+
+    <string name="wallpaper_new">Ekran Kilidi için 4K Duvar Kağıtları Seçin</string>
+    <string name="zipperStyle_new">Ekran Kilidi için Fermuar Stilini Seçin</string>
+    <string name="row_style_new">Farklı Satır Stilleri ile Kişiselleştirin</string>
+    <string name="preview_new">Ekran Kilidi Deneyiminizi Kişiselleştirin</string>
+    <string name="screen_lock">Ekran Kilidi</string>
+    <string name="wallpaper_new_detail">Temanız için bir resim seçin.</string>
+    <string name="zipperStyle_new_detail">Temanız için bir fermuar seçin.</string>
+    <string name="row_style_new_detail">Temanız için bir Satır seçin.</string>
+    <string name="preview_new_detail">Ekran Kilidinizin Önizlemesi</string>
+
+
+</resources>
+

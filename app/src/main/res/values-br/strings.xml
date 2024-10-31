@@ -1,0 +1,211 @@
+
+<resources>
+
+    <string name="app_name">App de Bloqueio de Tela com Zíper de Coração</string>
+    <string name="please_wait_app_is_opening">Carregando Amor... Por favor, aguarde!</string>
+    <string name="secure_your_screen"><![CDATA[Proteja sua tela: Feche o zíper e libere o coração!]]></string>
+    <string name="protect_your_privacy">Proteja sua privacidade</string>
+    <string name="would_you_like_to_continue_unlock_heart">Gostaria de continuar a desbloquear o coração?</string>
+    <string name="exit_app">Sair do App</string>
+    <string name="tap_to_exit"><u>Toque para sair</u></string>
+    <string name="start">Iniciar</string>
+
+    <string name="yes"><U>Sim</U></string>
+    <string name="no">Não</string>
+    <string name="exit">Sair</string>
+    <string name="exit_from_app">Você deseja sair?</string>
+    <string name="enjo_app">Aproveite nosso aplicativo</string>
+    <string name="rating_detail">Se você gosta do nosso aplicativo, por favor, avalie-nos</string>
+    <string name="rate_us">Avalie-nos</string>
+    <string name="service">Serviço</string>
+    <string name="service_disable_dialog">Você deseja desativar o serviço?</string>
+    <string name="ok">Ok</string>
+    <string name="permissionDENIED">Permissão negada</string>
+    <string name="permission_needed">Permissão necessária</string>
+    <string name="camera_permission">Permissão de câmera é necessária para fotos</string>
+    <string name="check_ads">Verificar anúncios</string>
+    <string name="no_internet">Sem Internet</string>
+    <string name="ad">Anúncio</string>
+    <string name="notification_permission">Permissão de notificação é necessária para o tela de bloqueio</string>
+
+    <string name="brazil">Brasil</string>
+    <string name="canada">Canadá</string>
+    <string name="itlay">Itália</string>
+    <string name="english">Inglês</string>
+    <string name="france">França</string>
+    <string name="german">Alemão</string>
+    <string name="netherland">Países Baixos</string>
+    <string name="spanish">Espanhol</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengali</string>
+    <string name="portuguese">Português</string>
+    <string name="russian">Russo</string>
+    <string name="japanese">Japonês</string>
+    <string name="chinese">Chinês</string>
+    <string name="turkish">Turco</string>
+    <string name="korean">Coreano</string>
+    <string name="vietnamese">Vietnamita</string>
+    <string name="italian">Italiano</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonésio</string>
+    <string name="polish">Polonês</string>
+    <string name="ukrainian">Ucraniano</string>
+    <string name="turkey">Turquia</string>
+    <string name="england">Inglaterra</string>
+    <string name="usa">EUA</string>
+    <string name="Arabic">Árabe</string>
+
+    <string name="set_app_language">Selecionar idioma</string>
+    <string name="continue_txt">Iniciar</string>
+    <string name="finish">Concluir</string>
+    <string name="next">Próximo</string>
+
+    <string name="rate_title">Avalie nosso aplicativo!</string>
+    <string name="exit_title">Tem certeza de que deseja sair?</string>
+    <string name="apply">Aplicar</string>
+    <string name="skip">Pular</string>
+
+    <string name="notification">Notificação</string>
+    <string name="share_app">Compartilhar aplicativo</string>
+    <string name="premium">Premium</string>
+    <string name="language">Idioma</string>
+    <string name="more_app">Mais aplicativos (Anúncio)</string>
+    <string name="privacy">Privacidade</string>
+
+    <string name="LOADING">Carregando...</string>
+    <string name="close">Fechar</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_default_title">Aqui está uma mensagem!</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="enable_lockscreen">Ativar tela de bloqueio</string>
+    <string name="enable_pattern_password">Ativar senha de padrão</string>
+    <string name="enter_pattern">Digite o padrão</string>
+    <string name="later">Talvez mais tarde</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Carregando</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Mais opções</string>
+    <string name="preview">Visualizar</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Política de privacidade</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Avalie-nos!!</string>
+    <string name="rate_us_message">Estamos felizes que você está gostando do nosso aplicativo! Você se importaria de nos deixar uma avaliação na loja de aplicativos? Isso realmente nos ajuda! Obrigado pelo seu apoio</string>
+    <string name="row_style">Estilo de linha</string>
+    <string name="set_wallpaper">Definir papel de parede</string>
+    <string name="settings">Configurações</string>
+    <string name="vibration">Vibração</string>
+    <string name="wallpapers">Papéis de parede</string>
+    <string name="wlp_set">Papel de parede definido com sucesso</string>
+    <string name="zipperStyle">Estilo de zíper</string>
+    <string name="set_password">Definir senha</string>
+    <string name="set_your_password">Defina sua senha</string>
+    <string name="enter_your_pass">Digite sua senha</string>
+    <string name="re_enter_pass">Digite sua senha novamente</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Velocidade da animação</string>
+    <string name="no_thanks">Não, obrigado</string>
+    <string name="remind_me_later">Lembrar-me mais tarde</string>
+    <string name="cancel">Cancelar</string>
+    <string name="enter_your_pin_code">Digite seu código PIN</string>
+    <string name="enter_your_pin_code_again">Digite seu código PIN novamente</string>
+    <string name="app_name_detail">Escolha a Tela de Bloqueio Love Heart para maior segurança do dispositivo.</string>
+    <string name="change_pin_lock">Alterar bloqueio PIN</string>
+    <string name="sound">Som</string>
+    <string name="moreApp">Mais aplicativos (Anúncio)</string>
+    <string name="shareApp">Compartilhar aplicativo</string>
+    <string name="rateUs">Avalie-nos</string>
+    <string name="thanks_txt">Obrigado pelo seu tempo!</string>
+    <string name="zipper">Zíper</string>
+    <string name="row">Linhas</string>
+    <string name="wallpaper">4k Papel de parede</string>
+    <string name="permission_required">Permissão necessária</string>
+    <string name="set_pin">Definir PIN</string>
+    <string name="confirm_pin">Confirmar PIN</string>
+    <string name="add_question">Adicionar pergunta</string>
+    <string name="type_answer_her">Digite sua resposta aqui...</string>
+    <string name="what_is_your_favourite_color">Qual é a sua cor favorita?</string>
+    <string name="security_question">Pergunta de segurança</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">O aplicativo precisa da permissão para sobrepor outros aplicativos. Por favor, verifique isso primeiro!</string>
+
+    <string-array name="questions">
+        <item>Qual é a sua cor favorita?</item>
+        <item>Qual é a sua comida favorita?</item>
+        <item>Qual é o nome do seu animal de estimação favorito?</item>
+        <item>Qual é o seu café favorito?</item>
+        <item>Por que Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Selecionar música</string>
+    <string name="select_sound">Selecionar som</string>
+    <string name="select_speed">Velocidade do zíper</string>
+    <string name="first_enable_password">Primeiro ative a senha</string>
+    <string name="empty_field">Campo vazio</string>
+    <string name="save_security_question">Salvar pergunta de segurança</string>
+    <string name="wrong_ans">Resposta errada</string>
+    <string name="heart_theme">Tema do coração</string>
+    <string name="heart_lock">Bloqueio do coração</string>
+    <string name="heart_zipper">Zíper do coração</string>
+    <string name="loading_ad">Carregando anúncio...</string>
+    <string name="app_security">Segurança do aplicativo</string>
+    <string name="allow_permission">Permitir permissão</string>
+    <string name="text1">Abra o aplicativo Tela de Bloqueio Love Heart e vá para o painel.</string>
+    <string name="text31">Assim que tudo estiver configurado de acordo com suas preferências, aproveite seu bloqueio personalizado!</string>
+    <string name="enjoy_your_new_lock_screen">Aproveite seu novo bloqueio de tela:</string>
+    <string name="how_to_set_lock">Como definir a tela de bloqueio:</string>
+    <string name="preview_lock_screen">Visualizar tela de bloqueio:</string>
+    <string name="choose_any_option_from_the_dashboard">Escolha qualquer opção do painel.</string>
+    <string name="text13">Se solicitado, permita que o aplicativo acesse permissões nas configurações do telefone para mostrar a visualização do zíper.</string>
+    <string name="text14">Depois de conceder permissões, volte para o aplicativo de zíper do coração.</string>
+    <string name="text15">Agora você pode ver a visualização usando a opção "Visualizar" ou alterando o fundo, o zíper e as configurações das linhas.</string>
+    <string name="text21">Abra o aplicativo de tela de bloqueio e vá para o painel.</string>
+    <string name="text22">Escolha a opção de segurança do painel.</string>
+    <string name="text23">Selecione Definir Código PIN e insira uma senha de 4 dígitos.</string>
+    <string name="text24">Defina perguntas de segurança para recuperação.</string>
+
+    <string name="version">Versão:</string>
+    <string name="purchase">Compra</string>
+    <string name="with_ads"><u>Continuar com anúncios</u></string>
+    <string name="get_premium">OBTER PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Desbloqueie todos os recursos premium e temas e papéis de parede de bloqueio de coração de alta qualidade e aproveite uma experiência sem anúncios.]]></string>
+    <string name="ad_free_app">Remover anúncios</string>
+    <string name="unlock_all_features">Desbloquear todos os recursos</string>
+    <string name="africa">África do Sul</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">República Dominicana</string>
+    <string name="keynia">Quênia</string>
+    <string name="mexicon">México</string>
+
+    <string name="customer_support">Suporte ao Cliente</string>
+    <string name="feedback">Feedback</string>
+    <string name="how_was_your_overall_experience">Como foi sua experiência geral?</string>
+    <string name="tell_us_the_problems_you_meet">Conte-nos os problemas que você encontrou.</string>
+    <string name="can_t_lock_screen">Não consigo bloquear a tela</string>
+    <string name="others">Outros</string>
+    <string name="slow_speed">Velocidade lenta</string>
+    <string name="difficult_to_use">Difícil de usar</string>
+    <string name="do_not_display_on_my_phone">Não aparece no meu telefone</string>
+    <string name="do_not_show_the_wallpaper">Não mostra o papel de parede</string>
+    <string name="feature_not_working">Recurso não funcionando</string>
+    <string name="upload_picture">Carregar imagem</string>
+    <string name="send">Enviar</string>
+    <string name="wallpaper_new">Escolha entre Papéis de Parede 4K para Sua Tela de Bloqueio</string>
+    <string name="zipperStyle_new">Selecione Seu Estilo de Zíper para a Tela de Bloqueio</string>
+    <string name="row_style_new">Personalize com Diferentes Estilos de Linha</string>
+    <string name="preview_new">Personalize Sua Experiência de Tela de Bloqueio</string>
+    <string name="screen_lock">Tela de Bloqueio</string>
+    <string name="wallpaper_new_detail">Escolha uma imagem para o seu Tema.</string>
+    <string name="zipperStyle_new_detail">Escolha um zíper para o seu Tema.</string>
+    <string name="row_style_new_detail">Escolha uma Linha para o seu Tema.</string>
+    <string name="preview_new_detail">Visualize Sua Tela de Bloqueio</string>
+</resources>

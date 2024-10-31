@@ -1,0 +1,221 @@
+<resources>
+    <string name="app_name">Приложение с Замком Экрана на Молнии в Виде Сердца</string>
+    <string name="please_wait_app_is_opening">Загрузка любви... Пожалуйста, подождите!</string>
+    <string name="secure_your_screen"><![CDATA[Защитите свой экран: Застегните молнию и освободите сердце!]]></string>
+    <string name="protect_your_privacy">Защитите свою конфиденциальность</string>
+    <string name="would_you_like_to_continue_unlock_heart">Вы хотите продолжить разблокировку сердца?</string>
+    <string name="exit_app">Выйти из приложения</string>
+    <string name="tap_to_exit"><u>Нажмите, чтобы выйти</u></string>
+    <string name="start">Начать</string>
+
+    <string name="yes"><U>Да</U></string>
+    <string name="no">Нет</string>
+    <string name="exit">Выход</string>
+    <string name="exit_from_app">Вы хотите выйти?</string>
+    <string name="enjo_app">Наслаждайтесь нашим приложением</string>
+    <string name="rating_detail">Если вам нравится наше приложение, пожалуйста, оцените нас</string>
+    <string name="rate_us">Оцените нас</string>
+    <string name="service">Служба</string>
+    <string name="service_disable_dialog">Хотите отключить службу?</string>
+    <string name="ok">ОК</string>
+    <string name="permissionDENIED">Разрешение ОТКАЗАНО</string>
+    <string name="permission_needed">Требуется разрешение</string>
+    <string name="camera_permission">Разрешение на камеру необходимо для фотографий</string>
+    <string name="check_ads">Проверьте объявления</string>
+    <string name="no_internet">Нет интернета</string>
+    <string name="ad">Реклама</string>
+    <string name="notification_permission">Разрешение на уведомления необходимо для экрана блокировки</string>
+
+    <string name="brazil">Бразилия</string>
+    <string name="canada">Канада</string>
+    <string name="itlay">Италия</string>
+    <string name="english">Английский</string>
+    <string name="france">Франция</string>
+    <string name="german">Немецкий</string>
+    <string name="netherland">Нидерланды</string>
+    <string name="spanish">Испанский</string>
+    <string name="hindi">Хинди</string>
+    <string name="bengali">Бенгали</string>
+    <string name="portuguese">Португальский</string>
+    <string name="russian">Русский</string>
+    <string name="japanese">Японский</string>
+    <string name="chinese">Китайский</string>
+    <string name="turkish">Турецкий</string>
+    <string name="korean">Корейский</string>
+    <string name="vietnamese">Вьетнамский</string>
+    <string name="italian">Итальянский</string>
+    <string name="urdu">Урду</string>
+    <string name="indonesian">Индонезийский</string>
+    <string name="polish">Польский</string>
+    <string name="ukrainian">Украинский</string>
+    <string name="turkey">Турция</string>
+    <string name="england">Англия</string>
+    <string name="usa">США</string>
+    <string name="Arabic">Арабский</string>
+
+    <string name="set_app_language">Выберите язык</string>
+    <string name="continue_txt">Начать</string>
+    <string name="finish">Завершить</string>
+    <string name="next">Далее</string>
+
+    <string name="rate_title">Оцените наше приложение!</string>
+    <string name="exit_title">Вы уверены, что хотите выйти?</string>
+    <string name="apply">Применить</string>
+    <string name="skip">Пропустить</string>
+
+    <string name="notification">Уведомление</string>
+    <string name="share_app">Поделиться приложением</string>
+    <string name="premium">Премиум</string>
+    <string name="language">Язык</string>
+    <string name="more_app">Другие приложения (Реклама)</string>
+    <string name="privacy">Конфиденциальность</string>
+
+    <string name="LOADING">Загрузка...</string>
+    <string name="close">Закрыть</string>
+    <string name="dialog_cancel">Отмена</string>
+    <string name="dialog_default_title">Вот сообщение!</string>
+    <string name="dialog_ok">ОК</string>
+    <string name="enable_lockscreen">Включить экран блокировки</string>
+    <string name="enable_pattern_password">Включить пароль по рисунку</string>
+    <string name="enter_pattern">Введите рисунок</string>
+    <string name="later">Может быть позже</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Загрузка</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Больше опций</string>
+    <string name="preview">Предпросмотр</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Политика конфиденциальности</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Оцените нас!!</string>
+    <string name="rate_us_message">Мы рады, что вам нравится наше приложение! Не могли бы вы оставить отзыв в Play Store? Это действительно помогает нам! Спасибо за вашу поддержку</string>
+    <string name="row_style">Стиль строки</string>
+    <string name="set_wallpaper">Установить обои</string>
+    <string name="settings">Настройки</string>
+    <string name="vibration">Вибрация</string>
+    <string name="wallpapers">Обои</string>
+    <string name="wlp_set">Обои успешно установлены</string>
+    <string name="zipperStyle">Стиль молнии</string>
+    <string name="set_password">Установить пароль</string>
+    <string name="set_your_password">Установите свой пароль</string>
+    <string name="enter_your_pass">Введите ваш пароль</string>
+    <string name="re_enter_pass">Повторите пароль</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Скорость анимации</string>
+    <string name="no_thanks">Нет, спасибо</string>
+    <string name="remind_me_later">Напомнить позже</string>
+    <string name="cancel">Отмена</string>
+    <string name="enter_your_pin_code">Введите ваш PIN-код</string>
+    <string name="enter_your_pin_code_again">Введите PIN-код снова</string>
+    <string name="app_name_detail">Выберите Экран блокировки Сердце Любви для повышения \n безопасности устройства.</string>
+    <string name="change_pin_lock">Изменить PIN-блокировку</string>
+    <string name="sound">Звук</string>
+    <string name="moreApp">Другие приложения (Реклама)</string>
+    <string name="shareApp">Поделиться приложением</string>
+    <string name="rateUs">Оцените нас</string>
+    <string name="thanks_txt">Спасибо за ваше время!</string>
+    <string name="zipper">Молния</string>
+    <string name="row">Строки</string>
+    <string name="wallpaper">4k Обои</string>
+    <string name="permission_required">Требуется разрешение</string>
+    <string name="set_pin">Установить PIN</string>
+    <string name="confirm_pin">Подтвердите PIN</string>
+    <string name="add_question">Добавить вопрос</string>
+    <string name="type_answer_her">Введите ответ здесь...</string>
+    <string name="what_is_your_favourite_color">Какой ваш любимый цвет?</string>
+    <string name="security_question">Вопрос безопасности</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">Приложению необходимо разрешение на наложение на другие приложения. Пожалуйста, проверьте это сначала!</string>
+
+    <string-array name="questions">
+        <item>Какой ваш любимый цвет?</item>
+        <item>Какое ваше любимое блюдо?</item>
+        <item>Как зовут вашего любимого питомца?</item>
+        <item>Какой ваш любимый кофе?</item>
+        <item>Почему Kotlin?</item>
+    </string-array>
+
+<!--    <string name="dont_use_lock_screen">Не использовать экран блокировки</string>-->
+<!--    <string name="error">Ошибка</string>-->
+<!--    <string name="password_is_empty">Пароль пуст</string>-->
+<!--    <string name="password_not_match">Пароли не совпадают</string>-->
+<!--    <string name="security_question_not_set">Вопрос безопасности не установлен</string>-->
+<!--    <string name="enter_security_answer">Введите ответ на вопрос безопасности</string>-->
+<!--    <string name="incorrect_answer">Неверный ответ</string>-->
+<!--    <string name="setup_success">Настройка завершена успешно</string>-->
+    <string name="selectMusic">Выберите музыку</string>
+    <string name="select_sound">Выберите звук</string>
+    <string name="select_speed">Скорость застежки</string>
+    <string name="first_enable_password">Первый раз включить пароль</string>
+    <string name="heart_lock">Сердечный замок</string>
+    <string name="heart_zipper">Сердечный замок</string>
+    <string name="loading_ad">Загрузка рекламы...</string>
+    <string name="app_security">Безопасность приложения</string>
+    <string name="allow_permission">Разрешить доступ</string>
+    <string name="text1">Откройте приложение для экрана блокировки на застежке-молнии и перейдите на его панель управления.</string>
+    <string name="text31">Как только все настроено по вашему вкусу, наслаждайтесь персонализированным экраном блокировки на застежке-молнии!</string>
+    <string name="enjoy_your_new_lock_screen">Наслаждайтесь вашим новым экраном блокировки:</string>
+    <string name="how_to_set_lock">Как установить блокировку:</string>
+    <string name="preview_lock_screen">Предварительный просмотр экрана блокировки:</string>
+    <string name="choose_any_option_from_the_dashboard">Выберите любой вариант на панели управления.</string>
+    <string name="text13">Если появится запрос, разрешите приложению доступ к разрешениям в настройках телефона для показа предварительного просмотра застежки.</string>
+    <string name="text14">После разрешения доступа вернитесь к приложению сердечной застежки-молнии.</string>
+    <string name="text15">Теперь вы можете увидеть предварительный просмотр, используя опцию "предварительный просмотр" или изменив фон, застежку и настройки ряда.</string>
+    <string name="text21">Откройте приложение для экрана блокировки на застежке-молнии и перейдите на его панель управления.</string>
+    <string name="text22">Выберите вариант безопасности на панели управления.</string>
+    <string name="text23">Выберите "Установить код доступа" и введите 4-значный пароль</string>
+    <string name="text24">Установите вопрос безопасности для восстановления</string>
+
+    <string name="empty_field">Пустое поле</string>
+    <string name="save_security_question">Сохранить вопрос безопасности</string>
+    <string name="wrong_ans">Неправильный ответ</string>
+    <string name="heart_theme">Тема сердца</string>
+
+    <string name="version">Версия:</string>
+    <string name="purchase">Покупка</string>
+    <string name="with_ads"><u>Продолжить с рекламой</u></string>
+    <string name="get_premium">ПОЛУЧИТЬ ПРЕМИУМ</string>
+    <string name="get_premium_detail"><![CDATA[Разблокируйте все премиум-функции и первоклассные темы и обои Heart Lock и наслаждайтесь отсутствием рекламы.]]></string>
+    <string name="ad_free_app">Удалить рекламу</string>
+    <string name="unlock_all_features">Разблокировать все функции</string>
+    <string name="africa">Южная Африка</string>
+    <string name="bangladash">Бангладеш</string>
+    <string name="domican_republic">Доминиканская Республика</string>
+    <string name="keynia">Кения</string>
+    <string name="mexicon">Мексика</string>
+
+    <string name="customer_support">Поддержка клиентов</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="how_was_your_overall_experience">Каков был ваш общий опыт?</string>
+    <string name="tell_us_the_problems_you_meet">Сообщите нам о проблемах, с которыми вы столкнулись.</string>
+    <string name="can_t_lock_screen">Не могу заблокировать экран</string>
+    <string name="others">Другие</string>
+    <string name="slow_speed">Медленная скорость</string>
+    <string name="difficult_to_use">Трудно использовать</string>
+    <string name="do_not_display_on_my_phone">Не отображается на моем телефоне</string>
+    <string name="do_not_show_the_wallpaper">Обои не отображаются</string>
+    <string name="feature_not_working">Функция не работает</string>
+    <string name="upload_picture">Загрузить изображение</string>
+    <string name="send">Отправить</string>
+
+    <string name="wallpaper_new">Выберите обои 4K для блокировки экрана</string>
+    <string name="zipperStyle_new">Выберите стиль застежки-молнии для блокировки экрана</string>
+    <string name="row_style_new">Настройте различные стили строк</string>
+    <string name="preview_new">Персонализируйте свой опыт блокировки экрана</string>
+    <string name="screen_lock">Блокировка экрана</string>
+    <string name="wallpaper_new_detail">Выберите изображение для вашей темы.</string>
+    <string name="zipperStyle_new_detail">Выберите молнию для вашей темы.</string>
+    <string name="row_style_new_detail">Выберите строку для вашей темы.</string>
+    <string name="preview_new_detail">Просмотр вашей блокировки экрана</string>
+
+</resources>
+

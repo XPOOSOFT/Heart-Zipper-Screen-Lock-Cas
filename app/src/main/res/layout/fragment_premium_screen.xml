@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/buy_screen_bg"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.7"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/closeBtn"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:padding="@dimen/_9sdp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/close_btn"
+        app:tint="@color/white" />
+
+    <View
+        android:id="@+id/mainLogo"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_130sdp"
+        android:background="@drawable/crown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.20" />
+
+    <View
+        android:id="@+id/mainFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_140sdp"
+        android:background="@drawable/frame_shade"
+        app:layout_constraintBottom_toTopOf="@id/butBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.20" />
+    <TextView
+        android:id="@+id/titleCenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:text="@string/unlock_all_features"
+        android:singleLine="true"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintBottom_toTopOf="@id/mainItem"
+        app:layout_constraintEnd_toEndOf="@id/mainFrame"
+        app:layout_constraintStart_toStartOf="@id/mainFrame"
+        app:layout_constraintTop_toTopOf="@id/mainFrame" />
+
+    <View
+        android:id="@+id/mainItem"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintBottom_toTopOf="@id/smooth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/proClock"
+        app:layout_constraintTop_toBottomOf="@id/titleCenter" />
+
+    <View
+        android:id="@+id/proClock"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@id/mainItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/mainItem"
+        app:layout_constraintTop_toTopOf="@id/mainItem"
+        />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/flag_icon"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/mobile_icon"
+        app:layout_constraintBottom_toBottomOf="@id/mainItem"
+        app:layout_constraintStart_toStartOf="@id/mainItem"
+        app:layout_constraintTop_toTopOf="@id/mainItem" />
+
+    <TextView
+        android:id="@+id/country_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:text="@string/ad_free_app"
+        android:singleLine="true"
+        android:paddingStart="@dimen/_10sdp"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="@id/flag_icon"
+        app:layout_constraintEnd_toEndOf="@id/mainItem"
+        app:layout_constraintStart_toEndOf="@id/flag_icon"
+        app:layout_constraintTop_toTopOf="@id/flag_icon" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/proClockIcon"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/pin_icon"
+        app:layout_constraintBottom_toBottomOf="@id/proClock"
+        app:layout_constraintStart_toStartOf="@id/proClock"
+        app:layout_constraintTop_toTopOf="@id/proClock" />
+
+    <TextView
+        android:id="@+id/proClockName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:text="@string/zipperStyle"
+        android:singleLine="true"
+        android:paddingStart="@dimen/_10sdp"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="@id/proClockIcon"
+        app:layout_constraintEnd_toEndOf="@id/proClock"
+        app:layout_constraintStart_toEndOf="@id/proClockIcon"
+        app:layout_constraintTop_toTopOf="@id/proClockIcon" />
+
+    <View
+        android:id="@+id/smooth"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/mainFrame"
+        app:layout_constraintEnd_toStartOf="@id/smartWatch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainItem" />
+
+    <View
+        android:id="@+id/smartWatch"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@id/smooth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/smooth"
+        app:layout_constraintTop_toTopOf="@id/smooth" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/smoothIcon"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/theme_icon"
+        app:layout_constraintBottom_toBottomOf="@id/smooth"
+        app:layout_constraintStart_toStartOf="@id/smooth"
+        app:layout_constraintTop_toTopOf="@id/smooth" />
+
+    <TextView
+        android:id="@+id/smoothName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:text="@string/heart_theme"
+        android:paddingStart="@dimen/_10sdp"
+        android:singleLine="true"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="@id/smoothIcon"
+        app:layout_constraintEnd_toEndOf="@id/smooth"
+        app:layout_constraintStart_toEndOf="@id/smoothIcon"
+        app:layout_constraintTop_toTopOf="@id/smoothIcon" />
+
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/smartWatchIcon"
+        android:layout_width="@dimen/_15sdp"
+        android:layout_height="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:background="@drawable/zip_icon"
+        app:layout_constraintBottom_toBottomOf="@id/smartWatch"
+        app:layout_constraintStart_toStartOf="@id/smartWatch"
+        app:layout_constraintTop_toTopOf="@id/smartWatch" />
+    <TextView
+        android:id="@+id/smartWatchName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:singleLine="true"
+        android:text="@string/row_style"
+        android:paddingStart="@dimen/_10sdp"
+        android:textColor="@color/textColor"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="@id/smartWatchIcon"
+        app:layout_constraintEnd_toEndOf="@id/smartWatch"
+        app:layout_constraintStart_toEndOf="@id/smartWatchIcon"
+        app:layout_constraintTop_toTopOf="@id/smartWatchIcon" />
+
+    <TextView
+        android:id="@+id/butBtn"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_60sdp"
+        android:background="@drawable/buy_btn_new"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="@string/purchase"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintVertical_bias="0.90"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintWidth_percent="0.90" />
+    <TextView
+        android:id="@+id/butClose"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingVertical="@dimen/_5sdp"
+        android:text="@string/with_ads"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="@id/butBtn"
+        app:layout_constraintStart_toStartOf="@+id/butBtn"
+        app:layout_constraintTop_toBottomOf="@+id/butBtn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_premium"
+        android:textSize="@dimen/_38sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/mainLogo"
+        app:layout_constraintStart_toStartOf="@+id/mainLogo"
+        app:layout_constraintTop_toBottomOf="@+id/mainLogo" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/get_premium_detail"
+        android:textSize="@dimen/_12sdp"
+        android:lines="3"
+        android:gravity="center"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/mainLogo"
+        app:layout_constraintStart_toStartOf="@+id/mainLogo"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

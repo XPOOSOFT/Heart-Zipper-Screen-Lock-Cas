@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">Heart Zipper Screen Lock App</string>
+    <string name="please_wait_app_is_opening">Loading Love… Please wait!</string>
+    <string name="yes"><U>Yes</U></string>
+    <string name="no">No</string>
+    <string name="exit">Exit</string>
+    <string name="exit_from_app">Do You Want To Exit ?</string>
+    <string name="enjo_app">Enjoy Over App</string>
+    <string name="rating_detail">If you enjoy over app.Please Rate us</string>
+    <string name="rate_us">Rate Us</string>
+    <string name="service">Service</string>
+    <string name="service_disable_dialog">Do you want to Disable Service?</string>
+    <string name="ok">Ok</string>
+    <string name="permissionDENIED">Permission DENIED</string>
+    <string name="permission_needed">Permission needed</string>
+    <string name="camera_permission">Camera permission is Needed for Photos</string>
+    <string name="check_ads">Check Ads</string>
+    <string name="no_internet">No Internet</string>
+    <string name="ad">Ad</string>
+    <string name="notification_permission">Notification permission is Needed for Lock Screen</string>
+
+    <string name="brazil">Brazil</string>
+    <string name="canada">Canada</string>
+    <string name="itlay">Italy</string>
+    <string name="english">English</string>
+    <string name="france">France</string>
+    <string name="german">German</string>
+    <string name="netherland">Netherlands</string>
+    <string name="spanish">Spanish</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengali</string>
+    <string name="portuguese">Portuguese</string>
+    <string name="russian">Russian</string>
+    <string name="japanese">Japanese</string>
+    <string name="chinese">Chinese</string>
+    <string name="turkish">Turkish</string>
+    <string name="korean">Korean</string>
+    <string name="vietnamese">Vietnamese</string>
+    <string name="italian">Italian</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonesian</string>
+    <string name="polish">Polish</string>
+    <string name="ukrainian">Ukrainian</string>
+    <string name="turkey">Turkey</string>
+    <string name="england">England</string>
+    <string name="usa">USA</string>
+    <string name="Arabic">Arabic</string>
+
+    <string name="set_app_language">Select Language</string>
+    <string name="continue_txt">Start</string>
+    <string name="finish">Finish</string>
+    <string name="next">Next</string>
+
+    <string name="rate_title">Rate our App!</string>
+    <string name="exit_title">Are you sure you want to exit?</string>
+    <string name="apply">Apply</string>
+    <string name="skip">Skip</string>
+
+    <string name="notification">Notification</string>
+    <string name="share_app">Share App</string>
+    <string name="premium">Premium</string>
+    <string name="language">Language</string>
+    <string name="more_app">More App (Ad)</string>
+    <string name="privacy">Privacy</string>
+
+    <string name="LOADING">Loading...</string>
+    <string name="close">Close</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_default_title">Here s a message!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="enable_lockscreen">Enable Locks Screen</string>
+    <string name="enable_pattern_password">Enable pattern password</string>
+    <string name="enter_pattern">Enter pattern</string>
+    <string name="later">Maybe later</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Loading</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">More options</string>
+    <string name="preview">Preview</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Privacy policy</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Rate Us !!</string>
+    <string name="rate_us_message">We re glad you re enjoying using our app! Would you mind giving us a review in the play store? it really helps us out! Thanks for you support</string>
+    <string name="row_style">Row Style</string>
+    <string name="set_wallpaper">Set wallpaper</string>
+    <string name="settings">Settings</string>
+    <string name="vibration">Vibration</string>
+    <string name="wallpapers">Wallpapers</string>
+    <string name="wlp_set">Wallpaper set successfully</string>
+    <string name="zipperStyle">Zippers Style</string>
+    <string name="set_password">Set Password</string>
+    <string name="set_your_password">Set Password</string>
+    <string name="enter_your_pass">Enter your password</string>
+    <string name="re_enter_pass">Re-enter your password</string>
+
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Animation Speed</string>
+    <string name="no_thanks">No, thanks</string>
+    <string name="remind_me_later">Remind me later</string>
+    <string name="cancel">Cancel</string>
+    <string name="enter_your_pin_code">Enter your pin code</string>
+    <string name="enter_your_pin_code_again">Enter your pin code again</string>
+    <string name="app_name_detail">Choose Heart Zipper Screen Lock App for heightened \ndevice security.</string>
+    <string name="change_pin_lock">Change Pin Lock</string>
+    <string name="sound">Sound</string>
+    <string name="moreApp">More App (Ad)</string>
+    <string name="shareApp">Share App</string>
+    <string name="rateUs">Rate Us</string>
+    <string name="thanks_txt">Thanks For Your Time!</string>
+    <string name="zipper">Zipper</string>
+    <string name="row">Rows</string>
+    <string name="wallpaper">4k Wallpaper</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="set_pin">Set Pin</string>
+    <string name="confirm_pin">Confirm Pin</string>
+    <string name="add_question">Add Question</string>
+    <string name="type_answer_her">Type answer her...</string>
+    <string name="what_is_your_favourite_color">What is your favourite color?</string>
+    <string name="security_question">Security Question</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">The App need draw on the top of the permission
+Please Check it first!</string>
+
+    <string-array name="questions">
+        <item>What is your favourite color?</item>
+        <item>What is your favourite food?</item>
+        <item>What is your favourite pet`s name?</item>
+        <item>What is your favourite coffee?</item>
+        <item>Why Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Select Music</string>
+    <string name="select_sound">Select Sound</string>
+    <string name="select_speed">Zipper Speed</string>
+    <string name="first_enable_password">First Enable Password</string>
+    <string name="heart_lock">Heart Lock</string>
+    <string name="heart_zipper">Heart Lock</string>
+    <string name="loading_ad">Loading Ad...</string>
+    <string name="app_security">App Security</string>
+    <string name="allow_permission">Allow Permission</string>  <string name="enjoy_your_new_lock_screen">Enjoy Your New Lock Screen:</string>
+    <string name="how_to_set_lock">How to set Lock:</string>
+    <string name="preview_lock_screen">Preview Lock Screen:</string>
+    <string name="choose_any_option_from_the_dashboard">Choose any option from the dashboard.</string>
+
+    <string name="text1">Open the Heart zipper lock screen app and go to its dashboard.</string>
+    <string name="text31">Once everything is set up to your liking, enjoy your personalized zipper lock screen!</string>
+    <string name="text13">If prompted, allow the app to access permissions in your phone settings to show the zipper preview.</string>
+    <string name="text14">Once you\'ve allowed permissions, go back to the heart zipper app.</string>
+    <string name="text15">You can now see the preview by using the "preview" option or changing the background, zipper, and row settings.</string>
+    <string name="text21">Open the zipper lock screen app and go to its dashboard.</string>
+    <string name="text22">Choose security option from the dashboard.</string>
+    <string name="text23">Select Set Passcode and Enter a 4 digit password</string>
+    <string name="text24">Set Security question for recovery</string>
+
+    <string name="empty_field">Empty Field</string>
+    <string name="save_security_question">Save Security Question</string>
+    <string name="wrong_ans">Wrong Answer</string>
+    <string name="heart_theme">Heart Theme</string>
+
+    <string name="version">Version:</string>
+    <string name="purchase">Purchase</string>
+    <string name="with_ads"><u>Continue With Ads</u></string>
+    <string name="get_premium">GET PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Unlock all premium features & top notch Heart\nLock Themes & wallpapers and enjoy Ads free\nexperience.]]></string>
+    <string name="ad_free_app">Remove Ads</string>
+    <string name="unlock_all_features">Unlock all features</string>
+    <string name="africa">South Africa</string>
+    <string name="bangladash">Bangali</string>
+    <string name="domican_republic">Domican Republic</string>
+    <string name="keynia">Keynia</string>
+    <string name="mexicon">Mexicon</string>
+
+    <string name="secure_your_screen"><![CDATA[Secure Your Screen: Zip & Unleash the Heart!]]></string>
+    <string name="protect_your_privacy">Protect Your Privacy</string>
+    <string name="would_you_like_to_continue_unlock_heart">Would you like to continue unlock heart</string>
+    <string name="exit_app">Exit App</string>
+    <string name="tap_to_exit"><u>Tap to Exit</u></string>
+    <string name="start">Start</string>
+
+    <string name="customer_support">Customer Support</string>
+    <string name="feedback">Feedback</string>
+    <string name="how_was_your_overall_experience">How was your overall experience?</string>
+    <string name="tell_us_the_problems_you_meet">Tell us the problems you meet.</string>
+    <string name="can_t_lock_screen">Can’t lock screen</string>
+    <string name="others">Others</string>
+    <string name="slow_speed">Slow speed</string>
+    <string name="difficult_to_use">Difficult to use</string>
+    <string name="do_not_display_on_my_phone">Do not display on my phone</string>
+    <string name="do_not_show_the_wallpaper">Do not show the wallpaper</string>
+    <string name="feature_not_working">Feature not working</string>
+    <string name="upload_picture">Upload Picture</string>
+    <string name="send">Send</string>
+
+    <string name="wallpaper_new">Choose from 4K Wallpapers for Your Screen Lock</string>
+    <string name="zipperStyle_new">Select Your Zipper Style for Screen Lock</string>
+    <string name="row_style_new">Customize with Different Row Styles</string>
+    <string name="preview_new">Personalize Your Screen Lock Experience</string>
+    <string name="screen_lock">Screen Lock</string>
+    <string name="wallpaper_new_detail">Choose an image for your Theme.</string>
+    <string name="zipperStyle_new_detail">Choose a zipper for your Theme.</string>
+    <string name="row_style_new_detail">Choose a Row for your Theme.</string>
+    <string name="preview_new_detail">Preview Your Screen Lock</string>
+
+</resources>

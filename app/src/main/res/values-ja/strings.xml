@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name">ハートジッパースクリーンロックアプリ</string>
+    <string name="please_wait_app_is_opening">愛を読み込んでいます... お待ちください！</string>
+    <string name="secure_your_screen"><![CDATA[スクリーンを守る：ジッパーを閉じてハートを解き放て！]]></string>
+    <string name="protect_your_privacy">プライバシーを保護する</string>
+    <string name="would_you_like_to_continue_unlock_heart">ハートのロックを解除し続けますか？</string>
+    <string name="exit_app">アプリを終了する</string>
+    <string name="tap_to_exit"><u>終了するにはタップ</u></string>
+    <string name="start">スタート</string>
+
+    <string name="yes"><U>はい</U></string>
+    <string name="no">いいえ</string>
+    <string name="exit">終了</string>
+    <string name="exit_from_app">終了しますか？</string>
+    <string name="enjo_app">アプリをお楽しみください</string>
+    <string name="rating_detail">アプリがお気に入りの場合は、評価してください</string>
+    <string name="rate_us">評価する</string>
+    <string name="service">サービス</string>
+    <string name="service_disable_dialog">サービスを無効にしますか？</string>
+    <string name="ok">OK</string>
+    <string name="permissionDENIED">許可が拒否されました</string>
+    <string name="permission_needed">許可が必要です</string>
+    <string name="camera_permission">写真にはカメラの許可が必要です</string>
+    <string name="check_ads">広告を確認する</string>
+    <string name="no_internet">インターネットがありません</string>
+    <string name="ad">広告</string>
+    <string name="notification_permission">ロックスクリーンには通知の許可が必要です</string>
+
+    <string name="brazil">ブラジル</string>
+    <string name="canada">カナダ</string>
+    <string name="itlay">イタリア</string>
+    <string name="english">英語</string>
+    <string name="france">フランス</string>
+    <string name="german">ドイツ語</string>
+    <string name="netherland">オランダ</string>
+    <string name="spanish">スペイン語</string>
+    <string name="hindi">ヒンディー語</string>
+    <string name="bengali">ベンガル語</string>
+    <string name="portuguese">ポルトガル語</string>
+    <string name="russian">ロシア語</string>
+    <string name="japanese">日本語</string>
+    <string name="chinese">中国語</string>
+    <string name="turkish">トルコ語</string>
+    <string name="korean">韓国語</string>
+    <string name="vietnamese">ベトナム語</string>
+    <string name="italian">イタリア語</string>
+    <string name="urdu">ウルドゥー語</string>
+    <string name="indonesian">インドネシア語</string>
+    <string name="polish">ポーランド語</string>
+    <string name="ukrainian">ウクライナ語</string>
+    <string name="turkey">トルコ</string>
+    <string name="england">イングランド</string>
+    <string name="usa">アメリカ</string>
+    <string name="Arabic">アラビア語</string>
+
+    <string name="set_app_language">言語を設定する</string>
+    <string name="continue_txt">開始</string>
+    <string name="finish">終了</string>
+    <string name="next">次へ</string>
+
+    <string name="rate_title">アプリを評価してください!</string>
+    <string name="exit_title">終了してもよろしいですか？</string>
+    <string name="apply">適用する</string>
+    <string name="skip">スキップ</string>
+
+    <string name="notification">通知</string>
+    <string name="share_app">アプリを共有する</string>
+    <string name="premium">プレミアム</string>
+    <string name="language">言語</string>
+    <string name="more_app">その他のアプリ（広告）</string>
+    <string name="privacy">プライバシー</string>
+
+    <string name="LOADING">読み込み中...</string>
+    <string name="close">閉じる</string>
+    <string name="dialog_cancel">キャンセル</string>
+    <string name="dialog_default_title">メッセージがあります！</string>
+    <string name="dialog_ok">OK</string>
+    <string name="enable_lockscreen">ロックスクリーンを有効にする</string>
+    <string name="enable_pattern_password">パターンパスワードを有効にする</string>
+    <string name="enter_pattern">パターンを入力</string>
+    <string name="later">後で</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">読み込み中</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">その他のオプション</string>
+    <string name="preview">プレビュー</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">プライバシーポリシー</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">評価してください!</string>
+    <string name="rate_us_message">私たちのアプリを楽しんでいただけて嬉しいです！アプリストアでレビューを残していただけますか？ 本当に助かります。ご支援ありがとうございます。</string>
+    <string name="row_style">行スタイル</string>
+    <string name="set_wallpaper">壁紙を設定する</string>
+    <string name="settings">設定</string>
+    <string name="vibration">振動</string>
+    <string name="wallpapers">壁紙</string>
+    <string name="wlp_set">壁紙が正常に設定されました</string>
+    <string name="zipperStyle">ジッパースタイル</string>
+    <string name="set_password">パスワードを設定する</string>
+    <string name="set_your_password">パスワードを設定する</string>
+    <string name="enter_your_pass">パスワードを入力</string>
+    <string name="re_enter_pass">パスワードを再入力</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">アニメーションの速度</string>
+    <string name="no_thanks">いいえ、結構です</string>
+    <string name="remind_me_later">後でリマインドする</string>
+    <string name="cancel">キャンセル</string>
+    <string name="enter_your_pin_code">PINコードを入力</string>
+    <string name="enter_your_pin_code_again">PINコードを再入力</string>
+    <string name="app_name_detail">ラブハートロックスクリーンを選んで、デバイスのセキュリティを向上させましょう。</string>
+    <string name="change_pin_lock">PINロックを変更する</string>
+    <string name="sound">音</string>
+    <string name="moreApp">その他のアプリ（広告）</string>
+    <string name="shareApp">アプリを共有する</string>
+    <string name="rateUs">評価する</string>
+    <string name="thanks_txt">お時間をいただきありがとうございます！</string>
+    <string name="zipper">ジッパー</string>
+    <string name="row">行</string>
+    <string name="wallpaper">4k 壁紙</string>
+    <string name="permission_required">許可が必要です</string>
+    <string name="set_pin">PINを設定する</string>
+    <string name="confirm_pin">PINを確認する</string>
+    <string name="add_question">質問を追加する</string>
+    <string name="type_answer_her">ここに答えを入力...</string>
+    <string name="what_is_your_favourite_color">あなたの好きな色は何ですか？</string>
+    <string name="security_question">セキュリティ質問</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">アプリにはオーバーレイの許可が必要です。最初に確認してください！</string>
+
+    <string-array name="questions">
+        <item>あなたの好きな色は何ですか？</item>
+        <item>あなたの好きな食べ物は何ですか？</item>
+        <item>あなたの好きなペットの名前は何ですか？</item>
+        <item>あなたのお気に入りの教師の名前は何ですか？</item>
+        <item>あなたが初めて行った国はどこですか？</item>
+    </string-array>
+
+
+    <string name="heart_lock">ハートロック</string>
+    <string name="heart_zipper">ハートジッパー</string>
+    <string name="loading_ad">広告を読み込み中...</string>
+    <string name="app_security">アプリセキュリティ</string>
+    <string name="allow_permission">許可を与える</string>
+    <string name="text1">ラブハートロックスクリーンアプリを開いて、ダッシュボードに移動します。</string>
+    <string name="text31">すべてが好みに応じて設定されたら、カスタマイズされたロックスクリーンを楽しんでください！</string>
+    <string name="enjoy_your_new_lock_screen">新しいロックスクリーンをお楽しみください:</string>
+    <string name="how_to_set_lock">ロックスクリーンの設定方法:</string>
+    <string name="preview_lock_screen">ロックスクリーンのプレビュー:</string>
+    <string name="choose_any_option_from_the_dashboard">ダッシュボードから任意のオプションを選択します。</string>
+    <string name="text13">プロンプトが表示された場合は、プレビューを表示するために、携帯電話の設定でアプリが許可にアクセスできるようにします。</string>
+    <string name="text14">許可が与えられたら、アプリに戻ります。</string>
+    <string name="text15">「プレビュー」オプションを使用してプレビューを表示したり、背景、ジッパー、行設定を変更したりできます。</string>
+    <string name="text21">ロックスクリーンアプリを開いて、ダッシュボードに移動します。</string>
+    <string name="text22">ダッシュボードでセキュリティオプションを選択します。</string>
+    <string name="text23">PINを設定するオプションを選択し、4桁のパスワードを入力します。</string>
+    <string name="text24">リカバリ用のセキュリティ質問を設定します。</string>
+
+    <string name="selectMusic">音楽を選択</string>
+    <string name="select_sound">音を選択</string>
+    <string name="select_speed">ジッパー速度</string>
+    <string name="first_enable_password">最初にパスワードを有効にする</string>
+
+    <string name="empty_field">空のフィールド</string>
+    <string name="save_security_question">セキュリティ質問を保存</string>
+    <string name="wrong_ans">間違った答え</string>
+    <string name="heart_theme">ハートテーマ</string>
+
+    <string name="version">バージョン:</string>
+    <string name="purchase">購入</string>
+    <string name="with_ads"><u>広告付きで続行</u></string>
+    <string name="get_premium">プレミアムを取得</string>
+    <string name="get_premium_detail"><![CDATA[すべてのプレミアム機能と一流のハートロックのテーマと壁紙をアンロックし、広告なしの体験を楽しみましょう。]]></string>
+    <string name="ad_free_app">広告を削除</string>
+    <string name="unlock_all_features">すべての機能をアンロック</string>
+    <string name="africa">南アフリカ</string>
+    <string name="bangladash">バングラデシュ</string>
+    <string name="domican_republic">ドミニカ共和国</string>
+    <string name="keynia">ケニア</string>
+    <string name="mexicon">メキシコ</string>
+
+    <string name="customer_support">カスタマーサポート</string>
+    <string name="feedback">フィードバック</string>
+    <string name="how_was_your_overall_experience">全体的な体験はいかがでしたか？</string>
+    <string name="tell_us_the_problems_you_meet">出会った問題を教えてください。</string>
+    <string name="can_t_lock_screen">画面をロックできません</string>
+    <string name="others">その他</string>
+    <string name="slow_speed">速度が遅い</string>
+    <string name="difficult_to_use">使いにくい</string>
+    <string name="do_not_display_on_my_phone">電話に表示されません</string>
+    <string name="do_not_show_the_wallpaper">壁紙が表示されません</string>
+    <string name="feature_not_working">機能が動作しない</string>
+    <string name="upload_picture">写真をアップロード</string>
+    <string name="send">送信</string>
+    <string name="wallpaper_new">ロック画面の4K壁紙を選択</string>
+    <string name="zipperStyle_new">ロック画面のジッパースタイルを選択</string>
+    <string name="row_style_new">さまざまな行スタイルでカスタマイズ</string>
+    <string name="preview_new">ロック画面の体験をパーソナライズ</string>
+    <string name="screen_lock">画面ロック</string>
+    <string name="wallpaper_new_detail">テーマの画像を選択してください。</string>
+    <string name="zipperStyle_new_detail">テーマのジッパーを選択してください。</string>
+    <string name="row_style_new_detail">テーマの行を選択してください。</string>
+    <string name="preview_new_detail">画面ロックをプレビュー</string>
+</resources>
+

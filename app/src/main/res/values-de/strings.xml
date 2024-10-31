@@ -1,0 +1,212 @@
+<resources>
+    <string name="app_name">Herz Reißverschluss Bildschirm Sperre App</string>
+    <string name="please_wait_app_is_opening">Liebe wird geladen... Bitte warten!</string>
+    <string name="secure_your_screen"><![CDATA[Sichere deinen Bildschirm: Reißverschluss & Entfessele das Herz!]]></string>
+    <string name="protect_your_privacy">Schütze deine Privatsphäre</string>
+    <string name="would_you_like_to_continue_unlock_heart">Möchten Sie das Herz weiter freischalten?</string>
+    <string name="exit_app">App Beenden</string>
+    <string name="tap_to_exit"><u>Tippen Sie zum Beenden</u></string>
+    <string name="start">Start</string>
+
+    <string name="yes"><U>Ja</U></string>
+    <string name="no">Nein</string>
+    <string name="exit">Beenden</string>
+    <string name="exit_from_app">Möchten Sie beenden?</string>
+    <string name="enjo_app">Viel Spaß mit unserer App</string>
+    <string name="rating_detail">Wenn Ihnen unsere App gefällt, bewerten Sie uns bitte</string>
+    <string name="rate_us">Bewerten Sie uns</string>
+    <string name="service">Dienst</string>
+    <string name="service_disable_dialog">Möchten Sie den Dienst deaktivieren?</string>
+    <string name="ok">Ok</string>
+    <string name="permissionDENIED">Erlaubnis verweigert</string>
+    <string name="permission_needed">Erlaubnis erforderlich</string>
+    <string name="camera_permission">Kameraerlaubnis für Foto erforderlich</string>
+    <string name="check_ads">Werbung überprüfen</string>
+    <string name="no_internet">Kein Internet</string>
+    <string name="ad">Werbung</string>
+    <string name="notification_permission">Benachrichtigungserlaubnis für Sperrbildschirm erforderlich</string>
+
+    <string name="brazil">Brasilien</string>
+    <string name="canada">Kanada</string>
+    <string name="itlay">Italien</string>
+    <string name="english">Englisch</string>
+    <string name="france">Frankreich</string>
+    <string name="german">Deutsch</string>
+    <string name="netherland">Niederlande</string>
+    <string name="spanish">Spanisch</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengalisch</string>
+    <string name="portuguese">Portugiesisch</string>
+    <string name="russian">Russisch</string>
+    <string name="japanese">Japanisch</string>
+    <string name="chinese">Chinesisch</string>
+    <string name="turkish">Türkisch</string>
+    <string name="korean">Koreanisch</string>
+    <string name="vietnamese">Vietnamesisch</string>
+    <string name="italian">Italienisch</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonesisch</string>
+    <string name="polish">Polnisch</string>
+    <string name="ukrainian">Ukrainisch</string>
+    <string name="turkey">Türkei</string>
+    <string name="england">England</string>
+    <string name="usa">USA</string>
+    <string name="Arabic">Arabisch</string>
+
+    <string name="set_app_language">Sprache wählen</string>
+    <string name="continue_txt">Starten</string>
+    <string name="finish">Beenden</string>
+    <string name="next">Weiter</string>
+
+    <string name="rate_title">Bewerten Sie unsere App!</string>
+    <string name="exit_title">Sind Sie sicher, dass Sie beenden möchten?</string>
+    <string name="apply">Anwenden</string>
+    <string name="skip">Überspringen</string>
+
+    <string name="notification">Benachrichtigung</string>
+    <string name="share_app">App teilen</string>
+    <string name="premium">Premium</string>
+    <string name="language">Sprache</string>
+    <string name="more_app">Weitere Apps (Werbung)</string>
+    <string name="privacy">Datenschutz</string>
+
+    <string name="LOADING">Laden...</string>
+    <string name="close">Schließen</string>
+    <string name="dialog_cancel">Abbrechen</string>
+    <string name="dialog_default_title">Hier ist eine Nachricht!</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="enable_lockscreen">Sperrbildschirm aktivieren</string>
+    <string name="enable_pattern_password">Muster-Passwort aktivieren</string>
+    <string name="enter_pattern">Muster eingeben</string>
+    <string name="later">Vielleicht später</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Laden</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Mehr Optionen</string>
+    <string name="preview">Vorschau</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Datenschutzerklärung</string>
+    <string name="project_id">digital-nordstern</string>
+    <string name="rate_us2">Bewerten Sie uns!!</string>
+    <string name="rate_us_message">Wir freuen uns, dass Ihnen unsere App gefällt! Könnten Sie uns bitte im Play Store bewerten? Es hilft uns sehr! Vielen Dank für Ihre Unterstützung</string>
+    <string name="row_style">Reihenstil</string>
+    <string name="set_wallpaper">Hintergrundbild einstellen</string>
+    <string name="settings">Einstellungen</string>
+    <string name="vibration">Vibration</string>
+    <string name="wallpapers">Hintergrundbilder</string>
+    <string name="wlp_set">Hintergrund erfolgreich eingestellt</string>
+    <string name="zipperStyle">Reißverschlussstil</string>
+    <string name="set_password">Passwort einstellen</string>
+    <string name="set_your_password">Setzen Sie Ihr Passwort</string>
+    <string name="enter_your_pass">Geben Sie Ihr Passwort ein</string>
+    <string name="re_enter_pass">Geben Sie Ihr Passwort erneut ein</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Animationsgeschwindigkeit</string>
+    <string name="no_thanks">Nein, danke</string>
+    <string name="remind_me_later">Erinnere mich später</string>
+    <string name="cancel">Abbrechen</string>
+    <string name="enter_your_pin_code">Geben Sie Ihren PIN-Code ein</string>
+    <string name="enter_your_pin_code_again">Geben Sie Ihren PIN-Code erneut ein</string>
+    <string name="app_name_detail">Wählen Sie Love Hart Lockscreen für verbesserte Sicherheit Ihres Geräts.</string>
+    <string name="change_pin_lock">PIN-Sperre ändern</string>
+    <string name="sound">Sound</string>
+    <string name="moreApp">Weitere Apps (Werbung)</string>
+    <string name="shareApp">App teilen</string>
+    <string name="rateUs">Bewerten Sie uns</string>
+    <string name="thanks_txt">Vielen Dank für Ihre Zeit!</string>
+    <string name="zipper">Reißverschluss</string>
+    <string name="row">Reihen</string>
+    <string name="wallpaper">4k Hintergrundbild</string>
+    <string name="permission_required">Erlaubnis erforderlich</string>
+    <string name="set_pin">PIN einstellen</string>
+    <string name="confirm_pin">PIN bestätigen</string>
+    <string name="add_question">Frage hinzufügen</string>
+    <string name="type_answer_her">Geben Sie hier Ihre Antwort ein...</string>
+    <string name="what_is_your_favourite_color">Was ist Ihre Lieblingsfarbe?</string>
+    <string name="security_question">Sicherheitsfrage</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">Die App benötigt die Erlaubnis, über anderen Apps anzuzeigen. Bitte überprüfen Sie dies zuerst!</string>
+
+    <string-array name="questions">
+        <item>Was ist Ihre Lieblingsfarbe?</item>
+        <item>Was ist Ihr Lieblingsessen?</item>
+        <item>Wie heißt Ihr Lieblingstier?</item>
+        <item>Was ist Ihr Lieblingskaffee?</item>
+        <item>Warum Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Musik auswählen</string>
+    <string name="select_sound">Ton auswählen</string>
+    <string name="select_speed">Reißverschlussgeschwindigkeit</string>
+    <string name="first_enable_password">Aktivieren Sie zuerst das Passwort</string>
+    <string name="empty_field">Leeres Feld</string>
+    <string name="save_security_question">Sicherheitsfrage speichern</string>
+    <string name="wrong_ans">Falsche Antwort</string>
+    <string name="heart_theme">Herzthema
+
+</string>
+    <string name="heart_lock">Herzschloss</string>
+    <string name="heart_zipper">Herz-Reißverschluss</string>
+    <string name="loading_ad">Werbung laden...</string>
+    <string name="app_security">App-Sicherheit</string>
+    <string name="allow_permission">Erlaubnis erteilen</string>
+    <string name="text1">Öffnen Sie die App „Herz-Reißverschluss“ und gehen Sie zum Dashboard.</string>
+    <string name="text31">Sobald alles nach Ihren Wünschen eingestellt ist, genießen Sie Ihr persönliches Reißverschluss-Sperrbildschirm!</string>
+    <string name="enjoy_your_new_lock_screen">Genießen Sie Ihren neuen Sperrbildschirm:</string>
+    <string name="how_to_set_lock">So stellen Sie die Sperre ein:</string>
+    <string name="preview_lock_screen">Vorschau des Sperrbildschirms:</string>
+    <string name="choose_any_option_from_the_dashboard">Wählen Sie eine Option vom Dashboard.</string>
+    <string name="text13">Wenn Sie dazu aufgefordert werden, gewähren Sie der App die Berechtigung, um eine Vorschau des Reißverschlusses in den Telefoneinstellungen anzuzeigen.</string>
+    <string name="text14">Gehen Sie zurück zur Herz-Reißverschluss-App, nachdem Sie die Berechtigung erteilt haben.</string>
+    <string name="text15">Jetzt können Sie die Vorschau anzeigen, indem Sie die Option „Vorschau“ verwenden oder die Hintergrund-, Reißverschluss- und Reihen-Einstellungen ändern.</string>
+    <string name="text21">Öffnen Sie die Reißverschluss-Sperrbildschirm-App und gehen Sie zum Dashboard.</string>
+    <string name="text22">Wählen Sie die Sicherheitsoption vom Dashboard aus.</string>
+    <string name="text23">Wählen Sie „PIN-Code festlegen“ und geben Sie ein 4-stelliges Passwort ein.</string>
+    <string name="text24">Stellen Sie Sicherheitsfragen für die Wiederherstellung ein.</string>
+
+    <string name="version">Version:</string>
+    <string name="purchase">Kauf</string>
+    <string name="with_ads"><u>Mit Werbung fortfahren</u></string>
+    <string name="get_premium">PREMIUM ERHALTEN</string>
+    <string name="get_premium_detail"><![CDATA[Schalten Sie alle Premium-Funktionen sowie erstklassige Herzschloss-Themen und Hintergrundbilder frei und genießen Sie eine werbefreie Erfahrung.]]></string>
+    <string name="ad_free_app">Werbung entfernen</string>
+    <string name="unlock_all_features">Alle Funktionen freischalten</string>
+    <string name="africa">Südafrika</string>
+    <string name="bangladash">Bangladesch</string>
+    <string name="domican_republic">Dominikanische Republik</string>
+    <string name="keynia">Kenia</string>
+    <string name="mexicon">Mexiko</string>
+
+    <string name="customer_support">Kundensupport</string>
+    <string name="feedback">Feedback</string>
+    <string name="how_was_your_overall_experience">Wie war Ihre Gesamterfahrung?</string>
+    <string name="tell_us_the_problems_you_meet">Teilen Sie uns die aufgetretenen Probleme mit.</string>
+    <string name="can_t_lock_screen">Bildschirm kann nicht gesperrt werden</string>
+    <string name="others">Andere</string>
+    <string name="slow_speed">Langsame Geschwindigkeit</string>
+    <string name="difficult_to_use">Schwer zu benutzen</string>
+    <string name="do_not_display_on_my_phone">Wird auf meinem Telefon nicht angezeigt</string>
+    <string name="do_not_show_the_wallpaper">Hintergrundbild wird nicht angezeigt</string>
+    <string name="feature_not_working">Funktion funktioniert nicht</string>
+    <string name="upload_picture">Bild hochladen</string>
+    <string name="send">Senden</string>
+    <string name="wallpaper_new">Wählen Sie aus 4K-Hintergründen für Ihren Sperrbildschirm</string>
+    <string name="zipperStyle_new">Wählen Sie Ihren Reißverschlussstil für den Sperrbildschirm</string>
+    <string name="row_style_new">Anpassen mit verschiedenen Reihenstilen</string>
+    <string name="preview_new">Personalisieren Sie Ihr Sperrbildschirmerlebnis</string>
+    <string name="screen_lock">Bildschirmsperre</string>
+    <string name="wallpaper_new_detail">Wählen Sie ein Bild für Ihr Thema aus.</string>
+    <string name="zipperStyle_new_detail">Wählen Sie einen Reißverschluss für Ihr Thema aus.</string>
+    <string name="row_style_new_detail">Wählen Sie eine Reihe für Ihr Thema aus.</string>
+    <string name="preview_new_detail">Vorschau Ihres Sperrbildschirms</string>
+</resources>
+

@@ -1,0 +1,212 @@
+<resources>
+    <string name="app_name">تطبيق قفل الشاشة بسحاب القلب</string>
+    <string name="please_wait_app_is_opening">تحميل الحب... يرجى الانتظار!</string>
+    <string name="secure_your_screen"><![CDATA[أمّن شاشتك: أغلق السحاب وحرر القلب!]]></string>
+    <string name="protect_your_privacy">احمِ خصوصيتك</string>
+    <string name="would_you_like_to_continue_unlock_heart">هل ترغب في الاستمرار في فتح القلب؟</string>
+    <string name="exit_app">الخروج من التطبيق</string>
+    <string name="tap_to_exit"><u>اضغط للخروج</u></string>
+    <string name="start">ابدأ</string>
+
+    <string name="yes"><U>نعم</U></string>
+    <string name="no">لا</string>
+    <string name="exit">خروج</string>
+    <string name="exit_from_app">هل تريد الخروج؟</string>
+    <string name="enjo_app">استمتع بتطبيقنا</string>
+    <string name="rating_detail">إذا أعجبك تطبيقنا، يرجى تقييمنا</string>
+    <string name="rate_us">قيمنا</string>
+    <string name="service">خدمة</string>
+    <string name="service_disable_dialog">هل ترغب في تعطيل الخدمة؟</string>
+    <string name="ok">موافق</string>
+    <string name="permissionDENIED">تم رفض الإذن</string>
+    <string name="permission_needed">الإذن مطلوب</string>
+    <string name="camera_permission">يُطلب إذن الكاميرا للصور</string>
+    <string name="check_ads">التحقق من الإعلانات</string>
+    <string name="no_internet">لا يوجد إنترنت</string>
+    <string name="ad">إعلان</string>
+    <string name="notification_permission">يُطلب إذن الإشعارات لشاشة القفل</string>
+
+    <string name="brazil">البرازيل</string>
+    <string name="canada">كندا</string>
+    <string name="itlay">إيطاليا</string>
+    <string name="english">الإنجليزية</string>
+    <string name="france">فرنسا</string>
+    <string name="german">الألمانية</string>
+    <string name="netherland">هولندا</string>
+    <string name="spanish">الإسبانية</string>
+    <string name="hindi">الهندية</string>
+    <string name="bengali">البنغالية</string>
+    <string name="portuguese">البرتغالية</string>
+    <string name="russian">الروسية</string>
+    <string name="japanese">اليابانية</string>
+    <string name="chinese">الصينية</string>
+    <string name="turkish">التركية</string>
+    <string name="korean">الكورية</string>
+    <string name="vietnamese">الفيتنامية</string>
+    <string name="italian">الإيطالية</string>
+    <string name="urdu">الأردية</string>
+    <string name="indonesian">الإندونيسية</string>
+    <string name="polish">البولندية</string>
+    <string name="ukrainian">الأوكرانية</string>
+    <string name="turkey">تركيا</string>
+    <string name="england">إنجلترا</string>
+    <string name="usa">الولايات المتحدة</string>
+    <string name="Arabic">العربية</string>
+
+    <string name="set_app_language">تحديد اللغة</string>
+    <string name="continue_txt">بدء</string>
+    <string name="finish">إنهاء</string>
+    <string name="next">التالي</string>
+
+    <string name="rate_title">قيم تطبيقنا!</string>
+    <string name="exit_title">هل أنت متأكد أنك تريد الخروج؟</string>
+    <string name="apply">تطبيق</string>
+    <string name="skip">تخطي</string>
+
+    <string name="notification">إشعار</string>
+    <string name="share_app">مشاركة التطبيق</string>
+    <string name="premium">متميز</string>
+    <string name="language">اللغة</string>
+    <string name="more_app">المزيد من التطبيقات (إعلان)</string>
+    <string name="privacy">الخصوصية</string>
+
+    <string name="LOADING">جار التحميل...</string>
+    <string name="close">إغلاق</string>
+    <string name="dialog_cancel">إلغاء</string>
+    <string name="dialog_default_title">!هنا رسالة</string>
+    <string name="dialog_ok">موافق</string>
+    <string name="enable_lockscreen">تمكين شاشة القفل</string>
+    <string name="enable_pattern_password">تمكين كلمة مرور النمط</string>
+    <string name="enter_pattern">إدخال النمط</string>
+    <string name="later">ربما لاحقًا</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">جار التحميل</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">المزيد من الخيارات</string>
+    <string name="preview">معاينة</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">سياسة الخصوصية</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">قيمنا!</string>
+    <string name="rate_us_message">نحن سعداء لأنك تستمتع بتطبيقنا! هل يمكنك ترك تعليق لنا على متجر التطبيقات؟ ! إنه يساعدنا حقًا، شكرًا لدعمك</string>
+    <string name="row_style">نمط الصف</string>
+    <string name="set_wallpaper">تعيين خلفية</string>
+    <string name="settings">الإعدادات</string>
+    <string name="vibration">اهتزاز</string>
+    <string name="wallpapers">خلفيات</string>
+    <string name="wlp_set">تم تعيين الخلفية بنجاح</string>
+    <string name="zipperStyle">نمط السحاب</string>
+    <string name="set_password">تعيين كلمة المرور</string>
+    <string name="set_your_password">قم بتعيين كلمة المرور</string>
+    <string name="enter_your_pass">أدخل كلمة المرور الخاصة بك</string>
+    <string name="re_enter_pass">أعد إدخال كلمة المرور</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">سرعة الرسوم المتحركة</string>
+    <string name="no_thanks">لا، شكرًا</string>
+    <string name="remind_me_later">ذكرني لاحقًا</string>
+    <string name="cancel">إلغاء</string>
+    <string name="enter_your_pin_code">أدخل رمز PIN الخاص بك</string>
+    <string name="enter_your_pin_code_again">أعد إدخال رمز PIN الخاص بك</string>
+    <string name="app_name_detail">اختر شاشة قفل قلب الحب لمزيد من أمان الجهاز.</string>
+    <string name="change_pin_lock">تغيير قفل PIN</string>
+    <string name="sound">الصوت</string>
+    <string name="moreApp">المزيد من التطبيقات (إعلان)</string>
+    <string name="shareApp">مشاركة التطبيق</string>
+    <string name="rateUs">قيمنا</string>
+    <string name="thanks_txt">!شكرًا على وقتك</string>
+    <string name="zipper">سحاب</string>
+    <string name="row">صفوف</string>
+    <string name="wallpaper">4k خلفية</string>
+    <string name="permission_required">الإذن مطلوب</string>
+    <string name="set_pin">تعيين PIN</string>
+    <string name="confirm_pin">تأكيد PIN</string>
+    <string name="add_question">إضافة سؤال</string>
+    <string name="type_answer_her">أدخل إجابتك هنا...</string>
+    <string name="what_is_your_favourite_color">ما هو لونك المفضل؟</string>
+    <string name="security_question">سؤال الأمان</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">التطبيق يحتاج إلى إذن التراكب. يرجى التحقق أولاً!</string>
+
+    <string-array name="questions">
+        <item>ما هو لونك المفضل؟</item>
+        <item>ما هو طعامك المفضل؟</item>
+        <item>ما هو اسم حيوانك الأليف المفضل؟</item>
+        <item>ما هو مقهاك المفضل؟</item>
+        <item>لماذا كوتلن؟</item>
+    </string-array>
+
+
+    <string name="selectMusic">اختر الموسيقى</string>
+    <string name="select_sound">اختر الصوت</string>
+    <string name="select_speed">سرعة السحاب</string>
+    <string name="first_enable_password">أول تمكين لكلمة المرور</string>
+    <string name="heart_lock">قفل القلب</string>
+    <string name="heart_zipper">قفل القلب</string>
+    <string name="loading_ad">جارٍ تحميل الإعلان...</string>
+    <string name="app_security">أمان التطبيق</string>
+    <string name="allow_permission">السماح بالإذن</string>
+    <string name="text1">افتح تطبيق قفل الشاشة بالقلب وانتقل إلى لوحة القيادة.</string>
+    <string name="text31">بمجرد إعداد كل شيء حسب رغبتك، استمتع بشاشة القفل المخصصة الخاصة بك!</string>
+    <string name="enjoy_your_new_lock_screen">استمتع بشاشة القفل الجديدة الخاصة بك:</string>
+    <string name="how_to_set_lock">كيفية ضبط القفل:</string>
+    <string name="preview_lock_screen">عرض شاشة القفل:</string>
+    <string name="choose_any_option_from_the_dashboard">اختر أي خيار من لوحة القيادة.</string>
+    <string name="text13">إذا تم الطلب، اسمح للتطبيق بالوصول إلى الأذونات في إعدادات هاتفك لعرض معاينة السحاب.</string>
+    <string name="text14">بعد السماح بالأذونات، ارجع إلى تطبيق سحاب القلب.</string>
+    <string name="text15">يمكنك الآن رؤية المعاينة باستخدام خيار "معاينة" أو تغيير الخلفية وإعدادات السحاب والصفوف.</string>
+    <string name="text21">افتح تطبيق قفل الشاشة بالسحاب وانتقل إلى لوحة القيادة.</string>
+    <string name="text22">اختر خيار الأمان من لوحة القيادة.</string>
+    <string name="text23">اختر تعيين رمز المرور وأدخل كلمة مرور مكونة من 4 أرقام</string>
+    <string name="text24">قم بتعيين سؤال الأمان للاسترداد</string>
+
+    <string name="empty_field">حقل فارغ</string>
+    <string name="save_security_question">حفظ سؤال الأمان</string>
+    <string name="wrong_ans">إجابة خاطئة</string>
+    <string name="heart_theme">قالب القلب</string>
+
+    <string name="version">الإصدار:</string>
+    <string name="purchase">شراء</string>
+    <string name="with_ads"><u>استمر مع الإعلانات</u></string>
+    <string name="get_premium">احصل على المميزات</string>
+    <string name="get_premium_detail"><![CDATA[افتح جميع الميزات المتميزة وأفضل قوالب وخلفيات قلب القفل واستمتع بتجربة خالية من الإعلانات.]]></string>
+    <string name="ad_free_app">إزالة الإعلانات</string>
+    <string name="unlock_all_features">افتح جميع الميزات</string>
+    <string name="africa">جنوب أفريقيا</string>
+    <string name="bangladash">بنغلاديش</string>
+    <string name="domican_republic">جمهورية الدومينيكان</string>
+    <string name="keynia">كينيا</string>
+    <string name="mexicon">المكسيك</string>
+
+    <string name="customer_support">دعم العملاء</string>
+    <string name="feedback">التغذية الراجعة</string>
+    <string name="how_was_your_overall_experience">كيف كانت تجربتك العامة؟</string>
+    <string name="tell_us_the_problems_you_meet">أخبرنا بالمشاكل التي تواجهها.</string>
+    <string name="can_t_lock_screen">لا يمكن قفل الشاشة</string>
+    <string name="others">أخرى</string>
+    <string name="slow_speed">السرعة بطيئة</string>
+    <string name="difficult_to_use">صعب الاستخدام</string>
+    <string name="do_not_display_on_my_phone">لا يتم عرضه على هاتفي</string>
+    <string name="do_not_show_the_wallpaper">لا يظهر خلفية الشاشة</string>
+    <string name="feature_not_working">الميزة لا تعمل</string>
+    <string name="upload_picture">تحميل صورة</string>
+    <string name="send">إرسال</string>
+    <string name="wallpaper_new">اختر من خلفيات 4K لشاشة القفل الخاصة بك</string>
+    <string name="zipperStyle_new">اختر نمط السحاب لشاشة القفل</string>
+    <string name="row_style_new">خصص بأنماط صف مختلفة</string>
+    <string name="preview_new">خصص تجربتك مع شاشة القفل</string>
+    <string name="screen_lock">قفل الشاشة</string>
+    <string name="wallpaper_new_detail">اختر صورة للثيم الخاص بك.</string>
+    <string name="zipperStyle_new_detail">اختر سحاب للثيم الخاص بك.</string>
+    <string name="row_style_new_detail">اختر صف للثيم الخاص بك.</string>
+    <string name="preview_new_detail">عرض مسبق لشاشة القفل الخاصة بك</string>
+</resources>
+

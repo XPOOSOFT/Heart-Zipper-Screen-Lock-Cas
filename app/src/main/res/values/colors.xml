@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FF0000</color>
+    <color name="purple_500">#FF0000</color>
+    <color name="purple_700">#FF0000</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="splashBgColor">#000000</color>
+    <color name="screenBgColor">#000000</color>
+    <color name="itemMenuColor">@color/white</color>
+    <color name="menuBgColor">#F3F3F3</color>
+    <color name="textColor">@color/white</color>
+    <color name="splash_detail_text">#797979</color>
+    <color name="gradient_color1">#FFFFFF</color>
+    <color name="gradient_color2">#29cffd</color>
+    <color name="space">#b8cccccc</color>
+    <color name="iconsColor">#006fff</color>
+    <color name="colorPrimary">#FFFFFF</color>
+
+    <color name="blue_btn_bg_color">#FF0000</color>
+    <color name="blue_btn_bg_pressed_color">#FF0000</color>
+
+    <color name="sdk_load_bg_color_30">#4DCCCCCC</color>
+</resources>

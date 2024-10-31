@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00000000"
+    android:gravity="center">
+
+    <ViewStub
+        android:id="@+id/viewStubMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inflatedId="@+id/drawerStub"
+        android:layout="@layout/preview_zipper_lock_screen"
+        android:visibility="visible"
+        />
+
+    <ViewStub
+        android:id="@+id/viewStubPasswordHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/passwordHolderStub"
+        android:layout="@layout/layout_password_holder"
+        android:visibility="gone"
+        />
+
+    <ViewStub
+        android:id="@+id/viewStubSecuritydHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inflatedId="@+id/passwordHolderStub"
+        android:layout="@layout/layout_question_holder"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

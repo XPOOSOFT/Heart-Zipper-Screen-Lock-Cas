@@ -1,0 +1,36 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ZipperApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryVariant">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="android:forceDarkAllowed" >false</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppThemeScreenOff" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@android:color/black</item>
+        <item name="colorPrimaryDark">@android:color/black</item>
+        <item name="android:windowBackground">@android:color/black</item>
+        <!--        <item name="android:windowAnimationStyle">@style/NoWindowTransition</item>-->
+        <item name="android:navigationBarColor">@color/black</item>
+        <item name="android:layoutDirection">ltr</item>
+        <item name="android:textDirection">ltr</item>
+    </style>
+
+    <style name="Theme.AppThemeNoActionBar.AdTheme" parent="Theme.AppCompat">
+        <item name="android:background">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+    </style>
+    <style name="AdTheme" parent="Theme.AppCompat.DayNight.NoActionBar" >
+        <item name="android:background">@color/black</item>
+        <item name="android:windowBackground">@color/black</item>
+        <item name="android:windowExitAnimation">@null</item>
+        <item name="android:windowEnterAnimation">@null</item>
+    </style>
+</resources>

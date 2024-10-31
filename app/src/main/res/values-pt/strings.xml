@@ -1,0 +1,212 @@
+<resources>
+    <string name="app_name">Aplicação de Bloqueio de Ecrã com Fecho de Coração</string>
+    <string name="please_wait_app_is_opening">A carregar amor... Por favor, aguarde!</string>
+    <string name="secure_your_screen"><![CDATA[Proteja o seu ecrã: Feche o fecho e liberte o coração!]]></string>
+    <string name="protect_your_privacy">Proteja a sua privacidade</string>
+    <string name="would_you_like_to_continue_unlock_heart">Gostaria de continuar a desbloquear o coração?</string>
+    <string name="exit_app">Sair da aplicação</string>
+    <string name="tap_to_exit"><u>Toque para sair</u></string>
+    <string name="start">Iniciar</string>
+
+    <string name="yes"><U>Ja</U></string>
+    <string name="no">Nee</string>
+    <string name="exit">Afsluiten</string>
+    <string name="exit_from_app">Wil je afsluiten?</string>
+    <string name="enjo_app">Geniet van onze app</string>
+    <string name="rating_detail">Als je onze app leuk vindt, beoordeel ons dan alstublieft</string>
+    <string name="rate_us">Beoordeel ons</string>
+    <string name="service">Dienst</string>
+    <string name="service_disable_dialog">Wil je de service uitschakelen?</string>
+    <string name="ok">Oké</string>
+    <string name="permissionDENIED">Toestemming geweigerd</string>
+    <string name="permission_needed">Toestemming vereist</string>
+    <string name="camera_permission">Camera toestemming vereist voor foto</string>
+    <string name="check_ads">Advertenties controleren</string>
+    <string name="no_internet">Geen internet</string>
+    <string name="ad">Advertentie</string>
+    <string name="notification_permission">Meldingsmachtiging vereist voor vergrendelscherm</string>
+
+    <string name="brazil">Brazilië</string>
+    <string name="canada">Canada</string>
+    <string name="itlay">Italië</string>
+    <string name="english">Engels</string>
+    <string name="france">Frankrijk</string>
+    <string name="german">Duits</string>
+    <string name="netherland">Nederland</string>
+    <string name="spanish">Spaans</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengaals</string>
+    <string name="portuguese">Portugees</string>
+    <string name="russian">Russisch</string>
+    <string name="japanese">Japans</string>
+    <string name="chinese">Chinees</string>
+    <string name="turkish">Turks</string>
+    <string name="korean">Koreaans</string>
+    <string name="vietnamese">Vietnamees</string>
+    <string name="italian">Italiaans</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonesisch</string>
+    <string name="polish">Pools</string>
+    <string name="ukrainian">Oekraïens</string>
+    <string name="turkey">Turkije</string>
+    <string name="england">Engeland</string>
+    <string name="usa">VS</string>
+    <string name="Arabic">Arabisch</string>
+
+    <string name="set_app_language">Selecteer Taal</string>
+    <string name="continue_txt">Begin</string>
+    <string name="finish">Voltooien</string>
+    <string name="next">Volgende</string>
+
+    <string name="rate_title">Beoordeel onze app!</string>
+    <string name="exit_title">Weet je zeker dat je wilt afsluiten?</string>
+    <string name="apply">Toepassen</string>
+    <string name="skip">Overslaan</string>
+
+    <string name="notification">Melding</string>
+    <string name="share_app">Deel de app</string>
+    <string name="premium">Premium</string>
+    <string name="language">Taal</string>
+    <string name="more_app">Meer apps (advertentie)</string>
+    <string name="privacy">Privacy</string>
+
+    <string name="LOADING">Laden...</string>
+    <string name="close">Sluiten</string>
+    <string name="dialog_cancel">Annuleren</string>
+    <string name="dialog_default_title">Hier is een bericht!</string>
+    <string name="dialog_ok">Oké</string>
+    <string name="enable_lockscreen">Vergrendelscherm inschakelen</string>
+    <string name="enable_pattern_password">Patroonwachtwoord inschakelen</string>
+    <string name="enter_pattern">Voer patroon in</string>
+    <string name="later">Misschien later</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Laden</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Meer opties</string>
+    <string name="preview">Voorbeeld</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="project_id">digital-noord-ster</string>
+    <string name="rate_us2">Beoordeel ons!!</string>
+    <string name="rate_us_message">We zijn blij dat je geniet van onze app! Zou je ons een beoordeling kunnen geven in de Play Store? Het helpt ons enorm! Bedankt voor je steun</string>
+    <string name="row_style">Rijstijl</string>
+    <string name="set_wallpaper">Stel achtergrond in</string>
+    <string name="settings">Instellingen</string>
+    <string name="vibration">Trilling</string>
+    <string name="wallpapers">Achtergronden</string>
+    <string name="wlp_set">Achtergrond succesvol ingesteld</string>
+    <string name="zipperStyle">Ritsstijl</string>
+    <string name="set_password">Stel wachtwoord in</string>
+    <string name="set_your_password">Stel je wachtwoord in</string>
+    <string name="enter_your_pass">Voer je wachtwoord in</string>
+    <string name="re_enter_pass">Voer je wachtwoord opnieuw in</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Animatiesnelheid</string>
+    <string name="no_thanks">Nee, bedankt</string>
+    <string name="remind_me_later">Herinner me later</string>
+    <string name="cancel">Annuleren</string>
+    <string name="enter_your_pin_code">Voer je pincode in</string>
+    <string name="enter_your_pin_code_again">Voer je pincode opnieuw in</string>
+    <string name="app_name_detail">Kies voor Love Hart Lockscreen voor verbeterde beveiliging van je apparaat.</string>
+    <string name="change_pin_lock">PIN-slot wijzigen</string>
+    <string name="sound">Geluid</string>
+    <string name="moreApp">Meer apps (advertentie)</string>
+    <string name="shareApp">Deel de app</string>
+    <string name="rateUs">Beoordeel ons</string>
+    <string name="thanks_txt">Bedankt voor je tijd!</string>
+    <string name="zipper">Rits</string>
+    <string name="row">Rijen</string>
+    <string name="wallpaper">4k Achtergrond</string>
+    <string name="permission_required">Toestemming vereist</string>
+    <string name="set_pin">Stel PIN in</string>
+    <string name="confirm_pin">Bevestig PIN</string>
+    <string name="add_question">Voeg vraag toe</string>
+    <string name="type_answer_her">Typ hier je antwoord...</string>
+    <string name="what_is_your_favourite_color">Wat is je favoriete kleur?</string>
+    <string name="security_question">Beveiligingsvraag</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">De app heeft toestemming nodig om bovenop te tekenen Controleer dit eerst!</string>
+
+    <string-array name="questions">
+        <item>Wat is je favoriete kleur?</item>
+        <item>Wat is je favoriete eten?</item>
+        <item>Wat is de naam van je favoriete huisdier?</item>
+        <item>Wat is je favoriete koffie?</item>
+        <item>Waarom Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Selecteer muziek</string>
+    <string name="select_sound">Selecteer geluid</string>
+    <string name="select_speed">Ritssnelheid</string>
+    <string name="first_enable_password">Schakel eerst het wachtwoord in</string>
+    <string name="empty_field">Leeg veld</string>
+    <string name="save_security_question">Beveiligingsvraag opslaan</string>
+    <string name="wrong_ans">Verkeerd antwoord</string>
+    <string name="heart_theme">Hart Thema</string>
+    <string name="heart_lock">Hartslot</string>
+    <string name="heart_zipper">Hart Rits</string>
+    <string name="loading_ad">Advertentie laden...</string>
+    <string name="app_security">App beveiliging</string>
+    <string name="allow_permission">Toestemming toestaan</string>
+    <string name="text1">Open de Hart Rits vergrendelscherm app en ga naar het dashboard.</string>
+    <string name="text31">Zodra alles naar wens is ingesteld, geniet dan van je persoonlijke ritsvergrendelscherm!</string>
+    <string name="enjoy_your_new_lock_screen">Geniet van je nieuwe vergrendelscherm:</string>
+    <string name="how_to_set_lock">Hoe de vergrendeling in te stellen:</string>
+    <string name="preview_lock_screen">Voorbeeld van vergrendelscherm:</string>
+    <string name="choose_any_option_from_the_dashboard">Kies een optie van het dashboard.</string>
+    <string name="text13">Als daarom wordt gevraagd, geef dan de app toestemming om een voorbeeld van de rits te tonen in je telefoons instellingen.</string>
+    <string name="text14">Ga terug naar de Hart Rits app zodra je toestemming hebt gegeven.</string>
+    <string name="text15">Nu kun je een voorbeeld zien door de "Voorbeeld" optie te gebruiken of door de achtergrond, rits, en rij instellingen te wijzigen.</string>
+    <string name="text21">Open de Rits vergrendelscherm app en ga naar het dashboard.</string>
+    <string name="text22">Kies de beveiligingsoptie van het dashboard.</string>
+    <string name="text23">Kies stel wachtwoord in en voer een 4-cijferig wachtwoord in.</string>
+    <string name="text24">Stel beveiligingsvragen in voor herstel.</string>
+
+    <string name="version">Versão:</string>
+    <string name="purchase">Compra</string>
+    <string name="with_ads"><u>Continuar com anúncios</u></string>
+    <string name="get_premium">OBTER PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Desbloqueie todos os recursos premium e temas de bloqueio do coração de alto nível e papéis de parede e aproveite uma experiência sem anúncios.]]></string>
+    <string name="ad_free_app">Remover anúncios</string>
+    <string name="unlock_all_features">Desbloquear todas as funcionalidades</string>
+    <string name="africa">África do Sul</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">República Dominicana</string>
+    <string name="keynia">Quênia</string>
+    <string name="mexicon">México</string>
+
+    <string name="customer_support">Suporte ao Cliente</string>
+    <string name="feedback">Feedback</string>
+    <string name="how_was_your_overall_experience">Como foi sua experiência geral?</string>
+    <string name="tell_us_the_problems_you_meet">Conte-nos os problemas que você encontrou.</string>
+    <string name="can_t_lock_screen">Não é possível bloquear a tela</string>
+    <string name="others">Outros</string>
+    <string name="slow_speed">Velocidade lenta</string>
+    <string name="difficult_to_use">Difícil de usar</string>
+    <string name="do_not_display_on_my_phone">Não aparece no meu telefone</string>
+    <string name="do_not_show_the_wallpaper">Não mostra o papel de parede</string>
+    <string name="feature_not_working">Recurso não está funcionando</string>
+    <string name="upload_picture">Carregar imagem</string>
+    <string name="send">Enviar</string>
+
+    <string name="wallpaper_new">Escolha entre Papéis de Parede 4K para o Bloqueio de Tela</string>
+    <string name="zipperStyle_new">Selecione Seu Estilo de Zíper para o Bloqueio de Tela</string>
+    <string name="row_style_new">Personalize com Diferentes Estilos de Linha</string>
+    <string name="preview_new">Personalize Sua Experiência de Bloqueio de Tela</string>
+    <string name="screen_lock">Bloqueio de Tela</string>
+    <string name="wallpaper_new_detail">Escolha uma imagem para o seu Tema.</string>
+    <string name="zipperStyle_new_detail">Escolha um zíper para o seu Tema.</string>
+    <string name="row_style_new_detail">Escolha uma Linha para o seu Tema.</string>
+    <string name="preview_new_detail">Visualize Seu Bloqueio de Tela</string>
+
+
+</resources>

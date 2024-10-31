@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_general_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/top_lay"
+        layout="@layout/top_layout_all" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/_12ssp"
+        app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_lay">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--    Change Pin Lock-->
+            <View
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/passwordImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/password"
+                app:layout_constraintStart_toStartOf="@id/password"
+                app:layout_constraintTop_toTopOf="@id/password"
+                app:srcCompat="@drawable/pass_lock" />
+            <TextView
+                android:id="@+id/passwordText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:textSize="@dimen/_11sdp"
+                android:text="@string/change_pin_lock"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/password"
+                app:layout_constraintEnd_toStartOf="@id/passwordSwitch"
+                app:layout_constraintStart_toEndOf="@id/passwordImage"
+                app:layout_constraintTop_toTopOf="@id/password" />
+            <Switch
+                android:id="@+id/passwordSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@null"
+                android:button="@drawable/checkbox_theme"
+                android:gravity="center"
+                android:thumb="@null"
+                app:layout_constraintBottom_toBottomOf="@id/password"
+                app:layout_constraintEnd_toEndOf="@+id/password"
+                app:layout_constraintStart_toEndOf="@+id/passwordText"
+                app:layout_constraintTop_toTopOf="@id/password"
+                app:track="@null"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <View
+                android:id="@+id/security_q_view"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="@id/password"
+                app:layout_constraintStart_toStartOf="@id/password"
+                app:layout_constraintTop_toBottomOf="@id/password"/>
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/security_q_image"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:background="@drawable/icon_question"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@id/security_q_view"
+                app:layout_constraintEnd_toStartOf="@+id/security_q_text"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/security_q_view"
+                app:layout_constraintTop_toTopOf="@id/security_q_view" />
+            <TextView
+                android:id="@+id/security_q_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:textSize="@dimen/_11sdp"
+                android:gravity="start"
+                android:singleLine="true"
+                android:text="@string/security_question"
+                android:textColor="@color/black"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/security_q_image"
+                app:layout_constraintEnd_toEndOf="@id/security_q_view"
+                app:layout_constraintStart_toEndOf="@+id/security_q_image"
+                app:layout_constraintTop_toTopOf="@+id/security_q_image" />
+
+            <!--   Sound-->
+            <View
+                android:id="@+id/sound"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="@id/security_q_view"
+                app:layout_constraintStart_toStartOf="@id/security_q_view"
+                app:layout_constraintTop_toBottomOf="@id/security_q_view" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/soundImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/sound"
+                app:layout_constraintStart_toStartOf="@id/sound"
+                app:layout_constraintTop_toTopOf="@id/sound"
+                app:srcCompat="@drawable/sound_icon" />
+
+            <TextView
+                android:id="@+id/soundText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/sound"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/sound"
+                app:layout_constraintEnd_toStartOf="@id/soundSwitch"
+                app:layout_constraintStart_toEndOf="@id/soundImage"
+                app:layout_constraintTop_toTopOf="@id/sound" />
+
+            <Switch
+                android:id="@+id/soundSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@null"
+                android:button="@drawable/checkbox_theme"
+                android:gravity="center"
+                android:thumb="@null"
+                app:layout_constraintBottom_toBottomOf="@id/sound"
+                app:layout_constraintEnd_toEndOf="@+id/sound"
+                app:layout_constraintStart_toEndOf="@+id/soundText"
+                app:layout_constraintTop_toTopOf="@id/sound"
+                app:track="@null"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <!--    Vibration-->
+            <View
+                android:id="@+id/vibration"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="@id/sound"
+                app:layout_constraintStart_toStartOf="@id/sound"
+                app:layout_constraintTop_toBottomOf="@id/sound" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/vibrationImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/vibration"
+                app:layout_constraintStart_toStartOf="@id/vibration"
+                app:layout_constraintTop_toTopOf="@id/vibration"
+                app:srcCompat="@drawable/vibration_icon" />
+
+            <TextView
+                android:id="@+id/vibrationText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/vibration"
+                android:textSize="@dimen/_11sdp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/vibration"
+                app:layout_constraintEnd_toStartOf="@id/vibrationSwitch"
+                app:layout_constraintStart_toEndOf="@id/vibrationImage"
+                app:layout_constraintTop_toTopOf="@id/vibration" />
+
+            <Switch
+                android:id="@+id/vibrationSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@null"
+                android:button="@drawable/checkbox_theme"
+                android:gravity="center"
+                android:thumb="@null"
+                app:layout_constraintBottom_toBottomOf="@id/vibration"
+                app:layout_constraintEnd_toEndOf="@+id/vibration"
+                app:layout_constraintStart_toEndOf="@+id/vibrationText"
+                app:layout_constraintTop_toTopOf="@id/vibration"
+                app:track="@null"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+            <!--    Sound Select-->
+            <View
+                android:id="@+id/selectMusic"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="@id/vibration"
+                app:layout_constraintStart_toStartOf="@id/vibration"
+                app:layout_constraintTop_toBottomOf="@id/vibration" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/selectMusicImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectMusic"
+                app:layout_constraintStart_toStartOf="@id/selectMusic"
+                app:layout_constraintTop_toTopOf="@id/selectMusic"
+                app:srcCompat="@drawable/sound_icon" />
+
+            <TextView
+                android:id="@+id/selectMusicText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/selectMusic"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectMusic"
+                app:layout_constraintEnd_toStartOf="@id/selectMusicNext"
+                app:layout_constraintStart_toEndOf="@id/selectMusicImage"
+                app:layout_constraintTop_toTopOf="@id/selectMusic" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/selectMusicNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectMusic"
+                app:layout_constraintEnd_toEndOf="@+id/selectMusic"
+                app:layout_constraintStart_toEndOf="@+id/selectMusicText"
+                app:layout_constraintTop_toTopOf="@id/selectMusic"
+                app:srcCompat="@drawable/fl" />
+            <!--    Sound Select-->
+            <View
+                android:id="@+id/selectSpeed"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toEndOf="@id/selectMusic"
+                app:layout_constraintStart_toStartOf="@id/selectMusic"
+                app:layout_constraintTop_toBottomOf="@id/selectMusic" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/selectSpeedImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectSpeed"
+                app:layout_constraintStart_toStartOf="@id/selectSpeed"
+                app:layout_constraintTop_toTopOf="@id/selectSpeed"
+                app:srcCompat="@drawable/speed_icon" />
+
+            <TextView
+                android:id="@+id/selectSpeedText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/select_speed"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectSpeed"
+                app:layout_constraintEnd_toStartOf="@id/selectSpeedNext"
+                app:layout_constraintStart_toEndOf="@id/selectSpeedImage"
+                app:layout_constraintTop_toTopOf="@id/selectSpeed" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/selectSpeedNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="@id/selectSpeed"
+                app:layout_constraintEnd_toEndOf="@+id/selectSpeed"
+                app:layout_constraintStart_toEndOf="@+id/selectSpeedText"
+                app:layout_constraintTop_toTopOf="@id/selectSpeed"
+                app:srcCompat="@drawable/fl" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:gravity="center"
+        android:textColor="@color/textColor"
+        android:textSize="14sp"
+        android:background="@drawable/round_btn_ads"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/ads_lay"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/rect_menu_language"
+        android:backgroundTint="@color/white"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="@dimen/_10sdp"
+        >
+
+        <ProgressBar
+            android:id="@+id/animation"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            app:layout_constraintEnd_toEndOf="@id/ads_lay"
+            app:layout_constraintStart_toStartOf="@id/ads_lay"
+            app:layout_constraintTop_toTopOf="@id/ads_lay"
+            app:layout_constraintBottom_toTopOf="@id/warning"
+            />
+
+        <TextView
+            android:id="@+id/warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:text="@string/loading_ad"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@id/ads_lay"
+            app:layout_constraintLeft_toLeftOf="@id/ads_lay"
+            app:layout_constraintRight_toRightOf="@id/ads_lay"
+            app:layout_constraintTop_toBottomOf="@id/animation"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

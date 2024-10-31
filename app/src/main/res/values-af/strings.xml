@@ -1,0 +1,212 @@
+<resources>
+    <string name="app_name">Heart Zipper Screen Lock App</string>
+    <string name="please_wait_app_is_opening">Loading Love… Please wait!</string>
+    <string name="secure_your_screen"><![CDATA[Secure Your Screen: Zip & Unleash the Heart!]]></string>
+    <string name="protect_your_privacy">Protect Your Privacy</string>
+    <string name="would_you_like_to_continue_unlock_heart">Would you like to continue unlock heart</string>
+    <string name="exit_app">Exit App</string>
+    <string name="tap_to_exit"><u>Tap to Exit</u></string>
+    <string name="start">Start</string>
+
+    <string name="yes"><U>Ja</U></string>
+    <string name="no">Nee</string>
+    <string name="exit">Verlaat</string>
+    <string name="exit_from_app">Wil jy regtig verlaat?</string>
+    <string name="enjo_app">Geniet ons app</string>
+    <string name="rating_detail">As jy ons app geniet, beoordeel ons asseblief</string>
+    <string name="rate_us">Beoordeel Ons</string>
+    <string name="service">Diens</string>
+    <string name="service_disable_dialog">Wil jy die diens deaktiveer?</string>
+    <string name="ok">Reg</string>
+    <string name="permissionDENIED">Toestemming GEGLEDE</string>
+    <string name="permission_needed">Toestemming benodig</string>
+    <string name="camera_permission">Kamera toestemming is benodig vir foto’s</string>
+    <string name="check_ads">Kontroleer Advertensies</string>
+    <string name="no_internet">Geen Internet</string>
+    <string name="ad">Advertensie</string>
+    <string name="notification_permission">Kennisgewing toestemming is benodig vir Vergrendel Skerm</string>
+
+    <string name="brazil">Brazilië</string>
+    <string name="canada">Kanada</string>
+    <string name="itlay">Italië</string>
+    <string name="english">Engels</string>
+    <string name="france">Frankryk</string>
+    <string name="german">Duits</string>
+    <string name="netherland">Nederland</string>
+    <string name="spanish">Spaans</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengali</string>
+    <string name="portuguese">Portugees</string>
+    <string name="russian">Russies</string>
+    <string name="japanese">Japanees</string>
+    <string name="chinese">Chinees</string>
+    <string name="turkish">Turks</string>
+    <string name="korean">Koreaans</string>
+    <string name="vietnamese">Vietnamees</string>
+    <string name="italian">Italiaans</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonesies</string>
+    <string name="polish">Pools</string>
+    <string name="ukrainian">Oekraïens</string>
+    <string name="turkey">Turkye</string>
+    <string name="england">Engeland</string>
+    <string name="usa">VSA</string>
+    <string name="Arabic">Arabies</string>
+
+    <string name="set_app_language">Kies Taal</string>
+    <string name="continue_txt">Begin</string>
+    <string name="finish">Voltooi</string>
+    <string name="next">Volgende</string>
+
+    <string name="rate_title">Beoordeel ons App!</string>
+    <string name="exit_title">Is jy seker jy wil verlaat?</string>
+    <string name="apply">Pas Toe</string>
+    <string name="skip">Slaan Oor</string>
+
+    <string name="notification">Kennisgewing</string>
+    <string name="share_app">Deel App</string>
+    <string name="premium">Premium</string>
+    <string name="language">Taal</string>
+    <string name="more_app">Meer Apps (Advertensie)</string>
+    <string name="privacy">Privaatheid</string>
+
+    <string name="LOADING">Lading...</string>
+    <string name="close">Maak Toe</string>
+    <string name="dialog_cancel">Kanselleer</string>
+    <string name="dialog_default_title">Hier is \'n boodskap!</string>
+    <string name="dialog_ok">REG</string>
+    <string name="enable_lockscreen">Aktiveer Vergrendel Skerm</string>
+    <string name="enable_pattern_password">Aktiveer patroon wagwoord</string>
+    <string name="enter_pattern">Voer patroon in</string>
+    <string name="later">Miskien later</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Lading</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Meer opsies</string>
+    <string name="preview">Voorskou</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Privaatheidsbeleid</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Beoordeel Ons!!</string>
+    <string name="rate_us_message">Ons is bly dat jy ons app geniet! Wil jy asseblief \'n resensie in die speelwinkel laat? Dit help ons regtig! Dankie vir jou ondersteuning</string>
+    <string name="row_style">Ry Styl</string>
+    <string name="set_wallpaper">Stel agtergrond</string>
+    <string name="settings">Instellings</string>
+    <string name="vibration">Vibrasie</string>
+    <string name="wallpapers">Achtergronde</string>
+    <string name="wlp_set">Achtergrond suksesvol ingestel</string>
+    <string name="zipperStyle">Rit Stijl</string>
+    <string name="set_password">Stel Wagwoord In</string>
+    <string name="set_your_password">Stel jou wagwoord in</string>
+    <string name="enter_your_pass">Voer jou wagwoord in</string>
+    <string name="re_enter_pass">Voer jou wagwoord weer in</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Animasie Spoed</string>
+    <string name="no_thanks">Nee, dankie</string>
+    <string name="remind_me_later">Herinner my later</string>
+    <string name="cancel">Kanselleer</string>
+    <string name="enter_your_pin_code">Voer jou PIN-kode in</string>
+    <string name="enter_your_pin_code_again">Voer jou PIN-kode weer in</string>
+    <string name="app_name_detail">Kies Liefde Hart Vergrendel Skerm vir verhoogde toestel sekuriteit.</string>
+    <string name="change_pin_lock">Verander PIN Vergrendel</string>
+    <string name="sound">Klank</string>
+    <string name="moreApp">Meer Apps (Advertensie)</string>
+    <string name="shareApp">Deel App</string>
+    <string name="rateUs">Beoordeel Ons</string>
+    <string name="thanks_txt">Dankie vir jou tyd!</string>
+    <string name="zipper">Rit</string>
+    <string name="row">Ry</string>
+    <string name="wallpaper">4k Achtergrond</string>
+    <string name="permission_required">Toestemming Benodig</string>
+    <string name="set_pin">Stel PIN In</string>
+    <string name="confirm_pin">Bevestig PIN</string>
+    <string name="add_question">Voeg Vraag By</string>
+    <string name="type_answer_her">Tik antwoord hier...</string>
+    <string name="what_is_your_favourite_color">Wat is jou gunsteling kleur?</string>
+    <string name="security_question">Veiligheidsvraag</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">Die app benodig toestemming om bo-op ander apps te teken. Kontroleer dit asseblief eerste!</string>
+
+    <string-array name="questions">
+        <item>Wat is jou gunsteling kleur?</item>
+        <item>Wat is jou gunsteling kos?</item>
+        <item>Wat is jou gunsteling troeteldier se naam?</item>
+        <item>Wat is jou gunsteling koffie?</item>
+        <item>Waarom Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Kies Musiek</string>
+    <string name="select_sound">Kies Klank</string>
+    <string name="select_speed">Klit Snelheid</string>
+    <string name="first_enable_password">Eerste Parool Aktiveer</string>
+    <string name="empty_field">Leë Veld</string>
+    <string name="save_security_question">Stoor Veiligheidsvraag</string>
+    <string name="wrong_ans">Verkeerde Antwoord</string>
+    <string name="heart_theme">Hart Tema</string>
+    <string name="heart_lock">Hart Sluiter</string>
+    <string name="heart_zipper">Hart Sluiter</string>
+    <string name="loading_ad">Advertensie Laai...</string>
+    <string name="app_security">App Sekuriteit</string>
+    <string name="allow_permission">Toestemming Toestaan</string>
+    <string name="text1">Open die Hart ritsluiting vergrendel skerm app en gaan na die beheer paneel.</string>
+    <string name="text31">Sodra alles na jou smaak opgestel is, geniet jou persoonlike ritsluiting vergrendel skerm!</string>
+    <string name="enjoy_your_new_lock_screen">Geniet Jou Nuwe Vergrendel Skerm:</string>
+    <string name="how_to_set_lock">Hoe om Vergrendel In te Stel:</string>
+    <string name="preview_lock_screen">Voorskou Vergrendel Skerm:</string>
+    <string name="choose_any_option_from_the_dashboard">Kies enige opsie vanaf die beheer paneel.</string>
+    <string name="text13">As gevra, laat die app toe om toegang tot toestemmings in jou telefooninstellings te verkry om die ritsluiting voorskou te wys.</string>
+    <string name="text14">Sodra jy toestemmings gegee het, keer terug na die hart ritsluiting app.</string>
+    <string name="text15">Jy kan nou die voorskou sien deur die "voorskou" opsie te gebruik of die agtergrond, ritsluiting, en ry instellings te verander.</string>
+    <string name="text21">Open die ritsluiting vergrendel skerm app en gaan na die beheer paneel.</string>
+    <string name="text22">Kies veiligheidsopsie vanaf die beheer paneel.</string>
+    <string name="text23">Kies Stel PIN-kode en voer \'n 4-cijferige wagwoord in</string>
+    <string name="text24">Stel \'n veiligheidsvraag vir herstel in</string>
+
+    <string name="version">Weergawe:</string>
+    <string name="purchase">Koop</string>
+    <string name="with_ads"><u>Gaan voort met advertensies</u></string>
+    <string name="get_premium">KRY PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Ontsluit alle premium-funksies en topkwaliteit Hartsluit-temas en -agtergronde en geniet \'n advertensievrye ervaring.]]></string>
+    <string name="ad_free_app">Verwyder advertensies</string>
+    <string name="unlock_all_features">Ontsluit alle funksies</string>
+    <string name="africa">Suid-Afrika</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">Dominikaanse Republiek</string>
+    <string name="keynia">Kenia</string>
+    <string name="mexicon">Meksiko</string>
+
+    <string name="customer_support">Huduma kwa Wateja</string>
+    <string name="feedback">Maoni</string>
+    <string name="how_was_your_overall_experience">Je, uzoefu wako wa jumla ulikuwaje?</string>
+    <string name="tell_us_the_problems_you_meet">Tuambie matatizo unayokutana nayo.</string>
+    <string name="can_t_lock_screen">Siwezi kufunga skrini</string>
+    <string name="others">Mengineyo</string>
+    <string name="slow_speed">Kasi ya polepole</string>
+    <string name="difficult_to_use">Ngumu kutumia</string>
+    <string name="do_not_display_on_my_phone">Haitokezi kwenye simu yangu</string>
+    <string name="do_not_show_the_wallpaper">Haionyeshi ukuta wa nyuma</string>
+    <string name="feature_not_working">Kipengele hakifanyi kazi</string>
+    <string name="upload_picture">Pakia Picha</string>
+    <string name="send">Tuma</string>
+
+    <string name="wallpaper_new">Chagua kutoka kwa Picha za Ukuta za 4K kwa Kufunga Skrini Yako</string>
+    <string name="zipperStyle_new">Chagua Mtindo Wako wa Zipu kwa Kufunga Skrini</string>
+    <string name="row_style_new">Badilisha kwa Mitindo Tofauti ya Safu</string>
+    <string name="preview_new">Binafsisha Uzoefu Wako wa Kufunga Skrini</string>
+    <string name="screen_lock">Kufunga Skrini</string>
+    <string name="wallpaper_new_detail">Chagua picha kwa Mandhari yako.</string>
+    <string name="zipperStyle_new_detail">Chagua zipu kwa Mandhari yako.</string>
+    <string name="row_style_new_detail">Chagua Safu kwa Mandhari yako.</string>
+    <string name="preview_new_detail">Onyesha Awali Kufunga Skrini Yako</string>
+
+
+</resources>

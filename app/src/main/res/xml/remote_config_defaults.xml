@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?><!-- START xml_defaults -->
+<defaultsMap>
+
+    <entry>
+        <key>val_inter_back_press</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_on_bording_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_native_main_menu_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_inter_main_medium</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_inter_main_normal</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_native_loading_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_intro_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_language_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_sound_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_password_screen</key>
+        <value>true</value>
+    </entry>
+
+
+    <entry>
+        <key>val_exit_dialog_native</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_password_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_loading_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_main_menu_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_language_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_sound_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_exit_dialog_inter_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_setting_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_security_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_enable_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_password_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_list_data_screen_back</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_password_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_list_data_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_main_menu_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_language_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_sound_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_exit_dialog_inter_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_setting_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_security_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_enable_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_password_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_inter_list_data_screen_front</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>isFlowOne</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_app_open</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>id_ads_button</key>
+        <value>#F3202F</value>
+    </entry>
+
+    <entry>
+        <key>id_ads_bg</key>
+        <value>#232323</value>
+    </entry>
+
+
+    <entry>
+        <key>val_collapsable_banner</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_banner_language_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_is_inapp_splash</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>val_is_inapp</key>
+        <value>false</value>
+    </entry>
+    <entry>
+        <key>val_banner_setting_screen</key>
+        <value>true</value>
+    </entry>
+
+
+</defaultsMap>

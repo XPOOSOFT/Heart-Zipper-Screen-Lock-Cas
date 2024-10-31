@@ -1,0 +1,212 @@
+<resources>
+    <string name="app_name">ہارٹ زپر سکرین لاک ایپ</string>
+    <string name="please_wait_app_is_opening">محبت لوڈ ہو رہی ہے... براہ کرم انتظار کریں!</string>
+    <string name="secure_your_screen"><![CDATA[اپنی اسکرین کو محفوظ کریں: زپر لگائیں اور دل کو آزاد کریں!]]></string>
+    <string name="protect_your_privacy">اپنی پرائیویسی کی حفاظت کریں</string>
+    <string name="would_you_like_to_continue_unlock_heart">کیا آپ دل کو کھولنا جاری رکھنا چاہیں گے؟</string>
+    <string name="exit_app">ایپ سے باہر نکلیں</string>
+    <string name="tap_to_exit"><u>باہر نکلنے کے لیے ٹیپ کریں</u></string>
+    <string name="start">شروع کریں</string>
+
+    <string name="yes"><U>ہاں</U></string>
+    <string name="no">نہیں</string>
+    <string name="exit">خارج ہوں</string>
+    <string name="exit_from_app">کیا آپ واقعی ایپ سے باہر جانا چاہتے ہیں؟</string>
+    <string name="enjo_app">ہمارا ایپ لطف اٹھائیں</string>
+    <string name="rating_detail">اگر آپ ہماری ایپ سے لطف اندوز ہو رہے ہیں، تو براہ کرم ہمیں ریٹنگ دیں</string>
+    <string name="rate_us">ہمیں ریٹنگ دیں</string>
+    <string name="service">خدمت</string>
+    <string name="service_disable_dialog">کیا آپ خدمت کو غیر فعال کرنا چاہتے ہیں؟</string>
+    <string name="ok">اوکے</string>
+    <string name="permissionDENIED">اجازت مسترد</string>
+    <string name="permission_needed">اجازت درکار ہے</string>
+    <string name="camera_permission">تصاویر کے لیے کیمرے کی اجازت درکار ہے</string>
+    <string name="check_ads">اشتہارات چیک کریں</string>
+    <string name="no_internet">انٹرنیٹ نہیں</string>
+    <string name="ad">اشتہار</string>
+    <string name="notification_permission">لاک اسکرین کے لیے نوٹیفکیشن کی اجازت درکار ہے</string>
+
+    <string name="brazil">برازیل</string>
+    <string name="canada">کینیڈا</string>
+    <string name="itlay">اٹلی</string>
+    <string name="english">انگریزی</string>
+    <string name="france">فرانس</string>
+    <string name="german">جرمن</string>
+    <string name="netherland">نیدرلینڈ</string>
+    <string name="spanish">ہسپانوی</string>
+    <string name="hindi">ہندی</string>
+    <string name="bengali">بنگالی</string>
+    <string name="portuguese">پرتگالی</string>
+    <string name="russian">روسی</string>
+    <string name="japanese">جاپانی</string>
+    <string name="chinese">چینی</string>
+    <string name="turkish">ترکی</string>
+    <string name="korean">کورین</string>
+    <string name="vietnamese">ویتنامی</string>
+    <string name="italian">اطالیوی</string>
+    <string name="urdu">اردو</string>
+    <string name="indonesian">انڈونیشیائی</string>
+    <string name="polish">پولش</string>
+    <string name="ukrainian">یوکرینی</string>
+    <string name="turkey">ترکی</string>
+    <string name="england">انگلینڈ</string>
+    <string name="usa">امریکہ</string>
+    <string name="Arabic">عربی</string>
+
+    <string name="set_app_language">زبان منتخب کریں</string>
+    <string name="continue_txt">شروع کریں</string>
+    <string name="finish">ختم</string>
+    <string name="next">اگلا</string>
+
+    <string name="rate_title">ہمارا ایپ ریٹ کریں!</string>
+    <string name="exit_title">کیا آپ یقیناً ایپ سے باہر جانا چاہتے ہیں؟</string>
+    <string name="apply">درخواست کریں</string>
+    <string name="skip">چھوڑیں</string>
+
+    <string name="notification">نوٹیفکیشن</string>
+    <string name="share_app">ایپ شیئر کریں</string>
+    <string name="premium">پریمیم</string>
+    <string name="language">زبان</string>
+    <string name="more_app">مزید ایپ (اشتہار)</string>
+    <string name="privacy">رازداری</string>
+
+    <string name="LOADING">لوڈ ہو رہا ہے...</string>
+    <string name="close">بند کریں</string>
+    <string name="dialog_cancel">منسوخ کریں</string>
+    <string name="dialog_default_title">یہاں ایک پیغام ہے!</string>
+    <string name="dialog_ok">اوکے</string>
+    <string name="enable_lockscreen">لاک اسکرین فعال کریں</string>
+    <string name="enable_pattern_password">پیٹرن پاسورڈ فعال کریں</string>
+    <string name="enter_pattern">پیٹرن درج کریں</string>
+    <string name="later">شاید بعد میں</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">لوڈ ہو رہا ہے</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">زیادہ اختیارات</string>
+    <string name="preview">پیش نظارہ</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">رازداری کی پالیسی</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">ہمیں ریٹنگ دیں!!</string>
+    <string name="rate_us_message">ہمیں خوشی ہے کہ آپ ہمارے ایپ کا استعمال کر کے لطف اندوز ہو رہے ہیں! کیا آپ براہ کرم پلے اسٹور پر ایک جائزہ دے سکتے ہیں؟ یہ ہمیں بہت مدد کرتا ہے! آپ کی حمایت کے لیے شکریہ</string>
+    <string name="row_style">قطار کا انداز</string>
+    <string name="set_wallpaper">وال پیپر سیٹ کریں</string>
+    <string name="settings">سیٹنگز</string>
+    <string name="vibration">کمپن</string>
+    <string name="wallpapers">وال پیپرز</string>
+    <string name="wlp_set">وال پیپر کامیابی سے سیٹ کر دیا گیا</string>
+    <string name="zipperStyle">زپپر کا انداز</string>
+    <string name="set_password">پاسورڈ سیٹ کریں</string>
+    <string name="set_your_password">اپنا پاسورڈ سیٹ کریں</string>
+    <string name="enter_your_pass">اپنا پاسورڈ درج کریں</string>
+    <string name="re_enter_pass">اپنا پاسورڈ دوبارہ درج کریں</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">اینیمیشن کی رفتار</string>
+    <string name="no_thanks">نہیں، شکریہ</string>
+    <string name="remind_me_later">بعد میں یاد دلائیں</string>
+    <string name="cancel">منسوخ کریں</string>
+    <string name="enter_your_pin_code">اپنا پن کوڈ درج کریں</string>
+    <string name="enter_your_pin_code_again">اپنا پن کوڈ دوبارہ درج کریں</string>
+    <string name="app_name_detail">اعلیٰ ڈیوائس سیکیورٹی کے لیے محبت دل لاک اسکرین منتخب کریں۔</string>
+    <string name="change_pin_lock">پن لاک تبدیل کریں</string>
+    <string name="sound">آواز</string>
+    <string name="moreApp">مزید ایپ (اشتہار)</string>
+    <string name="shareApp">ایپ شیئر کریں</string>
+    <string name="rateUs">ہمیں ریٹنگ دیں</string>
+    <string name="thanks_txt">آپ کے وقت کے لیے شکریہ!</string>
+    <string name="zipper">زپپر</string>
+    <string name="row">قطاریں</string>
+    <string name="wallpaper">4k وال پیپر</string>
+    <string name="permission_required">اجازت درکار ہے</string>
+    <string name="set_pin">پن سیٹ کریں</string>
+    <string name="confirm_pin">پن کی تصدیق کریں</string>
+    <string name="add_question">سوال شامل کریں</string>
+    <string name="type_answer_her">یہاں جواب لکھیں...</string>
+    <string name="what_is_your_favourite_color">آپ کا پسندیدہ رنگ کیا ہے؟</string>
+    <string name="security_question">سیکیورٹی سوال</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">ایپ کو اوپر ڈرائنگ کی اجازت کی ضرورت ہے۔ براہ کرم پہلے چیک کریں!</string>
+
+    <string-array name="questions">
+        <item>آپ کا پسندیدہ رنگ کیا ہے؟</item>
+        <item>آپ کا پسندیدہ کھانا کیا ہے؟</item>
+        <item>آپ کے پسندیدہ پالتو جانور کا نام کیا ہے؟</item>
+        <item>آپ کا پسندیدہ کافی کیا ہے؟</item>
+        <item>کیوں Kotlin؟</item>
+    </string-array>
+
+    <string name="selectMusic">موسیقی منتخب کریں</string>
+    <string name="select_sound">آواز منتخب کریں</string>
+    <string name="select_speed">زپپر کی رفتار</string>
+    <string name="first_enable_password">پہلے پاسورڈ فعال کریں</string>
+    <string name="empty_field">خالی فیلڈ</string>
+    <string name="save_security_question">سیکیورٹی سوال محفوظ کریں</string>
+    <string name="wrong_ans">غلط جواب</string>
+    <string name="heart_theme">دل کا تھیم</string>
+    <string name="heart_lock">دل کا لاک</string>
+    <string name="heart_zipper">دل کا زپپر</string>
+    <string name="loading_ad">اشتہار لوڈ ہو رہا ہے...</string>
+    <string name="app_security">ایپ کی سیکیورٹی</string>
+    <string name="allow_permission">اجازت دیں</string>
+    <string name="text1">محبت دل زپپر لاک اسکرین ایپ کھولیں اور اس کے ڈیش بورڈ پر جائیں۔</string>
+    <string name="text31">جب سب کچھ آپ کی پسند کے مطابق سیٹ ہو جائے، تو اپنے ذاتی زپپر لاک اسکرین کا لطف اٹھائیں!</string>
+    <string name="enjoy_your_new_lock_screen">اپنی نئی لاک اسکرین کا لطف اٹھائیں:</string>
+    <string name="how_to_set_lock">لاک کیسے سیٹ کریں:</string>
+    <string name="preview_lock_screen">لاک اسکرین کا پیش نظارہ:</string>
+    <string name="choose_any_option_from_the_dashboard">ڈیش بورڈ سے کوئی بھی آپشن منتخب کریں۔</string>
+    <string name="text13">اگر پوچھا جائے تو، ایپ کو آپ کے فون کی سیٹنگز میں اجازت تک رسائی دینے کی اجازت دیں تاکہ زپپر پیش نظارہ دکھایا جا سکے۔</string>
+    <string name="text14">جب آپ نے اجازت دی ہو، تو دل زپپر ایپ میں واپس جائیں۔</string>
+    <string name="text15">آپ اب "پیش نظارہ" آپشن استعمال کر کے یا پس منظر، زپپر، اور قطار کی ترتیبات کو تبدیل کر کے پیش نظارہ دیکھ سکتے ہیں۔</string>
+    <string name="text21">زپپر لاک اسکرین ایپ کھولیں اور اس کے ڈیش بورڈ پر جائیں۔</string>
+    <string name="text22">ڈیش بورڈ سے سیکیورٹی آپشن منتخب کریں۔</string>
+    <string name="text23">پِن کوڈ سیٹ کریں اور ایک 4 ہندسوں کا پاسورڈ درج کریں</string>
+    <string name="text24">بحالی کے لیے سیکیورٹی سوال سیٹ کریں</string>
+
+    <string name="version">ورژن:</string>
+    <string name="purchase">خریداری</string>
+    <string name="with_ads"><u>اشتہارات کے ساتھ جاری رکھیں</u></string>
+    <string name="get_premium">پریمیم حاصل کریں</string>
+    <string name="get_premium_detail"><![CDATA[تمام پریمیم خصوصیات اور اعلی معیار کے ہارٹ لاک تھیمز اور وال پیپرز کو ان لاک کریں اور اشتہار سے پاک تجربے کا لطف اٹھائیں۔]]></string>
+    <string name="ad_free_app">اشتہارات ہٹائیں</string>
+    <string name="unlock_all_features">تمام خصوصیات کو ان لاک کریں</string>
+    <string name="africa">جنوبی افریقہ</string>
+    <string name="bangladash">بنگالی</string>
+    <string name="domican_republic">ڈومینیکن ریپبلک</string>
+    <string name="keynia">کینیا</string>
+    <string name="mexicon">میکسیکو</string>
+
+    <string name="customer_support">کسٹمر سپورٹ</string>
+    <string name="feedback">تاثرات</string>
+    <string name="how_was_your_overall_experience">آپ کا مجموعی تجربہ کیسا رہا؟</string>
+    <string name="tell_us_the_problems_you_meet">ہمیں ان مسائل کے بارے میں بتائیں جن کا آپ سامنا کرتے ہیں۔</string>
+    <string name="can_t_lock_screen">اسکرین لاک نہیں کر سکتا</string>
+    <string name="others">دیگر</string>
+    <string name="slow_speed">سست رفتار</string>
+    <string name="difficult_to_use">استعمال کرنا مشکل</string>
+    <string name="do_not_display_on_my_phone">میرے فون پر ظاہر نہ کریں</string>
+    <string name="do_not_show_the_wallpaper">وال پیپر نہ دکھائیں</string>
+    <string name="feature_not_working">فیچر کام نہیں کر رہا</string>
+    <string name="upload_picture">تصویر اپ لوڈ کریں</string>
+    <string name="send">بھیجیں</string>
+
+    <string name="wallpaper_new">اپنی سکرین لاک کے لئے 4K وال پیپرز کا انتخاب کریں</string>
+    <string name="zipperStyle_new">سکرین لاک کے لئے زپ کا سٹائل منتخب کریں</string>
+    <string name="row_style_new">مختلف صف کے اسٹائلز کے ساتھ اپنی مرضی بنائیں</string>
+    <string name="preview_new">اپنے سکرین لاک کا تجربہ شخصی بنائیں</string>
+    <string name="screen_lock">سکرین لاک</string>
+    <string name="wallpaper_new_detail">اپنے تھیم کے لئے ایک تصویر منتخب کریں۔</string>
+    <string name="zipperStyle_new_detail">اپنے تھیم کے لئے زپ منتخب کریں۔</string>
+    <string name="row_style_new_detail">اپنے تھیم کے لئے ایک صف منتخب کریں۔</string>
+    <string name="preview_new_detail">اپنے سکرین لاک کا جائزہ لیں</string>
+
+</resources>
+

@@ -1,0 +1,214 @@
+<resources>
+    <string name="app_name">হার্ট জিপার স্ক্রীন লক অ্যাপ</string>
+    <string name="please_wait_app_is_opening">ভালোবাসা লোড হচ্ছে... অনুগ্রহ করে অপেক্ষা করুন!</string>
+    <string name="secure_your_screen"><![CDATA[আপনার স্ক্রীন সুরক্ষিত করুন: জিপ করুন এবং হৃদয়টি মুক্ত করুন!]]></string>
+    <string name="protect_your_privacy">আপনার গোপনীয়তা রক্ষা করুন</string>
+    <string name="would_you_like_to_continue_unlock_heart">আপনি কি হৃদয়টি আনলক করতে চালিয়ে যেতে চান?</string>
+    <string name="exit_app">অ্যাপ থেকে বের হন</string>
+    <string name="tap_to_exit"><u>বের হতে ট্যাপ করুন</u></string>
+    <string name="start">শুরু করুন</string>
+
+    <string name="yes"><U>হ্যাঁ</U></string>
+    <string name="no">না</string>
+    <string name="exit">বাহিরে যান</string>
+    <string name="exit_from_app">আপনি কি সত্যিই বাহিরে যেতে চান?</string>
+    <string name="enjo_app">আমাদের অ্যাপটি উপভোগ করুন</string>
+    <string name="rating_detail">যদি আপনি আমাদের অ্যাপটি উপভোগ করেন, দয়া করে আমাদের রেটিং দিন</string>
+    <string name="rate_us">আমাদের রেট করুন</string>
+    <string name="service">সেবা</string>
+    <string name="service_disable_dialog">আপনি কি সেবা নিষ্ক্রিয় করতে চান?</string>
+    <string name="ok">ওকে</string>
+    <string name="permissionDENIED">অনুমতি অস্বীকৃত</string>
+    <string name="permission_needed">অনুমতি প্রয়োজন</string>
+    <string name="camera_permission">ফটোদের জন্য ক্যামেরা অনুমতি প্রয়োজন</string>
+    <string name="check_ads">বিজ্ঞাপন পরীক্ষা করুন</string>
+    <string name="no_internet">ইন্টারনেট নেই</string>
+    <string name="ad">বিজ্ঞাপন</string>
+    <string name="notification_permission">লক স্ক্রীনের জন্য বিজ্ঞপ্তি অনুমতি প্রয়োজন</string>
+
+    <string name="brazil">ব্রাজিল</string>
+    <string name="canada">কানাডা</string>
+    <string name="itlay">ইতালি</string>
+    <string name="english">ইংরেজি</string>
+    <string name="france">ফ্রান্স</string>
+    <string name="german">জার্মান</string>
+    <string name="netherland">নেদারল্যান্ড</string>
+    <string name="spanish">স্প্যানিশ</string>
+    <string name="hindi">হিন্দি</string>
+    <string name="bengali">বাংলা</string>
+    <string name="portuguese">পর্তুগিজ</string>
+    <string name="russian">রুশ</string>
+    <string name="japanese">জাপানি</string>
+    <string name="chinese">চীনা</string>
+    <string name="turkish">তুর্কি</string>
+    <string name="korean">কোরিয়ান</string>
+    <string name="vietnamese">ভিয়েতনামী</string>
+    <string name="italian">ইতালীয়</string>
+    <string name="urdu">উর্দু</string>
+    <string name="indonesian">ইন্দোনেশীয়</string>
+    <string name="polish">পোলিশ</string>
+    <string name="ukrainian">ইউক্রেনীয়</string>
+    <string name="turkey">তুরস্ক</string>
+    <string name="england">ইংল্যান্ড</string>
+    <string name="usa">যুক্তরাষ্ট্র</string>
+    <string name="Arabic">আরবি</string>
+
+    <string name="set_app_language">ভাষা নির্বাচন করুন</string>
+    <string name="continue_txt">শুরু</string>
+    <string name="finish">সম্পন্ন</string>
+    <string name="next">পরবর্তী</string>
+
+    <string name="rate_title">আমাদের অ্যাপ রেট করুন!</string>
+    <string name="exit_title">আপনি কি নিশ্চিত যে আপনি বাহিরে যেতে চান?</string>
+    <string name="apply">প্রযোজ্য করুন</string>
+    <string name="skip">বিয়োগ করুন</string>
+
+    <string name="notification">বিজ্ঞপ্তি</string>
+    <string name="share_app">অ্যাপ শেয়ার করুন</string>
+    <string name="premium">প্রিমিয়াম</string>
+    <string name="language">ভাষা</string>
+    <string name="more_app">আরো অ্যাপ (বিজ্ঞাপন)</string>
+    <string name="privacy">গোপনীয়তা</string>
+
+    <string name="LOADING">লোড হচ্ছে...</string>
+    <string name="close">বন্ধ করুন</string>
+    <string name="dialog_cancel">বাতিল করুন</string>
+    <string name="dialog_default_title">এখানে একটি বার্তা আছে!</string>
+    <string name="dialog_ok">ওকে</string>
+    <string name="enable_lockscreen">লক স্ক্রীন সক্রিয় করুন</string>
+    <string name="enable_pattern_password">প্যাটার্ন পাসওয়ার্ড সক্রিয় করুন</string>
+    <string name="enter_pattern">প্যাটার্ন প্রবেশ করুন</string>
+    <string name="later">পরে হয়তো</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">লোড হচ্ছে</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">আরো অপশন</string>
+    <string name="preview">প্রিভিউ</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">গোপনীয়তা নীতি</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">আমাদের রেট করুন!!</string>
+    <string name="rate_us_message">আমরা আনন্দিত যে আপনি আমাদের অ্যাপ ব্যবহার করে উপভোগ করছেন! আপনি কি প্লে স্টোরে একটি পর্যালোচনা দিতে পারেন? এটি আমাদের অনেক সাহায্য করে! আপনার সমর্থনের জন্য ধন্যবাদ</string>
+    <string name="row_style">সারি শৈলী</string>
+    <string name="set_wallpaper">ওয়ালপেপার সেট করুন</string>
+    <string name="settings">সেটিংস</string>
+    <string name="vibration">ভাইব্রেশন</string>
+    <string name="wallpapers">ওয়ালপেপার</string>
+    <string name="wlp_set">ওয়ালপেপার সফলভাবে সেট হয়েছে</string>
+    <string name="zipperStyle">জিপার শৈলী</string>
+    <string name="set_password">পাসওয়ার্ড সেট করুন</string>
+    <string name="set_your_password">আপনার পাসওয়ার্ড সেট করুন</string>
+    <string name="enter_your_pass">আপনার পাসওয়ার্ড প্রবেশ করুন</string>
+    <string name="re_enter_pass">আপনার পাসওয়ার্ড পুনরায় প্রবেশ করুন</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">অ্যানিমেশন গতি</string>
+    <string name="no_thanks">না, ধন্যবাদ</string>
+    <string name="remind_me_later">পরে মনে করিয়ে দিন</string>
+    <string name="cancel">বাতিল করুন</string>
+    <string name="enter_your_pin_code">আপনার পিন কোড প্রবেশ করুন</string>
+    <string name="enter_your_pin_code_again">আপনার পিন কোড আবার প্রবেশ করুন</string>
+    <string name="app_name_detail">উচ্চতর ডিভাইস সুরক্ষার জন্য লাভ হার্ট লক স্ক্রীন নির্বাচন করুন।</string>
+    <string name="change_pin_lock">পিন লক পরিবর্তন করুন</string>
+    <string name="sound">শব্দ</string>
+    <string name="moreApp">আরো অ্যাপ (বিজ্ঞাপন)</string>
+    <string name="shareApp">অ্যাপ শেয়ার করুন</string>
+    <string name="rateUs">আমাদের রেট করুন</string>
+    <string name="thanks_txt">আপনার সময়ের জন্য ধন্যবাদ!</string>
+    <string name="zipper">জিপার</string>
+    <string name="row">সারি</string>
+    <string name="wallpaper">4k ওয়ালপেপার</string>
+    <string name="permission_required">অনুমতি প্রয়োজন</string>
+    <string name="set_pin">পিন সেট করুন</string>
+    <string name="confirm_pin">পিন নিশ্চিত করুন</string>
+    <string name="add_question">প্রশ্ন যোগ করুন</string>
+    <string name="type_answer_her">এখানে উত্তর লিখুন...</string>
+    <string name="what_is_your_favourite_color">আপনার প্রিয় রঙ কী?</string>
+    <string name="security_question">নিরাপত্তা প্রশ্ন</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">অ্যাপটির উপরে আঁকার অনুমতি প্রয়োজন
+দয়া করে এটি প্রথমে চেক করুন!</string>
+
+    <string-array name="questions">
+        <item>আপনার প্রিয় রঙ কী?</item>
+        <item>আপনার প্রিয় খাবার কী?</item>
+        <item>আপনার প্রিয় পোষা প্রাণীর নাম কী?</item>
+        <item>আপনার প্রিয় কফি কী?</item>
+        <item>কেন Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">সঙ্গীত নির্বাচন করুন</string>
+    <string name="select_sound">শব্দ নির্বাচন করুন</string>
+    <string name="select_speed">জিপার গতি</string>
+    <string name="first_enable_password">প্রথম পাসওয়ার্ড সক্রিয় করুন</string>
+    <string name="empty_field">খালি ক্ষেত্র</string>
+    <string name="save_security_question">নিরাপত্তা প্রশ্ন সংরক্ষণ করুন</string>
+    <string name="wrong_ans">ভুল উত্তর</string>
+    <string name="heart_theme">হার্ট থিম</string>
+    <string name="heart_lock">হার্ট লক</string>
+    <string name="heart_zipper">হার্ট লক</string>
+    <string name="loading_ad">বিজ্ঞাপন লোড হচ্ছে...</string>
+    <string name="app_security">অ্যাপ সুরক্ষা</string>
+    <string name="allow_permission">অনুমতি দিন</string>
+    <string name="text1">হার্ট জিপার লক স্ক্রীন অ্যাপ খুলুন এবং এর ড্যাশবোর্ডে যান।</string>
+    <string name="text31">যখন সবকিছু আপনার পছন্দ অনুযায়ী সেট আপ করা হয়, আপনার ব্যক্তিগত জিপার লক স্ক্রীন উপভোগ করুন!</string>
+    <string name="enjoy_your_new_lock_screen">আপনার নতুন লক স্ক্রীন উপভোগ করুন:</string>
+    <string name="how_to_set_lock">লক কিভাবে সেট করবেন:</string>
+    <string name="preview_lock_screen">লক স্ক্রীনের প্রিভিউ:</string>
+    <string name="choose_any_option_from_the_dashboard">ড্যাশবোর্ড থেকে যেকোনো অপশন নির্বাচন করুন।</string>
+    <string name="text13">যদি জিজ্ঞাসা করা হয়, অ্যাপটিকে আপনার ফোন সেটিংসে অনুমতি অ্যাক্সেস করার অনুমতি দিন যাতে জিপার প্রিভিউ দেখানো যায়।</string>
+    <string name="text14">যখন আপনি অনুমতি দিয়েছেন, তখন হার্ট জিপার অ্যাপে ফিরে যান।</string>
+    <string name="text15">আপনি এখন "প্রিভিউ" অপশন ব্যবহার করে অথবা ব্যাকগ্রাউন্ড, জিপার এবং সারি সেটিংস পরিবর্তন করে প্রিভিউ দেখতে পারেন।</string>
+    <string name="text21">জিপার লক স্ক্রীন অ্যাপ খুলুন এবং এর ড্যাশবোর্ডে যান।</string>
+    <string name="text22">ড্যাশবোর্ড থেকে নিরাপত্তা অপশন নির্বাচন করুন।</string>
+    <string name="text23">পিনকোড সেট করুন এবং একটি 4-অঙ্কের পাসওয়ার্ড প্রবেশ করুন</string>
+    <string name="text24">পুনরুদ্ধারের জন্য একটি নিরাপত্তা প্রশ্ন সেট করুন</string>
+
+    <string name="version">সংস্করণ:</string>
+    <string name="purchase">ক্রয়</string>
+    <string name="with_ads"><u>বিজ্ঞাপন সহ চালিয়ে যান</u></string>
+    <string name="get_premium">প্রীমিয়াম পান</string>
+    <string name="get_premium_detail"><![CDATA[সব প্রিমিয়াম বৈশিষ্ট্য এবং উচ্চ মানের হার্ট লক থিম এবং ওয়ালপেপার আনলক করুন এবং বিজ্ঞাপন মুক্ত অভিজ্ঞতা উপভোগ করুন।]]></string>
+    <string name="ad_free_app">বিজ্ঞাপন সরান</string>
+    <string name="unlock_all_features">সব বৈশিষ্ট্য আনলক করুন</string>
+    <string name="africa">দক্ষিণ আফ্রিকা</string>
+    <string name="bangladash">বাংলাদেশ</string>
+    <string name="domican_republic">ডোমিনিকান প্রজাতন্ত্র</string>
+    <string name="keynia">কেনিয়া</string>
+    <string name="mexicon">মেক্সিকো</string>
+
+    <string name="customer_support">গ্রাহক সহায়তা</string>
+    <string name="feedback">প্রতিক্রিয়া</string>
+    <string name="how_was_your_overall_experience">আপনার সামগ্রিক অভিজ্ঞতা কেমন ছিল?</string>
+    <string name="tell_us_the_problems_you_meet">আপনার সম্মুখীন হওয়া সমস্যাগুলি আমাদের জানান।</string>
+    <string name="can_t_lock_screen">স্ক্রীন লক করতে পারছি না</string>
+    <string name="others">অন্যান্য</string>
+    <string name="slow_speed">ধীর গতি</string>
+    <string name="difficult_to_use">ব্যবহার করা কঠিন</string>
+    <string name="do_not_display_on_my_phone">আমার ফোনে প্রদর্শিত হয় না</string>
+    <string name="do_not_show_the_wallpaper">ওয়ালপেপার দেখায় না</string>
+    <string name="feature_not_working">বৈশিষ্ট্যটি কাজ করছে না</string>
+    <string name="upload_picture">ছবি আপলোড করুন</string>
+    <string name="send">প্রেরণ</string>
+
+    <string name="wallpaper_new">আপনার স্ক্রিন লকের জন্য 4K ওয়ালপেপার বাছুন</string>
+    <string name="zipperStyle_new">স্ক্রিন লকের জন্য আপনার জিপার স্টাইল নির্বাচন করুন</string>
+    <string name="row_style_new">বিভিন্ন সারি শৈলীতে কাস্টমাইজ করুন</string>
+    <string name="preview_new">আপনার স্ক্রিন লক অভিজ্ঞতাকে ব্যক্তিগত করুন</string>
+    <string name="screen_lock">স্ক্রিন লক</string>
+    <string name="wallpaper_new_detail">আপনার থিমের জন্য একটি ছবি নির্বাচন করুন।</string>
+    <string name="zipperStyle_new_detail">আপনার থিমের জন্য একটি জিপার নির্বাচন করুন।</string>
+    <string name="row_style_new_detail">আপনার থিমের জন্য একটি সারি নির্বাচন করুন।</string>
+    <string name="preview_new_detail">আপনার স্ক্রিন লকের প্রিভিউ দেখুন</string>
+
+
+</resources>
+

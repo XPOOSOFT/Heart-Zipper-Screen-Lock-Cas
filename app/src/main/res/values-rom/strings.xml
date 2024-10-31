@@ -1,0 +1,210 @@
+<resources>
+    <string name="app_name">Aplicación de Bloqueo de Pantalla con Cremallera de Corazón</string>
+    <string name="please_wait_app_is_opening">Cargando Amor... ¡Por favor espera!</string>
+    <string name="secure_your_screen"><![CDATA[Asegura tu pantalla: ¡Cierra el cierre y libera el corazón!]]></string>
+    <string name="protect_your_privacy">Protege tu privacidad</string>
+    <string name="would_you_like_to_continue_unlock_heart">¿Te gustaría continuar desbloqueando el corazón?</string>
+    <string name="exit_app">Salir de la aplicación</string>
+    <string name="tap_to_exit"><u>Toca para salir</u></string>
+    <string name="start">Iniciar</string>
+
+    <string name="yes"><U>Sí</U></string>
+    <string name="no">No</string>
+    <string name="exit">Salir</string>
+    <string name="exit_from_app">¿Deseas salir de la aplicación?</string>
+    <string name="enjo_app">Disfruta nuestra aplicación</string>
+    <string name="rating_detail">Si disfrutas nuestra aplicación, por favor califícanos</string>
+    <string name="rate_us">Califícanos</string>
+    <string name="service">Servicio</string>
+    <string name="service_disable_dialog">¿Deseas desactivar el servicio?</string>
+    <string name="ok">Aceptar</string>
+    <string name="permissionDENIED">Permiso DENEGADO</string>
+    <string name="permission_needed">Permiso requerido</string>
+    <string name="camera_permission">Se necesita permiso de cámara para fotos</string>
+    <string name="check_ads">Ver anuncios</string>
+    <string name="no_internet">Sin Internet</string>
+    <string name="ad">Anuncio</string>
+    <string name="notification_permission">Se necesita permiso de notificaciones para la pantalla de bloqueo</string>
+
+    <string name="brazil">Brasil</string>
+    <string name="canada">Canadá</string>
+    <string name="itlay">Italia</string>
+    <string name="english">Inglés</string>
+    <string name="france">Francia</string>
+    <string name="german">Alemán</string>
+    <string name="netherland">Países Bajos</string>
+    <string name="spanish">Español</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengalí</string>
+    <string name="portuguese">Portugués</string>
+    <string name="russian">Ruso</string>
+    <string name="japanese">Japonés</string>
+    <string name="chinese">Chino</string>
+    <string name="turkish">Turco</string>
+    <string name="korean">Coreano</string>
+    <string name="vietnamese">Vietnamita</string>
+    <string name="italian">Italiano</string>
+    <string name="urdu">Urdu</string>
+    <string name="indonesian">Indonesio</string>
+    <string name="polish">Polaco</string>
+    <string name="ukrainian">Ucraniano</string>
+    <string name="turkey">Turquía</string>
+    <string name="england">Inglaterra</string>
+    <string name="usa">EE.UU.</string>
+    <string name="Arabic">Árabe</string>
+
+    <string name="set_app_language">Seleccionar Idioma</string>
+    <string name="continue_txt">Empezar</string>
+    <string name="finish">Finalizar</string>
+    <string name="next">Siguiente</string>
+
+    <string name="rate_title">¡Califica nuestra aplicación!</string>
+    <string name="exit_title">¿Estás seguro de que deseas salir?</string>
+    <string name="apply">Aplicar</string>
+    <string name="skip">Saltar</string>
+
+    <string name="notification">Notificación</string>
+    <string name="share_app">Compartir Aplicación</string>
+    <string name="premium">Premium</string>
+    <string name="language">Idioma</string>
+    <string name="more_app">Más Aplicaciones (Anuncio)</string>
+    <string name="privacy">Privacidad</string>
+
+    <string name="LOADING">Cargando...</string>
+    <string name="close">Cerrar</string>
+    <string name="dialog_cancel">Cancelar</string>
+    <string name="dialog_default_title">¡Aquí hay un mensaje!</string>
+    <string name="dialog_ok">OK</string>
+    <string name="enable_lockscreen">Habilitar Pantalla de Bloqueo</string>
+    <string name="enable_pattern_password">Habilitar contraseña de patrón</string>
+    <string name="enter_pattern">Ingresa el patrón</string>
+    <string name="later">Quizás más tarde</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Cargando</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Más opciones</string>
+    <string name="preview">Vista previa</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Política de Privacidad</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">¡Califícanos!</string>
+    <string name="rate_us_message">¡Nos alegra que estés disfrutando de nuestra aplicación! ¿Podrías dejarnos una reseña en la tienda de aplicaciones? ¡Realmente nos ayuda mucho! Gracias por tu apoyo</string>
+    <string name="row_style">Estilo de Fila</string>
+    <string name="set_wallpaper">Establecer Fondo de Pantalla</string>
+    <string name="settings">Ajustes</string>
+    <string name="vibration">Vibración</string>
+    <string name="wallpapers">Fondos de Pantalla</string>
+    <string name="wlp_set">Fondo de pantalla establecido con éxito</string>
+    <string name="zipperStyle">Estilo de Cierre</string>
+    <string name="set_password">Establecer Contraseña</string>
+    <string name="set_your_password">Establecer Contraseña</string>
+    <string name="enter_your_pass">Ingresa tu contraseña</string>
+    <string name="re_enter_pass">Ingresa tu contraseña nuevamente</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Velocidad de Animación</string>
+    <string name="no_thanks">No, gracias</string>
+    <string name="remind_me_later">Recuérdame más tarde</string>
+    <string name="cancel">Cancelar</string>
+    <string name="enter_your_pin_code">Ingresa tu código PIN</string>
+    <string name="enter_your_pin_code_again">Ingresa tu código PIN nuevamente</string>
+    <string name="app_name_detail">Elige Pantalla de Bloqueo Corazón de Amor para una mayor seguridad del dispositivo.</string>
+    <string name="change_pin_lock">Cambiar Bloqueo PIN</string>
+    <string name="sound">Sonido</string>
+    <string name="moreApp">Más Aplicaciones (Anuncio)</string>
+    <string name="shareApp">Compartir Aplicación</string>
+    <string name="rateUs">Califícanos</string>
+    <string name="thanks_txt">¡Gracias por tu tiempo!</string>
+    <string name="zipper">Cierre</string>
+    <string name="row">Filas</string>
+    <string name="wallpaper">4k Fondo de Pantalla</string>
+    <string name="permission_required">Permiso Requerido</string>
+    <string name="set_pin">Establecer PIN</string>
+    <string name="confirm_pin">Confirmar PIN</string>
+    <string name="add_question">Agregar Pregunta</string>
+    <string name="type_answer_her">Escribe tu respuesta aquí...</string>
+    <string name="what_is_your_favourite_color">¿Cuál es tu color favorito?</string>
+    <string name="security_question">Pregunta de Seguridad</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">La aplicación necesita permiso para dibujar sobre otras aplicaciones. ¡Por favor, revísalo primero!</string>
+
+    <string-array name="questions">
+        <item>¿Cuál es tu color favorito?</item>
+        <item>¿Cuál es tu comida favorita?</item>
+        <item>¿Cuál es el nombre de tu mascota favorita?</item>
+        <item>¿Cuál es tu café favorito?</item>
+        <item>¿Por qué Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Seleccionar Música</string>
+    <string name="select_sound">Seleccionar Sonido</string>
+    <string name="select_speed">Velocidad del Cierre</string>
+    <string name="first_enable_password">Primero Habilita Contraseña</string>
+    <string name="empty_field">Campo Vacío</string>
+    <string name="save_security_question">Guardar Pregunta de Seguridad</string>
+    <string name="wrong_ans">Respuesta Incorrecta</string>
+    <string name="heart_theme">Tema Corazón</string>
+    <string name="heart_lock">Bloqueo Corazón</string>
+    <string name="heart_zipper">Cierre Corazón</string>
+    <string name="loading_ad">Cargando Anuncio...</string>
+    <string name="app_security">Seguridad de la Aplicación</string>
+    <string name="allow_permission">Permitir Permiso</string>
+    <string name="text1">Abre la aplicación de Pantalla de Bloqueo Corazón de Amor y ve a su panel de control.</string>
+    <string name="text31">Una vez que todo esté configurado a tu gusto, ¡disfruta de tu pantalla de bloqueo personalizada!</string>
+    <string name="enjoy_your_new_lock_screen">Disfruta de Tu Nueva Pantalla de Bloqueo:</string>
+    <string name="how_to_set_lock">Cómo establecer el Bloqueo:</string>
+    <string name="preview_lock_screen">Vista Previa de Pantalla de Bloqueo:</string>
+    <string name="choose_any_option_from_the_dashboard">Elige cualquier opción desde el panel de control.</string>
+    <string name="text13">Si se te solicita, permite que la aplicación acceda a permisos en la configuración de tu teléfono para mostrar la vista previa del cierre.</string>
+    <string name="text14">Una vez que hayas permitido los permisos, regresa a la aplicación de cierre de corazón.</string>
+    <string name="text15">Ahora puedes ver la vista previa usando la opción "vista previa" o cambiando el fondo, el cierre y la configuración de filas.</string>
+    <string name="text21">Abre la aplicación de cierre de pantalla y ve a su panel de control.</string>
+    <string name="text22">Elige una opción de seguridad desde el panel de control.</string>
+    <string name="text23">Selecciona Establecer Código de Acceso e Ingresa una contraseña de 4 dígitos</string>
+    <string name="text24">Establece una pregunta de seguridad para recuperación</string>
+    <string name="version">Versión:</string>
+    <string name="purchase">Compra</string>
+    <string name="with_ads"><u>Continuar con anuncios</u></string>
+    <string name="get_premium">OBTENER PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Desbloquea todas las funciones premium y los mejores temas de bloqueo de corazón y fondos de pantalla y disfruta de una experiencia sin anuncios.]]></string>
+    <string name="ad_free_app">Eliminar anuncios</string>
+    <string name="unlock_all_features">Desbloquear todas las funciones</string>
+    <string name="africa">Sudáfrica</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">República Dominicana</string>
+    <string name="keynia">Kenia</string>
+    <string name="mexicon">México</string>
+    <string name="customer_support">Atención al cliente</string>
+    <string name="feedback">Comentarios</string>
+    <string name="how_was_your_overall_experience">¿Cómo fue tu experiencia general?</string>
+    <string name="tell_us_the_problems_you_meet">Cuéntanos los problemas que encontraste.</string>
+    <string name="can_t_lock_screen">No puedo bloquear la pantalla</string>
+    <string name="others">Otros</string>
+    <string name="slow_speed">Velocidad lenta</string>
+    <string name="difficult_to_use">Difícil de usar</string>
+    <string name="do_not_display_on_my_phone">No se muestra en mi teléfono</string>
+    <string name="do_not_show_the_wallpaper">No muestra el fondo de pantalla</string>
+    <string name="feature_not_working">La función no funciona</string>
+    <string name="upload_picture">Subir imagen</string>
+    <string name="send">Enviar</string>
+
+    <string name="wallpaper_new">Elige entre Fondos de Pantalla 4K para tu Bloqueo de Pantalla</string>
+    <string name="zipperStyle_new">Selecciona tu Estilo de Cierre para el Bloqueo de Pantalla</string>
+    <string name="row_style_new">Personaliza con Diferentes Estilos de Fila</string>
+    <string name="preview_new">Personaliza tu Experiencia de Bloqueo de Pantalla</string>
+    <string name="screen_lock">Bloqueo de Pantalla</string>
+    <string name="wallpaper_new_detail">Elige una imagen para tu Tema.</string>
+    <string name="zipperStyle_new_detail">Elige un cierre para tu Tema.</string>
+    <string name="row_style_new_detail">Elige una Fila para tu Tema.</string>
+    <string name="preview_new_detail">Previsualiza tu Bloqueo de Pantalla</string>
+
+</resources>
+

@@ -1,0 +1,211 @@
+<resources>
+    <string name="app_name">App de Verrouillage d\'Écran à Fermeture Éclair en Forme de Cœur</string>
+    <string name="please_wait_app_is_opening">Chargement de l\'amour… Veuillez patienter!</string>
+    <string name="secure_your_screen"><![CDATA[Sécurisez votre écran : Zippez et libérez le cœur !]]></string>
+    <string name="protect_your_privacy">Protégez votre vie privée</string>
+    <string name="would_you_like_to_continue_unlock_heart">Voulez-vous continuer à déverrouiller le cœur ?</string>
+    <string name="exit_app">Quitter l\'application</string>
+    <string name="tap_to_exit"><u>Appuyez pour quitter</u></string>
+    <string name="start">Démarrer</string>
+
+    <string name="yes"><U>Oui</U></string>
+    <string name="no">Non</string>
+    <string name="exit">Quitter</string>
+    <string name="exit_from_app">Voulez-vous quitter ?</string>
+    <string name="enjo_app">Profitez de notre application</string>
+    <string name="rating_detail">Si vous aimez notre application, veuillez nous évaluer</string>
+    <string name="rate_us">Évaluez-nous</string>
+    <string name="service">Service</string>
+    <string name="service_disable_dialog">Voulez-vous désactiver le service ?</string>
+    <string name="ok">D\'accord</string>
+    <string name="permissionDENIED">Permission refusée</string>
+    <string name="permission_needed">Permission nécessaire</string>
+    <string name="camera_permission">La permission de la caméra est nécessaire pour les photos</string>
+    <string name="check_ads">Vérifier les annonces</string>
+    <string name="no_internet">Pas d\'Internet</string>
+    <string name="ad">Annonce</string>
+    <string name="notification_permission">La permission de notification est nécessaire pour l\'écran de verrouillage</string>
+
+    <string name="brazil">Brésil</string>
+    <string name="canada">Canada</string>
+    <string name="itlay">Italie</string>
+    <string name="english">Anglais</string>
+    <string name="france">France</string>
+    <string name="german">Allemand</string>
+    <string name="netherland">Pays-Bas</string>
+    <string name="spanish">Espagnol</string>
+    <string name="hindi">Hindi</string>
+    <string name="bengali">Bengali</string>
+    <string name="portuguese">Portugais</string>
+    <string name="russian">Russe</string>
+    <string name="japanese">Japonais</string>
+    <string name="chinese">Chinois</string>
+    <string name="turkish">Turc</string>
+    <string name="korean">Coréen</string>
+    <string name="vietnamese">Vietnamien</string>
+    <string name="italian">Italien</string>
+    <string name="urdu">Ourdou</string>
+    <string name="indonesian">Indonésien</string>
+    <string name="polish">Polonais</string>
+    <string name="ukrainian">Ukrainien</string>
+    <string name="turkey">Turquie</string>
+    <string name="england">Angleterre</string>
+    <string name="usa">États-Unis</string>
+    <string name="Arabic">Arabe</string>
+
+    <string name="set_app_language">Sélectionner la langue</string>
+    <string name="continue_txt">Démarrer</string>
+    <string name="finish">Terminer</string>
+    <string name="next">Suivant</string>
+
+    <string name="rate_title">Évaluez notre application !</string>
+    <string name="exit_title">Êtes-vous sûr de vouloir quitter ?</string>
+    <string name="apply">Appliquer</string>
+    <string name="skip">Passer</string>
+
+    <string name="notification">Notification</string>
+    <string name="share_app">Partager l\'application</string>
+    <string name="premium">Premium</string>
+    <string name="language">Langue</string>
+    <string name="more_app">Plus d\'applications (Annonce)</string>
+    <string name="privacy">Confidentialité</string>
+
+    <string name="LOADING">Chargement...</string>
+    <string name="close">Fermer</string>
+    <string name="dialog_cancel">Annuler</string>
+    <string name="dialog_default_title">Voici un message !</string>
+    <string name="dialog_ok">D\'accord</string>
+    <string name="enable_lockscreen">Activer l\'écran de verrouillage</string>
+    <string name="enable_pattern_password">Activer le mot de passe par motif</string>
+    <string name="enter_pattern">Entrer le motif</string>
+    <string name="later">Peut-être plus tard</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Chargement</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Plus d\'options</string>
+    <string name="preview">Aperçu</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Évaluez-nous !!</string>
+    <string name="rate_us_message">Nous sommes ravis que vous appréciez notre application ! Pourriez-vous nous laisser un avis sur le magasin d\'applications ? Cela nous aide vraiment ! Merci pour votre soutien</string>
+    <string name="row_style">Style de ligne</string>
+    <string name="set_wallpaper">Définir le fond d\'écran</string>
+    <string name="settings">Paramètres</string>
+    <string name="vibration">Vibration</string>
+    <string name="wallpapers">Fonds d\'écran</string>
+    <string name="wlp_set">Fond d\'écran défini avec succès</string>
+    <string name="zipperStyle">Style de fermeture éclair</string>
+    <string name="set_password">Définir le mot de passe</string>
+    <string name="set_your_password">Définir votre mot de passe</string>
+    <string name="enter_your_pass">Entrez votre mot de passe</string>
+    <string name="re_enter_pass">Entrez votre mot de passe à nouveau</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Vitesse de l\'animation</string>
+    <string name="no_thanks">Non, merci</string>
+    <string name="remind_me_later">Rappelle-moi plus tard</string>
+    <string name="cancel">Annuler</string>
+    <string name="enter_your_pin_code">Entrez votre code PIN</string>
+    <string name="enter_your_pin_code_again">Entrez votre code PIN à nouveau</string>
+    <string name="app_name_detail">Choisissez l\'Écran de Verrouillage Love Heart pour une sécurité accrue de l\'appareil.</string>
+    <string name="change_pin_lock">Changer le verrouillage PIN</string>
+    <string name="sound">Son</string>
+    <string name="moreApp">Plus d\'applications (Annonce)</string>
+    <string name="shareApp">Partager l\'application</string>
+    <string name="rateUs">Évaluez-nous</string>
+    <string name="thanks_txt">Merci pour votre temps !</string>
+    <string name="zipper">Fermeture éclair</string>
+    <string name="row">Lignes</string>
+    <string name="wallpaper">4k Fond d\'écran</string>
+    <string name="permission_required">Permission requise</string>
+    <string name="set_pin">Définir le PIN</string>
+    <string name="confirm_pin">Confirmer le PIN</string>
+    <string name="add_question">Ajouter une question</string>
+    <string name="type_answer_her">Tapez votre réponse ici...</string>
+    <string name="what_is_your_favourite_color">Quelle est votre couleur préférée ?</string>
+    <string name="security_question">Question de sécurité</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">L\'application a besoin de la permission de superposition. Veuillez vérifier cela d\'abord !</string>
+
+    <string-array name="questions">
+        <item>Quelle est votre couleur préférée ?</item>
+        <item>Quel est votre plat préféré ?</item>
+        <item>Quel est le nom de votre animal de compagnie préféré ?</item>
+        <item>Quel est votre café préféré ?</item>
+        <item>Pourquoi Kotlin ?</item>
+    </string-array>
+
+    <string name="selectMusic">Sélectionner de la musique</string>
+    <string name="select_sound">Sélectionner un son</string>
+    <string name="select_speed">Vitesse du zip</string>
+    <string name="first_enable_password">Activer d\'abord le mot de passe</string>
+    <string name="empty_field">Champ vide</string>
+    <string name="save_security_question">Enregistrer la question de sécurité</string>
+    <string name="wrong_ans">Mauvaise réponse</string>
+    <string name="heart_theme">Thème du cœur</string>
+    <string name="heart_lock">Verrouillage du cœur</string>
+    <string name="heart_zipper">Fermeture éclair du cœur</string>
+    <string name="loading_ad">Chargement de l\'annonce...</string>
+    <string name="app_security">Sécurité de l\'application</string>
+    <string name="allow_permission">Permettre la permission</string>
+    <string name="text1">Ouvrez l\'application Écran de Verrouillage Love Heart et allez sur le tableau de bord.</string>
+    <string name="text31">Une fois que tout est configuré selon vos préférences, profitez de votre écran de verrouillage personnalisé !</string>
+    <string name="enjoy_your_new_lock_screen">Profitez de votre nouvel écran de verrouillage :</string>
+    <string name="how_to_set_lock">Comment définir l\'écran de verrouillage :</string>
+    <string name="preview_lock_screen">Aperçu de l\'écran de verrouillage :</string>
+    <string name="choose_any_option_from_the_dashboard">Choisissez n\'importe quelle option du tableau de bord.</string>
+    <string name="text13">Si vous y êtes invité, autorisez l\'application à accéder aux autorisations dans les paramètres de votre téléphone pour afficher l\'aperçu du zip.</string>
+    <string name="text14">Une fois les autorisations accordées, revenez à l\'application de fermeture éclair.</string>
+    <string name="text15">Vous pouvez maintenant voir l\'aperçu en utilisant l\'option "Aperçu" ou en modifiant le fond, la fermeture éclair et les paramètres des lignes.</string>
+    <string name="text21">Ouvrez l\'application d\'écran de verrouillage et allez sur le tableau de bord.</string>
+    <string name="text22">Choisissez l\'option de sécurité sur le tableau de bord.</string>
+    <string name="text23">Sélectionnez Définir le code PIN et entrez un mot de passe à 4 chiffres.</string>
+    <string name="text24">Définissez des questions de sécurité pour la récupération.</string>
+
+    <string name="version">Version:</string>
+    <string name="purchase">Acheter</string>
+    <string name="with_ads"><u>Continuer avec des publicités</u></string>
+    <string name="get_premium">OBTENIR LE PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Débloquez toutes les fonctionnalités premium et les thèmes et fonds d\'écran de verrouillage de cœur de première qualité et profitez d\'une expérience sans publicité.]]></string>
+    <string name="ad_free_app">Supprimer les publicités</string>
+    <string name="unlock_all_features">Débloquer toutes les fonctionnalités</string>
+    <string name="africa">Afrique du Sud</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">République Dominicaine</string>
+    <string name="keynia">Kenya</string>
+    <string name="mexicon">Mexique</string>
+    <string name="customer_support">Support client</string>
+    <string name="feedback">Retour</string>
+    <string name="how_was_your_overall_experience">Comment s\'est passée votre expérience globale ?</string>
+    <string name="tell_us_the_problems_you_meet">Dites-nous les problèmes que vous avez rencontrés.</string>
+    <string name="can_t_lock_screen">Impossible de verrouiller l\'écran</string>
+    <string name="others">Autres</string>
+    <string name="slow_speed">Vitesse lente</string>
+    <string name="difficult_to_use">Difficile à utiliser</string>
+    <string name="do_not_display_on_my_phone">Ne s\'affiche pas sur mon téléphone</string>
+    <string name="do_not_show_the_wallpaper">Ne montre pas le fond d\'écran</string>
+    <string name="feature_not_working">Fonctionnalité ne fonctionne pas</string>
+    <string name="upload_picture">Télécharger une image</string>
+    <string name="send">Envoyer</string>
+    <string name="wallpaper_new">Choisissez parmi les Fonds d\'Écran 4K pour Votre Écran de Verrouillage</string>
+    <string name="zipperStyle_new">Sélectionnez Votre Style de Fermeture pour l\'Écran de Verrouillage</string>
+    <string name="row_style_new">Personnalisez avec Différents Styles de Lignes</string>
+    <string name="preview_new">Personnalisez Votre Expérience de Verrouillage d\'Écran</string>
+    <string name="screen_lock">Verrouillage d\'Écran</string>
+    <string name="wallpaper_new_detail">Choisissez une image pour votre Thème.</string>
+    <string name="zipperStyle_new_detail">Choisissez une fermeture pour votre Thème.</string>
+    <string name="row_style_new_detail">Choisissez une Ligne pour votre Thème.</string>
+    <string name="preview_new_detail">Aperçu de votre Écran de Verrouillage</string>
+
+
+</resources>
+

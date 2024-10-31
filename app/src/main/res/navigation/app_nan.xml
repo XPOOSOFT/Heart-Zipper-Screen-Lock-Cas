@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nan"
+    app:startDestination="@id/mySplashFragment">
+
+    <fragment
+        android:id="@+id/mySplashFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.SplashFragment"
+        android:label="mySplashFragment"
+        tools:layout="@layout/fragment_splash" />
+
+    <fragment
+        android:id="@+id/myLoadingFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.LoadingScreenFragment"
+        android:label="myLoadingFragment"
+        tools:layout="@layout/fragment_loading" />
+
+
+    <fragment
+        android:id="@+id/LanguageFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language" />
+    <fragment
+        android:id="@+id/IntoScreenFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.OnBordScreenFragment"
+        android:label="IntoScreenFragment"
+        tools:layout="@layout/fragment_main_intro" />
+    <fragment
+        android:id="@+id/FragmentExitScreen"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentExitScreen"
+        android:label="FragmentExitScreen"
+        tools:layout="@layout/fragment_exit_screen" />
+    <fragment
+        android:id="@+id/myMainMenuFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.MainAppFragment"
+        android:label="myMainMenuFragment"
+        tools:layout="@layout/fragment_main_menu_activity"></fragment>
+    <fragment
+        android:id="@+id/ActivityAllStyle"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.ActivityAllStyle"
+        android:label="ActivityAllStyle"
+        tools:layout="@layout/fragment_all_styles"></fragment>
+    <fragment
+        android:id="@+id/FragmentApplyPassword"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentApplyPassword"
+        android:label="FragmentApplyPassword"
+        tools:layout="@layout/set_password_ly"></fragment>
+    <fragment
+        android:id="@+id/FragmentSetting"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentSetting"
+        android:label="FragmentSetting"
+        tools:layout="@layout/fragment_setting"></fragment>
+    <fragment
+        android:id="@+id/FragmentSoundSelection"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentSoundSelection"
+        android:label="FragmentSoundSelection"
+        tools:layout="@layout/fragment_sound_selection"></fragment>
+    <fragment
+        android:id="@+id/SecurityQuestionFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.SecurityQuestionFragment"
+        android:label="SecurityQuestionFragment"
+        tools:layout="@layout/security_question_fragment"></fragment>
+    <fragment
+        android:id="@+id/EnableFirstActivity"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.EnableFirstActivity"
+        android:label="EnableFirstActivity"
+        tools:layout="@layout/enable_first_activity"></fragment>
+    <fragment
+        android:id="@+id/FragmentNavigationScreen"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentNavigationScreen"
+        android:label="FragmentNavigationScreen"
+        tools:layout="@layout/navigation_layout"></fragment>
+    <fragment
+        android:id="@+id/FragmentBuyScreen"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentBuyScreen"
+        android:label="FragmentBuyScreen"
+        tools:layout="@layout/fragment_premium_screen"></fragment>
+    <fragment
+        android:id="@+id/FragmentPrivacyScreen"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentPrivacyScreen"
+        android:label="FragmentPrivacyScreen"
+        tools:layout="@layout/fragment_privacy_screen"></fragment>
+    <fragment
+        android:id="@+id/FragmentFeedBack"
+        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentFeedBack"
+        android:label="FragmentFeedBack"
+        tools:layout="@layout/fragment_feed_back"></fragment>
+
+</navigation>

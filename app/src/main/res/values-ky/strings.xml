@@ -1,0 +1,211 @@
+<resources>
+    <string name="app_name">Kiingilio cha Skrini ya Moyo wa Upendo</string>
+    <string name="please_wait_app_is_opening">Loading Love… Please wait!</string>
+    <string name="secure_your_screen"><![CDATA[Secure Your Screen: Zip & Unleash the Heart!]]></string>
+    <string name="protect_your_privacy">Protect Your Privacy</string>
+    <string name="would_you_like_to_continue_unlock_heart">Would you like to continue unlock heart</string>
+    <string name="exit_app">Exit App</string>
+    <string name="tap_to_exit"><u>Tap to Exit</u></string>
+    <string name="start">Start</string>
+
+    <string name="yes"><U>Ndio</U></string>
+    <string name="no">Hapana</string>
+    <string name="exit">Toka</string>
+    <string name="exit_from_app">Je, unataka kweli kutoka kwenye programu?</string>
+    <string name="enjo_app">Furahia programu yetu</string>
+    <string name="rating_detail">Ikiwa unapofurahia programu yetu, tafadhali tuweke alama</string>
+    <string name="rate_us">Tuweke alama</string>
+    <string name="service">Huduma</string>
+    <string name="service_disable_dialog">Je, unataka kufunga huduma?</string>
+    <string name="ok">Sawa</string>
+    <string name="permissionDENIED">Ruhusa Imekataliwa</string>
+    <string name="permission_needed">Ruhusa inahitajika</string>
+    <string name="camera_permission">Ruhusa ya kamera inahitajika kwa ajili ya Picha</string>
+    <string name="check_ads">Angalia Matangazo</string>
+    <string name="no_internet">Hakuna Mtandao</string>
+    <string name="ad">Tangazo</string>
+    <string name="notification_permission">Ruhusa ya arifa inahitajika kwa Skrini ya Kufunga</string>
+
+    <string name="brazil">Brazili</string>
+    <string name="canada">Kanada</string>
+    <string name="itlay">Italia</string>
+    <string name="english">Kingereza</string>
+    <string name="france">Ufaransa</string>
+    <string name="german">Kijerumani</string>
+    <string name="netherland">Uholanzi</string>
+    <string name="spanish">Kihispania</string>
+    <string name="hindi">Kihindi</string>
+    <string name="bengali">Kibengali</string>
+    <string name="portuguese">Kireno</string>
+    <string name="russian">Kirusi</string>
+    <string name="japanese">Kijapani</string>
+    <string name="chinese">Kichina</string>
+    <string name="turkish">Kituruki</string>
+    <string name="korean">Kikoreani</string>
+    <string name="vietnamese">Kivietinamu</string>
+    <string name="italian">Kitaliano</string>
+    <string name="urdu">Kiaurdu</string>
+    <string name="indonesian">Kiindonesia</string>
+    <string name="polish">Kipolandi</string>
+    <string name="ukrainian">Kiukreni</string>
+    <string name="turkey">Uturuki</string>
+    <string name="england">Uingereza</string>
+    <string name="usa">Marekani</string>
+    <string name="Arabic">Kiarabu</string>
+
+    <string name="set_app_language">Chagua Lugha</string>
+    <string name="continue_txt">Anza</string>
+    <string name="finish">Maliza</string>
+    <string name="next">Ifuatayo</string>
+
+    <string name="rate_title">Piga Alama kwa Programu Yetu!</string>
+    <string name="exit_title">Je, uko na hakika kwamba unataka kutoka?</string>
+    <string name="apply">Omba</string>
+    <string name="skip">Ruka</string>
+
+    <string name="notification">Arifa</string>
+    <string name="share_app">Shiriki Programu</string>
+    <string name="premium">Pembejeo</string>
+    <string name="language">Lugha</string>
+    <string name="more_app">Programu Zaidi (Tangazo)</string>
+    <string name="privacy">Faragha</string>
+
+    <string name="LOADING">Inapakia...</string>
+    <string name="close">Funga</string>
+    <string name="dialog_cancel">Ghairi</string>
+    <string name="dialog_default_title">Hapa kuna ujumbe!</string>
+    <string name="dialog_ok">Sawa</string>
+    <string name="enable_lockscreen">Wezesha Skrini ya Kufunga</string>
+    <string name="enable_pattern_password">Wezesha Nenosiri la Mchoro</string>
+    <string name="enter_pattern">Ingiza Mchoro</string>
+    <string name="later">Labda baadaye</string>
+    <string name="lib_name">PatternLockView</string>
+    <string name="loading">Inapakia</string>
+    <string name="moreAppsLink">http://digitalnorthstar.fun/json.json</string>
+    <string name="more_options">Mchaguo Zaidi</string>
+    <string name="preview">Mapitio</string>
+    <string name="privacyPolicyLink">http://digitalnorthstar.fun/</string>
+    <string name="privacy_policy">Sera ya Faragha</string>
+    <string name="project_id">digital-north-star</string>
+    <string name="rate_us2">Tuweke Alama!!</string>
+    <string name="rate_us_message">Tuna furaha kwamba unafurahia kutumia programu yetu! Je, unaweza kutupa maoni kwenye duka la programu? Inatusaidia sana! Asante kwa msaada wako</string>
+    <string name="row_style">Mtindo wa Safu</string>
+    <string name="set_wallpaper">Weka Ukuta</string>
+    <string name="settings">Mipangilio</string>
+    <string name="vibration">Kutetemeka</string>
+    <string name="wallpapers">Picha za Mandhari</string>
+    <string name="wlp_set">Ukuta umewekwa kwa mafanikio</string>
+    <string name="zipperStyle">Mtindo wa Zipper</string>
+    <string name="set_password">Weka Nenosiri</string>
+    <string name="set_your_password">Weka Nenosiri</string>
+    <string name="enter_your_pass">Ingiza nenosiri lako</string>
+    <string name="re_enter_pass">Ingiza nenosiri lako tena</string>
+
+    <string name="_0">0</string>
+    <string name="_7">7</string>
+    <string name="_8">8</string>
+    <string name="_9">9</string>
+    <string name="_4">4</string>
+    <string name="_5">5</string>
+    <string name="_6">6</string>
+    <string name="_1">1</string>
+    <string name="_2">2</string>
+    <string name="_3">3</string>
+    <string name="animation_speed">Speed ya Uhuishaji</string>
+    <string name="no_thanks">Hapana, asante</string>
+    <string name="remind_me_later">Nikumbushe baadaye</string>
+    <string name="cancel">Ghairi</string>
+    <string name="enter_your_pin_code">Ingiza PIN yako</string>
+    <string name="enter_your_pin_code_again">Ingiza PIN yako tena</string>
+    <string name="app_name_detail">Chagua Kiingilio cha Skrini ya Moyo wa Upendo kwa usalama wa kifaa wa hali ya juu.</string>
+    <string name="change_pin_lock">Badilisha PIN Lock</string>
+    <string name="sound">Sauti</string>
+    <string name="moreApp">Programu Zaidi (Tangazo)</string>
+    <string name="shareApp">Shiriki Programu</string>
+    <string name="rateUs">Tuweke Alama</string>
+    <string name="thanks_txt">Asante kwa Muda wako!</string>
+    <string name="zipper">Zipper</string>
+    <string name="row">Safu</string>
+    <string name="wallpaper">4k Ukuta</string>
+    <string name="permission_required">Ruhusa Inahitajika</string>
+    <string name="set_pin">Weka PIN</string>
+    <string name="confirm_pin">Thibitisha PIN</string>
+    <string name="add_question">Ongeza Swali</string>
+    <string name="type_answer_her">Andika majibu hapa...</string>
+    <string name="what_is_your_favourite_color">Rangi yako unayopenda ni ipi?</string>
+    <string name="security_question">Swali la Usalama</string>
+    <string name="the_app_need_draw_on_top_permission_please_check_it_first">Programu inahitaji ruhusa ya kuchora juu, tafadhali angalia kwanza!</string>
+
+    <string-array name="questions">
+        <item>Rangi yako unayopenda ni ipi?</item>
+        <item>Chakula chako unachopenda ni kipi?</item>
+        <item>Jina la mnyama wako unayependa ni lipi?</item>
+        <item>Kahawa yako unayopenda ni ipi?</item>
+        <item>Kwa nini Kotlin?</item>
+    </string-array>
+
+    <string name="selectMusic">Chagua Muziki</string>
+    <string name="select_sound">Chagua Sauti</string>
+    <string name="select_speed">Speed ya Zipper</string>
+    <string name="first_enable_password">Kwanza wezesha nenosiri</string>
+    <string name="empty_field">Sehemu Tupu</string>
+    <string name="save_security_question">Hifadhi Swali la Usalama</string>
+    <string name="wrong_ans">Jibu Lisilo Sahihi</string>
+    <string name="heart_theme">Mandhari ya Moyo</string>
+    <string name="heart_lock">Kufunga Moyo</string>
+    <string name="heart_zipper">Zipper ya Moyo</string>
+    <string name="loading_ad">Inapakia Tangazo...</string>
+    <string name="app_security">Usalama wa Programu</string>
+    <string name="allow_permission">Ruhusu Ruhusa</string>
+    <string name="text1">Fungua programu ya Kiingilio cha Skrini ya Moyo wa Upendo na uende kwenye dashibodi yake.</string>
+    <string name="text31">Mara kila kitu kilipowekwa kulingana na mapenzi yako, furahia skrini yako ya kufunga ya kibinafsi!</string>
+    <string name="enjoy_your_new_lock_screen">Furahia Skrini Yako Mpya ya Kufunga:</string>
+    <string name="how_to_set_lock">Jinsi ya kuweka Kufunga:</string>
+    <string name="preview_lock_screen">Mapitio ya Skrini ya Kufunga:</string>
+    <string name="choose_any_option_from_the_dashboard">Chagua chaguo chochote kutoka kwenye dashibodi.</string>
+    <string name="text13">Ikiwa utaulizwa, ruhusu programu kufikia ruhusa kwenye mipangilio ya simu yako ili kuonyesha mapitio ya zipper.</string>
+    <string name="text14">Mara umepatia ruhusa, rudi kwenye programu ya zipper ya moyo.</string>
+    <string name="text15">Sasa unaweza kuona mapitio kwa kutumia chaguo la "mapitio" au kubadilisha mipangilio ya nyuma, zipper, na safu.</string>
+    <string name="text21">Fungua programu ya zipper ya kufunga na uende kwenye dashibodi yake.</string>
+    <string name="text22">Chagua chaguo la usalama kutoka kwenye dashibodi.</string>
+    <string name="text23">Weka PIN na ingiza nenosiri la nambari 4</string>
+    <string name="text24">Weka swali la usalama kwa ajili ya urejeleaji</string>
+
+    <string name="version">Toleo:</string>
+    <string name="purchase">Ununuzi</string>
+    <string name="with_ads"><u>Endelea na Matangazo</u></string>
+    <string name="get_premium">PATA PREMIUM</string>
+    <string name="get_premium_detail"><![CDATA[Fungua vipengele vyote vya premium na mandhari za kufuli za moyo na mandhari za skrini na ufurahie uzoefu usio na matangazo.]]></string>
+    <string name="ad_free_app">Ondoa Matangazo</string>
+    <string name="unlock_all_features">Fungua vipengele vyote</string>
+    <string name="africa">Afrika Kusini</string>
+    <string name="bangladash">Bangladesh</string>
+    <string name="domican_republic">Jamhuri ya Dominika</string>
+    <string name="keynia">Kenya</string>
+    <string name="mexicon">Meksiko</string>
+
+    <string name="customer_support">Huduma kwa Wateja</string>
+    <string name="feedback">Maoni</string>
+    <string name="how_was_your_overall_experience">Je, uzoefu wako wa jumla ulikuwaje?</string>
+    <string name="tell_us_the_problems_you_meet">Tuambie matatizo unayokutana nayo.</string>
+    <string name="can_t_lock_screen">Siwezi kufunga skrini</string>
+    <string name="others">Mengineyo</string>
+    <string name="slow_speed">Kasi ya polepole</string>
+    <string name="difficult_to_use">Ngumu kutumia</string>
+    <string name="do_not_display_on_my_phone">Haitokezi kwenye simu yangu</string>
+    <string name="do_not_show_the_wallpaper">Haionyeshi ukuta wa nyuma</string>
+    <string name="feature_not_working">Kipengele hakifanyi kazi</string>
+    <string name="upload_picture">Pakia Picha</string>
+    <string name="send">Tuma</string>
+    <string name="wallpaper_new">Chagua kutoka kwa Picha za Ukutani za 4K kwa Kifungio chako cha Skrini</string>
+    <string name="zipperStyle_new">Chagua Mtindo Wako wa Zipu kwa Kifungio cha Skrini</string>
+    <string name="row_style_new">Boresha kwa Mitindo Tofauti ya Safu</string>
+    <string name="preview_new">Binafsisha Uzoefu Wako wa Kifungio cha Skrini</string>
+    <string name="screen_lock">Kifungio cha Skrini</string>
+    <string name="wallpaper_new_detail">Chagua picha kwa Mandhari yako.</string>
+    <string name="zipperStyle_new_detail">Chagua zipu kwa Mandhari yako.</string>
+    <string name="row_style_new_detail">Chagua safu kwa Mandhari yako.</string>
+    <string name="preview_new_detail">Onyesha Muonekano wa Kifungio chako cha Skrini</string>
+
+
+</resources>
