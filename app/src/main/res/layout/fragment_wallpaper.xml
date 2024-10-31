@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -23,6 +24,6 @@
         android:paddingBottom="8dp"
         android:paddingStart="4dp"
         android:paddingEnd="4dp"
-        android:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        android:spanCount="2"/>
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"/>
 </LinearLayout>

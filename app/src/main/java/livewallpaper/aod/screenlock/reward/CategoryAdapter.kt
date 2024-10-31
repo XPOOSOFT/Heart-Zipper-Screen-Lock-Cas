@@ -35,7 +35,7 @@ class CategoryAdapter(
 
         fun bind(category: WallpaperCategory) {
             categoryName.text = category.name
-            lockIcon.setImageResource(if (category.locked) R.drawable.pass_lock else R.drawable.pass_lock)
+            lockIcon.setImageResource(if (category.locked) R.drawable.pass_lock else R.drawable.uncheck)
         }
     }
 }

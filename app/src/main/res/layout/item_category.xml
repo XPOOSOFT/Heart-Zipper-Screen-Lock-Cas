@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:gravity="center"
-    android:padding="8dp"
-    android:background="?attr/selectableItemBackground"
-    android:layout_margin="4dp"
-    android:backgroundTint="?android:colorBackground">
+    android:padding="@dimen/_5sdp"
+    android:background="@drawable/rect_btn_ad_btn"
+    android:layout_margin="4dp">
 
     <ImageView
         android:id="@+id/lockIcon"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:tint="@color/white"
         android:src="@drawable/pass_lock"
-        android:contentDescription="@string/app_name" />
+        android:contentDescription="@string/app_name"
+        app:tint="@color/white" />
 
     <TextView
         android:id="@+id/categoryName"

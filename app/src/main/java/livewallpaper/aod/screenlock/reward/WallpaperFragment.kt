@@ -2,6 +2,7 @@ package livewallpaper.aod.screenlock.reward
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,19 +20,31 @@ class WallpaperFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_wallpaper, container, false)
-        unlockNextCategory(requireContext())
-        setupRecyclerView(view)
-        loadCategories()
+        val prefs = RewardPreferences(requireContext())
+//        val currentDay = prefs.getCurrentDay()
+//        prefs.setCurrentDay(currentDay + 2)
+
+        //This Code For Unlock Day
+//        prefs.incrementUnlockDay(activity?.applicationContext?:requireContext())
+        Log.d("TAG_incrementUnlockDay", "onCreateView: ${prefs.getCurrentDay()}")
+        Log.d("TAG_incrementUnlockDay", "onCreateView: ${RewardPreferences(requireContext()).getCurrentUnlockDay(requireContext())}")
+        unlockNextCategory(requireContext(),view)
         return view
     }
 
-    private fun unlockNextCategory(context: Context) {
+    private fun unlockNextCategory(context: Context, view: View) {
         val prefs = RewardPreferences(context)
-        val currentDay = prefs.getCurrentDay()
-        if (currentDay <= RewardConstants.TOTAL_DAYS) {
+        var currentDay = prefs.getCurrentDay()
+        setupRecyclerView(view)
+        if (--currentDay <= RewardConstants.TOTAL_DAYS) {
             prefs.setCurrentDay(currentDay + 1)
             prefs.setLastOpenDate(System.currentTimeMillis())
+            loadCategories()
+        } else {
+            prefs.incrementUnlockDay(activity?.applicationContext?:requireContext())
+            loadCategories1()
         }
+
     }
 
     private fun setupRecyclerView(view: View) {
@@ -45,6 +58,18 @@ class WallpaperFragment : Fragment() {
         // Assume 8 categories for simplicity
         val allCategories = (1..8).map {
             WallpaperCategory(name = "Category $it", locked = it > currentUnlockDay)
+        }
+
+        categories.clear()
+        categories.addAll(allCategories)
+        categoryAdapter.updateCategories(categories)
+    }
+    private fun loadCategories1() {
+        currentUnlockDay = RewardPreferences(context?:return).getCurrentUnlockDay(requireContext())
+
+        // Assume 8 categories for simplicity
+        val allCategories = (1..8).map {
+            WallpaperCategory(name = "Category $it", locked = false)
         }
 
         categories.clear()

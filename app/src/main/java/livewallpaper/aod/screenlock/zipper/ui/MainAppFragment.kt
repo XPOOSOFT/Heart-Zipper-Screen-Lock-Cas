@@ -170,25 +170,28 @@ class MainAppFragment : Fragment() {
                 isActivated = CheckBoxUpdater.UL(
                     ActivePref, requireContext(), _binding?.enableLockSwitch!!
                 )
-            _binding?.topLay?.navMenu?.setOnClickListener {
+            _binding?.topLay?.navMenu?.clickWithThrottle {
                 findNavController().navigate(R.id.FragmentNavigationScreen)
             }
-            _binding?.topLay?.languageBtn?.setOnClickListener {
+            _binding?.topLay?.languageBtn?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
-                        activity = activity ?: return@setOnClickListener,
+                        activity = activity ?: return@clickWithThrottle,
                         remoteConfigNormal = val_ad_inter_language_screen_front,
                         adIdNormal = id_inter_main_medium,
                         tagClass = "language_screen",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener,
+                        layout = _binding?.adsLay ?: return@clickWithThrottle,
                     ) {
                         findNavController().navigate(R.id.LanguageFragment)
                     }
                 }
             }
-            _binding?.row?.setOnClickListener {
+            _binding?.rewardLock?.clickWithThrottle {
+                findNavController().navigate(R.id.rewardFragment)
+            }
+            _binding?.row?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
@@ -197,7 +200,7 @@ class MainAppFragment : Fragment() {
                         adIdNormal = id_inter_main_medium,
                         tagClass = "activity_all_style",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener
+                        layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
                             R.id.ActivityAllStyle,
@@ -207,16 +210,16 @@ class MainAppFragment : Fragment() {
                 }
 
             }
-            _binding?.wallpaper?.setOnClickListener {
+            _binding?.wallpaper?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
-                        activity = activity ?: return@setOnClickListener,
+                        activity = activity ?: return@clickWithThrottle,
                         remoteConfigNormal = val_ad_inter_list_data_screen_front,
                         adIdNormal = id_inter_main_medium,
                         tagClass = "main_menu",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener
+                        layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
                             R.id.ActivityAllStyle,
@@ -226,16 +229,16 @@ class MainAppFragment : Fragment() {
                 }
 
             }
-            _binding?.zipper?.setOnClickListener {
+            _binding?.zipper?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
-                        activity = activity ?: return@setOnClickListener,
+                        activity = activity ?: return@clickWithThrottle,
                         remoteConfigNormal = val_ad_inter_list_data_screen_front,
                         adIdNormal = id_inter_main_medium,
                         tagClass = "main_menu",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener
+                        layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
                             R.id.ActivityAllStyle,
@@ -246,28 +249,28 @@ class MainAppFragment : Fragment() {
 
 
             }
-            _binding?.preview?.setOnClickListener {
+            _binding?.preview?.clickWithThrottle {
                 if (Settings.canDrawOverlays(
                         activity
                     )
                 ) {
-                    LockScreenService.Start(context ?: return@setOnClickListener)
-                    return@setOnClickListener
+                    LockScreenService.Start(context ?: return@clickWithThrottle)
+                    return@clickWithThrottle
 
                 } else {
                     showCustomDialog()
                 }
             }
-            _binding?.setting?.setOnClickListener {
+            _binding?.setting?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
-                        activity = activity ?: return@setOnClickListener,
+                        activity = activity ?: return@clickWithThrottle,
                         remoteConfigNormal = val_ad_inter_setting_screen_front,
                         adIdNormal = id_inter_main_medium,
                         tagClass = "main_menu",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener
+                        layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(R.id.FragmentSetting)
                     }
@@ -282,16 +285,16 @@ class MainAppFragment : Fragment() {
                 _binding?.enableLockArrow?.visibility = View.INVISIBLE
                 _binding?.enableLock?.isClickable = false
             }
-            _binding?.enableLock?.setOnClickListener {
+            _binding?.enableLock?.clickWithThrottle {
                 adsManager?.let {
                     showTwoInterAd(
                         ads = it,
-                        activity = activity ?: return@setOnClickListener,
+                        activity = activity ?: return@clickWithThrottle,
                         remoteConfigNormal = val_ad_inter_enable_screen_front,
                         adIdNormal = id_inter_main_medium,
                         tagClass = "main_menu",
                         isBackPress = false,
-                        layout = _binding?.adsLay ?: return@setOnClickListener,
+                        layout = _binding?.adsLay ?: return@clickWithThrottle,
                     ) {
                         findNavController().navigate(R.id.EnableFirstActivity)
                     }
@@ -542,11 +545,11 @@ class MainAppFragment : Fragment() {
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             setBackgroundDrawable(ColorDrawable(Color.WHITE))  // Optional: Set background to transparent
         }
-        dialog.findViewById<View>(R.id.buttonOk).setOnClickListener {
+        dialog.findViewById<View>(R.id.buttonOk).clickWithThrottle {
             dialog.dismiss()
-            askPermission(activity ?: return@setOnClickListener)
+            askPermission(activity ?: return@clickWithThrottle)
         }
-        dialog.findViewById<View>(R.id.closeBtn).setOnClickListener {
+        dialog.findViewById<View>(R.id.closeBtn).clickWithThrottle {
             dialog.dismiss()
         }
 

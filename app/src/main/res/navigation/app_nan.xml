@@ -37,56 +37,61 @@
         android:id="@+id/myMainMenuFragment"
         android:name="livewallpaper.aod.screenlock.zipper.ui.MainAppFragment"
         android:label="myMainMenuFragment"
-        tools:layout="@layout/fragment_main_menu_activity"></fragment>
+        tools:layout="@layout/fragment_main_menu_activity" />
     <fragment
         android:id="@+id/ActivityAllStyle"
         android:name="livewallpaper.aod.screenlock.zipper.ui.ActivityAllStyle"
         android:label="ActivityAllStyle"
-        tools:layout="@layout/fragment_all_styles"></fragment>
+        tools:layout="@layout/fragment_all_styles" />
     <fragment
         android:id="@+id/FragmentApplyPassword"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentApplyPassword"
         android:label="FragmentApplyPassword"
-        tools:layout="@layout/set_password_ly"></fragment>
+        tools:layout="@layout/set_password_ly" />
     <fragment
         android:id="@+id/FragmentSetting"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentSetting"
         android:label="FragmentSetting"
-        tools:layout="@layout/fragment_setting"></fragment>
+        tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/FragmentSoundSelection"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentSoundSelection"
         android:label="FragmentSoundSelection"
-        tools:layout="@layout/fragment_sound_selection"></fragment>
+        tools:layout="@layout/fragment_sound_selection" />
     <fragment
         android:id="@+id/SecurityQuestionFragment"
         android:name="livewallpaper.aod.screenlock.zipper.ui.SecurityQuestionFragment"
         android:label="SecurityQuestionFragment"
-        tools:layout="@layout/security_question_fragment"></fragment>
+        tools:layout="@layout/security_question_fragment" />
     <fragment
         android:id="@+id/EnableFirstActivity"
         android:name="livewallpaper.aod.screenlock.zipper.ui.EnableFirstActivity"
         android:label="EnableFirstActivity"
-        tools:layout="@layout/enable_first_activity"></fragment>
+        tools:layout="@layout/enable_first_activity" />
     <fragment
         android:id="@+id/FragmentNavigationScreen"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentNavigationScreen"
         android:label="FragmentNavigationScreen"
-        tools:layout="@layout/navigation_layout"></fragment>
+        tools:layout="@layout/navigation_layout" />
     <fragment
         android:id="@+id/FragmentBuyScreen"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentBuyScreen"
         android:label="FragmentBuyScreen"
-        tools:layout="@layout/fragment_premium_screen"></fragment>
+        tools:layout="@layout/fragment_premium_screen" />
     <fragment
         android:id="@+id/FragmentPrivacyScreen"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentPrivacyScreen"
         android:label="FragmentPrivacyScreen"
-        tools:layout="@layout/fragment_privacy_screen"></fragment>
+        tools:layout="@layout/fragment_privacy_screen" />
     <fragment
         android:id="@+id/FragmentFeedBack"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentFeedBack"
         android:label="FragmentFeedBack"
-        tools:layout="@layout/fragment_feed_back"></fragment>
+        tools:layout="@layout/fragment_feed_back" />
+    <fragment
+        android:id="@+id/rewardFragment"
+        android:name="livewallpaper.aod.screenlock.reward.WallpaperFragment"
+        android:label="rewardFragment"
+        tools:layout="@layout/fragment_wallpaper" />
 
 </navigation>
