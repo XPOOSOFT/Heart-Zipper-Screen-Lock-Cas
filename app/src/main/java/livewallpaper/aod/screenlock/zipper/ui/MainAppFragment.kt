@@ -21,6 +21,9 @@ import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
@@ -31,6 +34,7 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
+import livewallpaper.aod.screenlock.reward.DailyRewardWorker
 import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
@@ -78,6 +82,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_inter_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp
+import java.util.concurrent.TimeUnit
 
 
 class MainAppFragment : Fragment() {
@@ -370,11 +375,22 @@ class MainAppFragment : Fragment() {
             } else {
                 if (isRating) askRatings(activity ?: return)
             }
+        scheduleDailyRewardWorker()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.clear()
+    }
+
+    private fun scheduleDailyRewardWorker() {
+        val dailyWorkRequest = PeriodicWorkRequestBuilder<DailyRewardWorker>(24, TimeUnit.HOURS)
+            .build()
+        WorkManager.getInstance(context?:return).enqueueUniquePeriodicWork(
+            "DailyRewardWorker",
+            ExistingPeriodicWorkPolicy.REPLACE,
+            dailyWorkRequest
+        )
     }
 
     override fun onResume() {

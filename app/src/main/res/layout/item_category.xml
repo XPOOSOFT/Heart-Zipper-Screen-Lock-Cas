@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="?attr/selectableItemBackground"
+    android:layout_margin="4dp"
+    android:backgroundTint="?android:colorBackground">
+
+    <ImageView
+        android:id="@+id/lockIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:tint="@color/white"
+        android:src="@drawable/pass_lock"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/categoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Category Name"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:textStyle="bold"/>
+</LinearLayout>

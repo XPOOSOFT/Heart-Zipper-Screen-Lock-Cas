@@ -113,6 +113,7 @@ dependencies {
     implementation("com.google.android.play:app-update-ktx:2.1.0")
     // WorkManager with Kotlin Coroutines support
     implementation ("androidx.work:work-runtime-ktx:2.9.1")
+    implementation ("androidx.work:work-runtime-ktx:2.8.1")
 
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
