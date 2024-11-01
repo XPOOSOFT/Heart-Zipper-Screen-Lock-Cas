@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
     private fun updateYourValue(value: String) {
         // Logic to update your application value
         println("Updated value: $value")
-        RewardPreferences(applicationContext).incrementUnlockDay(applicationContext)
+        if(value == "Reward"){
+            RewardPreferences(applicationContext).incrementUnlockDay(applicationContext)
+        }
         // Update UI or perform other operations based on the updated value
     }
 

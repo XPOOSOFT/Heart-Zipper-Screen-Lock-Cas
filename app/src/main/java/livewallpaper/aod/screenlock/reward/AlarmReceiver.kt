@@ -50,11 +50,14 @@ class AlarmReceiver : BroadcastReceiver() {
         if (currentDay <= RewardConstants.TOTAL_DAYS) {
             // Unlock the category based on the day
             // e.g., Unlock logic here for wallpaper categories based on `currentDay`
-            // Show a notification that a new category is unlocked
+            // Show a notification that a new category is
             showUnlockNotification(context, "Category $currentDay unlocked!")
             // Move to the next day and update last open date
             prefs.setCurrentDay(currentDay + 1)
             prefs.setLastOpenDate(System.currentTimeMillis())
+            if(prefs.getCurrentDay()<=7){
+                scheduleDailyAlarm(context)
+            }
         }
     }
 
@@ -66,7 +69,7 @@ class AlarmReceiver : BroadcastReceiver() {
 
             val intent = Intent(context, MainActivity::class.java).apply {
                 putExtra("KEY_UPDATE_VALUE", "Reward")
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             }
             val pendingIntent = PendingIntent.getActivity(
                 context,
