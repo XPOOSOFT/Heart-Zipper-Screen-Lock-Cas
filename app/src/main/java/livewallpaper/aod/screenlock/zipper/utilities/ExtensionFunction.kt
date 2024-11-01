@@ -140,6 +140,19 @@ var slideImages = arrayOf(
     R.drawable.image_2, R.drawable.image_4, R.drawable.image_3, R.drawable.image_1
 )
 
+fun getRewardTitle(context: Context): ArrayList<String>
+{
+    val list = arrayListOf<String>()
+    list.add(context.getString(R.string.reward_1))
+    list.add(context.getString(R.string.reward_2))
+    list.add(context.getString(R.string.reward_3))
+    list.add(context.getString(R.string.reward_4))
+    list.add(context.getString(R.string.reward_5))
+    list.add(context.getString(R.string.reward_6))
+    list.add(context.getString(R.string.reward_7))
+    list.add(context.getString(R.string.reward_8))
+    return list
+}
 fun introHeadingNew(context: Context): ArrayList<String>
 {
     val list = arrayListOf<String>()

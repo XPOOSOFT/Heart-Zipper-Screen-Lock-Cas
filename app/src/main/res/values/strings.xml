@@ -211,4 +211,14 @@ Please Check it first!</string>
     <string name="row_style_new_detail">Choose a Row for your Theme.</string>
     <string name="preview_new_detail">Preview Your Screen Lock</string>
 
+    <string name="reward">Reward</string>
+   <string name="reward_1">Heart Patterns</string>
+    <string name="reward_2">Flower Hearts</string>
+    <string name="reward_3">Glowing Hearts</string>
+    <string name="reward_4">Abstract Love</string>
+    <string name="reward_5">Classic Red Hearts</string>
+    <string name="reward_6">Pastel Hearts</string>
+    <string name="reward_7">Heart Collages</string>
+    <string name="reward_8">Golden Hearts</string>
+
 </resources>

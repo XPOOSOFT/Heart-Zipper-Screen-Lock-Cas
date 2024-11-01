@@ -1,29 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@drawable/bg_reaward"
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/titleBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Wallpaper Categories"
-        android:textSize="20sp"
+        android:background="@drawable/back_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/reward"
+        android:textColor="@color/white"
+        android:paddingHorizontal="@dimen/_15sdp"
+        android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
-        android:paddingBottom="8dp"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/titleBack"
+        app:layout_constraintBottom_toBottomOf="@id/titleBack"
+        app:layout_constraintStart_toEndOf="@id/titleBack"
+        />
+
+    <View
+        android:id="@+id/rewardCounter"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_70sdp"
+        android:background="@drawable/rect_btn_ad_btn_new"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleBack" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:clipToPadding="false"
-        android:paddingBottom="8dp"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp"
+        android:paddingBottom="@dimen/_10sdp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"/>
-</LinearLayout>
+        app:spanCount="2"
+        tools:listitem="@layout/item_category"
+        app:layout_constraintTop_toBottomOf="@id/rewardCounter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -89,6 +90,9 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <service
             android:name=".ads_manager.MyFirebaseMessagingService"
@@ -113,6 +117,7 @@
                 android:resource="@xml/file_paths" />
         </provider>
         <receiver android:name="livewallpaper.aod.screenlock.reward.UnlockReceiver" />
+        <receiver android:name="livewallpaper.aod.screenlock.reward.AlarmReceiver" />
     </application>
 
 </manifest>

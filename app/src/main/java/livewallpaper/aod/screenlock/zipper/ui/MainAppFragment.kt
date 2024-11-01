@@ -2,7 +2,9 @@ package livewallpaper.aod.screenlock.zipper.ui
 
 
 import android.app.Activity
+import android.app.AlarmManager
 import android.app.Dialog
+import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -18,11 +20,15 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
+import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.work.Configuration
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkInfo
 import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
@@ -35,6 +41,7 @@ import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
 import livewallpaper.aod.screenlock.reward.DailyRewardWorker
+import livewallpaper.aod.screenlock.reward.scheduleDailyAlarm
 import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
@@ -54,6 +61,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.Constants
 import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPrefString
+import livewallpaper.aod.screenlock.zipper.utilities.IS_FIRST
 import livewallpaper.aod.screenlock.zipper.utilities.NOTIFICATION_PERMISSION
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.Uscreen
@@ -378,7 +386,23 @@ class MainAppFragment : Fragment() {
             } else {
                 if (isRating) askRatings(activity ?: return)
             }
-        scheduleDailyRewardWorker()
+        if(sharedPrefUtils?.getBooleanData(context ?: return, "IS_REWARD", false)==false){
+            requestExactAlarmPermission()
+            sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
+            scheduleDailyAlarm(context?:return)
+        }
+
+    }
+    private fun requestExactAlarmPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!(context?.getSystemService(ALARM_SERVICE) as AlarmManager).canScheduleExactAlarms()) {
+                val intent = Intent().apply {
+                    action = Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM
+                    data = Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM.toUri()
+                }
+                context?.startActivity(intent)
+            }
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -387,13 +411,34 @@ class MainAppFragment : Fragment() {
     }
 
     private fun scheduleDailyRewardWorker() {
-        val dailyWorkRequest = PeriodicWorkRequestBuilder<DailyRewardWorker>(24, TimeUnit.HOURS)
-            .build()
-        WorkManager.getInstance(context?:return).enqueueUniquePeriodicWork(
-            "DailyRewardWorker",
-            ExistingPeriodicWorkPolicy.REPLACE,
-            dailyWorkRequest
-        )
+        val workManager = WorkManager.getInstance(context ?: return)
+//        activity?.let { WorkManager.initialize(it, Configuration.Builder().setMinimumLoggingLevel(Log.VERBOSE).build()) }
+        // Schedule the daily alarm
+        scheduleDailyAlarm(context?:return)
+        // Ensure the flag for reward is saved
+        sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
+//        // Set up the work request with a flex interval for consistency
+//        val dailyWorkRequest = PeriodicWorkRequestBuilder<DailyRewardWorker>(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES)
+//            .build()
+//        // Enqueue the unique periodic work
+//        workManager.enqueueUniquePeriodicWork(
+//            "DailyRewardWorker",
+//            ExistingPeriodicWorkPolicy.REPLACE,
+//            dailyWorkRequest
+//        )
+//
+//        WorkManager.getInstance(activity!!).getWorkInfosByTagLiveData("DailyRewardWorker")
+//            .observe(activity!!, Observer { workInfos ->
+//                workInfos?.forEach { workInfo ->
+//                    when (workInfo.state) {
+//                        WorkInfo.State.ENQUEUED -> Log.d("WorkStatus", "Work is enqueued")
+//                        WorkInfo.State.RUNNING -> Log.d("WorkStatus", "Work is running")
+//                        WorkInfo.State.SUCCEEDED -> Log.d("WorkStatus", "Work succeeded")
+//                        WorkInfo.State.FAILED -> Log.d("WorkStatus", "Work failed")
+//                        else -> Log.d("WorkStatus", "Work status: ${workInfo.state}")
+//                    }
+//                }
+//            })
     }
 
     override fun onResume() {
