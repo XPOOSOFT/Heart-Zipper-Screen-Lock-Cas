@@ -8,11 +8,14 @@
     android:background="@drawable/bg_reaward"
     android:padding="16dp">
 
-    <TextView
+    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/titleBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/back_btn"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:src="@drawable/back_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -24,13 +27,14 @@
         android:text="@string/reward"
         android:textColor="@color/white"
         android:paddingHorizontal="@dimen/_15sdp"
-        android:textSize="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_14sdp"
+        android:textSize="@dimen/_16sdp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/titleBack"
         app:layout_constraintBottom_toBottomOf="@id/titleBack"
         app:layout_constraintStart_toEndOf="@id/titleBack"
-        />
+        tools:ignore="RtlSymmetry" />
 
     <View
         android:id="@+id/rewardCounter"
@@ -58,5 +62,37 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+    <TextView
+        android:id="@+id/timeTextTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/claim_your_next_reward_in"
+        android:textColor="@color/white"
+        android:fontFamily="@font/droid_sans_mono"
+        android:textSize="@dimen/_10sdp"
+        android:gravity="center|start"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:singleLine="true"
+        app:layout_constraintBottom_toTopOf="@id/timeText"
+        app:layout_constraintEnd_toEndOf="@+id/rewardCounter"
+        app:layout_constraintStart_toStartOf="@+id/rewardCounter"
+        app:layout_constraintTop_toTopOf="@+id/rewardCounter" />
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/_00_00_00"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_25sdp"
+        android:fontFamily="@font/digitalmono"
+        android:paddingHorizontal="@dimen/_20sdp"
+        android:singleLine="true"
+        android:gravity="center|start"
+        app:layout_constraintBottom_toBottomOf="@+id/rewardCounter"
+        app:layout_constraintEnd_toEndOf="@+id/rewardCounter"
+        app:layout_constraintStart_toStartOf="@+id/rewardCounter"
+        app:layout_constraintTop_toBottomOf="@+id/timeTextTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

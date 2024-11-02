@@ -7,15 +7,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.utils.widget.ImageFilterView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.getRemainingTimeUntilMidnight
 import livewallpaper.aod.screenlock.zipper.utilities.getRewardTitle
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
+import livewallpaper.aod.screenlock.zipper.utilities.startCountdownTimer
 
 class WallpaperFragment : Fragment() {
 
@@ -30,8 +37,6 @@ class WallpaperFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_wallpaper, container, false)
         val prefs = RewardPreferences(requireContext())
         sharedPrefUtils = DbHelper(requireContext())
-//        val currentDay = prefs.getCurrentDay()
-//        prefs.setCurrentDay(currentDay + 1)
         //This Code For Unlock Day
 //        prefs.incrementUnlockDay(activity?.applicationContext?:requireContext())
         Log.d("TAG_incrementUnlockDay", "onCreateView: ${prefs.getCurrentDay()}")
@@ -40,7 +45,10 @@ class WallpaperFragment : Fragment() {
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        view.findViewById<TextView>(R.id.titleBack).clickWithThrottle {
+        CoroutineScope(Dispatchers.Main).launch {
+            startCountdownTimer(getRemainingTimeUntilMidnight(),view.findViewById(R.id.timeText))
+        }
+        view.findViewById<ImageFilterView>(R.id.titleBack).clickWithThrottle {
             findNavController().navigateUp()
         }
         return view
@@ -69,7 +77,8 @@ class WallpaperFragment : Fragment() {
             if(_Lock){
                 showToast(context?:requireContext(),"Lock - $Tilte_")
             }else{
-                showToast(context?:requireContext(),"Un Lock - $Tilte_")
+                findNavController().navigate(R.id.ImageListFragment, bundleOf("title" to Tilte_))
+//                showToast(context?:requireContext(),"Un Lock - $Tilte_")
             }
         }
         view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter

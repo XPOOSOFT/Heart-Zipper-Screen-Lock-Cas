@@ -220,5 +220,8 @@ Please Check it first!</string>
     <string name="reward_6">Pastel Hearts</string>
     <string name="reward_7">Heart Collages</string>
     <string name="reward_8">Golden Hearts</string>
+    <string name="apply_wallpaper">Apply Wallpaper</string>
+    <string name="claim_your_next_reward_in">Claim your next reward in</string>
+    <string name="_00_00_00">00:00:00</string>
 
 </resources>
