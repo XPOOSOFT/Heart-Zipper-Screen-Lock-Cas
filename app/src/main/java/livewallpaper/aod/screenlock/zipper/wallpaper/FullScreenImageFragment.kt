@@ -25,13 +25,16 @@ class FullScreenImageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_fullscreen_image_1, container, false)
-
         fullscreenImageView = view.findViewById(R.id.fullscreenImageView)
-        val applyWallpaperButton = view.findViewById<TextView>(R.id.applyWallpaperButton)
-        val imageUrl = arguments?.getString("imageUrl") ?: return view
-        Glide.with(this).load(imageUrl).into(fullscreenImageView)
-        applyWallpaperButton.setOnClickListener {
-            applyWallpaper(imageUrl)
+        try {
+            val applyWallpaperButton = view.findViewById<TextView>(R.id.applyWallpaperButton)
+            val imageUrl = arguments?.getString("imageUrl") ?: return view
+            Glide.with(this).load(imageUrl).into(fullscreenImageView)
+            applyWallpaperButton.setOnClickListener {
+                applyWallpaper(imageUrl)
+            }
+        } catch (e: Exception) {
+           e.printStackTrace()
         }
         return view
     }
@@ -51,14 +54,4 @@ class FullScreenImageFragment : Fragment() {
             })
     }
 
-    companion object {
-        fun newInstance(imageUrl: String): FullScreenImageFragment {
-            val fragment = FullScreenImageFragment()
-            val args = Bundle().apply {
-                putString("imageUrl", imageUrl)
-            }
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }

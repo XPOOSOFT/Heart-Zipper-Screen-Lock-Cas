@@ -209,6 +209,17 @@
     <string name="row_style_new_detail">আপনার থিমের জন্য একটি সারি নির্বাচন করুন।</string>
     <string name="preview_new_detail">আপনার স্ক্রিন লকের প্রিভিউ দেখুন</string>
 
+    <string name="reward">পুরস্কার</string>
+    <string name="reward_1">হার্ট প্যাটার্নস</string>
+    <string name="reward_2">ফুলের হৃদয়</string>
+    <string name="reward_3">জ্বলন্ত হৃদয়</string>
+    <string name="reward_4">আবস্ট্রাক্ট লাভ</string>
+    <string name="reward_5">ক্লাসিক লাল হৃদয়</string>
+    <string name="reward_6">প্যাস্টেল হৃদয়</string>
+    <string name="reward_7">হৃদয়ের কলাজ</string>
+    <string name="reward_8">সোনালী হৃদয়</string>
+    <string name="apply_wallpaper">ওয়ালপেপার প্রয়োগ করুন</string>
+    <string name="claim_your_next_reward_in">আপনার পরবর্তী পুরস্কার দাবি করুন</string>
 
 </resources>
 

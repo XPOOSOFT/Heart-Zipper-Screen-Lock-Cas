@@ -72,6 +72,9 @@ var val_ad_native_main_menu_screen = true
 var val_ad_native_password_screen = true
 var val_ad_native_list_data_screen = true
 
+var val_ad_native_reward_screen = true
+var val_ad_inter_reward_screen = true
+
 var val_banner_language_screen = true
 var val_collapsable_banner = true
 var val_banner_setting_screen = true
@@ -107,7 +110,7 @@ var appUpdateType = 0
 var inter_frequency_count = 0
 var id_frequency_counter = 10
 var val_inapp_frequency = 10
-var id_inter_counter = 3
+var id_inter_counter = 0
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
 var id_app_open_screen = ""

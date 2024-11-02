@@ -31,23 +31,26 @@ class ImageListFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_image_list, container, false)
 
-        // Get title from arguments
-        val title = arguments?.getString("title") ?: ""
-        view.findViewById<TextView>(R.id.title).text = title
-        view.findViewById<ImageFilterView>(R.id.titleBack).clickWithThrottle {
-            findNavController().navigateUp()
+        try {// Get title from arguments
+            val title = arguments?.getString("title") ?: ""
+            view.findViewById<TextView>(R.id.title).text = title
+            view.findViewById<ImageFilterView>(R.id.titleBack).clickWithThrottle {
+                findNavController().navigateUp()
+            }
+            setupBackPressedCallback {
+                findNavController().navigateUp()
+            }
+            images = getImagesFromTitle(loadJSONFromAsset(context?:requireContext(),"categories.json")?: "" ,title)
+            Log.d("list_images", "onCreateView: ${loadJSONFromAsset(context?:requireContext(),"categories.json")?: ""}")
+            Log.d("list_images", "onCreateView: $images")
+            imageRecyclerView = view.findViewById(R.id.imageRecyclerView)
+            imageAdapter = ImageAdapter(images) { imageUrl ->
+                openFullScreen(imageUrl)
+            }
+            imageRecyclerView.adapter = imageAdapter
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        setupBackPressedCallback {
-            findNavController().navigateUp()
-        }
-        images = getImagesFromTitle(loadJSONFromAsset(context?:requireContext(),"categories.json")?: "" ,title)
-        Log.d("list_images", "onCreateView: ${loadJSONFromAsset(context?:requireContext(),"categories.json")?: ""}")
-        Log.d("list_images", "onCreateView: $images")
-        imageRecyclerView = view.findViewById(R.id.imageRecyclerView)
-        imageAdapter = ImageAdapter(images) { imageUrl ->
-            openFullScreen(imageUrl)
-        }
-        imageRecyclerView.adapter = imageAdapter
 
         return view
     }

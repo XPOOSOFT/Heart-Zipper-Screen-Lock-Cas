@@ -21,7 +21,7 @@ class ImageAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val imageUrl = images[position]
-        Glide.with(holder.itemView.context).load(imageUrl).placeholder(R.drawable.gift_icon).thumbnail().into(holder.previewImageView)
+        Glide.with(holder.itemView.context).load(imageUrl).placeholder(R.drawable.gift_icon).into(holder.previewImageView)
         holder.itemView.setOnClickListener {
             onImageClick(imageUrl)
         }

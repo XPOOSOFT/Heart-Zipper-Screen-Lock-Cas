@@ -206,6 +206,14 @@
         <key>val_banner_setting_screen</key>
         <value>true</value>
     </entry>
+    <entry>
+        <key>val_ad_native_reward_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_native_list_data_screen</key>
+        <value>true</value>
+    </entry>
 
 
 </defaultsMap>

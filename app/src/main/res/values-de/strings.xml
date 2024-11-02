@@ -208,5 +208,18 @@
     <string name="zipperStyle_new_detail">Wählen Sie einen Reißverschluss für Ihr Thema aus.</string>
     <string name="row_style_new_detail">Wählen Sie eine Reihe für Ihr Thema aus.</string>
     <string name="preview_new_detail">Vorschau Ihres Sperrbildschirms</string>
+
+    <string name="reward">Belohnung</string>
+    <string name="reward_1">Herz-Muster</string>
+    <string name="reward_2">Blumenherzen</string>
+    <string name="reward_3">Leuchtende Herzen</string>
+    <string name="reward_4">Abstrakte Liebe</string>
+    <string name="reward_5">Klassische Rote Herzen</string>
+    <string name="reward_6">Pastellherzen</string>
+    <string name="reward_7">Herz-Collagen</string>
+    <string name="reward_8">Goldene Herzen</string>
+    <string name="apply_wallpaper">Hintergrundbild Anwenden</string>
+    <string name="claim_your_next_reward_in">Fordern Sie Ihre nächste Belohnung in</string>
+
 </resources>
 

@@ -211,5 +211,16 @@ Please Check it first!</string>
     <string name="row_style_new_detail">Scegli una Riga per il tuo Tema.</string>
     <string name="preview_new_detail">Anteprima del Tuo Blocco Schermo</string>
 
+    <string name="reward">Ricompensa</string>
+    <string name="reward_1">Motivi a Cuore</string>
+    <string name="reward_2">Cuori di Fiori</string>
+    <string name="reward_3">Cuori Luminosi</string>
+    <string name="reward_4">Amore Astratto</string>
+    <string name="reward_5">Cuori Rossi Classici</string>
+    <string name="reward_6">Cuori Pastello</string>
+    <string name="reward_7">Collage di Cuori</string>
+    <string name="reward_8">Cuori Dorati</string>
+    <string name="apply_wallpaper">Applica Sfondo</string>
+    <string name="claim_your_next_reward_in">Richiedi la tua prossima ricompensa in</string>
 
 </resources>

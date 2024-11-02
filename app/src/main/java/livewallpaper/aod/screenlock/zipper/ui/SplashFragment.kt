@@ -67,6 +67,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_main_menu_scre
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_main_menu_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_password_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_password_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_back
@@ -80,6 +81,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_scr
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_password_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_sound_screen
@@ -273,6 +275,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     remoteConfig!!["val_ad_native_password_screen"].asBoolean()
                 val_ad_native_list_data_screen =
                     remoteConfig!!["val_ad_native_list_data_screen"].asBoolean()
+                val_ad_native_reward_screen =
+                    remoteConfig!!["val_ad_native_reward_screen"].asBoolean()
+                val_ad_inter_reward_screen =
+                    remoteConfig!!["val_ad_inter_reward_screen"].asBoolean()
 
                 val_ad_inter_loading_screen =
                     remoteConfig!!["val_ad_inter_loading_screen"].asBoolean()
