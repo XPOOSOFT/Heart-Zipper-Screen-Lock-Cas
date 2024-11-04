@@ -76,15 +76,13 @@ class WallpaperFragment : Fragment() {
 
     private fun unlockNextCategory(context: Context, view: View) {
         setupRecyclerView(view)
-        if (sharedPrefUtils?.getBooleanData(activity ?: return, "IS_UNLOCK", false) == false) {
-            loadCategories1()
-            return
-        }
+//        if (sharedPrefUtils?.getBooleanData(activity ?: return, "IS_UNLOCK", false) == false) {
+//            loadCategories1()
+//            return
+//        }
         val prefs = RewardPreferences(context)
         val currentDay = prefs.getCurrentUnlockDay(context)
         if (currentDay <= RewardConstants.TOTAL_DAYS) {
-//            prefs.setCurrentDay(currentDay + 1)
-//            prefs.setLastOpenDate(System.currentTimeMillis())
             loadCategories()
         } else {
             loadCategories1()
@@ -145,7 +143,7 @@ class WallpaperFragment : Fragment() {
             WallpaperCategory(
                 name = getRewardTitle(context ?: return)[it - 1],
                 nameDay = "Day $it",
-                locked = false
+                locked = true
             )
         }
 
