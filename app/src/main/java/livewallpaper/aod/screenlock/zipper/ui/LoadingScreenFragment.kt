@@ -137,6 +137,7 @@ class LoadingScreenFragment :
         super.onSaveInstanceState(outState)
         outState.clear()
     }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

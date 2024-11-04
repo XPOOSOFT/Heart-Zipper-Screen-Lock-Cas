@@ -84,6 +84,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.showServiceDialog
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
@@ -197,7 +198,17 @@ class MainAppFragment : Fragment() {
                 }
             }
             _binding?.rewardLock?.clickWithThrottle {
-                findNavController().navigate(R.id.rewardFragment)
+                showTwoInterAd(
+                    ads = adsManager?:return@clickWithThrottle,
+                    activity = activity ?: requireActivity(),
+                    remoteConfigNormal = val_ad_inter_reward_screen,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "fragment_reward",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle
+                ) {
+                    findNavController().navigate(R.id.rewardFragment)
+                }
             }
             _binding?.row?.clickWithThrottle {
                 adsManager?.let {

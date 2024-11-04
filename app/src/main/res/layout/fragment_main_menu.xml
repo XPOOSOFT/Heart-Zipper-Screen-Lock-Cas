@@ -40,6 +40,7 @@
                 android:id="@+id/animationView"
                 android:layout_width="@dimen/_40sdp"
                 android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintTop_toTopOf="@id/rewardLock"
                 app:layout_constraintBottom_toBottomOf="@id/rewardLock"
                 app:layout_constraintEnd_toStartOf="@id/rewardText"
@@ -56,11 +57,12 @@
                 android:gravity="center|start"
                 android:text="@string/reward"
                 android:textColor="@color/white"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_18sdp"
                 app:layout_constraintEnd_toEndOf="@+id/rewardLock"
                 app:layout_constraintBottom_toBottomOf="@id/animationView"
                 app:layout_constraintStart_toEndOf="@id/animationView"
-                app:layout_constraintTop_toTopOf="@id/animationView" />
+                app:layout_constraintTop_toTopOf="@id/animationView"
+                tools:ignore="RtlSymmetry" />
             <!--   Enable Lock-->
             <View
                 android:id="@+id/enableLock"

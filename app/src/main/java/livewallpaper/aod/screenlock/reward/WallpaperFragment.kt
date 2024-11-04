@@ -99,21 +99,10 @@ class WallpaperFragment : Fragment() {
             if (_Lock) {
                 showToast(context ?: requireContext(), "Lock - $Tilte_")
             } else {
-                showTwoInterAd(
-                    ads = adsmanager?:return@CategoryAdapter,
-                    activity = activity ?: requireActivity(),
-                    remoteConfigNormal = val_ad_inter_reward_screen,
-                    adIdNormal = id_inter_main_medium,
-                    tagClass = "fragment_reward",
-                    isBackPress = false,
-                    layout = _binding?.adsLay ?: return@CategoryAdapter
-                ) {
                     findNavController().navigate(
                         R.id.ImageListFragment,
                         bundleOf("title" to Tilte_)
                     )
-                }
-//                showToast(context?:requireContext(),"Un Lock - $Tilte_")
             }
         }
         view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter

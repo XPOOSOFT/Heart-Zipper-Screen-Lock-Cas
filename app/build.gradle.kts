@@ -12,8 +12,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 34
-        versionCode = 54
-        versionName = "23.4"
+        versionCode = 56
+        versionName = "23.6"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")
     }
@@ -27,8 +27,8 @@ android {
     }
     buildTypes {
         release {
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             resValue ("string", "app_id", "ca-app-pub-9263479717968951~3775848424")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

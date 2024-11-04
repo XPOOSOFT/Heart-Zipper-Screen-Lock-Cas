@@ -42,28 +42,29 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
     private var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
     fun showCustomDialogAndAd() {
-        customDialog = Dialog(currentActivity ?: return)
-        val inflater = LayoutInflater.from(currentActivity)
-        customDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val view: View = inflater.inflate(R.layout.custom_dialog, null)
-        customDialog?.setContentView(view)
-        customDialog?.setCancelable(false)
-        // Make the dialog full-screen
-        val window: Window? = customDialog?.window
-        window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
-        window?.setBackgroundDrawableResource(android.R.color.transparent) // Set the background transparent if needed
-
-        // Optionally, you can hide the status bar and navigation bar for true fullscreen
-        window?.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        // Show the dialog
-        customDialog?.show()
-        // Use a Handler to delay the showing of the ad for 3 seconds
-        Handler(Looper.getMainLooper()).postDelayed({
-            showAdIfAvailable()
-        }, 3000) // 3 seconds delay
+        showAdIfAvailable()
+//        customDialog = Dialog(currentActivity ?: return)
+//        val inflater = LayoutInflater.from(currentActivity)
+//        customDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        val view: View = inflater.inflate(R.layout.custom_dialog, null)
+//        customDialog?.setContentView(view)
+//        customDialog?.setCancelable(false)
+//        // Make the dialog full-screen
+//        val window: Window? = customDialog?.window
+//        window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+//        window?.setBackgroundDrawableResource(android.R.color.transparent) // Set the background transparent if needed
+//
+//        // Optionally, you can hide the status bar and navigation bar for true fullscreen
+//        window?.setFlags(
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//            WindowManager.LayoutParams.FLAG_FULLSCREEN
+//        )
+//        // Show the dialog
+//        customDialog?.show()
+//        // Use a Handler to delay the showing of the ad for 3 seconds
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            showAdIfAvailable()
+//        }, 3000) // 3 seconds delay
     }
     fun fetchAd() {
         if (!val_app_open) {
