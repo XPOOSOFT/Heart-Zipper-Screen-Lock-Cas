@@ -207,6 +207,17 @@
     <string name="zipperStyle_new_detail">اپنے تھیم کے لئے زپ منتخب کریں۔</string>
     <string name="row_style_new_detail">اپنے تھیم کے لئے ایک صف منتخب کریں۔</string>
     <string name="preview_new_detail">اپنے سکرین لاک کا جائزہ لیں</string>
+    <string name="reward">انعام</string>
+    <string name="reward_1">دل کے نمونہ جات</string>
+    <string name="reward_2">پھولوں کے دل</string>
+    <string name="reward_3">چمکدار دل</string>
+    <string name="reward_4">مکمل محبت</string>
+    <string name="reward_5">روایتی سرخ دل</string>
+    <string name="reward_6">پیسٹیلی دل</string>
+    <string name="reward_7">دل کے مجموعے</string>
+    <string name="reward_8">سنہری دل</string>
+    <string name="apply_wallpaper">دیوار کا کاغذ لگائیں</string>
+    <string name="claim_your_next_reward_in">اپنا اگلا انعام حاصل کریں</string>
 
 </resources>
 

@@ -29,23 +29,52 @@
             <View
                 android:id="@+id/rewardLock"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_height="@dimen/_50sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@drawable/canada"
+                android:background="@drawable/rect_btn_ad_btn_new"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/_15sdp"
+                app:layout_constraintTop_toTopOf="@id/rewardLock"
+                app:layout_constraintBottom_toBottomOf="@id/rewardLock"
+                app:layout_constraintEnd_toStartOf="@id/rewardText"
+                app:layout_constraintStart_toStartOf="@id/rewardLock"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/reward_anime" />
+
+            <TextView
+                android:id="@+id/rewardText"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:paddingStart="@dimen/margin5"
+                android:gravity="center|start"
+                android:text="@string/reward"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_18sdp"
+                app:layout_constraintEnd_toEndOf="@+id/rewardLock"
+                app:layout_constraintBottom_toBottomOf="@id/animationView"
+                app:layout_constraintStart_toEndOf="@id/animationView"
+                app:layout_constraintTop_toTopOf="@id/animationView"
+                tools:ignore="RtlSymmetry" />
             <!--   Enable Lock-->
             <View
                 android:id="@+id/enableLock"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@drawable/rect_white_item_menu"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rewardLock" />
+
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/enableLockImage"
                 android:layout_width="@dimen/_30sdp"

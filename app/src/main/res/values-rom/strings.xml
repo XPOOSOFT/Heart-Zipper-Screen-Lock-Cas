@@ -205,6 +205,17 @@
     <string name="zipperStyle_new_detail">Elige un cierre para tu Tema.</string>
     <string name="row_style_new_detail">Elige una Fila para tu Tema.</string>
     <string name="preview_new_detail">Previsualiza tu Bloqueo de Pantalla</string>
+    <string name="reward">Recompensa</string>
+    <string name="reward_1">Patrones de Corazón</string>
+    <string name="reward_2">Corazones de Flores</string>
+    <string name="reward_3">Corazones Brillantes</string>
+    <string name="reward_4">Amor Abstracto</string>
+    <string name="reward_5">Corazones Rojos Clásicos</string>
+    <string name="reward_6">Corazones Pastel</string>
+    <string name="reward_7">Collages de Corazones</string>
+    <string name="reward_8">Corazones Dorados</string>
+    <string name="apply_wallpaper">Aplicar Papel Tapiz</string>
+    <string name="claim_your_next_reward_in">Reclama tu próxima recompensa en</string>
 
 </resources>
 

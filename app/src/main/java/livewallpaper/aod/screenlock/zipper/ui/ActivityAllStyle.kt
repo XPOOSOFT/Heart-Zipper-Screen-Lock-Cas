@@ -54,7 +54,6 @@ class ActivityAllStyle : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentAllStylesBinding.inflate(layoutInflater)
-        Log.d("calling", "onCreateView: load main fragment")
         return _binding?.root
     }
 

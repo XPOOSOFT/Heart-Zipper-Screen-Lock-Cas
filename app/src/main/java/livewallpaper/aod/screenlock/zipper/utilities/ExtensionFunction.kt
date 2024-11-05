@@ -10,8 +10,8 @@ import android.content.res.Resources
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.SystemClock
-import android.util.Log
 import android.view.View
 import android.view.WindowInsetsController
 import android.widget.Button
@@ -26,7 +26,6 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.airbnb.lottie.utils.Utils
 import com.bumptech.glide.Glide
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -42,6 +41,9 @@ import livewallpaper.aod.screenlock.zipper.model.LanguageModel
 import livewallpaper.aod.screenlock.zipper.model.SoundModel
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.SpeedActivePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPref
+import livewallpaper.aod.screenlock.zipper.wallpaper.Wallpaper
+import org.json.JSONArray
+import java.util.Calendar
 import java.util.Locale
 import kotlin.random.Random
 
@@ -69,6 +71,9 @@ var val_exit_dialog_native = true
 var val_ad_native_main_menu_screen = true
 var val_ad_native_password_screen = true
 var val_ad_native_list_data_screen = true
+
+var val_ad_native_reward_screen = true
+var val_ad_inter_reward_screen = true
 
 var val_banner_language_screen = true
 var val_collapsable_banner = true
@@ -105,7 +110,7 @@ var appUpdateType = 0
 var inter_frequency_count = 0
 var id_frequency_counter = 10
 var val_inapp_frequency = 10
-var id_inter_counter = 3
+var id_inter_counter = 0
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
 var id_app_open_screen = ""
@@ -140,6 +145,78 @@ var slideImages = arrayOf(
     R.drawable.image_2, R.drawable.image_4, R.drawable.image_3, R.drawable.image_1
 )
 
+fun getRewardTitle(context: Context): ArrayList<String>
+{
+    val list = arrayListOf<String>()
+    list.add(context.getString(R.string.reward_1))
+    list.add(context.getString(R.string.reward_2))
+    list.add(context.getString(R.string.reward_3))
+    list.add(context.getString(R.string.reward_4))
+    list.add(context.getString(R.string.reward_5))
+    list.add(context.getString(R.string.reward_6))
+    list.add(context.getString(R.string.reward_7))
+    list.add(context.getString(R.string.reward_8))
+    return list
+}
+
+
+// Utility to parse JSON into a List of Wallpaper objects
+fun parseWallpaperJson(jsonString: String): List<Wallpaper> {
+    val jsonArray = JSONArray(jsonString)
+    val wallpapers = mutableListOf<Wallpaper>()
+
+    for (i in 0 until jsonArray.length()) {
+        val jsonObject = jsonArray.getJSONObject(i)
+        val name = jsonObject.getString("name")
+        val previews = mutableListOf<String>()
+
+        for (j in 1..8) { // Loop through preview1 to preview8
+            val previewKey = "preview$j"
+            if (jsonObject.has(previewKey)) {
+                previews.add(jsonObject.getString(previewKey))
+            }
+        }
+
+        wallpapers.add(Wallpaper(name, previews))
+    }
+    return wallpapers
+}
+
+fun getImagesFromTitle(jsonArrayString: String, title: String): List<String> {
+    val jsonArray = JSONArray(jsonArrayString)
+    val imagesList = mutableListOf<String>()
+
+    for (i in 0 until jsonArray.length()) {
+        val jsonObject = jsonArray.getJSONObject(i)
+
+        // Check if the title matches
+        if (jsonObject.getString("title") == title) {
+            val imagesArray = jsonObject.getJSONArray("images")
+
+            // Add each image URL to the list
+            for (j in 0 until imagesArray.length()) {
+                imagesList.add(imagesArray.getString(j))
+            }
+            break // Stop searching once the title is found
+        }
+    }
+    return imagesList
+}
+
+fun loadJSONFromAsset(context: Context, fileName: String): String? {
+    return try {
+        val inputStream = context.assets.open(fileName)
+        val size = inputStream.available()
+        val buffer = ByteArray(size)
+        inputStream.read(buffer)
+        inputStream.close()
+        String(buffer, Charsets.UTF_8)
+    } catch (ex: Exception) {
+        ex.printStackTrace()
+        null
+    }
+}
+
 fun introHeadingNew(context: Context): ArrayList<String>
 {
     val list = arrayListOf<String>()
@@ -148,6 +225,39 @@ fun introHeadingNew(context: Context): ArrayList<String>
     list.add(context.getString(R.string.row_style))
     list.add(context.getString(R.string.screen_lock))
     return list
+}
+
+fun getRemainingTimeUntilMidnight(): Long {
+    val now = Calendar.getInstance()
+    val midnight = Calendar.getInstance().apply {
+        set(Calendar.HOUR_OF_DAY, 0)
+        set(Calendar.MINUTE, 0)
+        set(Calendar.SECOND, 0)
+        set(Calendar.MILLISECOND, 0)
+        add(Calendar.DAY_OF_YEAR, 1) // Move to the next day
+    }
+    return midnight.timeInMillis - now.timeInMillis // Remaining time in milliseconds
+}
+
+fun startCountdownTimer(remainingTime: Long, findViewById: TextView)  {
+    object : CountDownTimer(remainingTime, 1000) {
+        override fun onTick(millisUntilFinished: Long) {
+            val hours = (millisUntilFinished / (1000 * 60 * 60)) % 24
+            val minutes = (millisUntilFinished / (1000 * 60)) % 60
+            val seconds = (millisUntilFinished / 1000) % 60
+
+            // Update UI with the remaining time
+            findViewById.text= "$hours:$minutes:$seconds"
+        }
+
+        override fun onFinish() {
+            // Handle the countdown finishing (e.g., reset, trigger an event)
+            // Optionally, restart the countdown for the next day
+            findViewById.text= "It's midnight!"
+            val newRemainingTime = getRemainingTimeUntilMidnight() // Recalculate for the next day
+            startCountdownTimer(newRemainingTime, findViewById) // Start the new countdown
+        }
+    }.start()
 }
 
 fun introDetailTextNew(context: Context): ArrayList<String>

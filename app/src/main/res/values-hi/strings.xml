@@ -206,4 +206,16 @@
     <string name="zipperStyle_new_detail">अपनी थीम के लिए एक ज़िपर चुनें।</string>
     <string name="row_style_new_detail">अपनी थीम के लिए एक पंक्ति चुनें।</string>
     <string name="preview_new_detail">अपने स्क्रीन लॉक का पूर्वावलोकन करें</string>
+    <string name="reward">इनाम</string>
+    <string name="reward_1">दिल के पैटर्न</string>
+    <string name="reward_2">फूलों के दिल</string>
+    <string name="reward_3">चमकते दिल</string>
+    <string name="reward_4">अब्सट्रैक्ट लव</string>
+    <string name="reward_5">क्लासिक लाल दिल</string>
+    <string name="reward_6">पैस्टल दिल</string>
+    <string name="reward_7">दिल की कोलाज</string>
+    <string name="reward_8">सुनहरे दिल</string>
+    <string name="apply_wallpaper">वॉलपेपर लागू करें</string>
+    <string name="claim_your_next_reward_in">अपना अगला इनाम प्राप्त करें</string>
+
 </resources>
