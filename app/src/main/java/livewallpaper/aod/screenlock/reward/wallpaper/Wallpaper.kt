@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.wallpaper
+package livewallpaper.aod.screenlock.reward.wallpaper
 
 data class Wallpaper(
     val name: String,

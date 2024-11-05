@@ -41,7 +41,7 @@ import livewallpaper.aod.screenlock.zipper.model.LanguageModel
 import livewallpaper.aod.screenlock.zipper.model.SoundModel
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.SpeedActivePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPref
-import livewallpaper.aod.screenlock.zipper.wallpaper.Wallpaper
+import livewallpaper.aod.screenlock.reward.wallpaper.Wallpaper
 import org.json.JSONArray
 import java.util.Calendar
 import java.util.Locale

@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.wallpaper
+package livewallpaper.aod.screenlock.reward.wallpaper
 // ImageListFragment.kt
 import android.os.Bundle
 import android.util.Log
