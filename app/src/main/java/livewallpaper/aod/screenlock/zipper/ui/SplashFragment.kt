@@ -162,7 +162,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         try {
             lifecycleScope.launchWhenResumed {
                 try {
-                    delay(6000)
+                    delay(3000)
                     findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 } catch (e: Exception) {
@@ -451,7 +451,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 Log.d("RemoteConfig", "Fetch val_exit_dialog_native -> $val_exit_dialog_native")
 
                 Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")
-                if (isFlowOne) {
                     adsManager?.nativeAdsMain()
                         ?.loadNativeAd(activity ?: return@addOnCompleteListener,
                             val_ad_native_loading_screen,
@@ -459,7 +458,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                             object : NativeListener {
 
                             })
-                }
 
                 if(val_app_open){
                     AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
