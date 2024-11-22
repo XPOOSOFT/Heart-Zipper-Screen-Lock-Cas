@@ -68,13 +68,7 @@ class LoadingScreenFragment :
             AppAdapter.SaveWallpaper(context ?: return, 7)
         }
 
-        adsManager?.nativeAdsMain()
-            ?.loadNativeAd(activity ?: return,
-                val_ad_native_loading_screen,
-                id_splash_native,
-                object : NativeListener {
 
-                })
         if (val_ad_app_open_screen) {
             loadTwoInterAds(
                 ads = adsManager ?: return,
