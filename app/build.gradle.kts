@@ -89,9 +89,6 @@ dependencies {
     implementation("com.google.firebase:firebase-config-ktx:22.0.0")
     implementation("com.google.firebase:firebase-crashlytics:19.2.0")
     implementation("com.google.firebase:firebase-analytics-ktx:22.1.2")
-//    implementation ("com.google.android.play:core:1.8.0")
-//    implementation ("com.google.android.play:core-ktx:1.8.1")
-//    implementation("com.android.billingclient:billing:6.1.0")
 
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
     implementation("androidx.lifecycle:lifecycle-extensions:2.2.0")
@@ -100,21 +97,16 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("com.intuit.ssp:ssp-android:1.1.0")
     implementation("com.github.skydoves:powerspinner:1.2.7")
-//    implementation("com.amitshekhar.android:glide-bitmap-pool:0.0.1")
     implementation("com.facebook.shimmer:shimmer:0.5.0")
     implementation ("com.google.firebase:firebase-messaging:24.0.2")
     implementation("com.tbuonomo:dotsindicator:5.0")
     implementation ("com.iabtcf:iabtcf-decoder:2.0.10")
     implementation ("com.github.hypersoftdev:inappbilling:3.0.0")
-    // This dependency is downloaded from the Google’s Maven repository.
     // So, make sure you also include that repository in your project's build.gradle file.
     implementation("com.google.android.play:app-update:2.1.0")
-    // For Kotlin users also import the Kotlin extensions library for Play In-App Update:
     implementation("com.google.android.play:app-update-ktx:2.1.0")
-    // WorkManager with Kotlin Coroutines support
     implementation ("androidx.work:work-runtime-ktx:2.9.1")
     implementation ("androidx.work:work-runtime-ktx:2.8.1")
-
     // Coroutines
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")

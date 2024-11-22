@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.wallpaper// ImageAdapter.kt
+package livewallpaper.aod.screenlock.reward.wallpaper// ImageAdapter.kt
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

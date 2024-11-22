@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.wallpaper
+package livewallpaper.aod.screenlock.reward.wallpaper
 import android.app.WallpaperManager
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable

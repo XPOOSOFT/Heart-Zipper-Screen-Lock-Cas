@@ -6,9 +6,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
-import android.widget.TextView
-import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -20,25 +17,20 @@ import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentWallpaperBinding
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.getRemainingTimeUntilMidnight
 import livewallpaper.aod.screenlock.zipper.utilities.getRewardTitle
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.startCountdownTimer
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 
 class WallpaperFragment : Fragment() {
 
-    private var adsmanager: AdsManager ? = null
+    private var adsmanager: AdsManager? = null
     private lateinit var categoryAdapter: CategoryAdapter
     private val categories = mutableListOf<WallpaperCategory>()
     private var currentUnlockDay = 0
@@ -59,7 +51,7 @@ class WallpaperFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         firebaseAnalytics("reward_fragment_open", "reward_fragment_open -->  Click")
-       adsmanager =AdsManager.appAdsInit(activity ?: requireActivity())
+        adsmanager = AdsManager.appAdsInit(activity ?: requireActivity())
         sharedPrefUtils = DbHelper(requireContext())
         unlockNextCategory(requireContext(), view)
         setupBackPressedCallback {
@@ -99,10 +91,10 @@ class WallpaperFragment : Fragment() {
             if (_Lock) {
                 showToast(context ?: requireContext(), "Lock - $Tilte_")
             } else {
-                    findNavController().navigate(
-                        R.id.ImageListFragment,
-                        bundleOf("title" to Tilte_)
-                    )
+                findNavController().navigate(
+                    R.id.ImageListFragment,
+                    bundleOf("title" to Tilte_)
+                )
             }
         }
         view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter

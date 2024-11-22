@@ -94,15 +94,14 @@
         android:label="rewardFragment"
         tools:layout="@layout/fragment_wallpaper" />
 
-
     <fragment
         android:id="@+id/ImageListFragment"
-        android:name="livewallpaper.aod.screenlock.zipper.wallpaper.ImageListFragment"
+        android:name="livewallpaper.aod.screenlock.reward.wallpaper.ImageListFragment"
         android:label="WallpaperListFragment"
         tools:layout="@layout/fragment_image_list" />
     <fragment
         android:id="@+id/FullScreenImageFragment"
-        android:name="livewallpaper.aod.screenlock.zipper.wallpaper.FullScreenImageFragment"
+        android:name="livewallpaper.aod.screenlock.reward.wallpaper.FullScreenImageFragment"
         android:label="WallpaperFullscreenFragment"
         tools:layout="@layout/fragment_fullscreen_image_1" />
 
