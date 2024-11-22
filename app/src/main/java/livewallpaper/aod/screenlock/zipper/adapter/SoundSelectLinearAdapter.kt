@@ -59,6 +59,21 @@ class SoundSelectLinearAdapter(
             checkSingleBox(position)
             clickItem.invoke(position)
         }
+        holder.binding.radioButton.setOnClickListener {
+            if (playingPosition == position) {
+                // If the current item is playing, stop it
+                playingPosition = -1
+                notifyItemChanged(position) // Update UI
+            } else {
+                // Play the new item
+                val oldPosition = playingPosition
+                playingPosition = position
+                notifyItemChanged(oldPosition) // Update the previous playing item
+                notifyItemChanged(playingPosition) // Update the new playing item
+            }
+            checkSingleBox(position)
+            clickItem.invoke(position)
+        }
 //        holder.binding.radioButton.setOnClickListener {
 //            checkSingleBox(position)
 //            clickItem.invoke(position)

@@ -119,7 +119,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     private fun loadNative() {
         adsManager?.nativeAds()?.loadNativeAd(
             activity ?: return,
-            true,
+            val_ad_native_language_screen,
             id_native_screen,
             object : NativeListener {
                 override fun nativeAdLoaded(currentNativeAd: NativeAd?) {

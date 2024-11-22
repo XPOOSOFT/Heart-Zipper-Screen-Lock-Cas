@@ -60,9 +60,7 @@ var val_on_bording_screen = true
 var val_inter_back_press = false
 var val_inter_main_medium = true
 
-var val_ad_native_loading_screen = true
-var val_ad_native_intro_screen = true
-var val_ad_native_language_screen = true
+var vval_ad_native_loading_screenscreen = true
 var val_ad_native_sound_screen = true
 var val_ad_native_setting_screen = true
 var val_ad_native_security_screen = true
@@ -80,6 +78,9 @@ var val_collapsable_banner = true
 var val_banner_setting_screen = true
 
 var val_ad_inter_loading_screen = true
+var val_ad_native_intro_screen = true
+var val_ad_native_language_screen = true
+var val_ad_native_loading_screen = true
 var val_ad_inter_main_menu_screen_back = true
 var val_ad_inter_language_screen_back = true
 var val_ad_inter_sound_screen_back = true
