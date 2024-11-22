@@ -162,7 +162,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         try {
             lifecycleScope.launchWhenResumed {
                 try {
-                    delay(3000)
+                    delay(1000)
                     findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 } catch (e: Exception) {
@@ -327,7 +327,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_is_inapp = remoteConfig!!["val_is_inapp"].asBoolean()
 
 
-                Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
+              /*  Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
                 Log.d("RemoteConfig", "Fetch val_inter_back_press -> $val_inter_back_press")
 //                All Back Inter
                 Log.d(
@@ -450,35 +450,13 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 )
                 Log.d("RemoteConfig", "Fetch val_exit_dialog_native -> $val_exit_dialog_native")
 
-                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")
-                    adsManager?.nativeAdsMain()
-                        ?.loadNativeAd(activity ?: return@addOnCompleteListener,
-                            val_ad_native_loading_screen,
-                            id_splash_native,
-                            object : NativeListener {
-
-                            })
+                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
+                 
 
                 if(val_app_open){
                     AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
                 }
-                if (val_ad_app_open_screen) {
-                    loadTwoInterAds(
-                        ads = adsManager ?: return@addOnCompleteListener,
-                        activity = activity ?: return@addOnCompleteListener,
-                        remoteConfigNormal = true,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_app_fragment"
-                    )
-                } else {
-                    loadTwoInterAdsSplash(
-                        adsManager ?: return@addOnCompleteListener,
-                        activity ?: return@addOnCompleteListener,
-                        remoteConfigNormal = val_ad_inter_loading_screen,
-                        adIdNormal = id_inter_splash_Screen,
-                        "splash"
-                    )
-                }
+
                 observeSplashLiveData()
             }
 

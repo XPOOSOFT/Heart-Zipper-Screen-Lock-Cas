@@ -78,11 +78,11 @@
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentBuyScreen"
         android:label="FragmentBuyScreen"
         tools:layout="@layout/fragment_premium_screen" />
-    <fragment
-        android:id="@+id/FragmentPrivacyScreen"
-        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentPrivacyScreen"
-        android:label="FragmentPrivacyScreen"
-        tools:layout="@layout/fragment_privacy_screen" />
+<!--    <fragment-->
+<!--        android:id="@+id/FragmentPrivacyScreen"-->
+<!--        android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentPrivacyScreen"-->
+<!--        android:label="FragmentPrivacyScreen"-->
+<!--        tools:layout="@layout/fragment_privacy_screen" />-->
     <fragment
         android:id="@+id/FragmentFeedBack"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentFeedBack"

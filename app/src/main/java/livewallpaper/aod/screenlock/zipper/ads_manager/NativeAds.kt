@@ -23,6 +23,7 @@ import livewallpaper.aod.screenlock.zipper.BuildConfig
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button

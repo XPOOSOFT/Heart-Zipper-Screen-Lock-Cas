@@ -421,37 +421,6 @@ class MainAppFragment : Fragment() {
         outState.clear()
     }
 
-    private fun scheduleDailyRewardWorker() {
-        val workManager = WorkManager.getInstance(context ?: return)
-//        activity?.let { WorkManager.initialize(it, Configuration.Builder().setMinimumLoggingLevel(Log.VERBOSE).build()) }
-        // Schedule the daily alarm
-        scheduleDailyAlarm(context?:return)
-        // Ensure the flag for reward is saved
-        sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
-//        // Set up the work request with a flex interval for consistency
-//        val dailyWorkRequest = PeriodicWorkRequestBuilder<DailyRewardWorker>(15, TimeUnit.MINUTES, 15, TimeUnit.MINUTES)
-//            .build()
-//        // Enqueue the unique periodic work
-//        workManager.enqueueUniquePeriodicWork(
-//            "DailyRewardWorker",
-//            ExistingPeriodicWorkPolicy.REPLACE,
-//            dailyWorkRequest
-//        )
-//
-//        WorkManager.getInstance(activity!!).getWorkInfosByTagLiveData("DailyRewardWorker")
-//            .observe(activity!!, Observer { workInfos ->
-//                workInfos?.forEach { workInfo ->
-//                    when (workInfo.state) {
-//                        WorkInfo.State.ENQUEUED -> Log.d("WorkStatus", "Work is enqueued")
-//                        WorkInfo.State.RUNNING -> Log.d("WorkStatus", "Work is running")
-//                        WorkInfo.State.SUCCEEDED -> Log.d("WorkStatus", "Work succeeded")
-//                        WorkInfo.State.FAILED -> Log.d("WorkStatus", "Work failed")
-//                        else -> Log.d("WorkStatus", "Work status: ${workInfo.state}")
-//                    }
-//                }
-//            })
-    }
-
     override fun onResume() {
         super.onResume()
             shouldCheckForOverlayPermissionLoop = false
