@@ -162,7 +162,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         try {
             lifecycleScope.launchWhenResumed {
                 try {
-                    delay(1000)
                     findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 } catch (e: Exception) {
