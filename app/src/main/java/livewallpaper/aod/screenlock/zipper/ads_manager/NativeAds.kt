@@ -20,13 +20,13 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.snackbar.Snackbar
 import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
-import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
 /**
  * Created by
@@ -47,7 +47,6 @@ object NativeAds {
     private var nativeId2nd: String? = null
     var currentNativeAd2nd: NativeAd? = null
 
-
     fun nativeAds(): NativeAds {
         if (nativeAds == null) {
             nativeAds = NativeAds
@@ -55,7 +54,6 @@ object NativeAds {
         }
         return nativeAds as NativeAds
     }
-
 
     fun loadNativeAd(
         activity: Activity,
@@ -65,10 +63,12 @@ object NativeAds {
     ) {
         Log.d(
             NativeAdsLogs,
-            "validate ${!BillingUtil(activity ?: return).checkPurchased(activity) }    $addConfig"
+            "validate ${!BillingUtil(activity).checkPurchased(activity)}    $addConfig"
         )
 
-        if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(activity ?: return).checkPurchased(activity)  && addConfig
+        if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(
+                activity
+            ).checkPurchased(activity) && addConfig
         ) {
             nativeId = nativeAdId
             val builder = AdLoader.Builder(
@@ -136,7 +136,89 @@ object NativeAds {
                     isNativeLoading = false
                     Log.d(NativeAdsLogs, "onAdImpression native Ad")
 //                    loadNativeAd(activity,true,nativeAdId,nativeListener)
+                    if (native_precashe_copunt_current <= native_precashe_counter) {
+                        native_precashe_copunt_current++
+                        loadNativeAd(
+                            activity,
+                            true,
+                            nativeAdId,
+                            object : NativeListener {
+                                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+                                    NativeAds.currentNativeAd = currentNativeAd
+                                    super.nativeAdLoaded(currentNativeAd)
+                                }
 
+                            })
+                    }
+                    super.onAdImpression()
+                }
+
+                override fun onAdClicked() {
+                    Log.d(NativeAdsLogs, "onAdClicked native Ad")
+                    FullScreenAds.logEventForAds(NativeAdsLogs, "clicked", nativeAdId)
+                    isNativeLoading = false
+                    nativeListener.nativeAdClicked()
+                    super.onAdClicked()
+                }
+
+                override fun onAdLoaded() {
+                    isNativeLoading = false
+                    FullScreenAds.logEventForAds(NativeAdsLogs, "loaded", nativeAdId)
+
+                    Log.d(NativeAdsLogs, "onAdLoaded native Ad")
+                    super.onAdLoaded()
+                }
+            }).build()
+
+            adLoader.loadAd(AdRequest.Builder().build())
+        } else {
+            nativeListener.nativeAdValidate("hideAll")
+            if (isDebug()) {
+                Log.d(NativeAdsLogs, "config : $addConfig")
+                Snackbar.make(
+                    activity.window.decorView.rootView,
+                    activity.getString(R.string.check_ads),
+                    Snackbar.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
+
+    private fun loadedShoeNative(
+        activity: Activity,
+        nativeListener: NativeListener,
+        builder: AdLoader.Builder,
+        nativeAdId: String
+    ) {
+        val videoOptions = VideoOptions.Builder().setStartMuted(true).build()
+
+        val adOptions = NativeAdOptions.Builder().setVideoOptions(videoOptions)
+            .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT).build()
+        builder.withNativeAdOptions(adOptions)
+
+        val adLoader = builder.withAdListener(object : AdListener() {
+            override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                FullScreenAds.logEventForAds(NativeAdsLogs, "failed", nativeAdId)
+
+                if (isDebug()) {
+                    Snackbar.make(
+                        activity.window.decorView.rootView,
+                        "AD Error Native: ${loadAdError.message}",
+                        Snackbar.LENGTH_LONG
+                    ).show()
+                }
+                Log.d(NativeAdsLogs, "failed native Ad  ${loadAdError.message}")
+                isNativeLoading = false
+                nativeListener.nativeAdFailed(loadAdError)
+
+            }
+
+            override fun onAdImpression() {
+                currentNativeAd = null
+                isNativeLoading = false
+                Log.d(NativeAdsLogs, "onAdImpression native Ad")
+                if (native_precashe_copunt_current <= native_precashe_counter) {
+                    native_precashe_copunt_current++
                     loadNativeAd(
                         activity,
                         true,
@@ -148,6 +230,111 @@ object NativeAds {
                             }
 
                         })
+                }
+                super.onAdImpression()
+            }
+
+            override fun onAdClicked() {
+                Log.d(NativeAdsLogs, "onAdClicked native Ad")
+                FullScreenAds.logEventForAds(NativeAdsLogs, "clicked", nativeAdId)
+                isNativeLoading = false
+                nativeListener.nativeAdClicked()
+                super.onAdClicked()
+            }
+
+            override fun onAdLoaded() {
+                isNativeLoading = false
+                FullScreenAds.logEventForAds(NativeAdsLogs, "loaded", nativeAdId)
+                Log.d(NativeAdsLogs, "onAdLoaded native Ad")
+                super.onAdLoaded()
+            }
+        }).build()
+
+        adLoader.loadAd(AdRequest.Builder().build())
+        return
+    }
+
+    fun loadNativeAdExit(
+        activity: Activity,
+        addConfig: Boolean,
+        nativeAdId: String,
+        nativeListener: NativeListener
+    ) {
+        Log.d(
+            NativeAdsLogs,
+            "validate ${!BillingUtil(activity).checkPurchased(activity)}    $addConfig"
+        )
+
+        if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(
+                activity
+            ).checkPurchased(activity) && addConfig
+        ) {
+            nativeId = nativeAdId
+            val builder = AdLoader.Builder(
+                activity,
+                if (isDebug()) NativeAdsId else nativeId
+                    ?: NativeAdsId
+            )
+            if (isNativeLoading) {
+                Log.d(NativeAdsLogs, "Already loading Ad")
+                loadedShoeNativeExit(activity, nativeListener, builder, nativeAdId)
+                return
+            }
+            if (currentNativeAd != null) {
+                nativeListener.nativeAdLoaded(currentNativeAd)
+                Log.d(NativeAdsLogs, "   Having loaded Ad")
+                builder.forNativeAd { nativeAd ->
+                    if (currentNativeAd != null) {
+                        currentNativeAd?.destroy()
+                    }
+                    isNativeLoading = false
+                    currentNativeAd = nativeAd
+                    Log.d(NativeAdsLogs, "   loaded native Ad")
+                    nativeListener.nativeAdLoaded(currentNativeAd)
+                }
+
+                return
+            }
+            isNativeLoading = true
+
+            builder.forNativeAd { nativeAd ->
+                if (currentNativeAd != null) {
+                    currentNativeAd?.destroy()
+                }
+                isNativeLoading = false
+                currentNativeAd = nativeAd
+                Log.d(NativeAdsLogs, "   loaded native Ad")
+                nativeListener.nativeAdLoaded(currentNativeAd)
+            }
+
+            val videoOptions = VideoOptions.Builder().setStartMuted(true).build()
+
+            val adOptions = NativeAdOptions.Builder().setVideoOptions(videoOptions)
+                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT).build()
+            builder.withNativeAdOptions(adOptions)
+
+            val adLoader = builder.withAdListener(object : AdListener() {
+                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
+                    FullScreenAds.logEventForAds(NativeAdsLogs, "failed", nativeAdId)
+
+                    if (isDebug()) {
+                        Snackbar.make(
+                            activity.window.decorView.rootView,
+                            "AD Error Native: ${loadAdError.message}",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                    Log.d(NativeAdsLogs, "failed native Ad  ${loadAdError.message}")
+                    isNativeLoading = false
+                    nativeListener.nativeAdFailed(loadAdError)
+
+                }
+
+                override fun onAdImpression() {
+                    currentNativeAd = null
+                    isNativeLoading = false
+                    Log.d(NativeAdsLogs, "onAdImpression native Ad")
+//                    loadNativeAd(activity,true,nativeAdId,nativeListener)
 
                     super.onAdImpression()
                 }
@@ -184,7 +371,7 @@ object NativeAds {
     }
 
 
-    private fun loadedShoeNative(
+    private fun loadedShoeNativeExit(
         activity: Activity,
         nativeListener: NativeListener,
         builder: AdLoader.Builder,
@@ -217,26 +404,6 @@ object NativeAds {
                 currentNativeAd = null
                 isNativeLoading = false
                 Log.d(NativeAdsLogs, "onAdImpression native Ad")
-                loadNativeAd(
-                    activity,
-                    true,
-                    nativeAdId,
-                    object : NativeListener {
-                        override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                            NativeAds.currentNativeAd = currentNativeAd
-                            super.nativeAdLoaded(currentNativeAd)
-                        }
-
-                    })
-//                loadNativeAd(activity,true,nativeAdId,nativeListener)
-//                builder.forNativeAd { nativeAd ->
-//                    if (currentNativeAd != null) {
-//                        currentNativeAd?.destroy()
-//                    }
-//                    currentNativeAd = nativeAd
-//                    Log.d(NativeAdsLogs, "   loaded native Ad")
-//                    nativeListener.nativeAdLoaded(currentNativeAd)
-//                }
                 super.onAdImpression()
             }
 
@@ -271,8 +438,10 @@ object NativeAds {
         adView.headlineView = adView.findViewById(R.id.custom_headline)
         adView.bodyView = adView.findViewById(R.id.custom_body)
         try {
-            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
-            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -300,10 +469,9 @@ object NativeAds {
         adView.setNativeAd(nativeAd)
     }
 
-
-    fun nativeViewMedia(context: Context,nativeAd: NativeAd, adView: NativeAdView) {
+    fun nativeViewMedia(context: Context, nativeAd: NativeAd, adView: NativeAdView) {
         adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
-        adView.iconView = adView.findViewById(R.id.custom_app_icon) as ImageView
+        adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
         adView.headlineView = adView.findViewById(R.id.custom_headline)
         adView.bodyView = adView.findViewById(R.id.custom_body)
 //        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
@@ -315,10 +483,14 @@ object NativeAds {
 
         (adView.headlineView as TextView).text = nativeAd.headline
         try {
-            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(
-                getRandomColor()
-            ))
-            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
+                ColorStateList.valueOf(
+                    Color.parseColor(
+                        getRandomColor()
+                    )
+                )
+            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
+                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }

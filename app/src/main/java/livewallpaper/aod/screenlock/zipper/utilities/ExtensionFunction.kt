@@ -60,7 +60,6 @@ var val_on_bording_screen = true
 var val_inter_back_press = false
 var val_inter_main_medium = true
 
-var vval_ad_native_loading_screenscreen = true
 var val_ad_native_sound_screen = true
 var val_ad_native_setting_screen = true
 var val_ad_native_security_screen = true
@@ -69,8 +68,22 @@ var val_exit_dialog_native = true
 var val_ad_native_main_menu_screen = true
 var val_ad_native_password_screen = true
 var val_ad_native_list_data_screen = true
-
+var val_ad_native_intro_screen = true
+var val_ad_native_language_screen = true
+var val_ad_native_loading_screen = true
 var val_ad_native_reward_screen = true
+
+var type_ad_native_sound_screen = 1
+var type_ad_native_setting_screen = 1
+var type_ad_native_security_screen = 1
+var type_ad_native_enable_screen = 1
+var type_ad_native_password_screen = 1
+var type_ad_native_list_data_screen = 1
+var type_ad_native_reward_screen = 1
+
+var native_precashe_counter = 4
+var native_precashe_copunt_current = 0
+
 var val_ad_inter_reward_screen = true
 
 var val_banner_language_screen = true
@@ -78,9 +91,7 @@ var val_collapsable_banner = true
 var val_banner_setting_screen = true
 
 var val_ad_inter_loading_screen = true
-var val_ad_native_intro_screen = true
-var val_ad_native_language_screen = true
-var val_ad_native_loading_screen = true
+
 var val_ad_inter_main_menu_screen_back = true
 var val_ad_inter_language_screen_back = true
 var val_ad_inter_sound_screen_back = true
@@ -104,6 +115,7 @@ var val_ad_inter_list_data_screen_front = true
 var val_ad_app_open_screen = true
 var val_is_inapp_splash = false
 var val_is_inapp = false
+
 
 var banner_height = 160
 var banner_type = 0

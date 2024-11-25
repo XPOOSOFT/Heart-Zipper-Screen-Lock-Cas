@@ -26,13 +26,17 @@ import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_ANS
 import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_QUESTION
 import livewallpaper.aod.screenlock.zipper.utilities.containsLeadingTrailingSpaces
 import livewallpaper.aod.screenlock.zipper.utilities.containsMultipleSpaces
+import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.utilities.val_inter_back_press
 
@@ -107,48 +111,60 @@ class SecurityQuestionFragment : Fragment() {
     }
 
     private fun loadNative() {
-        adsManager?.nativeAds()?.loadNativeAd(
-            activity?:requireActivity(),
-            val_ad_native_security_screen,
-            id_native_screen,
-            object : NativeListener {
-                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                    if(isVisible && isAdded && !isDetached) {
-                        _binding?.nativeExitAd?.visibility = View.VISIBLE
-                        _binding?.adView?.visibility = View.GONE
-                        val adView = layoutInflater.inflate(
-                            R.layout.ad_unified_privacy,
-                            null
-                        ) as NativeAdView
-                        adsManager?.nativeAds()
-                            ?.nativeViewPolicy(
-                                context ?: requireContext(),
-                                currentNativeAd ?: return,
-                                adView
-                            )
-                        _binding?.nativeExitAd?.removeAllViews()
-                        _binding?.nativeExitAd?.addView(adView)
-                    }
-                    super.nativeAdLoaded(currentNativeAd)
-                }
 
-                override fun nativeAdFailed(loadAdError: LoadAdError) {
-                    if(isVisible && isAdded && !isDetached) {
-                        _binding?.nativeExitAd?.visibility = View.GONE
-                        _binding?.adView?.visibility = View.GONE
-                    }
-                    super.nativeAdFailed(loadAdError)
-                }
+        when (type_ad_native_security_screen) {
+            0 -> {
+                _binding?.nativeExitAd?.visibility = View.GONE
+                _binding?.adView?.visibility=View.GONE
+            }
 
-                override fun nativeAdValidate(string: String) {
-                    if(isVisible && isAdded && !isDetached) {
-                        _binding?.nativeExitAd?.visibility = View.GONE
-                        _binding?.adView?.visibility = View.GONE
-                    }
-                    super.nativeAdValidate(string)
+            1 -> {
+                adsManager?.adsBanners()?.loadBanner(
+                    activity = activity ?: return,
+                    view = _binding!!.nativeExitAd,
+                    addConfig = val_ad_native_security_screen,
+                    bannerId = id_adaptive_banner
+                ) {
+                    _binding?.adView?.visibility=View.GONE
                 }
-            })
+            }
 
+            2 -> {
+                adsManager?.nativeAds()?.loadNativeAdExit(
+                    activity ?: return,
+                    val_ad_native_security_screen,
+                    id_native_screen,
+                    object : NativeListener {
+                        override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+                            if (isAdded && isVisible && !isDetached) {
+                                _binding?.nativeExitAd?.visibility = View.VISIBLE
+                                _binding?.adView?.visibility = View.GONE
+                                val adView =layoutInflater.inflate(R.layout.ad_unified_media, null) as NativeAdView
+                                adsManager?.nativeAds()?.nativeViewMedia(context?:return,currentNativeAd ?: return, adView)
+                                _binding?.nativeExitAd?.removeAllViews()
+                                _binding?.nativeExitAd?.addView(adView)
+                            }
+                            super.nativeAdLoaded(currentNativeAd)
+                        }
+
+                        override fun nativeAdFailed(loadAdError: LoadAdError) {
+                            if (isAdded && isVisible && !isDetached) {
+                                _binding?.nativeExitAd?.visibility = View.INVISIBLE
+                                _binding?.adView?.visibility = View.INVISIBLE
+                            }
+                            super.nativeAdFailed(loadAdError)
+                        }
+
+                        override fun nativeAdValidate(string: String) {
+                            if (isAdded && isVisible && !isDetached) {
+                                _binding?.nativeExitAd?.visibility = View.INVISIBLE
+                                _binding?.adView?.visibility = View.INVISIBLE
+                            }
+                            super.nativeAdValidate(string)
+                        }
+                    })
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -156,7 +172,10 @@ class SecurityQuestionFragment : Fragment() {
         _binding?.powerSpinnerView?.clearSelectedItem()
         _binding = null
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.clear()

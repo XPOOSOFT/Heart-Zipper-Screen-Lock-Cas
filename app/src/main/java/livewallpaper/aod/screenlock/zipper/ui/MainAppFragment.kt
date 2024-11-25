@@ -528,7 +528,10 @@ class MainAppFragment : Fragment() {
         super.onDestroy()
         shouldCheckForOverlayPermissionLoop = false
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
     override fun onRequestPermissionsResult(i: Int, strArr: Array<String>, iArr: IntArray) {
         super.onRequestPermissionsResult(i, strArr, iArr)
         if (i == 123) {

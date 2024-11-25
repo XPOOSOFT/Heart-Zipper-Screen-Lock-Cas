@@ -270,7 +270,10 @@ class LoadingScreenFragment :
         super.onDestroy()
         _binding = null
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
     private fun loadNative() {
         adsManager?.nativeAdsMain()?.loadNativeAd(activity ?: return,
             val_ad_native_loading_screen,
@@ -308,6 +311,12 @@ class LoadingScreenFragment :
                         _binding?.adView?.visibility = View.INVISIBLE
                         _binding?.next?.visibility = View.VISIBLE
                         _binding?.animationView?.visibility = View.INVISIBLE
+                        adsManager?.nativeAds()?.loadNativeAd(
+                            activity ?: return,
+                            true,
+                            id_native_screen,
+                            object : NativeListener {
+                            })
                     }
                     super.nativeAdFailed(loadAdError)
                 }
@@ -318,18 +327,24 @@ class LoadingScreenFragment :
                         _binding?.adView?.visibility = View.INVISIBLE
                         _binding?.next?.visibility = View.VISIBLE
                         _binding?.animationView?.visibility = View.INVISIBLE
+                        adsManager?.nativeAds()?.loadNativeAd(
+                            activity ?: return,
+                            true,
+                            id_native_screen,
+                            object : NativeListener {
+                            })
                     }
                     super.nativeAdValidate(string)
                 }
             })
 
-        loadTwoInterAds(
-            ads = adsManager ?: return,
-            activity = activity ?: return,
-            remoteConfigNormal = val_inter_main_medium,
-            adIdNormal = id_inter_main_medium,
-            tagClass = "main_app_fragment"
-        )
+//        loadTwoInterAds(
+//            ads = adsManager ?: return,
+//            activity = activity ?: return,
+//            remoteConfigNormal = val_inter_main_medium,
+//            adIdNormal = id_inter_main_medium,
+//            tagClass = "main_app_fragment"
+//        )
     }
 
     override fun onPause() {

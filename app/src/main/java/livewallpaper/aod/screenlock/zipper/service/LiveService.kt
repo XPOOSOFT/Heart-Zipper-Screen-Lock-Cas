@@ -127,7 +127,10 @@ class LiveService : Service() {
            unused.printStackTrace()
         }
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+       onDestroy()
+    }
     override fun onDestroy() {
         try {
             unregisterReceiver(this.mybroadcast)

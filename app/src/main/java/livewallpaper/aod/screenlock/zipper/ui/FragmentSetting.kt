@@ -8,9 +8,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSettingBinding
 import livewallpaper.aod.screenlock.zipper.utilities.CheckBoxUpdater.UCC
@@ -25,12 +29,16 @@ import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
+import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showSpeedDialogNew
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_password_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
 class FragmentSetting : Fragment() {
@@ -223,49 +231,59 @@ class FragmentSetting : Fragment() {
         UL(ConstantValues.SoActivePref, context ?: requireContext(), _binding?.soundSwitch)
     }
 
- /*   private fun loadNative() {
-        adsManager?.nativeAds()?.loadNativeAd(
-            activity ?: return,
-            val_ad_native_security_screen,
-            id_native_screen,
-            object : NativeListener {
-                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                    _binding?.nativeExitAd?.visibility = View.VISIBLE
-                    _binding?.adView?.visibility = View.GONE
-                    val adView =
-                        layoutInflater.inflate(R.layout.ad_unified_privacy, null) as NativeAdView
-                    adsManager?.nativeAds()?.nativeViewPolicy(
-                        context ?: requireContext(),
-                        currentNativeAd ?: return,
-                        adView
-                    )
-                    _binding?.nativeExitAd?.removeAllViews()
-                    _binding?.nativeExitAd?.addView(adView)
-                    super.nativeAdLoaded(currentNativeAd)
-                }
-
-                override fun nativeAdFailed(loadAdError: LoadAdError) {
-                    _binding?.nativeExitAd?.visibility = View.GONE
-                    _binding?.adView?.visibility = View.GONE
-                    super.nativeAdFailed(loadAdError)
-                }
-
-                override fun nativeAdValidate(string: String) {
-                    _binding?.nativeExitAd?.visibility = View.GONE
-                    _binding?.adView?.visibility = View.GONE
-                    super.nativeAdValidate(string)
-                }
-            })
-
-    }*/
     private fun loadBanner(){
-        adsManager?.adsBanners()?.loadBanner(
-            activity = activity ?: return,
-            view = _binding!!.nativeExitAd,
-            addConfig = val_ad_native_security_screen,
-            bannerId = id_adaptive_banner
-        ) {
-            _binding!!.adView?.visibility=View.GONE
+    when (type_ad_native_setting_screen) {
+        0 -> {
+            _binding?.nativeExitAd?.visibility = View.GONE
+            _binding?.adView?.visibility=View.GONE
+        }
+
+        1 -> {
+            adsManager?.adsBanners()?.loadBanner(
+                activity = activity ?: return,
+                view = _binding!!.nativeExitAd,
+                addConfig = val_ad_native_setting_screen,
+                bannerId = id_adaptive_banner
+            ) {
+                _binding?.adView?.visibility=View.GONE
+            }
+        }
+
+        2 -> {
+            adsManager?.nativeAds()?.loadNativeAdExit(
+                activity ?: return,
+                val_ad_native_setting_screen,
+                id_native_screen,
+                object : NativeListener {
+                    override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.VISIBLE
+                            _binding?.adView?.visibility = View.GONE
+                            val adView =layoutInflater.inflate(R.layout.ad_unified_media, null) as NativeAdView
+                            adsManager?.nativeAds()?.nativeViewMedia(context?:return,currentNativeAd ?: return, adView)
+                            _binding?.nativeExitAd?.removeAllViews()
+                            _binding?.nativeExitAd?.addView(adView)
+                        }
+                        super.nativeAdLoaded(currentNativeAd)
+                    }
+
+                    override fun nativeAdFailed(loadAdError: LoadAdError) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.INVISIBLE
+                            _binding?.adView?.visibility = View.INVISIBLE
+                        }
+                        super.nativeAdFailed(loadAdError)
+                    }
+
+                    override fun nativeAdValidate(string: String) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.INVISIBLE
+                            _binding?.adView?.visibility = View.INVISIBLE
+                        }
+                        super.nativeAdValidate(string)
+                    }
+                })
+        }
         }
     }
 }

@@ -146,7 +146,10 @@ class LockScreenService : Service() {
             e.printStackTrace()
         }
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        onDestroy()
+    }
     override fun onDestroy() {
         svsHandler?.removeCallbacksAndMessages(null)
 //        Log.e("LockScreenService", "on destroy: ")

@@ -72,16 +72,32 @@ fun showTwoInterAd(
     Log.d(TAG, "showTwoInterAd->id_inter_counter: $id_inter_counter")
     Log.d(TAG, "showTwoInterAd->id_frequency_counter: $mInterstitialAd")
     Log.d(TAG, "showTwoInterAd->remoteConfigNormal: $remoteConfigNormal")
-    if (mInterstitialAd == null || (!remoteConfigNormal)) {
-        loadTwoInterAds(
-            ads = ads,
-            activity = activity,
-            remoteConfigNormal = remoteConfigNormal,
-            adIdNormal = adIdNormal,
-            tagClass = tagClass
-        )
-        function.invoke(0)
-        return
+    if (mInterstitialAd== null && !remoteConfigNormal) {
+        if (id_inter_counter != counter) {
+            if(id_inter_counter==counter){
+                loadTwoInterAds(
+                    ads = ads,
+                    activity = activity,
+                    remoteConfigNormal = remoteConfigNormal,
+                    adIdNormal = adIdNormal,
+                    tagClass = tagClass
+                )
+            }
+            function.invoke(0)
+            return
+        } else {
+            if(id_inter_counter==0){
+                loadTwoInterAds(
+                    ads = ads,
+                    activity = activity,
+                    remoteConfigNormal = remoteConfigNormal,
+                    adIdNormal = adIdNormal,
+                    tagClass = tagClass
+                )
+            }
+            function.invoke(0)
+            return
+        }
     }
     if (!AdsManager.isNetworkAvailable(activity)) {
         function.invoke(0)
@@ -95,10 +111,28 @@ fun showTwoInterAd(
 
     if (id_inter_counter != counter) {
         counter++
+        if(id_inter_counter==counter){
+            loadTwoInterAds(
+                ads = ads,
+                activity = activity,
+                remoteConfigNormal = remoteConfigNormal,
+                adIdNormal = adIdNormal,
+                tagClass = tagClass
+            )
+        }
         Log.d(TAG, "showTwoInterAd->adIdNormalSkip: $counter")
         function.invoke(0)
         return
     } else {
+        if(id_inter_counter==0){
+            loadTwoInterAds(
+                ads = ads,
+                activity = activity,
+                remoteConfigNormal = remoteConfigNormal,
+                adIdNormal = adIdNormal,
+                tagClass = tagClass
+            )
+        }
         counter = 0
         Log.d(TAG, "showTwoInterAd->adIdNormalCounter: $counter")
     }
@@ -121,13 +155,7 @@ fun showTwoInterAd(
                 layout.visibility = View.GONE
                 Log.d(TAG, "fullScreenAdDismissed: normal inter dismiss")
                 firebaseAnalytics("inter_normal_dismisss_$tagClass", "inter_Show")
-//                loadTwoInterAds(
-//                    ads = ads,
-//                    activity = activity,
-//                    remoteConfigNormal = remoteConfigNormal,
-//                    adIdNormal = adIdNormal,
-//                    tagClass = tagClass
-//                )
+
             }
 
             override fun fullScreenAdFailedToShow() {
@@ -147,7 +175,7 @@ fun showTwoInterAd(
                 function.invoke(0)
             }
 
-        }, adIdNormal, object : AdsListener {
+        },   if(id_inter_counter==0 || id_inter_counter==counter)adIdNormal else "", object : AdsListener {
 
         })
 

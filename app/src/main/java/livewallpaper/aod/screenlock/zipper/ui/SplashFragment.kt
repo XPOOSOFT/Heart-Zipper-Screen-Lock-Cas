@@ -53,8 +53,16 @@ import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isRating
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_enable_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_list_data_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_password_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
@@ -197,7 +205,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun applyAdIdsFromRemoteConfig(remoteConfig: FirebaseRemoteConfig) {
 
-        banner_type = remoteConfig.getLong("banner_type").toInt()
+        type_ad_native_list_data_screen = remoteConfig.getLong("type_ad_native_list_data_screen").toInt()
+        type_ad_native_sound_screen = remoteConfig.getLong("type_ad_native_sound_screen").toInt()
+        type_ad_native_setting_screen = remoteConfig.getLong("type_ad_native_setting_screen").toInt()
+        type_ad_native_security_screen = remoteConfig.getLong("type_ad_native_security_screen").toInt()
+        type_ad_native_enable_screen = remoteConfig.getLong("type_ad_native_enable_screen").toInt()
+        type_ad_native_password_screen = remoteConfig.getLong("type_ad_native_password_screen").toInt()
+        type_ad_native_reward_screen = remoteConfig.getLong("type_ad_native_reward_screen").toInt()
+        native_precashe_counter = remoteConfig.getLong("native_precashe_counter").toInt()
+
         appUpdateType = remoteConfig.getLong("appUpdateType").toInt()
         id_inter_counter = remoteConfig.getLong("id_inter_counter").toInt()
         id_frequency_counter = remoteConfig.getLong("id_frequency_counter").toInt()
@@ -473,5 +489,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         super.onDestroy()
         _binding = null
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
 }

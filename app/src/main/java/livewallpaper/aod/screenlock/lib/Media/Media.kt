@@ -5,6 +5,8 @@ import android.graphics.Matrix
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import livewallpaper.aod.screenlock.GlideBitmapFactory
 import livewallpaper.aod.screenlock.lib.UgameLib.GameAdapters.GameAdapter
 import livewallpaper.aod.screenlock.lib.UgameLib.Resource.Resources
@@ -86,20 +88,17 @@ object Media {
 
     private fun LoadBgData() {
             try {
-                selectedWallpaperNumber = AppAdapter.getSelectedWallpaperNumber(GameAdapter.ctx)
-                wallpapers = getWallpapers()
-                SelectedBg =
-                    Resources.CreateBitmap(
-                        wallpapers?.get(selectedWallpaperNumber) ?: return,
-                        LockScreenService.cc
-                    )
-                val selectedWallpaperBgNumber =
-                    AppAdapter.getSelectedWallpaperBgNumber(GameAdapter.ctx)
-                wallpapers?.add(0, Integer.valueOf(R.drawable.transparent))
-                SelectedBackBg = GlideBitmapFactory.decodeResource(
-                    LockScreenService.cc?.resources,
-                    wallpapers?.get(selectedWallpaperBgNumber + -1)?:return
-                )
+                    selectedWallpaperNumber = AppAdapter.getSelectedWallpaperNumber(GameAdapter.ctx)
+                    wallpapers = getWallpapers()
+                    val selectedWallpaperBgNumber =AppAdapter.getSelectedWallpaperBgNumber(GameAdapter.ctx)
+                        val bitmap = GlideBitmapFactory.decodeResource(
+                            LockScreenService.cc?.resources,
+                            wallpapers?.get(selectedWallpaperBgNumber + -1) ?: return
+                        )
+                            SelectedBackBg = bitmap
+                            wallpapers?.add(0, Integer.valueOf(R.drawable.transparent))
+                            SelectedBg =Resources.CreateBitmap(wallpapers?.get(selectedWallpaperNumber) ?: return, LockScreenService.cc)
+
             } catch (e: Exception) {
                 e.printStackTrace()
             }

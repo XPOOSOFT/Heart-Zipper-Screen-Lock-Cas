@@ -165,5 +165,8 @@ class OnBordScreenFragment :
         super.onDestroy()
         _binding = null
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
 }

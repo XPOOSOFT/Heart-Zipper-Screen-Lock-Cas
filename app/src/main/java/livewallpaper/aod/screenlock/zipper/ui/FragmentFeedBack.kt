@@ -57,30 +57,34 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        _binding?.sendFeedBack?.setOnClickListener {
-            if (imageUri != null && _binding?.editTextText?.text?.toString()?.isEmpty() == false) {
-                shareContent(
-                    title = "Bugs Find Alert",
-                    text = "Bugs Find By User.Need to Fixed" + "\n+${_binding?.editTextText?.text?.toString()} "+"\n ${getStringFeedBack()}",
-                    imageResId = imageUri!! // Replace with your image
-                )
-            } else {
-                showToast(context ?: return@setOnClickListener, "Empty Field")
+        try {
+            _binding?.sendFeedBack?.setOnClickListener {
+                if (imageUri != null && _binding?.editTextText?.text?.toString()?.isEmpty() == false) {
+                    shareContent(
+                        title = "Bugs Find Alert",
+                        text = "Bugs Find By User.Need to Fixed" + "\n+${_binding?.editTextText?.text?.toString()} "+"\n ${getStringFeedBack()}",
+                        imageResId = imageUri!! // Replace with your image
+                    )
+                } else {
+                    showToast(context ?: return@setOnClickListener, "Empty Field")
+                }
             }
-        }
 
-        _binding?.uploadTitleFrame?.setOnClickListener {
-            if (checkStoragePermission()) {
-                openGallery()
-            } else {
-                requestStoragePermission()
+            _binding?.uploadTitleFrame?.setOnClickListener {
+                if (checkStoragePermission()) {
+                    openGallery()
+                } else {
+                    requestStoragePermission()
+                }
             }
-        }
-        _binding?.backBtn?.clickWithThrottle {
-            findNavController().navigateUp()
-        }
-        setupBackPressedCallback {
-            findNavController().navigateUp()
+            _binding?.backBtn?.clickWithThrottle {
+                findNavController().navigateUp()
+            }
+            setupBackPressedCallback {
+                findNavController().navigateUp()
+            }
+        } catch (e: Exception) {
+           e.printStackTrace()
         }
     }
 
@@ -161,5 +165,9 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
     }
 }

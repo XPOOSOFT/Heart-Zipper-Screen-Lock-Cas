@@ -34,7 +34,7 @@ class FragmentExitScreen : BaseFragment<FragmentExitScreenBinding>(FragmentExitS
     }
 
     private fun loadNative() {
-        adsManager?.nativeAds()?.loadNativeAd(
+        adsManager?.nativeAds()?.loadNativeAdExit(
             activity ?: return,
             val_exit_dialog_native,
             id_native_screen,
@@ -43,8 +43,7 @@ class FragmentExitScreen : BaseFragment<FragmentExitScreenBinding>(FragmentExitS
                     if (isAdded && isVisible && !isDetached) {
                         _binding?.nativeExitAd?.visibility = View.VISIBLE
                         _binding?.adView?.visibility = View.GONE
-                        val adView =
-                            layoutInflater.inflate(R.layout.ad_unified_media, null) as NativeAdView
+                        val adView =layoutInflater.inflate(R.layout.ad_unified_media, null) as NativeAdView
                         adsManager?.nativeAds()?.nativeViewMedia(context?:return,currentNativeAd ?: return, adView)
                         _binding?.nativeExitAd?.removeAllViews()
                         _binding?.nativeExitAd?.addView(adView)
@@ -85,5 +84,8 @@ class FragmentExitScreen : BaseFragment<FragmentExitScreenBinding>(FragmentExitS
         super.onDestroy()
         _binding = null
     }
-
+    override fun onLowMemory() {
+        super.onLowMemory()
+        activity?.finish()
+    }
 }
