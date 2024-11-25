@@ -27,6 +27,8 @@ import android.util.TypedValue;
 
 import java.io.FileDescriptor;
 import java.io.InputStream;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
 
 import livewallpaper.aod.screenlock.internal.Util;
 
@@ -80,30 +82,90 @@ public class GlideBitmapFactory {
             return BitmapFactory.decodeFile(pathName, options);
         }
     }
+//
+//    public static Bitmap decodeResource(Resources res, int id) {
+//        final BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inJustDecodeBounds = true;
+//        BitmapFactory.decodeResource(res, id, options);
+//        options.inSampleSize = 1;
+//        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+//            options.inMutable = true;
+//            Bitmap inBitmap = GlideBitmapPool.getBitmap(options.outWidth, options.outHeight, options.inPreferredConfig);
+//            if (inBitmap != null && Util.canUseForInBitmap(inBitmap, options)) {
+//                options.inBitmap = inBitmap;
+//            }
+//        }
+//        options.inJustDecodeBounds = false;
+//        try {
+//            return BitmapFactory.decodeResource(res, id, options);
+//        } catch (Exception e) {
+//            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+//                options.inBitmap = null;
+//            }
+//            return BitmapFactory.decodeResource(res, id, options);
+//        }
+//    }
 
-    public static Bitmap decodeResource(Resources res, int id) {
+    public static Bitmap decodeResource(final Resources res, final int id) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
+
+        // Get image dimensions without decoding the full bitmap
         BitmapFactory.decodeResource(res, id, options);
-        options.inSampleSize = 1;
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+
+        options.inSampleSize = calculateInSampleSize(options, 1080, 1920); // Adjust to your target dimensions
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             options.inMutable = true;
+
+            // Reuse existing Bitmap if possible
             Bitmap inBitmap = GlideBitmapPool.getBitmap(options.outWidth, options.outHeight, options.inPreferredConfig);
             if (inBitmap != null && Util.canUseForInBitmap(inBitmap, options)) {
                 options.inBitmap = inBitmap;
             }
         }
+
         options.inJustDecodeBounds = false;
+
         try {
-            return BitmapFactory.decodeResource(res, id, options);
+            // Decode bitmap in the background
+            return decodeBitmapInBackground(res, id, options);
         } catch (Exception e) {
-            if (Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB) {
+            // Handle fallback in case of failure
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                 options.inBitmap = null;
             }
-            return BitmapFactory.decodeResource(res, id, options);
+            return decodeBitmapInBackground(res, id, options);
         }
     }
 
+    private static Bitmap decodeBitmapInBackground(Resources res, int id, BitmapFactory.Options options) {
+        try {
+            return Executors.newSingleThreadExecutor().submit(() -> BitmapFactory.decodeResource(res, id, options)).get();
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Calculate the appropriate inSampleSize
+    private static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
     public static Bitmap decodeResource(Resources res, int id, int reqWidth, int reqHeight) {
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
