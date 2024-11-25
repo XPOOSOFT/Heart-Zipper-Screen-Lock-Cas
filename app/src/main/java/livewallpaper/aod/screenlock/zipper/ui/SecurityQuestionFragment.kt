@@ -58,55 +58,59 @@ class SecurityQuestionFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(++PurchaseScreen == val_inapp_frequency){
-            PurchaseScreen =0
-            findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
-            return
-        }
-        if(isVisible && isAdded && !isDetached){
-        adsManager = AdsManager.appAdsInit(activity?:requireActivity())
-        _binding?.topLay?.title?.text = getString(R.string.security_question)
-        _binding?.mainbg?.setBackgroundResource(background)
-        sharedPrefUtils = DbHelper(context?:return)
-        _binding?.powerSpinnerView?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
-            showToast(context?:return@setOnSpinnerItemSelectedListener, "$newIndex selected!")
-            questionText = newText
-        }
-        _binding?.addQuestion?.setOnClickListener {
-            if (questionText.equals("") ) {
-                questionText = getString(R.string.what_is_your_favourite_color)
+        try {
+            if(++PurchaseScreen == val_inapp_frequency){
+                PurchaseScreen =0
+                findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
+                return
             }
+            if(isVisible && isAdded && !isDetached){
+            adsManager = AdsManager.appAdsInit(activity?:requireActivity())
+            _binding?.topLay?.title?.text = getString(R.string.security_question)
+            _binding?.mainbg?.setBackgroundResource(background)
+            sharedPrefUtils = DbHelper(context?:return)
+            _binding?.powerSpinnerView?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
+                showToast(context?:return@setOnSpinnerItemSelectedListener, "$newIndex selected!")
+                questionText = newText
+            }
+            _binding?.addQuestion?.setOnClickListener {
+                if (questionText.equals("") ) {
+                    questionText = getString(R.string.what_is_your_favourite_color)
+                }
 
-            if (_binding?.editTextText?.text?.isNotEmpty() == true && !containsMultipleSpaces(_binding?.editTextText?.text?.toString()?:return@setOnClickListener) && !containsLeadingTrailingSpaces(_binding?.editTextText?.text?.toString()?:return@setOnClickListener)) {
-                sharedPrefUtils?.saveData(
-                    context?:return@setOnClickListener,
-                    SECURITY_QUESTION,
-                    questionText
-                )
-                sharedPrefUtils?.saveData(
-                    context?:return@setOnClickListener,
-                    SECURITY_ANS,
-                    _binding?.editTextText?.text.toString()
-                )
-                showToast(
-                    context?:return@setOnClickListener, getString(R.string.save_security_question)
-                )
+                if (_binding?.editTextText?.text?.isNotEmpty() == true && !containsMultipleSpaces(_binding?.editTextText?.text?.toString()?:return@setOnClickListener) && !containsLeadingTrailingSpaces(_binding?.editTextText?.text?.toString()?:return@setOnClickListener)) {
+                    sharedPrefUtils?.saveData(
+                        context?:return@setOnClickListener,
+                        SECURITY_QUESTION,
+                        questionText
+                    )
+                    sharedPrefUtils?.saveData(
+                        context?:return@setOnClickListener,
+                        SECURITY_ANS,
+                        _binding?.editTextText?.text.toString()
+                    )
+                    showToast(
+                        context?:return@setOnClickListener, getString(R.string.save_security_question)
+                    )
 
+                    findNavController().navigateUp()
+                } else {
+                    _binding?.editTextText?.error = getString(R.string.empty_field)
+                    showToast(
+                        context?:return@setOnClickListener, getString(R.string.empty_field)
+                    )
+                }
+            }
+            _binding?.topLay?.backBtn?.setOnClickListener {
                 findNavController().navigateUp()
-            } else {
-                _binding?.editTextText?.error = getString(R.string.empty_field)
-                showToast(
-                    context?:return@setOnClickListener, getString(R.string.empty_field)
-                )
             }
-        }
-        _binding?.topLay?.backBtn?.setOnClickListener {
-            findNavController().navigateUp()
-        }
-            loadNative()
-        setupBackPressedCallback {
-            findNavController().navigateUp()
-        }
+                loadNative()
+            setupBackPressedCallback {
+                findNavController().navigateUp()
+            }
+            }
+        } catch (e: Exception) {
+          e.printStackTrace()
         }
     }
 

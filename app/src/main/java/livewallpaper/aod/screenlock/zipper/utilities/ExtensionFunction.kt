@@ -450,6 +450,7 @@ fun showRatingDialog(
     context: Activity?,
     onPositiveButtonClick: (Float, AlertDialog) -> Unit,
 ) {
+
     val dialogView = context?.layoutInflater?.inflate(R.layout.rating_dialog, null)
     ratingDialog = AlertDialog.Builder(context ?: return).create()
     ratingDialog?.setView(dialogView)

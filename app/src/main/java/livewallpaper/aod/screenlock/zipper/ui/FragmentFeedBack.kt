@@ -116,44 +116,52 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
 
     private fun shareContent(title: String, text: String, imageResId: Uri) {
         // Create the sharing intent
-        val shareIntent = Intent(Intent.ACTION_SEND).apply {
-            type = "*/*" // General type; can be customized based on what you're sharing
-            // Add the text and title
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("fireitinc.dev@gmail.com"))
-            putExtra(Intent.EXTRA_SUBJECT, title)
-            putExtra(Intent.EXTRA_TEXT, text)
-            // Add the image (optional)
-            imageResId.let {
-                putExtra(Intent.EXTRA_STREAM, it)
-                type = "image/*" // Specify the MIME type for images
-                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Ensure permission for sharing the image
+        try {
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "*/*" // General type; can be customized based on what you're sharing
+                // Add the text and title
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("fireitinc.dev@gmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, title)
+                putExtra(Intent.EXTRA_TEXT, text)
+                // Add the image (optional)
+                imageResId.let {
+                    putExtra(Intent.EXTRA_STREAM, it)
+                    type = "image/*" // Specify the MIME type for images
+                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Ensure permission for sharing the image
+                }
             }
+            // Launch the chooser for sharing
+            val chooser = Intent.createChooser(shareIntent, "Share via")
+            startActivity(chooser)
+        } catch (e: Exception) {
+          e.printStackTrace()
         }
-        // Launch the chooser for sharing
-        val chooser = Intent.createChooser(shareIntent, "Share via")
-        startActivity(chooser)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            imageUri = data.data
+            try {
+                imageUri = data.data
 
-            // Load image into the TextView background
-            Glide.with(this).load(imageUri).into(object :
-                    com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
-                    override fun onResourceReady(
-                        resource: android.graphics.drawable.Drawable,
-                        transition: com.bumptech.glide.request.transition.Transition<in android.graphics.drawable.Drawable>?
-                    ) {
-                        _binding?.uploadTitleFrame?.background = resource
-                    }
+                // Load image into the TextView background
+                Glide.with(this).load(imageUri).into(object :
+                        com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
+                        override fun onResourceReady(
+                            resource: android.graphics.drawable.Drawable,
+                            transition: com.bumptech.glide.request.transition.Transition<in android.graphics.drawable.Drawable>?
+                        ) {
+                            _binding?.uploadTitleFrame?.background = resource
+                        }
 
-                    override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
-                        _binding?.uploadTitleFrame?.background = placeholder
-                    }
-                })
+                        override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
+                            _binding?.uploadTitleFrame?.background = placeholder
+                        }
+                    })
+            } catch (e: Exception) {
+               e.printStackTrace()
+            }
         }
     }
 

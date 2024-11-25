@@ -15,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
@@ -161,8 +162,10 @@ class FragmentNavigationScreen :
 
         }
         _binding?.rateUsView?.setOnClickListener {
-            showRatingDialog(activity, onPositiveButtonClick = { it, _dialog ->
-            })
+            lifecycleScope.launchWhenCreated {
+                showRatingDialog(activity, onPositiveButtonClick = { it, _dialog ->
+                })
+            }
         }
         _binding?.customSView?.setOnClickListener {
             feedBackWithEmail(
