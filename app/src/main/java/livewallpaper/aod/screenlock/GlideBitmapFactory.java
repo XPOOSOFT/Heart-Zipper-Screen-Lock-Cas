@@ -115,14 +115,12 @@ public class GlideBitmapFactory {
 
         options.inSampleSize = calculateInSampleSize(options, 1080, 1920); // Adjust to your target dimensions
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            options.inMutable = true;
+        options.inMutable = true;
 
-            // Reuse existing Bitmap if possible
-            Bitmap inBitmap = GlideBitmapPool.getBitmap(options.outWidth, options.outHeight, options.inPreferredConfig);
-            if (inBitmap != null && Util.canUseForInBitmap(inBitmap, options)) {
-                options.inBitmap = inBitmap;
-            }
+        // Reuse existing Bitmap if possible
+        Bitmap inBitmap = GlideBitmapPool.getBitmap(options.outWidth, options.outHeight, options.inPreferredConfig);
+        if (inBitmap != null && Util.canUseForInBitmap(inBitmap, options)) {
+            options.inBitmap = inBitmap;
         }
 
         options.inJustDecodeBounds = false;
@@ -132,9 +130,7 @@ public class GlideBitmapFactory {
             return decodeBitmapInBackground(res, id, options);
         } catch (Exception e) {
             // Handle fallback in case of failure
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-                options.inBitmap = null;
-            }
+            options.inBitmap = null;
             return decodeBitmapInBackground(res, id, options);
         }
     }
