@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/blue_button_background"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_15sdp"
+    app:cardCornerRadius="@dimen/_10sdp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <!--   Enable Lock-->
+        <View
+            android:id="@+id/enableLock"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:background="@drawable/rect_btn_loading"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/enableLockImage"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintBottom_toBottomOf="@id/enableLock"
+            app:layout_constraintEnd_toEndOf="@+id/enableLock"
+            app:layout_constraintStart_toStartOf="@id/enableLock"
+            app:layout_constraintTop_toTopOf="@id/enableLock"
+            app:srcCompat="@drawable/ic_watch_ads" />
+        <TextView
+            android:id="@+id/enableLockText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:text="@string/get_it_now"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:gravity="start"
+            android:paddingStart="@dimen/_20sdp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_18sdp"
+            app:layout_constraintBottom_toTopOf="@id/enableLockText1"
+            app:layout_constraintEnd_toEndOf="@+id/enableLock"
+            app:layout_constraintStart_toEndOf="@id/enableLockImage"
+            app:layout_constraintTop_toTopOf="@id/enableLockImage"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/enableLockText1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/droid_sans_mono"
+            android:gravity="start|bottom"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="@string/watch_an_ads"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/enableLockImage"
+            app:layout_constraintEnd_toEndOf="@+id/enableLockText"
+            app:layout_constraintStart_toStartOf="@id/enableLockText"
+            app:layout_constraintTop_toBottomOf="@+id/enableLockText"
+            tools:ignore="RtlSymmetry" />
+        <!--   setting-->
+
+        <View
+            android:id="@+id/inApp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_20sdp"
+            android:background="@drawable/rect_btn_loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/enableLock"
+            app:layout_constraintStart_toStartOf="@id/enableLock"
+            app:layout_constraintTop_toBottomOf="@id/enableLock" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/settingImage"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintHorizontal_bias="0.18"
+            app:layout_constraintBottom_toBottomOf="@id/inApp"
+            app:layout_constraintEnd_toEndOf="@+id/inApp"
+            app:layout_constraintStart_toStartOf="@id/inApp"
+            app:layout_constraintTop_toTopOf="@id/inApp"
+            app:srcCompat="@drawable/crown" />
+        <TextView
+            android:id="@+id/settingText"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:textSize="@dimen/_18sdp"
+            android:text="@string/get_premium"
+            android:paddingStart="@dimen/_20sdp"
+            android:textStyle="bold"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:textColor="@color/white"
+            android:gravity="start"
+            app:layout_constraintBottom_toTopOf="@+id/settingText1"
+            app:layout_constraintEnd_toEndOf="@id/inApp"
+            app:layout_constraintStart_toEndOf="@id/settingImage"
+            app:layout_constraintTop_toTopOf="@id/settingImage"
+            tools:ignore="RtlSymmetry" />
+
+        <TextView
+            android:id="@+id/settingText1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/droid_sans_mono"
+            android:gravity="start|bottom"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="@string/unlimited_themes"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/settingImage"
+            app:layout_constraintEnd_toEndOf="@+id/settingText"
+            app:layout_constraintStart_toStartOf="@id/settingText"
+            app:layout_constraintTop_toBottomOf="@+id/settingText"
+            tools:ignore="RtlSymmetry" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

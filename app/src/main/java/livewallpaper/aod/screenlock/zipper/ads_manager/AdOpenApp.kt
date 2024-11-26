@@ -20,7 +20,10 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.appopen.AppOpenAd
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.utilities.in_app_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
+import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_app_open
 import java.util.*
 
@@ -41,7 +44,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
     private var loadTime: Long = 0
     private var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
-    fun showCustomDialogAndAd() {
+    private fun showCustomDialogAndAd() {
         showAdIfAvailable()
 //        customDialog = Dialog(currentActivity ?: return)
 //        val inflater = LayoutInflater.from(currentActivity)
@@ -77,6 +80,9 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
             override fun onAdLoaded(appOpenAd: AppOpenAd) {
                 openAdForSplash = appOpenAd
                 loadTime = Date().time
+                if(!is_val_ad_inter_loading_screen){
+                    in_app_val_ad_inter_loading_screen=false
+                }
                 super.onAdLoaded(appOpenAd)
             }
 
@@ -152,9 +158,9 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
             Log.d(LOG_TAG, "Can not show ad.")
             fetchAd()
         }
-        Handler(Looper.getMainLooper()).postDelayed({
-            customDialog?.dismiss()
-        }, 4000) // 3 seconds delay
+//        Handler(Looper.getMainLooper()).postDelayed({
+//            customDialog?.dismiss()
+//        }, 4000) // 3 seconds delay
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)

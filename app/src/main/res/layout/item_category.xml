@@ -38,7 +38,6 @@
         android:paddingHorizontal="@dimen/_5sdp"
         android:singleLine="true"
         android:gravity="center"
-        android:text="Day 1"
         android:layout_marginBottom="@dimen/_5sdp"
         android:textColor="@android:color/black"
         android:fontFamily="@font/droid_sans_mono"

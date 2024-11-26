@@ -208,14 +208,6 @@
     <string name="row_style_new_detail">Temanız için bir Satır seçin.</string>
     <string name="preview_new_detail">Ekran Kilidinizin Önizlemesi</string>
     <string name="reward">Ödül</string>
-    <string name="reward_1">Kalp Desenleri</string>
-    <string name="reward_2">Çiçek Kalpleri</string>
-    <string name="reward_3">Parlayan Kalpler</string>
-    <string name="reward_4">Soyut Aşk</string>
-    <string name="reward_5">Klasik Kırmızı Kalpler</string>
-    <string name="reward_6">Pastel Kalpler</string>
-    <string name="reward_7">Kalp Kolajları</string>
-    <string name="reward_8">Altın Kalpler</string>
     <string name="apply_wallpaper">Duvar Kağıdını Uygula</string>
     <string name="claim_your_next_reward_in">Bir sonraki ödülünüzü talep edin</string>
 

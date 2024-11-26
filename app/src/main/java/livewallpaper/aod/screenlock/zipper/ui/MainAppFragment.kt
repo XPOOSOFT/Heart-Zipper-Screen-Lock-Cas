@@ -397,11 +397,11 @@ class MainAppFragment : Fragment() {
             } else {
                 if (isRating) askRatings(activity ?: return)
             }
-        if(sharedPrefUtils?.getBooleanData(context ?: return, "IS_REWARD", false)==false){
-            requestExactAlarmPermission()
-            sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
-            scheduleDailyAlarm(context?:return)
-        }
+//        if(sharedPrefUtils?.getBooleanData(context ?: return, "IS_REWARD", false)==false){
+//            requestExactAlarmPermission()
+//            sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
+////            scheduleDailyAlarm(context?:return)
+//        }
 
     }
     private fun requestExactAlarmPermission() {

@@ -217,14 +217,6 @@
     <string name="row_style_new_detail">Выберите строку для вашей темы.</string>
     <string name="preview_new_detail">Просмотр вашей блокировки экрана</string>
     <string name="reward">Награда</string>
-    <string name="reward_1">Узоры Сердца</string>
-    <string name="reward_2">Цветочные Сердца</string>
-    <string name="reward_3">Светящиеся Сердца</string>
-    <string name="reward_4">Абстрактная Любовь</string>
-    <string name="reward_5">Классические Красные Сердца</string>
-    <string name="reward_6">Пастельные Сердца</string>
-    <string name="reward_7">Коллажи Сердец</string>
-    <string name="reward_8">Золотые Сердца</string>
     <string name="apply_wallpaper">Применить Обои</string>
     <string name="claim_your_next_reward_in">Получите свою следующую награду в</string>
 

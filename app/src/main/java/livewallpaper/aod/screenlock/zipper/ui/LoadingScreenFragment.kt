@@ -36,6 +36,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
+import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
@@ -220,7 +221,7 @@ class LoadingScreenFragment :
                         showNormalInterAdSingle(
                             it,
                             activity ?: return@let,
-                            remoteConfigNormal = val_ad_inter_loading_screen,
+                            remoteConfigNormal = val_ad_inter_loading_screen && is_val_ad_inter_loading_screen,
                             adIdNormal = id_inter_splash_Screen,
                             tagClass = "splash",
                             layout = _binding?.adsLay ?: return@let

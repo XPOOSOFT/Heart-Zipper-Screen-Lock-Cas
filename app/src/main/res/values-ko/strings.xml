@@ -207,14 +207,6 @@
     <string name="row_style_new_detail">테마용 행을 선택하세요.</string>
     <string name="preview_new_detail">화면 잠금 미리보기</string>
     <string name="reward">보상</string>
-    <string name="reward_1">하트 패턴</string>
-    <string name="reward_2">꽃 하트</string>
-    <string name="reward_3">빛나는 하트</string>
-    <string name="reward_4">추상적 사랑</string>
-    <string name="reward_5">클래식 레드 하트</string>
-    <string name="reward_6">파스텔 하트</string>
-    <string name="reward_7">하트 콜라주</string>
-    <string name="reward_8">금색 하트</string>
     <string name="apply_wallpaper">배경화면 적용</string>
     <string name="claim_your_next_reward_in">다음 보상을 청구하세요</string>
 

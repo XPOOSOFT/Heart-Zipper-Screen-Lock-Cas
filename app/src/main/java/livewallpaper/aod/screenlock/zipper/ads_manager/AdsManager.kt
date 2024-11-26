@@ -118,7 +118,7 @@ object AdsManager {
     fun showOpenAd(splashFragment: Activity, function: () -> Unit){
         Log.d(TAG, "loadOpenAdSplash: SHow $openAdForSplash")
         openAdForSplash?.show(splashFragment)
-        splashFragment.let { AdOpenApp(it.application, id_app_open_screen) }
+        AdOpenApp(splashFragment.application, id_app_open_screen)
         openAdForSplash?.fullScreenContentCallback =  object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
                 super.onAdDismissedFullScreenContent()

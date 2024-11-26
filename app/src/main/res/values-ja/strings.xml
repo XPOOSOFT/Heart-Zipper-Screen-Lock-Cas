@@ -210,14 +210,6 @@
     <string name="row_style_new_detail">テーマの行を選択してください。</string>
     <string name="preview_new_detail">画面ロックをプレビュー</string>
     <string name="reward">報酬</string>
-    <string name="reward_1">ハートパターン</string>
-    <string name="reward_2">フラワーハート</string>
-    <string name="reward_3">光るハート</string>
-    <string name="reward_4">抽象的な愛</string>
-    <string name="reward_5">クラシックレッドハート</string>
-    <string name="reward_6">パステルハート</string>
-    <string name="reward_7">ハートコラージュ</string>
-    <string name="reward_8">ゴールデンハート</string>
     <string name="apply_wallpaper">壁紙を適用</string>
     <string name="claim_your_next_reward_in">次の報酬を請求</string>
 

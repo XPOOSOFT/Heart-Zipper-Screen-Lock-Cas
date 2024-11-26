@@ -36,17 +36,6 @@
         app:layout_constraintStart_toEndOf="@id/titleBack"
         tools:ignore="RtlSymmetry" />
 
-    <View
-        android:id="@+id/rewardCounter"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/_70sdp"
-        android:background="@drawable/rect_btn_ad_btn_new"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/titleBack" />
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
@@ -57,43 +46,11 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_category"
-        app:layout_constraintTop_toBottomOf="@id/rewardCounter"
+        app:layout_constraintTop_toBottomOf="@id/titleBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
         />
-
-    <TextView
-        android:id="@+id/timeTextTitle"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/claim_your_next_reward_in"
-        android:textColor="@color/white"
-        android:fontFamily="@font/droid_sans_mono"
-        android:textSize="@dimen/_10sdp"
-        android:gravity="center|start"
-        android:paddingHorizontal="@dimen/_20sdp"
-        android:singleLine="true"
-        app:layout_constraintBottom_toTopOf="@id/timeText"
-        app:layout_constraintEnd_toEndOf="@+id/rewardCounter"
-        app:layout_constraintStart_toStartOf="@+id/rewardCounter"
-        app:layout_constraintTop_toTopOf="@+id/rewardCounter" />
-
-    <TextView
-        android:id="@+id/timeText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/_00_00_00"
-        android:textColor="@color/white"
-        android:textSize="@dimen/_25sdp"
-        android:fontFamily="@font/digitalmono"
-        android:paddingHorizontal="@dimen/_20sdp"
-        android:singleLine="true"
-        android:gravity="center|start"
-        app:layout_constraintBottom_toBottomOf="@+id/rewardCounter"
-        app:layout_constraintEnd_toEndOf="@+id/rewardCounter"
-        app:layout_constraintStart_toStartOf="@+id/rewardCounter"
-        app:layout_constraintTop_toBottomOf="@+id/timeTextTitle" />
 
     <FrameLayout
         android:id="@+id/nativeExitAd"

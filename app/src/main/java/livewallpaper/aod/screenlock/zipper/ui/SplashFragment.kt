@@ -22,6 +22,7 @@ import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.showOpenAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.CmpClass
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
@@ -42,17 +43,20 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
+import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_splash_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_splash_Screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_reward
 import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isRating
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
+import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
@@ -64,6 +68,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_scr
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_splash_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_back
@@ -130,6 +135,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             val cmpClass = CmpClass(activity ?: return@launch)
             cmpClass.initilaizeCMP()
             adsManager = AdsManager.appAdsInit(activity ?: return@launch)
+            AdOpenApp(activity?.application ?:return@launch, id_app_open_splash_screen)
             dbHelper = DbHelper(context ?: return@launch)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
             _binding?.mainbg?.setBackgroundResource(background)
@@ -170,6 +176,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         try {
             lifecycleScope.launchWhenResumed {
                 try {
+                    isSplash = true
+                    delay(6000)
+                    if(val_ad_app_open_splash_screen) {
+                        showOpenAd(activity ?: return@launchWhenResumed) {
+                        }
+                    }
                     findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 } catch (e: Exception) {
@@ -228,6 +240,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         id_inter_splash_Screen = remoteConfig.getString("id_inter_splash_Screen")
         id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
         id_splash_native = remoteConfig.getString("id_splash_native")
+        id_reward = remoteConfig.getString("id_reward")
 
         id_ads_button = remoteConfig.getString("id_ads_button")
         id_ads_bg = remoteConfig.getString("id_ads_bg")
@@ -297,6 +310,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
                 val_ad_inter_loading_screen =
                     remoteConfig!!["val_ad_inter_loading_screen"].asBoolean()
+                is_val_ad_inter_loading_screen =
+                    remoteConfig!!["is_val_ad_inter_loading_screen"].asBoolean()
+                val_ad_app_open_splash_screen =
+                    remoteConfig!!["val_ad_app_open_splash_screen"].asBoolean()
                 val_ad_inter_main_menu_screen_back =
                     remoteConfig!!["val_ad_inter_main_menu_screen_back"].asBoolean()
                 val_ad_inter_language_screen_back =
@@ -468,9 +485,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
                  
 
-                if(val_app_open){
-                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
-                }
+//                if(val_app_open){
+//                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
+//                }
 
                 observeSplashLiveData()
             }

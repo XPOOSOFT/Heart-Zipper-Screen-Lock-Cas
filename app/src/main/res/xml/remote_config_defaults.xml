@@ -64,6 +64,16 @@
     </entry>
 
     <entry>
+        <key>is_val_ad_inter_loading_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_app_open_splash_screen</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
         <key>val_ad_inter_main_menu_screen_back</key>
         <value>true</value>
     </entry>

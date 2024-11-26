@@ -1,0 +1,17 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Background Circle -->
+    <item>
+        <shape android:shape="rectangle" >
+            <corners android:radius="@dimen/_2sdp"/>
+            <solid android:color="#E0E0E0" /> <!-- Background color -->
+        </shape>
+    </item>
+
+    <!-- Loading Icon -->
+    <item>
+        <bitmap
+            android:src="@android:drawable/ic_dialog_alert"
+        android:gravity="center" />
+    </item>
+</layer-list>

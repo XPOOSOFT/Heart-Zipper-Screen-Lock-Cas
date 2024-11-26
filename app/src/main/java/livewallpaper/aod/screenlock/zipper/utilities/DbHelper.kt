@@ -98,6 +98,11 @@ class DbHelper(val context: Context) {
             .getInt(key, value)
     }
 
+    fun getLongData(context: Context, key: String?, value: Long): Long {
+        return context.getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE)
+            .getLong(key, value)
+    }
+
 
     // Get Data
     fun getStringData(context: Context, key: String?, value: String): String? {
@@ -114,6 +119,13 @@ class DbHelper(val context: Context) {
     fun saveData(context: Context, key: String?, `val`: Int) {
         context.getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE).edit()
             .putInt(key, `val`)
+            .apply()
+    }
+
+
+    fun saveData(context: Context, key: String?, `val`: Long) {
+        context.getSharedPreferences(Constants.SHARED_PREFS, Context.MODE_PRIVATE).edit()
+            .putLong(key, `val`)
             .apply()
     }
 

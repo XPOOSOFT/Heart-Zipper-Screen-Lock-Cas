@@ -50,6 +50,7 @@ import kotlin.random.Random
 var isRating = true
 var PurchaseScreen = 0
 var isShowPurchaseScreen = false
+var in_app_val_ad_inter_loading_screen = false
 
 var counter = 0
 var isSplash = true
@@ -90,6 +91,8 @@ var val_banner_language_screen = true
 var val_collapsable_banner = true
 var val_banner_setting_screen = true
 
+var is_val_ad_inter_loading_screen = true
+var val_ad_app_open_splash_screen = true
 var val_ad_inter_loading_screen = true
 
 var val_ad_inter_main_menu_screen_back = true
@@ -127,10 +130,12 @@ var id_inter_counter = 0
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
 var id_app_open_screen = ""
+var id_app_open_splash_screen = "ca-app-pub-9263479717968951/5800800635"
 var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
 var id_collapsable_banner = ""
 var id_splash_native = ""
+var id_reward = "ca-app-pub-3940256099942544/5354046379"
 
 var id_ads_button = "#F3202F"
 var id_ads_bg = "#232323"
@@ -172,6 +177,58 @@ fun getRewardTitle(context: Context): ArrayList<String>
     return list
 }
 
+fun getIcon(): ArrayList<Int>
+{
+    val list = arrayListOf<Int>()
+    list.add(R.drawable.christmas)
+    list.add(R.drawable.santa)
+    list.add(R.drawable.nature)
+    list.add(R.drawable.sports)
+    list.add(R.drawable.newyear)
+    list.add(R.drawable.cartoon)
+    list.add(R.drawable.kpop)
+    list.add(R.drawable.vintage)
+    return list
+}
+
+fun getTimeTitle(): ArrayList<Int>
+{
+    val list = arrayListOf<Int>()
+    list.add(120)
+    list.add(240)
+    list.add(360)
+    list.add(480)
+    list.add(600)
+    list.add(720)
+    list.add(840)
+    list.add(960)
+    return list
+}
+
+fun showAdsDialog(
+    context: Activity,
+    onInApp: () -> Unit,
+    onWatchAds: () -> Unit,
+) {
+    val dialogView = context.layoutInflater.inflate(R.layout.dialog_reward_ads, null)
+    ratingService = AlertDialog.Builder(context).create()
+    ratingService?.setView(dialogView)
+    ratingService?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+    val inApp= dialogView.findViewById<View>(R.id.inApp)
+    val watchAds = dialogView.findViewById<View>(R.id.enableLock)
+    inApp.setOnClickListener {
+        ratingService?.dismiss()
+        onInApp()
+    }
+
+    watchAds.setOnClickListener {
+        ratingService?.dismiss()
+        onWatchAds()
+    }
+
+    ratingService?.show()
+
+}
 
 // Utility to parse JSON into a List of Wallpaper objects
 fun parseWallpaperJson(jsonString: String): List<Wallpaper> {
@@ -842,4 +899,10 @@ fun isAppInForeground(context: Context): Boolean {
         }
     }
     return false
+}
+
+fun Int.toSimpleTimeFormat(): String {
+    val minutes = this / 60
+    val seconds = this % 60
+    return "$minutes:${seconds.toString().padStart(2, '0')}"
 }

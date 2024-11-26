@@ -26,9 +26,10 @@ class UnlockReceiver : BroadcastReceiver() {
         val prefs = RewardPreferences(context)
         val currentDay = prefs.getCurrentDay()
         if (currentDay <= RewardConstants.TOTAL_DAYS) {
-            showUnlockNotification(context, "Category $currentDay unlocked!")
+//            showUnlockNotification(context, "Category $currentDay unlocked!")
             prefs.setCurrentDay(currentDay + 1)
             prefs.setLastOpenDate(System.currentTimeMillis())
+            RewardPreferences(context).incrementUnlockDay(context)
         }
     }
 
