@@ -14,12 +14,12 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
@@ -47,7 +47,7 @@ class WallpaperFragment : Fragment() {
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
 
-    private var rewardedInterstitialAd: RewardedInterstitialAd? = null
+
     private var isLoadingAds = false
 
     override fun onCreateView(
@@ -87,7 +87,7 @@ class WallpaperFragment : Fragment() {
                 )!!
             )
         }
-        loadRewardedInterstitialAd()
+//        loadRewardedInterstitialAd()
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
@@ -95,6 +95,8 @@ class WallpaperFragment : Fragment() {
             findNavController().navigateUp()
         }
         loadBanner()
+        if (!isLoadingAds)
+            loadRewardedInterstitialAd()
     }
 
     private fun unlockNextCategory(view: View, saveTime: Long) {
@@ -127,7 +129,11 @@ class WallpaperFragment : Fragment() {
                 )
                 return@CategoryAdapter
             }
-            if(_Lock) {
+            if (_Lock) {
+                if(!isLoadingAds){
+                    showToast(context ?: requireContext(), getString(R.string.try_agin_ad_not_load))
+                    return@CategoryAdapter
+                }
                 showAdsDialog(
                     context = activity ?: return@CategoryAdapter,
                     onInApp = { ->
@@ -139,19 +145,14 @@ class WallpaperFragment : Fragment() {
                     },
                     onWatchAds = { ->
                         showRewardedVideo {
-                            //                                if(itt==0){
-//                                    showToast(context?:return@showAdsDialog,getString(R.string.please_wait_app_is_opening))
-//                                }else{
                             findNavController().navigate(
                                 R.id.ImageListFragment,
                                 bundleOf("title" to Tilte_)
                             )
-//                                }
                         }
-
                     })
                 return@CategoryAdapter
-            }else{
+            } else {
                 showToast(context ?: requireContext(), getString(R.string.unlock))
                 return@CategoryAdapter
             }
@@ -161,11 +162,8 @@ class WallpaperFragment : Fragment() {
     }
 
     private fun loadRewardedInterstitialAd() {
-        MobileAds.initialize(
-            activity ?: return
-        ) { }
+
         if (rewardedInterstitialAd == null) {
-            isLoadingAds = true
             val adRequest = AdRequest.Builder().build()
 
             // Load an ad.
@@ -184,9 +182,8 @@ class WallpaperFragment : Fragment() {
                     override fun onAdLoaded(rewardedAd: RewardedInterstitialAd) {
                         super.onAdLoaded(rewardedAd)
                         Log.d("MAIN_ACTIVITY_TAG", "Ad was loaded.")
-
                         rewardedInterstitialAd = rewardedAd
-                        isLoadingAds = false
+                        isLoadingAds = true
                     }
                 },
             )
@@ -209,6 +206,7 @@ class WallpaperFragment : Fragment() {
                     rewardedInterstitialAd = null
                     // Preload the next rewarded interstitial ad.
                     loadRewardedInterstitialAd()
+                    function.invoke()
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError) {
@@ -225,6 +223,7 @@ class WallpaperFragment : Fragment() {
             }
 
         rewardedInterstitialAd?.show(activity ?: return) { rewardItem ->
+            isLoadingAds = false
             function.invoke()
         }
     }

@@ -121,27 +121,28 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     companion object {
         var isUserConsent = false
+        var splashTime = 10000L
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        CoroutineScope(Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             isSplash = false
             isRating=true
             counter = 0
             inter_frequency_count = 0
-            val cmpClass = CmpClass(activity ?: return)
+            val cmpClass = CmpClass(activity ?: return@launch)
             cmpClass.initilaizeCMP()
-            adsManager = AdsManager.appAdsInit(activity ?: return)
-            AdOpenApp(activity?.application ?:return, id_app_open_splash_screen)
-            dbHelper = DbHelper(context ?: return)
+            adsManager = AdsManager.appAdsInit(activity ?: return@launch)
+            AdOpenApp(activity?.application ?:return@launch, id_app_open_splash_screen)
+            dbHelper = DbHelper(context ?: return@launch)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
             _binding?.mainbg?.setBackgroundResource(background)
-            if (LoadPref("firstTime", context ?: return) == 0) {
-                SavePref("firstTime", "1", context ?: return)
-                SavePref(SpeedActivePref, "350", context ?: return)
-                SaveWallpaper(context ?: return, 7)
+            if (LoadPref("firstTime", context ?: return@launch) == 0) {
+                SavePref("firstTime", "1", context ?: return@launch)
+                SavePref(SpeedActivePref, "350", context ?: return@launch)
+                SaveWallpaper(context ?: return@launch, 7)
             }
 
             if (isNetworkAvailable(activity)) {
@@ -167,7 +168,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             setupBackPressedCallback {
                 //Do Nothing
             }
-//        }
+        }
     }
 
     private fun observeSplashLiveData() {
@@ -175,7 +176,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             lifecycleScope.launchWhenResumed {
                 try {
                     isSplash = true
-                    delay(6000)
+                    delay(splashTime)
                     if(val_ad_app_open_splash_screen) {
                         showOpenAd(activity ?: return@launchWhenResumed) {
                         }

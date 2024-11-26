@@ -19,7 +19,9 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.appopen.AppOpenAd
+import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ui.SplashFragment.Companion.splashTime
 import livewallpaper.aod.screenlock.zipper.utilities.in_app_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
@@ -83,6 +85,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
                 if(!is_val_ad_inter_loading_screen){
                     in_app_val_ad_inter_loading_screen=false
                 }
+                splashTime=0L
                 super.onAdLoaded(appOpenAd)
             }
 
@@ -176,6 +179,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
         private const val LOG_TAG = "AppOpenManager"
         var isShowingAd = false
         var openAdForSplash: AppOpenAd? = null
+        var rewardedInterstitialAd: RewardedInterstitialAd? = null
     }
 
     init {

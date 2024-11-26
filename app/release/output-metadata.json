@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock",
+  "variantName": "release",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 59,
+      "versionName": "23.9",
+      "outputFile": "LoveHeartLockScreen_v23.9(59)-release.apk"
+    }
+  ],
+  "elementType": "File"
+}
