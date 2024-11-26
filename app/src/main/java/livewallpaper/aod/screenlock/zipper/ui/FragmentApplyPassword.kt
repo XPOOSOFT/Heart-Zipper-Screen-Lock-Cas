@@ -308,7 +308,7 @@ class FragmentApplyPassword : Fragment() {
         }
 
         2 -> {
-            adsManager?.nativeAds()?.loadNativeAdExit(
+            adsManager?.nativeAds()?.loadNativeAd(
                 activity ?: return,
                 val_ad_native_password_screen,
                 id_native_screen,

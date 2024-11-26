@@ -248,7 +248,7 @@ class WallpaperFragment : Fragment() {
             }
 
             2 -> {
-                AdsManager.appAdsInit(activity ?: return).nativeAds().loadNativeAdExit(
+                AdsManager.appAdsInit(activity ?: return).nativeAds().loadNativeAd(
                     activity ?: return,
                     val_ad_native_reward_screen,
                     id_native_screen,

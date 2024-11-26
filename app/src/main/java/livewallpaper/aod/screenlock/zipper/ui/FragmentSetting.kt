@@ -250,7 +250,7 @@ class FragmentSetting : Fragment() {
         }
 
         2 -> {
-            adsManager?.nativeAds()?.loadNativeAdExit(
+            adsManager?.nativeAds()?.loadNativeAd(
                 activity ?: return,
                 val_ad_native_setting_screen,
                 id_native_screen,

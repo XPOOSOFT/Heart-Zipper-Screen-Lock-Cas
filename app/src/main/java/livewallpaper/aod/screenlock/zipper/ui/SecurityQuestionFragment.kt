@@ -134,7 +134,7 @@ class SecurityQuestionFragment : Fragment() {
             }
 
             2 -> {
-                adsManager?.nativeAds()?.loadNativeAdExit(
+                adsManager?.nativeAds()?.loadNativeAd(
                     activity ?: return,
                     val_ad_native_security_screen,
                     id_native_screen,

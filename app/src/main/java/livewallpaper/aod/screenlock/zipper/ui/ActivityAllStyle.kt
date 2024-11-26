@@ -215,7 +215,7 @@ class ActivityAllStyle : Fragment() {
             }
 
             2 -> {
-                adsManager?.nativeAds()?.loadNativeAdExit(
+                adsManager?.nativeAds()?.loadNativeAd(
                     activity ?: return,
                     val_ad_native_list_data_screen,
                     id_native_screen,

@@ -74,13 +74,13 @@ var val_ad_native_language_screen = true
 var val_ad_native_loading_screen = true
 var val_ad_native_reward_screen = true
 
-var type_ad_native_sound_screen = 1
-var type_ad_native_setting_screen = 1
-var type_ad_native_security_screen = 1
-var type_ad_native_enable_screen = 1
-var type_ad_native_password_screen = 1
-var type_ad_native_list_data_screen = 1
-var type_ad_native_reward_screen = 1
+var type_ad_native_sound_screen = 2
+var type_ad_native_setting_screen = 2
+var type_ad_native_security_screen = 2
+var type_ad_native_enable_screen = 2
+var type_ad_native_password_screen = 2
+var type_ad_native_list_data_screen = 2
+var type_ad_native_reward_screen = 2
 
 var native_precashe_counter = 4
 var native_precashe_copunt_current = 0

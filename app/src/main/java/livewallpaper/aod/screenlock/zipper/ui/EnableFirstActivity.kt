@@ -208,7 +208,7 @@ class EnableFirstActivity : Fragment() {
          }
 
          2 -> {
-             adsManager?.nativeAds()?.loadNativeAdExit(
+             adsManager?.nativeAds()?.loadNativeAd(
                  activity ?: return,
                  val_ad_native_enable_screen,
                  id_native_screen,

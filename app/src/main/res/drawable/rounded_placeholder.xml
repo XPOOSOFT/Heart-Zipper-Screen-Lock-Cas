@@ -12,6 +12,6 @@
     <item>
         <bitmap
             android:src="@android:drawable/ic_dialog_alert"
-        android:gravity="center" />
+        android:gravity="center_horizontal" />
     </item>
 </layer-list>

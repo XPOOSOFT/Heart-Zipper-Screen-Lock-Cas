@@ -1,6 +1,5 @@
 package livewallpaper.aod.screenlock.zipper.ads_manager
 
-
 import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
@@ -28,11 +27,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
 import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
-/**
- * Created by
- * @Author: Javed Khan ,
- */
-
 object NativeAds {
 
     private const val NativeAdsLogs = "native_log_internal"
@@ -41,11 +35,6 @@ object NativeAds {
     private var isNativeLoading: Boolean = false
     private var nativeId: String? = null
     var currentNativeAd: NativeAd? = null
-
-
-    private var isNativeLoading2nd: Boolean = false
-    private var nativeId2nd: String? = null
-    var currentNativeAd2nd: NativeAd? = null
 
     fun nativeAds(): NativeAds {
         if (nativeAds == null) {
@@ -277,7 +266,7 @@ object NativeAds {
             )
             if (isNativeLoading) {
                 Log.d(NativeAdsLogs, "Already loading Ad")
-                loadedShoeNativeExit(activity, nativeListener, builder, nativeAdId)
+//                loadedShoeNativeExit(activity, nativeListener, builder, nativeAdId)
                 return
             }
             if (currentNativeAd != null) {
@@ -316,7 +305,6 @@ object NativeAds {
             val adLoader = builder.withAdListener(object : AdListener() {
                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
                     FullScreenAds.logEventForAds(NativeAdsLogs, "failed", nativeAdId)
-
                     if (isDebug()) {
                         Snackbar.make(
                             activity.window.decorView.rootView,
@@ -331,11 +319,8 @@ object NativeAds {
                 }
 
                 override fun onAdImpression() {
-                    currentNativeAd = null
                     isNativeLoading = false
                     Log.d(NativeAdsLogs, "onAdImpression native Ad")
-//                    loadNativeAd(activity,true,nativeAdId,nativeListener)
-
                     super.onAdImpression()
                 }
 
@@ -369,7 +354,6 @@ object NativeAds {
             }
         }
     }
-
 
     private fun loadedShoeNativeExit(
         activity: Activity,
