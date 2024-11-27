@@ -211,19 +211,28 @@ Please Check it first!</string>
     <string name="row_style_new_detail">Choose a Row for your Theme.</string>
     <string name="preview_new_detail">Preview Your Screen Lock</string>
 
+    <string name="reward_1_1" translatable="false">Christmas</string>
+    <string name="reward_1_2" translatable="false">Santa</string>
+    <string name="reward_1_3" translatable="false">Nature</string>
+    <string name="reward_1_4" translatable="false">Sports</string>
+    <string name="reward_1_5" translatable="false">New Year</string>
+    <string name="reward_1_6" translatable="false">Cartoon</string>
+    <string name="reward_1_7" translatable="false">k Pop</string>
+    <string name="reward_1_8" translatable="false">Vintage</string>
+
     <string name="reward">Reward</string>
+
     <string name="reward_1">Christmas</string>
    <string name="reward_2">Santa</string>
     <string name="reward_3">Nature</string>
     <string name="reward_4">Sports</string>
-    <string name="reward_5">New Love</string>
+    <string name="reward_5">New Year</string>
     <string name="reward_6">Cartoon</string>
-    <string name="reward_7">kpop</string>
+    <string name="reward_7">k Pop</string>
     <string name="reward_8">Vintage</string>
     <string name="apply_wallpaper">Apply Wallpaper</string>
     <string name="claim_your_next_reward_in">Claim your next reward in</string>
     <string name="_00_00_00">00:00:00</string>
-
     <string name="get_it_now">Get it Now</string>
     <string name="watch_an_ads">Watch an Ads</string>
     <string name="unlimited_themes">Unlimited themes</string>

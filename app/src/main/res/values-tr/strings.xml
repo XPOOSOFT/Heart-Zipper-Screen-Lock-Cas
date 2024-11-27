@@ -208,9 +208,22 @@
     <string name="row_style_new_detail">Temanız için bir Satır seçin.</string>
     <string name="preview_new_detail">Ekran Kilidinizin Önizlemesi</string>
     <string name="reward">Ödül</string>
+    <string name="reward_1">Noel</string>
+    <string name="reward_2">Noel Baba</string>
+    <string name="reward_3">Doğa</string>
+    <string name="reward_4">Spor</string>
+    <string name="reward_5">Yeni Yıl</string>
+    <string name="reward_6">Çizgi Film</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
     <string name="apply_wallpaper">Duvar Kağıdını Uygula</string>
     <string name="claim_your_next_reward_in">Bir sonraki ödülünüzü talep edin</string>
-
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Hemen Al</string>
+    <string name="watch_an_ads">Reklam İzle</string>
+    <string name="unlimited_themes">Sınırsız Temalar</string>
+    <string name="unlock">Kilidi Aç</string>
+    <string name="try_agin_ad_not_load">Tekrar Deneyin, Reklam Yüklenmedi</string>
 
 </resources>
 

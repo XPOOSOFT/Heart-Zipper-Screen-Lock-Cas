@@ -210,8 +210,22 @@
     <string name="preview_new_detail">عرض مسبق لشاشة القفل الخاصة بك</string>
 
     <string name="reward">مكافأة</string>
-    <string name="apply_wallpaper">تطبيق الخلفية</string>
-    <string name="claim_your_next_reward_in">قم بالمطالبة بمكافأتك التالية في</string>
+    <string name="reward_1">عيد الميلاد</string>
+    <string name="reward_2">سانتا</string>
+    <string name="reward_3">طبيعة</string>
+    <string name="reward_4">رياضة</string>
+    <string name="reward_5">رأس السنة الجديدة</string>
+    <string name="reward_6">رسوم متحركة</string>
+    <string name="reward_7">كي بوب</string>
+    <string name="reward_8">عتيق</string>
+    <string name="apply_wallpaper">تطبيق خلفية</string>
+    <string name="claim_your_next_reward_in">استلم مكافأتك التالية في</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">احصل عليه الآن</string>
+    <string name="watch_an_ads">شاهد إعلانًا</string>
+    <string name="unlimited_themes">مواضيع غير محدودة</string>
+    <string name="unlock">فتح</string>
+    <string name="try_agin_ad_not_load">حاول مرة أخرى، الإعلان لم يتم تحميله</string>
 
 </resources>
 

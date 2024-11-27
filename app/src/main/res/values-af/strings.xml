@@ -154,7 +154,7 @@
     <string name="heart_theme">Hart Tema</string>
     <string name="heart_lock">Hart Sluiter</string>
     <string name="heart_zipper">Hart Sluiter</string>
-    <string name="loading_ad">Advertensie Laai...</string>
+    <string name="loading_ad">Advertensie Laai…</string>
     <string name="app_security">App Sekuriteit</string>
     <string name="allow_permission">Toestemming Toestaan</string>
     <string name="text1">Open die Hart ritsluiting vergrendel skerm app en gaan na die beheer paneel.</string>
@@ -207,6 +207,17 @@
     <string name="zipperStyle_new_detail">Chagua zipu kwa Mandhari yako.</string>
     <string name="row_style_new_detail">Chagua Safu kwa Mandhari yako.</string>
     <string name="preview_new_detail">Onyesha Awali Kufunga Skrini Yako</string>
+
+    <string name="reward">Beloning</string>
+    <string name="reward_1">Kersfees</string>
+    <string name="reward_2">Kersvader</string>
+    <string name="reward_3">Natuur</string>
+    <string name="reward_4">Sport</string>
+    <string name="reward_5">Nuwe Jaar</string>
+    <string name="reward_6">Spotprent</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+
 
 
 </resources>

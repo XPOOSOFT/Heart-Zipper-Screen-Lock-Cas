@@ -210,8 +210,23 @@
     <string name="preview_new_detail">আপনার স্ক্রিন লকের প্রিভিউ দেখুন</string>
 
     <string name="reward">পুরস্কার</string>
+
+    <string name="reward_1">বড়দিন</string>
+    <string name="reward_2">সান্তা</string>
+    <string name="reward_3">প্রকৃতি</string>
+    <string name="reward_4">খেলা</string>
+    <string name="reward_5">নববর্ষ</string>
+    <string name="reward_6">কার্টুন</string>
+    <string name="reward_7">কে পপ</string>
+    <string name="reward_8">প্রাচীন</string>
     <string name="apply_wallpaper">ওয়ালপেপার প্রয়োগ করুন</string>
     <string name="claim_your_next_reward_in">আপনার পরবর্তী পুরস্কার দাবি করুন</string>
+    <string name="_00_00_00">০০:০০:০০</string>
+    <string name="get_it_now">এখনই পান</string>
+    <string name="watch_an_ads">একটি বিজ্ঞাপন দেখুন</string>
+    <string name="unlimited_themes">সীমাহীন থিম</string>
+    <string name="unlock">লক খুলুন</string>
+    <string name="try_agin_ad_not_load">আবার চেষ্টা করুন, বিজ্ঞাপন লোড হয়নি</string>
 
 </resources>
 

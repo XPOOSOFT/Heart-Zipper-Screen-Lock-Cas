@@ -208,8 +208,22 @@
     <string name="row_style_new_detail">اپنے تھیم کے لئے ایک صف منتخب کریں۔</string>
     <string name="preview_new_detail">اپنے سکرین لاک کا جائزہ لیں</string>
     <string name="reward">انعام</string>
-    <string name="apply_wallpaper">دیوار کا کاغذ لگائیں</string>
+    <string name="reward_1">کرسمس</string>
+    <string name="reward_2">سانتا</string>
+    <string name="reward_3">فطرت</string>
+    <string name="reward_4">کھیل</string>
+    <string name="reward_5">نیا سال</string>
+    <string name="reward_6">کارٹون</string>
+    <string name="reward_7">کے پاپ</string>
+    <string name="reward_8">ونٹیج</string>
+    <string name="apply_wallpaper">وال پیپر لگائیں</string>
     <string name="claim_your_next_reward_in">اپنا اگلا انعام حاصل کریں</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">ابھی حاصل کریں</string>
+    <string name="watch_an_ads">ایک اشتہار دیکھیں</string>
+    <string name="unlimited_themes">لامحدود تھیمز</string>
+    <string name="unlock">ان لاک کریں</string>
+    <string name="try_agin_ad_not_load">دوبارہ کوشش کریں، اشتہار لوڈ نہیں ہوا</string>
 
 </resources>
 

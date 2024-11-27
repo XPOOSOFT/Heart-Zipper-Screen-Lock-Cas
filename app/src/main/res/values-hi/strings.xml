@@ -207,7 +207,22 @@
     <string name="row_style_new_detail">अपनी थीम के लिए एक पंक्ति चुनें।</string>
     <string name="preview_new_detail">अपने स्क्रीन लॉक का पूर्वावलोकन करें</string>
     <string name="reward">इनाम</string>
+
+    <string name="reward_1">क्रिसमस</string>
+    <string name="reward_2">सांता</string>
+    <string name="reward_3">प्रकृति</string>
+    <string name="reward_4">खेल</string>
+    <string name="reward_5">नया साल</string>
+    <string name="reward_6">कार्टून</string>
+    <string name="reward_7">के-पॉप</string>
+    <string name="reward_8">विंटेज</string>
     <string name="apply_wallpaper">वॉलपेपर लागू करें</string>
-    <string name="claim_your_next_reward_in">अपना अगला इनाम प्राप्त करें</string>
+    <string name="claim_your_next_reward_in">अपना अगला पुरस्कार प्राप्त करें</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">अभी प्राप्त करें</string>
+    <string name="watch_an_ads">एक विज्ञापन देखें</string>
+    <string name="unlimited_themes">असीमित थीम</string>
+    <string name="unlock">अनलॉक</string>
+    <string name="try_agin_ad_not_load">पुनः प्रयास करें, विज्ञापन लोड नहीं हुआ</string>
 
 </resources>

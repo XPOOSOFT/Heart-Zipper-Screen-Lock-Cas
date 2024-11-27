@@ -210,8 +210,24 @@
     <string name="row_style_new_detail">テーマの行を選択してください。</string>
     <string name="preview_new_detail">画面ロックをプレビュー</string>
     <string name="reward">報酬</string>
-    <string name="apply_wallpaper">壁紙を適用</string>
-    <string name="claim_your_next_reward_in">次の報酬を請求</string>
+
+    <string name="reward_1">クリスマス</string>
+    <string name="reward_2">サンタ</string>
+    <string name="reward_3">自然</string>
+    <string name="reward_4">スポーツ</string>
+    <string name="reward_5">新年</string>
+    <string name="reward_6">アニメ</string>
+    <string name="reward_7">Kポップ</string>
+    <string name="reward_8">ヴィンテージ</string>
+    <string name="apply_wallpaper">壁紙を適用する</string>
+    <string name="claim_your_next_reward_in">次の報酬を受け取るまで</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">今すぐ取得</string>
+    <string name="watch_an_ads">広告を見る</string>
+    <string name="unlimited_themes">無制限のテーマ</string>
+    <string name="unlock">ロック解除</string>
+    <string name="try_agin_ad_not_load">もう一度試してください、広告が読み込まれません</string>
+
 
 </resources>
 

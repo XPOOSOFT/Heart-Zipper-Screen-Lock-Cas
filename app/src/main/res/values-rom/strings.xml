@@ -206,8 +206,22 @@
     <string name="row_style_new_detail">Elige una Fila para tu Tema.</string>
     <string name="preview_new_detail">Previsualiza tu Bloqueo de Pantalla</string>
     <string name="reward">Recompensa</string>
-    <string name="apply_wallpaper">Aplicar Papel Tapiz</string>
+    <string name="reward_1">Navidad</string>
+    <string name="reward_2">Santa Claus</string>
+    <string name="reward_3">Naturaleza</string>
+    <string name="reward_4">Deportes</string>
+    <string name="reward_5">Año Nuevo</string>
+    <string name="reward_6">Caricatura</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+    <string name="apply_wallpaper">Aplicar Fondo de Pantalla</string>
     <string name="claim_your_next_reward_in">Reclama tu próxima recompensa en</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Consíguelo Ahora</string>
+    <string name="watch_an_ads">Mira un Anuncio</string>
+    <string name="unlimited_themes">Temas Ilimitados</string>
+    <string name="unlock">Desbloquear</string>
+    <string name="try_agin_ad_not_load">Intenta de Nuevo, Anuncio No Cargado</string>
 
 </resources>
 

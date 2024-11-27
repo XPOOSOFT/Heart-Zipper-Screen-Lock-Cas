@@ -131,7 +131,7 @@
     <string name="set_pin">Définir le PIN</string>
     <string name="confirm_pin">Confirmer le PIN</string>
     <string name="add_question">Ajouter une question</string>
-    <string name="type_answer_her">Tapez votre réponse ici...</string>
+    <string name="type_answer_her">Tapez votre réponse ici…</string>
     <string name="what_is_your_favourite_color">Quelle est votre couleur préférée ?</string>
     <string name="security_question">Question de sécurité</string>
     <string name="the_app_need_draw_on_top_permission_please_check_it_first">L\'application a besoin de la permission de superposition. Veuillez vérifier cela d\'abord !</string>
@@ -154,7 +154,7 @@
     <string name="heart_theme">Thème du cœur</string>
     <string name="heart_lock">Verrouillage du cœur</string>
     <string name="heart_zipper">Fermeture éclair du cœur</string>
-    <string name="loading_ad">Chargement de l\'annonce...</string>
+    <string name="loading_ad">Chargement de l\'annonce…</string>
     <string name="app_security">Sécurité de l\'application</string>
     <string name="allow_permission">Permettre la permission</string>
     <string name="text1">Ouvrez l\'application Écran de Verrouillage Love Heart et allez sur le tableau de bord.</string>
@@ -207,8 +207,23 @@
     <string name="preview_new_detail">Aperçu de votre Écran de Verrouillage</string>
 
     <string name="reward">Récompense</string>
-    <string name="apply_wallpaper">Appliquer le Fond d\'Écran</string>
+
+    <string name="reward_1">Noël</string>
+    <string name="reward_2">Père Noël</string>
+    <string name="reward_3">Nature</string>
+    <string name="reward_4">Sports</string>
+    <string name="reward_5">Nouvel An</string>
+    <string name="reward_6">Dessin Animé</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+    <string name="apply_wallpaper">Appliquer le fond d\'écran</string>
     <string name="claim_your_next_reward_in">Réclamez votre prochaine récompense dans</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Obtenez-le maintenant</string>
+    <string name="watch_an_ads">Regardez une publicité</string>
+    <string name="unlimited_themes">Thèmes illimités</string>
+    <string name="unlock">Déverrouiller</string>
+    <string name="try_agin_ad_not_load">Réessayez, la publicité n\'est pas chargée</string>
 
 </resources>
 

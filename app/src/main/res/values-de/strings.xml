@@ -210,8 +210,22 @@
     <string name="preview_new_detail">Vorschau Ihres Sperrbildschirms</string>
 
     <string name="reward">Belohnung</string>
-    <string name="apply_wallpaper">Hintergrundbild Anwenden</string>
-    <string name="claim_your_next_reward_in">Fordern Sie Ihre nächste Belohnung in</string>
+    <string name="reward_1">Weihnachten</string>
+    <string name="reward_2">Weihnachtsmann</string>
+    <string name="reward_3">Natur</string>
+    <string name="reward_4">Sport</string>
+    <string name="reward_5">Neujahr</string>
+    <string name="reward_6">Cartoon</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+    <string name="apply_wallpaper">Hintergrund anwenden</string>
+    <string name="claim_your_next_reward_in">Fordern Sie Ihre nächste Belohnung an in</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Jetzt holen</string>
+    <string name="watch_an_ads">Eine Anzeige ansehen</string>
+    <string name="unlimited_themes">Unbegrenzte Themen</string>
+    <string name="unlock">Entsperren</string>
+    <string name="try_agin_ad_not_load">Erneut versuchen, Anzeige nicht geladen</string>
 
 </resources>
 

@@ -206,7 +206,21 @@
     <string name="row_style_new_detail">Kies een rij voor je thema.</string>
     <string name="preview_new_detail">Bekijk je schermvergrendeling</string>
     <string name="reward">Beloning</string>
-    <string name="apply_wallpaper">Achtergrond toepassen</string>
-    <string name="claim_your_next_reward_in">Claim je volgende beloning in</string>
+    <string name="reward_1">Kerstmis</string>
+    <string name="reward_2">Kerstman</string>
+    <string name="reward_3">Natuur</string>
+    <string name="reward_4">Sport</string>
+    <string name="reward_5">Nieuwjaar</string>
+    <string name="reward_6">Cartoon</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+    <string name="apply_wallpaper">Achtergrond Toepassen</string>
+    <string name="claim_your_next_reward_in">Claim je volgende beloning over</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Nu Krijgen</string>
+    <string name="watch_an_ads">Bekijk een Advertentie</string>
+    <string name="unlimited_themes">Onbeperkte Thema\'s</string>
+    <string name="unlock">Ontgrendelen</string>
+    <string name="try_agin_ad_not_load">Probeer Opnieuw, Advertentie Niet Geladen</string>
 
 </resources>

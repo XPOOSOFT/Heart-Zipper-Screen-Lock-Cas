@@ -217,8 +217,22 @@
     <string name="row_style_new_detail">Выберите строку для вашей темы.</string>
     <string name="preview_new_detail">Просмотр вашей блокировки экрана</string>
     <string name="reward">Награда</string>
+    <string name="reward_1">Рождество</string>
+    <string name="reward_2">Санта</string>
+    <string name="reward_3">Природа</string>
+    <string name="reward_4">Спорт</string>
+    <string name="reward_5">Новый год</string>
+    <string name="reward_6">Мультфильм</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Винтаж</string>
     <string name="apply_wallpaper">Применить Обои</string>
-    <string name="claim_your_next_reward_in">Получите свою следующую награду в</string>
+    <string name="claim_your_next_reward_in">Получите свою следующую награду через</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Получить Сейчас</string>
+    <string name="watch_an_ads">Посмотреть Рекламу</string>
+    <string name="unlimited_themes">Неограниченные Темы</string>
+    <string name="unlock">Разблокировать</string>
+    <string name="try_agin_ad_not_load">Попробуйте снова, реклама не загрузилась</string>
 
 </resources>
 

@@ -70,7 +70,7 @@
     <string name="more_app">More App (Ad)</string>
     <string name="privacy">Privacy</string>
 
-    <string name="LOADING">Loading...</string>
+    <string name="LOADING">Loading…</string>
     <string name="close">Close</string>
     <string name="dialog_cancel">Cancel</string>
     <string name="dialog_default_title">Here s a message!</string>
@@ -132,7 +132,7 @@
     <string name="set_pin">Set Pin</string>
     <string name="confirm_pin">Confirm Pin</string>
     <string name="add_question">Add Question</string>
-    <string name="type_answer_her">Type answer her...</string>
+    <string name="type_answer_her">Type answer her…</string>
     <string name="what_is_your_favourite_color">What is your favourite color?</string>
     <string name="security_question">Security Question</string>
     <string name="the_app_need_draw_on_top_permission_please_check_it_first">The App need draw on the top of the permission
@@ -157,7 +157,7 @@ Please Check it first!</string>
     <string name="heart_theme">Heart Theme</string>
     <string name="heart_lock">Heart Lock</string>
     <string name="heart_zipper">Heart Lock</string>
-    <string name="loading_ad">Loading Ad...</string>
+    <string name="loading_ad">Loading Ad…</string>
     <string name="app_security">App Security</string>
     <string name="allow_permission">Allow Permission</string>
     <string name="text1">Open the Heart zipper lock screen app and go to its dashboard.</string>
@@ -209,7 +209,21 @@ Please Check it first!</string>
     <string name="preview_new_detail">Aperçu de votre écran de verrouillage</string>
     <string name="reward">Récompense</string>
 
-    <string name="apply_wallpaper">Appliquer le Fond d\'Écran</string>
+    <string name="reward_1">Noël</string>
+    <string name="reward_2">Père Noël</string>
+    <string name="reward_3">Nature</string>
+    <string name="reward_4">Sports</string>
+    <string name="reward_5">Nouvel An</string>
+    <string name="reward_6">Dessin Animé</string>
+    <string name="reward_7">K-Pop</string>
+    <string name="reward_8">Vintage</string>
+    <string name="apply_wallpaper">Appliquer le fond d\'écran</string>
     <string name="claim_your_next_reward_in">Réclamez votre prochaine récompense dans</string>
+    <string name="_00_00_00">00:00:00</string>
+    <string name="get_it_now">Obtenez-le maintenant</string>
+    <string name="watch_an_ads">Regardez une annonce</string>
+    <string name="unlimited_themes">Thèmes illimités</string>
+    <string name="unlock">Déverrouiller</string>
+    <string name="try_agin_ad_not_load">Réessayez, lannonce n a pas chargé</string>
 
 </resources>
