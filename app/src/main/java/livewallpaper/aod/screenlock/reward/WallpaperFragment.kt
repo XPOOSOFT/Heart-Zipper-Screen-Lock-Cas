@@ -95,7 +95,6 @@ class WallpaperFragment : Fragment() {
             findNavController().navigateUp()
         }
         loadBanner()
-        if (!isLoadingAds)
             loadRewardedInterstitialAd()
     }
 
@@ -140,8 +139,9 @@ class WallpaperFragment : Fragment() {
                         return@showAdsDialog
                     },
                     onWatchAds = { ->
-                        if(!isLoadingAds){
+                        if(rewardedInterstitialAd == null){
                             showToast(context ?: requireContext(), getString(R.string.try_agin_ad_not_load))
+                           loadRewardedInterstitialAd()
                             return@showAdsDialog
                         }
                         showRewardedVideo {
