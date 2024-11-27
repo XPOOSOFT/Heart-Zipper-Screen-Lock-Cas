@@ -8,6 +8,8 @@ import android.widget.ImageView
 import androidx.constraintlayout.utils.widget.ImageFilterView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import livewallpaper.aod.screenlock.zipper.R
@@ -25,7 +27,11 @@ class ImageAdapter(
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val imageUrl = images[position]
-        Glide.with(holder.itemView.context)
+        Glide.with(holder.itemView.context).load(imageUrl).diskCacheStrategy(DiskCacheStrategy.DATA)
+            .transition(DrawableTransitionOptions.withCrossFade()).into(
+                holder.previewImageView!!
+            )
+/*        Glide.with(holder.itemView.context)
             .asBitmap() // Ensure Glide loads the image as a Bitmap
             .load(imageUrl)
             .placeholder(R.drawable.rounded_placeholder) // Show placeholder while loading
@@ -46,7 +52,7 @@ class ImageAdapter(
                     // Clear resources if the request is cancelled or no longer needed
                     holder.previewImageView.setImageDrawable(placeholder)
                 }
-            })
+            })*/
         holder.itemView.setOnClickListener {
             onImageClick(imageUrl)
         }

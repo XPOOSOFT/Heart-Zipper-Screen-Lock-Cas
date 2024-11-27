@@ -32,6 +32,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.getTimeTitle
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_reward
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
@@ -46,7 +47,6 @@ class WallpaperFragment : Fragment() {
     private val categories = mutableListOf<WallpaperCategory>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
-
 
     private var isLoadingAds = false
 
@@ -130,10 +130,6 @@ class WallpaperFragment : Fragment() {
                 return@CategoryAdapter
             }
             if (_Lock) {
-                if(!isLoadingAds){
-                    showToast(context ?: requireContext(), getString(R.string.try_agin_ad_not_load))
-                    return@CategoryAdapter
-                }
                 showAdsDialog(
                     context = activity ?: return@CategoryAdapter,
                     onInApp = { ->
@@ -144,6 +140,10 @@ class WallpaperFragment : Fragment() {
                         return@showAdsDialog
                     },
                     onWatchAds = { ->
+                        if(!isLoadingAds){
+                            showToast(context ?: requireContext(), getString(R.string.try_agin_ad_not_load))
+                            return@showAdsDialog
+                        }
                         showRewardedVideo {
                             findNavController().navigate(
                                 R.id.ImageListFragment,
@@ -203,15 +203,12 @@ class WallpaperFragment : Fragment() {
                     Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
                     // Don't forget to set the ad reference to null so you
                     // don't show the ad a second time.
-                    rewardedInterstitialAd = null
                     // Preload the next rewarded interstitial ad.
-                    loadRewardedInterstitialAd()
-                    function.invoke()
+                    isSplash = true
                 }
 
                 override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                     Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
-
                     // Don't forget to set the ad reference to null so you
                     // don't show the ad a second time.
                     rewardedInterstitialAd = null
@@ -219,6 +216,10 @@ class WallpaperFragment : Fragment() {
 
                 override fun onAdShowedFullScreenContent() {
                     Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
+                    isSplash = false
+                    rewardedInterstitialAd = null
+                    loadRewardedInterstitialAd()
+                    function.invoke()
                 }
             }
 

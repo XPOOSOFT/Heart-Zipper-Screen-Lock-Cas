@@ -121,7 +121,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     companion object {
         var isUserConsent = false
-        var splashTime = 10000L
+        var splashTime = 8000L
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
 
@@ -130,6 +130,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         CoroutineScope(Dispatchers.Main).launch {
             isSplash = false
             isRating=true
+            splashTime = 8000L
             counter = 0
             inter_frequency_count = 0
             val cmpClass = CmpClass(activity ?: return@launch)
