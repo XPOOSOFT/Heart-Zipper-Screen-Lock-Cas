@@ -11,10 +11,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 
 class FullScreenImageFragment : Fragment() {
 
@@ -35,6 +38,12 @@ class FullScreenImageFragment : Fragment() {
             }
         } catch (e: Exception) {
            e.printStackTrace()
+        }
+        view.findViewById<ImageView>(R.id.backIcon).clickWithThrottle {
+            findNavController().navigateUp()
+        }
+        setupBackPressedCallback {
+            findNavController().navigateUp()
         }
         return view
     }
