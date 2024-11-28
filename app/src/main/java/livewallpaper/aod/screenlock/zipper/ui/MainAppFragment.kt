@@ -72,6 +72,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.loadImagethumbnail
 import livewallpaper.aod.screenlock.zipper.utilities.requestCameraPermissionNotification
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showServiceDialog
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
@@ -153,16 +154,6 @@ class MainAppFragment : Fragment() {
         _binding?.topLay?.navMenu?.loadImage(
             context ?: return, R.drawable.nav_menu
         )
-        _binding?.zipperImage?.loadImagethumbnail(
-            context ?: return, R.drawable.zipper1
-        )
-        _binding?.rowImage?.loadImagethumbnail(
-            context ?: return, R.drawable.row1
-        )
-        _binding?.wallpaperImage?.loadImagethumbnail(
-            context ?: return, R.drawable.bg_7
-        )
-
         if (AppAdapter.IsFirstUse(context ?: return)) {
             AppAdapter.SetFirstUseTrue(context ?: return)
         }
@@ -187,9 +178,37 @@ class MainAppFragment : Fragment() {
                 }
             }
         }
-        _binding?.rewardLock?.clickWithThrottle {
+//        _binding?.rewardLock?.clickWithThrottle {
+//            showTwoInterAd(
+//                ads = adsManager ?: return@clickWithThrottle,
+//                activity = activity ?: requireActivity(),
+//                remoteConfigNormal = val_ad_inter_reward_screen,
+//                adIdNormal = id_inter_main_medium,
+//                tagClass = "fragment_reward",
+//                isBackPress = false,
+//                layout = _binding?.adsLay ?: return@clickWithThrottle
+//            ) {
+//                findNavController().navigate(R.id.rewardFragment)
+//            }
+//        }
+        _binding?.customize?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity?:return@let,
+                    remoteConfigNormal = val_ad_inter_customize_screen,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "activity_all_style",
+                    isBackPress = false,
+                    layout = _binding?.adsLay?:return@clickWithThrottle
+                ){
+                    findNavController().navigate(R.id.CustomMainFragment)
+                }
+            }
+        }
+        _binding?.unWallpaper?.clickWithThrottle {
             showTwoInterAd(
-                ads = adsManager ?: return@clickWithThrottle,
+                ads = adsManager?:return@clickWithThrottle,
                 activity = activity ?: requireActivity(),
                 remoteConfigNormal = val_ad_inter_reward_screen,
                 adIdNormal = id_inter_main_medium,

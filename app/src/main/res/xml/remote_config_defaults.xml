@@ -204,6 +204,14 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>val_ad_inter_reward_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_inter_customize_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>val_is_inapp_splash</key>
         <value>false</value>
     </entry>

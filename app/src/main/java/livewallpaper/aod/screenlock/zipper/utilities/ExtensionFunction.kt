@@ -86,6 +86,7 @@ var native_precashe_counter = 4
 var native_precashe_copunt_current = 0
 
 var val_ad_inter_reward_screen = true
+var val_ad_inter_customize_screen = true
 
 var val_banner_language_screen = true
 var val_collapsable_banner = true

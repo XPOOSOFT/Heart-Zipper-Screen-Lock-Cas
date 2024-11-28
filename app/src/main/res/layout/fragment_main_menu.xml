@@ -25,55 +25,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--   Top Lock-->
-            <View
-                android:id="@+id/rewardLock"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_50sdp"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@drawable/rect_btn_ad_btn_new"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintTop_toTopOf="@id/rewardLock"
-                app:layout_constraintBottom_toBottomOf="@id/rewardLock"
-                app:layout_constraintEnd_toStartOf="@id/rewardText"
-                app:layout_constraintStart_toStartOf="@id/rewardLock"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/reward_anime" />
-
-            <TextView
-                android:id="@+id/rewardText"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:paddingStart="@dimen/margin5"
-                android:gravity="center|start"
-                android:text="@string/reward"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_18sdp"
-                app:layout_constraintEnd_toEndOf="@+id/rewardLock"
-                app:layout_constraintBottom_toBottomOf="@id/animationView"
-                app:layout_constraintStart_toEndOf="@id/animationView"
-                app:layout_constraintTop_toTopOf="@id/animationView"
-                tools:ignore="RtlSymmetry" />
             <!--   Enable Lock-->
             <View
                 android:id="@+id/enableLock"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_80sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@drawable/rect_white_item_menu"
+                android:background="@drawable/main_frame_top"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rewardLock" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/enableLockImage"
@@ -90,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/margin5"
                 android:text="@string/enable_lockscreen"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintBottom_toBottomOf="@id/enableLock"
                 app:layout_constraintEnd_toStartOf="@id/enableLockSwitch"
@@ -121,6 +83,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/enableLock"
                 app:layout_constraintStart_toEndOf="@+id/enableLockText"
                 app:layout_constraintTop_toTopOf="@id/enableLock"
+                app:tint="@color/white"
                 app:srcCompat="@drawable/setting_next" />
             <!--   setting-->
             <View
@@ -129,7 +92,7 @@
                 android:layout_height="@dimen/_60sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginVertical="@dimen/_10sdp"
-                android:background="@drawable/rect_white_item_menu"
+                android:background="@drawable/main_frame_top"
                 app:layout_constraintEnd_toEndOf="@id/enableLock"
                 app:layout_constraintStart_toStartOf="@id/enableLock"
                 app:layout_constraintTop_toBottomOf="@id/enableLock" />
@@ -149,7 +112,7 @@
                 android:padding="@dimen/margin5"
                 android:textSize="@dimen/_11sdp"
                 android:text="@string/app_security"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/setting"
                 app:layout_constraintEnd_toStartOf="@id/settingNext"
                 app:layout_constraintStart_toEndOf="@id/settingImage"
@@ -159,6 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/_20sdp"
+                app:tint="@color/white"
                 app:layout_constraintBottom_toBottomOf="@id/setting"
                 app:layout_constraintEnd_toEndOf="@+id/setting"
                 app:layout_constraintStart_toEndOf="@+id/settingText"
@@ -207,6 +171,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
+                app:srcCompat="@drawable/zip_icon"
                 app:layout_constraintBottom_toBottomOf="@id/zipperText"
                 app:layout_constraintStart_toStartOf="@id/zipper"
                 app:layout_constraintTop_toTopOf="@id/zipperText" />
@@ -251,6 +216,7 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
+                app:srcCompat="@drawable/row_icon"
                 app:layout_constraintBottom_toBottomOf="@id/rowText"
                 app:layout_constraintStart_toStartOf="@id/row"
                 app:layout_constraintTop_toTopOf="@id/rowText" />
@@ -290,13 +256,13 @@
                 app:layout_constraintEnd_toStartOf="@id/preview"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/zipper"
-                app:layout_constraintBottom_toBottomOf="parent"
                 />
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/wallpaperImage"
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
+                app:srcCompat="@drawable/wallpaper_icon"
                 app:layout_constraintBottom_toBottomOf="@id/wallpaperText"
                 app:layout_constraintStart_toStartOf="@id/wallpaper"
                 app:layout_constraintTop_toTopOf="@id/wallpaperText" />
@@ -312,7 +278,6 @@
                 app:layout_constraintEnd_toEndOf="@id/wallpaper"
                 app:layout_constraintStart_toEndOf="@id/wallpaperImage"
                 app:layout_constraintTop_toTopOf="@id/wallpaper" />
-
             <TextView
                 android:id="@+id/wallpaperTextD"
                 android:layout_width="0dp"
@@ -332,11 +297,10 @@
                 android:layout_height="@dimen/_60sdp"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:background="@drawable/rect_white_item_menu"
-                app:layout_constraintStart_toEndOf="@id/wallpaper"
-                app:layout_constraintTop_toTopOf="@id/wallpaper"
-                app:layout_constraintBottom_toBottomOf="@id/wallpaper"
+                app:layout_constraintBottom_toBottomOf="@+id/wallpaper"
                 app:layout_constraintEnd_toEndOf="parent"
-                 />
+                app:layout_constraintStart_toEndOf="@id/wallpaper"
+                app:layout_constraintTop_toTopOf="@id/wallpaper" />
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/previewImage"
                 android:layout_width="@dimen/_25sdp"
@@ -358,7 +322,6 @@
                 app:layout_constraintEnd_toEndOf="@id/preview"
                 app:layout_constraintStart_toEndOf="@id/previewImage"
                 app:layout_constraintTop_toTopOf="@id/preview" />
-
             <TextView
                 android:id="@+id/previewTextD"
                 android:layout_width="0dp"
@@ -371,7 +334,108 @@
                 app:layout_constraintEnd_toEndOf="@id/preview"
                 app:layout_constraintStart_toStartOf="@id/preview"
                 app:layout_constraintTop_toBottomOf="@id/previewImage" />
-
+            <!--   customize-->
+            <View
+                android:id="@+id/customize"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toStartOf="@id/un_wallpaper"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/preview"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/new_anime" />
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/customizeImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/customize_icon"
+                app:layout_constraintVertical_bias="0.25"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize" />
+            <TextView
+                android:id="@+id/customizeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/customize"
+                android:gravity="center"
+                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toTopOf="@id/customizeTextD"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintTop_toBottomOf="@id/customizeImage" />
+            <TextView
+                android:id="@+id/customizeTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/customize_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                android:maxLines="2"
+                android:gravity="center"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintTop_toBottomOf="@id/customizeText" />
+            <!--   un-Wallpaper-->
+            <View
+                android:id="@+id/un_wallpaper"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintStart_toEndOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="parent"
+                />
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView1"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
+                app:layout_constraintTop_toTopOf="@id/un_wallpaper"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/new_anime" />
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/un_wallpaperImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
+                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
+                app:layout_constraintStart_toStartOf="@id/un_wallpaper"
+                app:layout_constraintTop_toTopOf="@id/un_wallpaper"
+                app:layout_constraintVertical_bias="0.23"
+                app:srcCompat="@drawable/wallpaper_icon" />
+            <TextView
+                android:id="@+id/un_wallpaperText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/_14sdp"
+                android:text="@string/un_wallpaper"
+                android:gravity="center"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
+                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
+                app:layout_constraintStart_toStartOf="@id/un_wallpaper"
+                app:layout_constraintTop_toBottomOf="@id/un_wallpaperImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

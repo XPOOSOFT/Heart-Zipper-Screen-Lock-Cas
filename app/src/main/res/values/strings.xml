@@ -230,6 +230,7 @@ Please Check it first!</string>
     <string name="reward_6">Cartoon</string>
     <string name="reward_7">k Pop</string>
     <string name="reward_8">Vintage</string>
+
     <string name="apply_wallpaper">Apply Wallpaper</string>
     <string name="claim_your_next_reward_in">Claim your next reward in</string>
     <string name="_00_00_00">00:00:00</string>
@@ -240,5 +241,9 @@ Please Check it first!</string>
     <string name="try_agin_ad_not_load">Try Agin Ad Not Load</string>
     <string name="background_style">Background Wallpaper</string>
     <string name="custom_setting">Custom Setting</string>
+    <string name="customize">Customize</string>
+    <string name="customize_detail">Personalize what you like</string>
+
+    <string name="un_wallpaper">Unlimited\nwallpapers</string>
 
 </resources>

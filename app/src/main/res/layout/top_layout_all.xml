@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/_5sdp">
+    android:background="@drawable/top_bg"
+    android:paddingHorizontal="@dimen/_5sdp"
+    android:paddingVertical="@dimen/_10sdp">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/backBtn"
@@ -34,7 +36,6 @@
         app:layout_constraintStart_toEndOf="@+id/backBtn"
         app:layout_constraintTop_toTopOf="@+id/backBtn"
         tools:ignore="RtlSymmetry" />
-
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:id="@+id/setting_btn"

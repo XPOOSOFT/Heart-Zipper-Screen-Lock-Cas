@@ -71,6 +71,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_scre
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_splash_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_back
@@ -312,6 +313,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     remoteConfig!!["val_ad_native_reward_screen"].asBoolean()
                 val_ad_inter_reward_screen =
                     remoteConfig!!["val_ad_inter_reward_screen"].asBoolean()
+                val_ad_inter_customize_screen =
+                    remoteConfig!!["val_ad_inter_customize_screen"].asBoolean()
 
                 val_ad_inter_loading_screen =
                     remoteConfig!!["val_ad_inter_loading_screen"].asBoolean()
