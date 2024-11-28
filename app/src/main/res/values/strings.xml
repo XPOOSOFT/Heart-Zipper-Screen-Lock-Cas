@@ -238,12 +238,12 @@ Please Check it first!</string>
     <string name="watch_an_ads">Watch an Ads</string>
     <string name="unlimited_themes">Unlimited themes</string>
     <string name="unlock">Lock</string>
-    <string name="try_agin_ad_not_load">Try Agin Ad Not Load</string>
+    <string name="try_agin_ad_not_load">Try Again Ad Not Load</string>
     <string name="background_style">Background Wallpaper</string>
     <string name="custom_setting">Custom Setting</string>
     <string name="customize">Customize</string>
     <string name="customize_detail">Personalize what you like</string>
 
-    <string name="un_wallpaper">Unlimited\nwallpapers</string>
+    <string name="un_wallpaper">Unlimited Wallpapers</string>
 
 </resources>

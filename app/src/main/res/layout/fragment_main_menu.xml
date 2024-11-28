@@ -396,8 +396,8 @@
             <View
                 android:id="@+id/un_wallpaper"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:background="@drawable/rect_white_item_menu"
                 app:layout_constraintStart_toEndOf="@id/customize"
                 app:layout_constraintTop_toTopOf="@id/customize"
