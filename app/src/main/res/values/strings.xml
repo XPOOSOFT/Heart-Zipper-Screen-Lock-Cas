@@ -238,5 +238,7 @@ Please Check it first!</string>
     <string name="unlimited_themes">Unlimited themes</string>
     <string name="unlock">Lock</string>
     <string name="try_agin_ad_not_load">Try Agin Ad Not Load</string>
+    <string name="background_style">Background Wallpaper</string>
+    <string name="custom_setting">Custom Setting</string>
 
 </resources>

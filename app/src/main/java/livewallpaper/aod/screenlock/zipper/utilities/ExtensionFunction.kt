@@ -114,6 +114,7 @@ var val_ad_inter_security_screen_front = true
 var val_ad_inter_enable_screen_front = true
 var val_ad_inter_password_screen_front = true
 var val_ad_inter_list_data_screen_front = true
+var val_ad_native_customize_screen = true
 
 var val_ad_app_open_screen = true
 var val_is_inapp_splash = false
@@ -136,6 +137,8 @@ var id_inter_splash_Screen = ""
 var id_collapsable_banner = ""
 var id_splash_native = ""
 var id_reward = "ca-app-pub-3940256099942544/5354046379"
+var apiKey = ""
+var Wallpaper_Cat = ""
 
 var id_ads_button = "#F3202F"
 var id_ads_bg = "#232323"

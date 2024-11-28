@@ -116,8 +116,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <receiver android:name="livewallpaper.aod.screenlock.reward.UnlockReceiver" />
-        <receiver android:name="livewallpaper.aod.screenlock.reward.reciver.AlarmReceiver" />
     </application>
 
 </manifest>

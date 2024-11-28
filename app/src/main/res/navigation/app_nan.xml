@@ -90,7 +90,7 @@
         tools:layout="@layout/fragment_feed_back" />
     <fragment
         android:id="@+id/rewardFragment"
-        android:name="livewallpaper.aod.screenlock.reward.WallpaperFragment"
+        android:name="livewallpaper.aod.screenlock.unlimited_wallpaper.WallpaperFragment"
         android:label="rewardFragment"
         tools:layout="@layout/fragment_wallpaper" />
 
@@ -104,5 +104,20 @@
         android:name="livewallpaper.aod.screenlock.reward.wallpaper.FullScreenImageFragment"
         android:label="WallpaperFullscreenFragment"
         tools:layout="@layout/fragment_fullscreen_image_1" />
+    <fragment
+        android:id="@+id/FragmentListCustomWallpaper"
+        android:name="livewallpaper.aod.screenlock.unlimited_wallpaper.FragmentListCustomWallpaper"
+        android:label="FragmentListCustomWallpaper"
+        tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/ImageDetailFragment"
+        android:name="livewallpaper.aod.screenlock.unlimited_wallpaper.ImageDetailFragment"
+        android:label="ImageDetailFragment"
+        tools:layout="@layout/fragment_fullscreen_image_1" />
 
+    <fragment
+        android:id="@+id/CustomMainFragment"
+        android:name="livewallpaper.aod.screenlock.zipper.zip_custom.CustomMainFragment"
+        android:label="CustomMainFragment"
+        tools:layout="@layout/custom_zip_main_fragment" />
 </navigation>

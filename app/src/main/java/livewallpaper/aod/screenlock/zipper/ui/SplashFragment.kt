@@ -34,6 +34,8 @@ import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.SpeedActiveP
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.SavePref
 import livewallpaper.aod.screenlock.zipper.utilities.LANG_CODE
+import livewallpaper.aod.screenlock.zipper.utilities.Wallpaper_Cat
+import livewallpaper.aod.screenlock.zipper.utilities.apiKey
 import livewallpaper.aod.screenlock.zipper.utilities.appUpdateType
 import livewallpaper.aod.screenlock.zipper.utilities.banner_height
 import livewallpaper.aod.screenlock.zipper.utilities.banner_type
@@ -87,6 +89,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_sound_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_sound_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
@@ -241,6 +244,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
         id_splash_native = remoteConfig.getString("id_splash_native")
         id_reward = remoteConfig.getString("id_reward")
+        apiKey = remoteConfig.getString("apiKey")
+        Wallpaper_Cat = remoteConfig.getString("Wallpaper_Cat")
 
         id_ads_button = remoteConfig.getString("id_ads_button")
         id_ads_bg = remoteConfig.getString("id_ads_bg")
@@ -351,6 +356,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     remoteConfig!!["val_ad_inter_password_screen_front"].asBoolean()
                 val_ad_inter_list_data_screen_front =
                     remoteConfig!!["val_ad_inter_list_data_screen_front"].asBoolean()
+                val_ad_native_customize_screen =
+                    remoteConfig!!["val_ad_native_customize_screen"].asBoolean()
                 val_banner_language_screen =
                     remoteConfig!!["val_banner_language_screen"].asBoolean()
                 val_collapsable_banner = remoteConfig!!["val_collapsable_banner"].asBoolean()

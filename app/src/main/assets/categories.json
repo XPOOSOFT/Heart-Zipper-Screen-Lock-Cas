@@ -1,3 +1,4 @@
+/*
 [
   {
     "title": "Christmas",
@@ -104,3 +105,16 @@
     ]
   }
 ]
+*/
+{
+  "categories": [
+    {
+      "title": "christmas",
+      "images": "http://fireitstudio-502880185.imgix.net/new/christmas/1.png",
+    },
+    {
+      "name": "vintage",
+      "images": "http://fireitstudio-502880185.imgix.net/new/vintage/1.png",
+    }
+  ]
+}

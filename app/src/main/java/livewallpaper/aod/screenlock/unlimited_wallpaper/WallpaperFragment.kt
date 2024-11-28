@@ -1,5 +1,6 @@
-package livewallpaper.aod.screenlock.reward
+package livewallpaper.aod.screenlock.unlimited_wallpaper
 
+import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
+import com.google.gson.Gson
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -25,10 +27,9 @@ import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvail
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentWallpaperBinding
+import livewallpaper.aod.screenlock.zipper.utilities.Wallpaper_Cat
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
-import livewallpaper.aod.screenlock.zipper.utilities.getRewardTitle
-import livewallpaper.aod.screenlock.zipper.utilities.getTimeTitle
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_reward
@@ -44,7 +45,7 @@ class WallpaperFragment : Fragment() {
 
     private var adsmanager: AdsManager? = null
     private lateinit var categoryAdapter: CategoryAdapter
-    private val categories = mutableListOf<WallpaperCategory>()
+    private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
 
@@ -57,37 +58,19 @@ class WallpaperFragment : Fragment() {
     ): View? {
         _binding = FragmentWallpaperBinding.inflate(layoutInflater)
         Log.d("calling", "onCreateView: load main fragment")
+
         return _binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        firebaseAnalytics("reward_fragment_open", "reward_fragment_open -->  Click")
+        firebaseAnalytics(
+            "custom_wallpaper_fragment_open",
+            "custom_wallpaper_fragment_open -->  Click"
+        )
         adsmanager = AdsManager.appAdsInit(activity ?: requireActivity())
         sharedPrefUtils = DbHelper(requireContext())
-        if (sharedPrefUtils?.getBooleanData(context ?: return, "issetTime", false) == false) {
-            sharedPrefUtils?.saveData(context ?: return, "issetTime", true)
-            sharedPrefUtils?.saveData(context ?: return, "setTime", System.currentTimeMillis())
-            unlockNextCategory(
-                view,
-                sharedPrefUtils?.getLongData(
-                    context ?: return,
-                    "setTime",
-                    System.currentTimeMillis()
-                )!!
-            )
-        } else {
-            unlockNextCategory(
-                view,
-                sharedPrefUtils?.getLongData(
-                    context ?: return,
-                    "setTime",
-                    System.currentTimeMillis()
-                )!!
-            )
-        }
-//        loadRewardedInterstitialAd()
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
@@ -95,25 +78,33 @@ class WallpaperFragment : Fragment() {
             findNavController().navigateUp()
         }
         loadBanner()
-            loadRewardedInterstitialAd()
+        loadRewardedInterstitialAd()
+        setupRecyclerView(view)
     }
 
-    private fun unlockNextCategory(view: View, saveTime: Long) {
-        setupRecyclerView(view, saveTime)
-    }
 
-    private fun setupRecyclerView(view: View, saveTime: Long) {
-        val allCategories = (1..8).map {
-            WallpaperCategory(
-                name = getRewardTitle(context ?: return)[it - 1],
-                nameDay = getTimeTitle()[it - 1],
-                locked = false,
-                saveTime
-            )
-        }
+    private fun setupRecyclerView(view: View) {
+        // Sample JSON
+//        val Wallpaper_Cat = """
+//            {
+//              "categories": [
+//                {
+//                  "title": "christmas",
+//                  "images": "http://fireitstudio-502880185.imgix.net/new/christmas/1.png"
+//                },
+//                {
+//                  "title": "vintage",
+//                  "images": "http://fireitstudio-502880185.imgix.net/new/vintage/1.png"
+//                }
+//              ]
+//            }
+//        """
+        // Parse JSON
+        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
         categories.clear()
-        categories.addAll(allCategories)
-        categoryAdapter = CategoryAdapter(categories) { _Lock, Tilte_ ->
+        categories.addAll(categoriesResponse.categories)
+        categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
+            Log.d("check", "setupRecyclerView: $Tilte_")
             if (!isNetworkAvailable(activity)) {
                 showToast(context ?: requireContext(), getString(R.string.no_internet))
                 return@CategoryAdapter
@@ -123,39 +114,37 @@ class WallpaperFragment : Fragment() {
                 )
             ) {
                 findNavController().navigate(
-                    R.id.ImageListFragment,
+                    R.id.FragmentListCustomWallpaper,
                     bundleOf("title" to Tilte_)
                 )
                 return@CategoryAdapter
             }
-            if (_Lock) {
-                showAdsDialog(
-                    context = activity ?: return@CategoryAdapter,
-                    onInApp = { ->
-                        findNavController().navigate(
-                            R.id.FragmentBuyScreen,
-                            bundleOf("isSplash" to false)
+            showAdsDialog(
+                context = activity ?: return@CategoryAdapter,
+                onInApp = { ->
+                    findNavController().navigate(
+                        R.id.FragmentBuyScreen,
+                        bundleOf("isSplash" to false)
+                    )
+                    return@showAdsDialog
+                },
+                onWatchAds = { ->
+                    if (rewardedInterstitialAd == null) {
+                        showToast(
+                            context ?: requireContext(),
+                            getString(R.string.try_agin_ad_not_load)
                         )
+                        loadRewardedInterstitialAd()
                         return@showAdsDialog
-                    },
-                    onWatchAds = { ->
-                        if(rewardedInterstitialAd == null){
-                            showToast(context ?: requireContext(), getString(R.string.try_agin_ad_not_load))
-                           loadRewardedInterstitialAd()
-                            return@showAdsDialog
-                        }
-                        showRewardedVideo {
-                            findNavController().navigate(
-                                R.id.ImageListFragment,
-                                bundleOf("title" to Tilte_)
-                            )
-                        }
-                    })
-                return@CategoryAdapter
-            } else {
-                showToast(context ?: requireContext(), getString(R.string.unlock))
-                return@CategoryAdapter
-            }
+                    }
+                    showRewardedVideo {
+                        findNavController().navigate(
+                            R.id.FragmentListCustomWallpaper,
+                            bundleOf("title" to Tilte_)
+                        )
+                    }
+                })
+            return@CategoryAdapter
 
         }
         view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
@@ -291,12 +280,6 @@ class WallpaperFragment : Fragment() {
                     })
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Cancel all timers when activity is destroyed
-        categoryAdapter.cancelTimers()
     }
 
 }

@@ -1,0 +1,27 @@
+<!-- item_image.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_60sdp"
+    android:layout_height="@dimen/_60sdp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/rect_btn_custom"
+    android:layout_gravity="center"
+    android:padding="@dimen/_10sdp"
+    android:layout_margin="@dimen/_8sdp">
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/previewImageView"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_gravity="center"
+        />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/ticket"
+        android:layout_width="@dimen/_10sdp"
+        android:layout_height="@dimen/_10sdp"
+        app:srcCompat="@drawable/check"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+</FrameLayout>

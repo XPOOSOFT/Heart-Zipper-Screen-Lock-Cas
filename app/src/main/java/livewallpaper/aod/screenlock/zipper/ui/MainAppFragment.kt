@@ -23,13 +23,7 @@ import androidx.core.content.ContextCompat.startForegroundService
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.work.Configuration
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkInfo
-import androidx.work.WorkManager
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
@@ -40,8 +34,6 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import livewallpaper.aod.screenlock.reward.DailyRewardWorker
-import livewallpaper.aod.screenlock.reward.scheduleDailyAlarm
 import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
@@ -61,7 +53,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.Constants
 import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPrefString
-import livewallpaper.aod.screenlock.zipper.utilities.IS_FIRST
 import livewallpaper.aod.screenlock.zipper.utilities.NOTIFICATION_PERMISSION
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.Uscreen
@@ -91,7 +82,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_inter_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp
-import java.util.concurrent.TimeUnit
 
 
 class MainAppFragment : Fragment() {
@@ -118,285 +108,285 @@ class MainAppFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            isSplash = true
+        isSplash = true
         sharedPrefUtils = DbHelper(context ?: return)
-            if (++PurchaseScreen == val_inapp_frequency) {
-                PurchaseScreen = 0
-                findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
-                return
-            }
-            Uscreen.Init(activity ?: return)
-            arguments?.let {
-                isSplashScreen = it.getBoolean("is_splash")
-            }
-            Log.d("main_fragment", "onViewCreated: calling")
-            firebaseAnalytics("main_menu_fragment_open", "main_menu_fragment_open -->  Click")
+        if (++PurchaseScreen == val_inapp_frequency) {
+            PurchaseScreen = 0
+            findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
+            return
+        }
+        Uscreen.Init(activity ?: return)
+        arguments?.let {
+            isSplashScreen = it.getBoolean("is_splash")
+        }
+        Log.d("main_fragment", "onViewCreated: calling")
+        firebaseAnalytics("main_menu_fragment_open", "main_menu_fragment_open -->  Click")
 
-            adsManager = AdsManager.appAdsInit(activity ?: return)
-            if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp) {
-                _binding?.topLay?.settingBtn?.visibility = View.GONE
-            } else {
-                _binding?.topLay?.settingBtn?.visibility = View.VISIBLE
-            }
+        adsManager = AdsManager.appAdsInit(activity ?: return)
+        if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp) {
+            _binding?.topLay?.settingBtn?.visibility = View.GONE
+        } else {
+            _binding?.topLay?.settingBtn?.visibility = View.VISIBLE
+        }
 
-            _binding?.topLay?.settingBtn?.clickWithThrottle {
-                findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
-            }
+        _binding?.topLay?.settingBtn?.clickWithThrottle {
+            findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
+        }
 
-                loadNative()
-                _binding?.mainbg?.setBackgroundResource(background)
-                setupBackPressedCallback {
-                    adsManager?.let {
-                        showTwoInterAd(
-                            ads = it,
-                            activity = activity ?: return@setupBackPressedCallback,
-                            remoteConfigNormal = val_exit_dialog_inter_front,
-                            adIdNormal = id_inter_main_medium,
-                            tagClass = "main_menu",
-                            isBackPress = false,
-                            layout = _binding?.adsLay ?: return@setupBackPressedCallback,
-                        ) {
-                            findNavController().navigate(R.id.FragmentExitScreen)
-                        }
-                    }
-                }
-                _binding?.topLay?.navMenu?.loadImage(
-                    context ?: return, R.drawable.nav_menu
-                )
-                _binding?.zipperImage?.loadImagethumbnail(
-                    context ?: return, R.drawable.zipper1
-                )
-                _binding?.rowImage?.loadImagethumbnail(
-                    context ?: return, R.drawable.row1
-                )
-                _binding?.wallpaperImage?.loadImagethumbnail(
-                    context ?: return, R.drawable.bg_7
-                )
-
-                if (AppAdapter.IsFirstUse(context ?: return)) {
-                    AppAdapter.SetFirstUseTrue(context ?: return)
-                }
-                isActivated = CheckBoxUpdater.UL(
-                    ActivePref, requireContext(), _binding?.enableLockSwitch!!
-                )
-            _binding?.topLay?.navMenu?.clickWithThrottle {
-                findNavController().navigate(R.id.FragmentNavigationScreen)
-            }
-            _binding?.topLay?.languageBtn?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@clickWithThrottle,
-                        remoteConfigNormal = val_ad_inter_language_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "language_screen",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle,
-                    ) {
-                        findNavController().navigate(R.id.LanguageFragment)
-                    }
-                }
-            }
-            _binding?.rewardLock?.clickWithThrottle {
+        loadNative()
+        _binding?.mainbg?.setBackgroundResource(background)
+        setupBackPressedCallback {
+            adsManager?.let {
                 showTwoInterAd(
-                    ads = adsManager?:return@clickWithThrottle,
-                    activity = activity ?: requireActivity(),
-                    remoteConfigNormal = val_ad_inter_reward_screen,
+                    ads = it,
+                    activity = activity ?: return@setupBackPressedCallback,
+                    remoteConfigNormal = val_exit_dialog_inter_front,
                     adIdNormal = id_inter_main_medium,
-                    tagClass = "fragment_reward",
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@setupBackPressedCallback,
+                ) {
+                    findNavController().navigate(R.id.FragmentExitScreen)
+                }
+            }
+        }
+        _binding?.topLay?.navMenu?.loadImage(
+            context ?: return, R.drawable.nav_menu
+        )
+        _binding?.zipperImage?.loadImagethumbnail(
+            context ?: return, R.drawable.zipper1
+        )
+        _binding?.rowImage?.loadImagethumbnail(
+            context ?: return, R.drawable.row1
+        )
+        _binding?.wallpaperImage?.loadImagethumbnail(
+            context ?: return, R.drawable.bg_7
+        )
+
+        if (AppAdapter.IsFirstUse(context ?: return)) {
+            AppAdapter.SetFirstUseTrue(context ?: return)
+        }
+        isActivated = CheckBoxUpdater.UL(
+            ActivePref, requireContext(), _binding?.enableLockSwitch!!
+        )
+        _binding?.topLay?.navMenu?.clickWithThrottle {
+            findNavController().navigate(R.id.FragmentNavigationScreen)
+        }
+        _binding?.topLay?.languageBtn?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_language_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "language_screen",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle,
+                ) {
+                    findNavController().navigate(R.id.LanguageFragment)
+                }
+            }
+        }
+        _binding?.rewardLock?.clickWithThrottle {
+            showTwoInterAd(
+                ads = adsManager ?: return@clickWithThrottle,
+                activity = activity ?: requireActivity(),
+                remoteConfigNormal = val_ad_inter_reward_screen,
+                adIdNormal = id_inter_main_medium,
+                tagClass = "fragment_reward",
+                isBackPress = false,
+                layout = _binding?.adsLay ?: return@clickWithThrottle
+            ) {
+                findNavController().navigate(R.id.rewardFragment)
+            }
+        }
+        _binding?.row?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@let,
+                    remoteConfigNormal = val_ad_inter_list_data_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "activity_all_style",
                     isBackPress = false,
                     layout = _binding?.adsLay ?: return@clickWithThrottle
                 ) {
-                    findNavController().navigate(R.id.rewardFragment)
-                }
-            }
-            _binding?.row?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@let,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "activity_all_style",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.row_style))
-                        )
-                    }
-                }
-
-            }
-            _binding?.wallpaper?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@clickWithThrottle,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_menu",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.wallpapers))
-                        )
-                    }
-                }
-
-            }
-            _binding?.zipper?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@clickWithThrottle,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_menu",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.zipperStyle))
-                        )
-                    }
-                }
-
-
-            }
-            _binding?.preview?.clickWithThrottle {
-                if (Settings.canDrawOverlays(
-                        activity
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.row_style))
                     )
-                ) {
-                    LockScreenService.Start(context ?: return@clickWithThrottle)
-                    return@clickWithThrottle
+                }
+            }
 
-                } else {
-                    showCustomDialog()
+        }
+        _binding?.wallpaper?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_list_data_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle
+                ) {
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.wallpapers))
+                    )
                 }
             }
-            _binding?.setting?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@clickWithThrottle,
-                        remoteConfigNormal = val_ad_inter_setting_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_menu",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle
-                    ) {
-                        findNavController().navigate(R.id.FragmentSetting)
-                    }
+
+        }
+        _binding?.zipper?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_list_data_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle
+                ) {
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.zipperStyle))
+                    )
                 }
             }
-            if (!isFirst) {
-                _binding?.enableLockSwitch?.visibility = View.INVISIBLE
-                _binding?.enableLockArrow?.visibility = View.VISIBLE
-                _binding?.enableLock?.isClickable = true
+
+
+        }
+        _binding?.preview?.clickWithThrottle {
+            if (Settings.canDrawOverlays(
+                    activity
+                )
+            ) {
+                LockScreenService.Start(context ?: return@clickWithThrottle)
+                return@clickWithThrottle
+
             } else {
-                _binding?.enableLockSwitch?.visibility = View.VISIBLE
-                _binding?.enableLockArrow?.visibility = View.INVISIBLE
-                _binding?.enableLock?.isClickable = false
+                showCustomDialog()
             }
-            _binding?.enableLock?.clickWithThrottle {
-                adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@clickWithThrottle,
-                        remoteConfigNormal = val_ad_inter_enable_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_menu",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return@clickWithThrottle,
-                    ) {
-                        findNavController().navigate(R.id.EnableFirstActivity)
-                    }
+        }
+        _binding?.setting?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_setting_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle
+                ) {
+                    findNavController().navigate(R.id.FragmentSetting)
                 }
             }
-            _binding?.enableLockSwitch?.setOnCheckedChangeListener { compoundButton, z ->
-                if (compoundButton.isPressed) {
-                    if (!isFirst) {
-                        _binding?.enableLockSwitch?.isChecked = false
-                        adsManager?.let {
-                            showTwoInterAd(
-                                ads = it,
-                                activity = activity ?: return@setOnCheckedChangeListener,
-                                remoteConfigNormal = val_ad_inter_enable_screen_front,
-                                adIdNormal = id_inter_main_medium,
-                                tagClass = "main_menu",
-                                isBackPress = false,
-                                layout = _binding?.adsLay ?: return@setOnCheckedChangeListener,
-                            ) {
-                                findNavController().navigate(R.id.EnableFirstActivity)
-                            }
+        }
+        if (!isFirst) {
+            _binding?.enableLockSwitch?.visibility = View.INVISIBLE
+            _binding?.enableLockArrow?.visibility = View.VISIBLE
+            _binding?.enableLock?.isClickable = true
+        } else {
+            _binding?.enableLockSwitch?.visibility = View.VISIBLE
+            _binding?.enableLockArrow?.visibility = View.INVISIBLE
+            _binding?.enableLock?.isClickable = false
+        }
+        _binding?.enableLock?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_enable_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle,
+                ) {
+                    findNavController().navigate(R.id.EnableFirstActivity)
+                }
+            }
+        }
+        _binding?.enableLockSwitch?.setOnCheckedChangeListener { compoundButton, z ->
+            if (compoundButton.isPressed) {
+                if (!isFirst) {
+                    _binding?.enableLockSwitch?.isChecked = false
+                    adsManager?.let {
+                        showTwoInterAd(
+                            ads = it,
+                            activity = activity ?: return@setOnCheckedChangeListener,
+                            remoteConfigNormal = val_ad_inter_enable_screen_front,
+                            adIdNormal = id_inter_main_medium,
+                            tagClass = "main_menu",
+                            isBackPress = false,
+                            layout = _binding?.adsLay ?: return@setOnCheckedChangeListener,
+                        ) {
+                            findNavController().navigate(R.id.EnableFirstActivity)
                         }
-                        return@setOnCheckedChangeListener
                     }
-                    if (checkPermissionOverlay(activity ?: return@setOnCheckedChangeListener)) {
-                        isActivated = CheckBoxUpdater.UC(
-                            _binding?.enableLockSwitch ?: return@setOnCheckedChangeListener,
-                            isActivated,
-                            ActivePref,
-                            context ?: return@setOnCheckedChangeListener,
-                            true,
-                            null
-                        )
-                        if (isActivated) {
-                            if (!Constants.isMainServiceRunning(
-                                    context ?: return@setOnCheckedChangeListener
+                    return@setOnCheckedChangeListener
+                }
+                if (checkPermissionOverlay(activity ?: return@setOnCheckedChangeListener)) {
+                    isActivated = CheckBoxUpdater.UC(
+                        _binding?.enableLockSwitch ?: return@setOnCheckedChangeListener,
+                        isActivated,
+                        ActivePref,
+                        context ?: return@setOnCheckedChangeListener,
+                        true,
+                        null
+                    )
+                    if (isActivated) {
+                        if (!Constants.isMainServiceRunning(
+                                context ?: return@setOnCheckedChangeListener
+                            )
+                        ) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                startForegroundService(
+                                    requireContext(),
+                                    Intent(requireContext(), LiveService::class.java)
                                 )
-                            ) {
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    startForegroundService(
-                                        requireContext(),
-                                        Intent(requireContext(), LiveService::class.java)
+                            } else {
+                                requireContext().startService(
+                                    Intent(
+                                        context, LiveService::class.java
                                     )
-                                } else {
-                                    requireContext().startService(
-                                        Intent(
-                                            context, LiveService::class.java
-                                        )
-                                    )
-                                }
+                                )
                             }
-                        } else {
-                            _binding?.enableLockSwitch?.isChecked = true
-                            showServiceDialog(onPositiveNoClick = {
-                                _binding?.enableLockSwitch?.isChecked = true
-                            }, onPositiveYesClick = {
-                                _binding?.enableLockSwitch?.isChecked = false
-                                if (isServiceRunning()) {
-                                    Constants.stopServiceCall(
-                                        activity ?: return@showServiceDialog
-                                    )
-                                }
-                            })
                         }
                     } else {
-                        _binding?.enableLockSwitch?.isChecked = false
+                        _binding?.enableLockSwitch?.isChecked = true
+                        showServiceDialog(onPositiveNoClick = {
+                            _binding?.enableLockSwitch?.isChecked = true
+                        }, onPositiveYesClick = {
+                            _binding?.enableLockSwitch?.isChecked = false
+                            if (isServiceRunning()) {
+                                Constants.stopServiceCall(
+                                    activity ?: return@showServiceDialog
+                                )
+                            }
+                        })
                     }
+                } else {
+                    _binding?.enableLockSwitch?.isChecked = false
                 }
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                if (context?.let {
-                        ContextCompat.checkSelfPermission(
-                            it,
-                            NOTIFICATION_PERMISSION
-                        )
-                    } != 0) {
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (context?.let {
+                    ContextCompat.checkSelfPermission(
+                        it,
+                        NOTIFICATION_PERMISSION
+                    )
+                } != 0) {
 //                requestCameraPermissionNotification(activity ?: return)
-                } else {
-                    if (isRating) askRatings(activity ?: return)
-                }
             } else {
                 if (isRating) askRatings(activity ?: return)
             }
+        } else {
+            if (isRating) askRatings(activity ?: return)
+        }
 //        if(sharedPrefUtils?.getBooleanData(context ?: return, "IS_REWARD", false)==false){
 //            requestExactAlarmPermission()
 //            sharedPrefUtils?.saveData(activity?:return, "IS_REWARD", true)
@@ -404,6 +394,7 @@ class MainAppFragment : Fragment() {
 //        }
 
     }
+
     private fun requestExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (!(context?.getSystemService(ALARM_SERVICE) as AlarmManager).canScheduleExactAlarms()) {
@@ -423,39 +414,39 @@ class MainAppFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-            shouldCheckForOverlayPermissionLoop = false
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                if (context?.let {
-                        ContextCompat.checkSelfPermission(
-                            it,
-                            NOTIFICATION_PERMISSION
-                        )
-                    } != 0) {
-                    requestCameraPermissionNotification(activity ?: return)
-                }
+        shouldCheckForOverlayPermissionLoop = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (context?.let {
+                    ContextCompat.checkSelfPermission(
+                        it,
+                        NOTIFICATION_PERMISSION
+                    )
+                } != 0) {
+                requestCameraPermissionNotification(activity ?: return)
             }
-            isFirst = sharedPrefUtils?.chkBroadCast(isFirstEnable) == true
-                if (isFirst) {
-                    _binding?.enableLock?.isClickable = false
-                    _binding?.enableLock?.isActivated = false
-                    _binding?.enableLock?.isEnabled = false
-                    _binding?.enableLockArrow?.visibility = View.INVISIBLE
-                    _binding?.enableLockSwitch?.visibility = View.VISIBLE
-                    _binding?.enableLockSwitch?.isChecked =
-                        LoadPrefString(ActivePref, context ?: return).equals("1")
-                } else {
-                    _binding?.enableLock?.isClickable = true
-                    _binding?.enableLock?.isActivated = true
-                    _binding?.enableLock?.isEnabled = true
-                    _binding?.enableLockArrow?.visibility = View.VISIBLE
-                    _binding?.enableLockSwitch?.visibility = View.INVISIBLE
-                    _binding?.enableLockSwitch?.isChecked = false
-                }
-                loadInstertital()
-            // Initialize AppUpdateManager
-            appUpdateManager = AppUpdateManagerFactory.create(context ?: return)
-            // Fetch Remote Config and Check for App Update
-            checkForUpdate()
+        }
+        isFirst = sharedPrefUtils?.chkBroadCast(isFirstEnable) == true
+        if (isFirst) {
+            _binding?.enableLock?.isClickable = false
+            _binding?.enableLock?.isActivated = false
+            _binding?.enableLock?.isEnabled = false
+            _binding?.enableLockArrow?.visibility = View.INVISIBLE
+            _binding?.enableLockSwitch?.visibility = View.VISIBLE
+            _binding?.enableLockSwitch?.isChecked =
+                LoadPrefString(ActivePref, context ?: return).equals("1")
+        } else {
+            _binding?.enableLock?.isClickable = true
+            _binding?.enableLock?.isActivated = true
+            _binding?.enableLock?.isEnabled = true
+            _binding?.enableLockArrow?.visibility = View.VISIBLE
+            _binding?.enableLockSwitch?.visibility = View.INVISIBLE
+            _binding?.enableLockSwitch?.isChecked = false
+        }
+        loadInstertital()
+        // Initialize AppUpdateManager
+        appUpdateManager = AppUpdateManagerFactory.create(context ?: return)
+        // Fetch Remote Config and Check for App Update
+        checkForUpdate()
     }
 
     private fun loadInstertital() {
@@ -528,10 +519,12 @@ class MainAppFragment : Fragment() {
         super.onDestroy()
         shouldCheckForOverlayPermissionLoop = false
     }
+
     override fun onLowMemory() {
         super.onLowMemory()
         activity?.finish()
     }
+
     override fun onRequestPermissionsResult(i: Int, strArr: Array<String>, iArr: IntArray) {
         super.onRequestPermissionsResult(i, strArr, iArr)
         if (i == 123) {
@@ -587,11 +580,12 @@ class MainAppFragment : Fragment() {
         try {
             isSplash = false
             val intent = Intent(
-                Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:${context?.packageName}")
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                Uri.parse("package:${context?.packageName}")
             )
             startActivityForResult(intent, 100)
         } catch (e: Exception) {
-           e.printStackTrace()
+            e.printStackTrace()
         }
     }
 
