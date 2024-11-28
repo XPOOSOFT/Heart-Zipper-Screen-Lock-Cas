@@ -51,7 +51,7 @@ class FragmentListCustomWallpaper  : Fragment() {
                         val images = response.body()?.hits ?: emptyList()
                         _binding?.recyclerView?.adapter = ImageAdapter(images) { image ->
                             findNavController().navigate(
-                                R.id.FragmentListCustomWallpaper,
+                                R.id.ImageDetailFragment,
                                 bundleOf("image_url" to image.largeImageURL)
                             )
                         }

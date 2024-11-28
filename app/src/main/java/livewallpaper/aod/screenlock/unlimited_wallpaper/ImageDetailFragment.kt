@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentFullscreenImage1Binding
@@ -56,6 +57,10 @@ class ImageDetailFragment : Fragment() {
             if (imageUrl != null) {
                 setAsWallpaper(imageUrl)
             }
+        }
+
+        _binding?.backIcon?.setOnClickListener {
+           findNavController().navigateUp()
         }
     }
 
