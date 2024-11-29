@@ -34,7 +34,6 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -135,7 +134,6 @@ class MainAppFragment : Fragment() {
         }
 
         loadNative()
-        _binding?.mainbg?.setBackgroundResource(background)
         setupBackPressedCallback {
             adsManager?.let {
                 showTwoInterAd(

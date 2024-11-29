@@ -10,7 +10,6 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.AppLanguageAdapter
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -42,7 +41,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adsManager = AdsManager.appAdsInit(activity ?: return)
-        _binding?.mainbg?.setBackgroundResource(background)
         firebaseAnalytics("language_fragment_open", "language_fragment_open -->  Click")
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         arguments?.let {

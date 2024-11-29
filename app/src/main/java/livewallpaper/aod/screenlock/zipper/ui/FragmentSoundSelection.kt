@@ -14,7 +14,6 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.SoundSelectLinearAdapter
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -62,7 +61,6 @@ class FragmentSoundSelection : Fragment() {
             adsManager = AdsManager.appAdsInit(activity?:requireActivity())
             sharedPrefUtils = DbHelper(context?:requireContext())
             _binding?.topLay?.title?.text = getString(R.string.select_sound)
-            _binding?.mainbg?.setBackgroundResource(background)
             _binding?.run {
                 topLay.backBtn.clickWithThrottle {
                     findNavController().navigateUp()

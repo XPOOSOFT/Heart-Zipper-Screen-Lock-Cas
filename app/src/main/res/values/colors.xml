@@ -24,4 +24,5 @@
     <color name="blue_btn_bg_pressed_color">#FF0000</color>
 
     <color name="sdk_load_bg_color_30">#4DCCCCCC</color>
+    <color name="main_bg">#F0F4F7</color>
 </resources>

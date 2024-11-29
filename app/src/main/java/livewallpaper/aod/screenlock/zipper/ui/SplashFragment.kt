@@ -18,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
@@ -143,7 +142,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             AdOpenApp(activity?.application ?:return@launch, id_app_open_splash_screen)
             dbHelper = DbHelper(context ?: return@launch)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
-            _binding?.mainbg?.setBackgroundResource(background)
             if (LoadPref("firstTime", context ?: return@launch) == 0) {
                 SavePref("firstTime", "1", context ?: return@launch)
                 SavePref(SpeedActivePref, "350", context ?: return@launch)

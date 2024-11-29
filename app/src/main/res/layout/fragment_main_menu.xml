@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainbg"
+    android:background="@color/main_bg"
     >
 
     <include
@@ -146,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.2"
                 android:text="@string/ad"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
                 app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
@@ -489,7 +490,7 @@
         android:text="@string/ad"
         android:gravity="center"
         android:background="@drawable/round_btn_ads"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bannerAds"
         app:layout_constraintEnd_toEndOf="@+id/bannerAds"

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/main_bg"
     android:layout_height="match_parent"
     android:id="@+id/mainbg">
 
@@ -39,7 +40,7 @@
         android:letterSpacing="0.2"
         android:text="@string/ad"
         android:gravity="center"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:background="@drawable/round_btn_ads"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"

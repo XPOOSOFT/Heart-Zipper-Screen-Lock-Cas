@@ -52,7 +52,6 @@
 //        setContentView(_binding?.root)
 //        postion = intent.getIntExtra("preview", 0)
 //        adsManager = AdsManager.appAdsInit(this)
-//        _binding?.mainbg?.setBackgroundResource(MainActivity.background)
 //        Glide.with(this).load(
 //            getBackground()?.get(DataBasePref.LoadPref(SelectedWallpaper, this))
 //        )

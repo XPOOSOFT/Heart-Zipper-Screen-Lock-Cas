@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_bg"
     android:id="@+id/mainbg"
     android:orientation="vertical">
 
@@ -12,6 +13,7 @@
         android:id="@+id/topConstraint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/top_bg"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -22,6 +24,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:padding="@dimen/_7sdp"
             android:background="@null"
+            app:tint="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -52,8 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_35sdp"
             android:text="@string/apply"
+            android:paddingVertical="@dimen/_10sdp"
+            android:paddingHorizontal="@dimen/_10sdp"
             android:visibility="invisible"
-            android:textColor="@color/textColor"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@id/title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/title"
@@ -92,7 +97,7 @@
         android:layout_height="wrap_content"
         android:letterSpacing="0.2"
         android:text="@string/ad"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
         app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"

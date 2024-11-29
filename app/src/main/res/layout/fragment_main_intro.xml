@@ -5,7 +5,7 @@
     android:id="@+id/mainbg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black">
+    android:background="@color/main_bg">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/main_slideViewPager"
@@ -23,7 +23,7 @@
         android:background="@drawable/rect_btn_loading_trans"
         android:gravity="center"
         android:text="@string/skip"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@id/main_slideViewPager"
         app:layout_constraintEnd_toEndOf="@id/main_slideViewPager"
@@ -54,7 +54,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/_20sdp"
-        app:dotsColor="@color/white"
+        app:dotsColor="@color/black"
         app:dotsCornerRadius="8dp"
         app:dotsSize="@dimen/_5sdp"
         app:dotsSpacing="2dp"
@@ -74,7 +74,7 @@
         android:background="@drawable/rect_btn_loading"
         android:gravity="center"
         android:text="@string/skip"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/nativeExitAd"
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:letterSpacing="0.2"
         android:text="@string/ad"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
         app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
