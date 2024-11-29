@@ -46,6 +46,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         arguments?.let {
             isLangScreen = it.getBoolean(LANG_SCREEN)
         }
+        sharedPrefUtils = DbHelper(context ?: return)
         _binding?.forwardBtn?.clickWithThrottle {
             sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
             if (!isLangScreen) {
@@ -64,14 +65,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 sharedPrefUtils?.saveData(requireContext(), LANG_CODE, positionSelected) ?: "en"
                 setLocaleMain(positionSelected)
                 sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
-//                if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
                 findNavController().navigate(R.id.myMainMenuFragment, bundleOf("is_splash" to true))
-//                } else {
-//                    findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to true))
-//                }
             }
         }
-        sharedPrefUtils = DbHelper(context ?: return)
         positionSelected = sharedPrefUtils?.getStringData(requireContext(), LANG_CODE, "en") ?: "en"
         adapter = AppLanguageAdapter(clickItem = {
             positionSelected = it.country_code

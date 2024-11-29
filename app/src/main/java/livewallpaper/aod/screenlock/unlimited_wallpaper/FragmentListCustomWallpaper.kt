@@ -1,6 +1,5 @@
 package livewallpaper.aod.screenlock.unlimited_wallpaper
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.ActivityMainBinding
+import livewallpaper.aod.screenlock.zipper.utilities.apiKey
+import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import livewallpaper.aod.screenlock.zipper.utilities.apiKey
 
-class FragmentListCustomWallpaper  : Fragment() {
+class FragmentListCustomWallpaper : Fragment() {
 
     private var _binding: ActivityMainBinding? = null
 
@@ -33,10 +33,18 @@ class FragmentListCustomWallpaper  : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        firebaseAnalytics("custom_wallpaper_fragment_detail", "custom_wallpaper_fragment_detail -->  Click")
-        val textTile =arguments?.getString("title")
+        firebaseAnalytics(
+            "custom_wallpaper_fragment_detail",
+            "custom_wallpaper_fragment_detail -->  Click"
+        )
+        val textTile = arguments?.getString("title")
         if (textTile != null) {
             fetchImages(textTile)
+        }
+        _binding?.topLay?.title?.text = textTile
+
+        _binding?.topLay?.backBtn?.clickWithThrottle {
+            findNavController().navigateUp()
         }
     }
 
@@ -64,6 +72,11 @@ class FragmentListCustomWallpaper  : Fragment() {
                     Toast.makeText(context, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
     }
 
 }

@@ -424,8 +424,8 @@ object NativeAds {
         try {
             (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor(getRandomColor()))
-            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+//            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
+//                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -473,8 +473,8 @@ object NativeAds {
                         getRandomColor()
                     )
                 )
-            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+//            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
+//                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }

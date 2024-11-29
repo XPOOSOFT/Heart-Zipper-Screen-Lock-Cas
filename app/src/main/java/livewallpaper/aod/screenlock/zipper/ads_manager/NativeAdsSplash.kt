@@ -253,7 +253,7 @@ object NativeAdsSplash {
 
         try {
             (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
-            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+//            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -298,15 +298,15 @@ object NativeAdsSplash {
     @SuppressLint("ResourceType", "UseCompatLoadingForColorStateLists")
     fun nativeViewMediaSplash(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
         adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
-        adView.iconView = adView.findViewById(R.id.custom_app_icon) as ImageView
+        adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
         adView.headlineView = adView.findViewById(R.id.custom_headline)
         adView.bodyView = adView.findViewById(R.id.custom_body)
 //        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
 //        adView.starRatingView = adView.findViewById(R.id.custom_stars)
         adView.mediaView = adView.findViewById(R.id.custom_media)
         try {
-            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
-            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+//            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
          e.printStackTrace()
         }

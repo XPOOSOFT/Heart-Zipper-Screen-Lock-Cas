@@ -74,9 +74,10 @@ class WallpaperFragment : Fragment() {
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        _binding?.titleBack?.clickWithThrottle {
+        _binding?.topLay?.backBtn?.clickWithThrottle {
             findNavController().navigateUp()
         }
+        _binding?.topLay?.title?.text = getString(R.string.un_wallpaper)
         loadBanner()
         loadRewardedInterstitialAd()
         setupRecyclerView(view)
@@ -282,4 +283,8 @@ class WallpaperFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
+    }
 }
