@@ -494,7 +494,23 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 //                if(val_app_open){
 //                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
 //                }
-
+                if (val_ad_app_open_screen) {
+                    loadTwoInterAds(
+                        ads = adsManager ?: return@addOnCompleteListener,
+                        activity = activity ?: return@addOnCompleteListener,
+                        remoteConfigNormal = true,
+                        adIdNormal = id_inter_main_medium,
+                        tagClass = "main_app_fragment"
+                    )
+                } else {
+                    loadTwoInterAdsSplash(
+                        adsManager ?: return@addOnCompleteListener,
+                        activity ?: return@addOnCompleteListener,
+                        remoteConfigNormal = val_ad_inter_loading_screen,
+                        adIdNormal = id_inter_splash_Screen,
+                        "splash"
+                    )
+                }
                 observeSplashLiveData()
             }
 

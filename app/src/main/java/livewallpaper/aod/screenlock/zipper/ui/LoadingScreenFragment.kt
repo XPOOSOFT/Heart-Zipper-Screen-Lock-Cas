@@ -67,24 +67,6 @@ class LoadingScreenFragment :
         }
 
 
-        if (val_ad_app_open_screen) {
-            loadTwoInterAds(
-                ads = adsManager ?: return,
-                activity = activity ?: return,
-                remoteConfigNormal = true,
-                adIdNormal = id_inter_main_medium,
-                tagClass = "main_app_fragment"
-            )
-        } else {
-            loadTwoInterAdsSplash(
-                adsManager ?: return,
-                activity ?: return,
-                remoteConfigNormal = val_ad_inter_loading_screen,
-                adIdNormal = id_inter_splash_Screen,
-                "splash"
-            )
-        }
-
         if (isFlowOne) {
             lifecycleScope.launchWhenCreated {
                 loadNative()

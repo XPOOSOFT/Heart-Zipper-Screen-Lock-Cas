@@ -2,6 +2,7 @@ package livewallpaper.aod.screenlock.unlimited_wallpaper
 
 import android.icu.text.CaseMap.Title
 import android.os.Bundle
+import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -24,6 +25,7 @@ import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoa
 import com.google.gson.Gson
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners.isDebug
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
@@ -161,7 +163,7 @@ class WallpaperFragment : Fragment() {
             // Load a rewarded ad.
             RewardedAd.load(
                 context ?: return,
-                id_reward,
+                if(!isDebug()) id_reward else "ca-app-pub-3940256099942544/5224354917",
                 adRequest,
                 object : RewardedAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {

@@ -137,7 +137,7 @@ var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
 var id_collapsable_banner = ""
 var id_splash_native = ""
-var id_reward = "ca-app-pub-3940256099942544/5354046379"
+var id_reward = "ca-app-pub-3940256099942544/5224354917"
 var apiKey = ""
 var Wallpaper_Cat = ""
 
