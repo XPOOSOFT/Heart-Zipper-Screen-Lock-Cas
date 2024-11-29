@@ -224,6 +224,11 @@
     <string name="unlimited_themes">Sınırsız Temalar</string>
     <string name="unlock">Kilidi Aç</string>
     <string name="try_agin_ad_not_load">Tekrar Deneyin, Reklam Yüklenmedi</string>
+    <string name="background_style">Arka Plan Duvar Kağıdı</string>
+    <string name="custom_setting">Özel Ayar</string>
+    <string name="customize">Kişiselleştir</string>
+    <string name="customize_detail">Sevdiklerinizi kişiselleştirin</string>
+    <string name="un_wallpaper">Sınırsız Duvar Kağıtları</string>
 
 </resources>
 

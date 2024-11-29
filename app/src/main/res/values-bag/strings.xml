@@ -227,6 +227,11 @@
     <string name="unlimited_themes">সীমাহীন থিম</string>
     <string name="unlock">লক খুলুন</string>
     <string name="try_agin_ad_not_load">আবার চেষ্টা করুন, বিজ্ঞাপন লোড হয়নি</string>
+    <string name="background_style">পটভূমি ওয়ালপেপার</string>
+    <string name="custom_setting">কাস্টম সেটিং</string>
+    <string name="customize">অন্যভাবে সাজান</string>
+    <string name="customize_detail">আপনার পছন্দ অনুযায়ী সাজান</string>
+    <string name="un_wallpaper">অসীম ওয়ালপেপার</string>
 
 </resources>
 

@@ -224,6 +224,11 @@
     <string name="unlimited_themes">لامحدود تھیمز</string>
     <string name="unlock">ان لاک کریں</string>
     <string name="try_agin_ad_not_load">دوبارہ کوشش کریں، اشتہار لوڈ نہیں ہوا</string>
+    <string name="background_style">بیک گراؤنڈ والپیپر</string>
+    <string name="custom_setting">حسب ضرورت ترتیبات</string>
+    <string name="customize">حسب ضرورت بنائیں</string>
+    <string name="customize_detail">اپنی پسند کے مطابق بنائیں</string>
+    <string name="un_wallpaper">لامحدود والپیپر</string>
 
 </resources>
 

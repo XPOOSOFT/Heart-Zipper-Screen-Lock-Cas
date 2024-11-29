@@ -224,5 +224,10 @@
     <string name="unlimited_themes">असीमित थीम</string>
     <string name="unlock">अनलॉक</string>
     <string name="try_agin_ad_not_load">पुनः प्रयास करें, विज्ञापन लोड नहीं हुआ</string>
+    <string name="background_style">बैकग्राउंड वॉलपेपर</string>
+    <string name="custom_setting">कस्टम सेटिंग</string>
+    <string name="customize">अनुकूलित करें</string>
+    <string name="customize_detail">जो आपको पसंद हो उसे निजी बनाएं</string>
+    <string name="un_wallpaper">अनलिमिटेड वॉलपेपर</string>
 
 </resources>

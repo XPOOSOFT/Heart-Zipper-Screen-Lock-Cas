@@ -228,5 +228,10 @@ Please Check it first!</string>
     <string name="unlimited_themes">Temi Illimitati</string>
     <string name="unlock">Sbloccare</string>
     <string name="try_agin_ad_not_load">Riprova, Annuncio non Caricato</string>
+    <string name="background_style">Sfondo</string>
+    <string name="custom_setting">Impostazione Personalizzata</string>
+    <string name="customize">Personalizza</string>
+    <string name="customize_detail">Personalizza ciò che ti piace</string>
+    <string name="un_wallpaper">Sfondi Illimitati</string>
 
 </resources>

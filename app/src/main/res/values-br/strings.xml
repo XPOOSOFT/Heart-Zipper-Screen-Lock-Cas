@@ -225,5 +225,10 @@
     <string name="unlimited_themes">Temas ilimitados</string>
     <string name="unlock">Desbloquear</string>
     <string name="try_agin_ad_not_load">Tente novamente, o anúncio não carregou</string>
+    <string name="background_style">Papel de Parede</string>
+    <string name="custom_setting">Configuração Personalizada</string>
+    <string name="customize">Personalizar</string>
+    <string name="customize_detail">Personalize o que você gosta</string>
+    <string name="un_wallpaper">Papéis de Parede Ilimitados</string>
 
 </resources>

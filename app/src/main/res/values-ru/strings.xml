@@ -233,6 +233,11 @@
     <string name="unlimited_themes">Неограниченные Темы</string>
     <string name="unlock">Разблокировать</string>
     <string name="try_agin_ad_not_load">Попробуйте снова, реклама не загрузилась</string>
+    <string name="background_style">Фоновая обои</string>
+    <string name="custom_setting">Пользовательская настройка</string>
+    <string name="customize">Настроить</string>
+    <string name="customize_detail">Персонализируйте то, что вам нравится</string>
+    <string name="un_wallpaper">Неограниченные обои</string>
 
 </resources>
 

@@ -218,6 +218,11 @@
     <string name="reward_7">K-Pop</string>
     <string name="reward_8">Vintage</string>
 
+    <string name="background_style">Mandhari ya Ukuta</string>
+    <string name="custom_setting">Mipangilio Maalum</string>
+    <string name="customize">Badilisha</string>
+    <string name="customize_detail">Binafsisha unachopenda</string>
+    <string name="un_wallpaper">Mandhari Isiyo na Kiwango</string>
 
 
 </resources>

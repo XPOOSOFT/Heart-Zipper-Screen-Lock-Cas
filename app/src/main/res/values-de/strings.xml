@@ -226,6 +226,11 @@
     <string name="unlimited_themes">Unbegrenzte Themen</string>
     <string name="unlock">Entsperren</string>
     <string name="try_agin_ad_not_load">Erneut versuchen, Anzeige nicht geladen</string>
+    <string name="background_style">Hintergrundbild</string>
+    <string name="custom_setting">Benutzerdefinierte Einstellung</string>
+    <string name="customize">Anpassen</string>
+    <string name="customize_detail">Personalisieren Sie, was Sie mögen</string>
+    <string name="un_wallpaper">Unbegrenzte Hintergrundbilder</string>
 
 </resources>
 

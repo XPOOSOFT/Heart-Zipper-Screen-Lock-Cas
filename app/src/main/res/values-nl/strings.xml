@@ -222,5 +222,10 @@
     <string name="unlimited_themes">Onbeperkte Thema\'s</string>
     <string name="unlock">Ontgrendelen</string>
     <string name="try_agin_ad_not_load">Probeer Opnieuw, Advertentie Niet Geladen</string>
+    <string name="background_style">Achtergrond Behang</string>
+    <string name="custom_setting">Aangepaste Instelling</string>
+    <string name="customize">Aanpassen</string>
+    <string name="customize_detail">Personaliseer wat je leuk vindt</string>
+    <string name="un_wallpaper">Onbeperkte Achtergronden</string>
 
 </resources>
