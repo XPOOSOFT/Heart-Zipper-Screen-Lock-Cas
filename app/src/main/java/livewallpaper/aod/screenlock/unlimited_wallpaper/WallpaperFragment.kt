@@ -17,6 +17,8 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
 import com.google.gson.Gson
@@ -48,7 +50,7 @@ class WallpaperFragment : Fragment() {
     private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
-
+    private var rewardedAd: RewardedAd? = null
     private var isLoadingAds = false
 
     override fun onCreateView(
@@ -79,7 +81,7 @@ class WallpaperFragment : Fragment() {
         }
         _binding?.topLay?.title?.text = getString(R.string.un_wallpaper)
         loadBanner()
-        loadRewardedInterstitialAd()
+        loadRewardedAd()
         setupRecyclerView(view)
     }
 
@@ -135,7 +137,7 @@ class WallpaperFragment : Fragment() {
                             context ?: requireContext(),
                             getString(R.string.try_agin_ad_not_load)
                         )
-                        loadRewardedInterstitialAd()
+                        loadRewardedAd()
                         return@showAdsDialog
                     }
                     showRewardedVideo {
@@ -151,70 +153,67 @@ class WallpaperFragment : Fragment() {
         view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
     }
 
-    private fun loadRewardedInterstitialAd() {
 
-        if (rewardedInterstitialAd == null) {
+    private fun loadRewardedAd() {
+        if (rewardedAd == null) {
             val adRequest = AdRequest.Builder().build()
 
-            // Load an ad.
-            RewardedInterstitialAd.load(
+            // Load a rewarded ad.
+            RewardedAd.load(
                 context ?: return,
                 id_reward,
                 adRequest,
-                object : RewardedInterstitialAdLoadCallback() {
+                object : RewardedAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
                         super.onAdFailedToLoad(adError)
                         Log.d("MAIN_ACTIVITY_TAG", "onAdFailedToLoad: ${adError.message}")
                         isLoadingAds = false
-                        rewardedInterstitialAd = null
+                        rewardedAd = null
                     }
 
-                    override fun onAdLoaded(rewardedAd: RewardedInterstitialAd) {
-                        super.onAdLoaded(rewardedAd)
+                    override fun onAdLoaded(rewarded: RewardedAd) {
+                        super.onAdLoaded(rewarded)
                         Log.d("MAIN_ACTIVITY_TAG", "Ad was loaded.")
-                        rewardedInterstitialAd = rewardedAd
+                        rewardedAd = rewarded
                         isLoadingAds = true
                     }
-                },
+                }
             )
         }
     }
 
     private fun showRewardedVideo(function: (() -> Unit)) {
-        if (rewardedInterstitialAd == null) {
-            Log.d("MAIN_ACTIVITY_TAG", "The rewarded interstitial ad wasn't ready yet.")
+        if (rewardedAd == null) {
+            Log.d("MAIN_ACTIVITY_TAG", "The rewarded ad wasn't ready yet.")
             function.invoke()
             return
         }
 
-        rewardedInterstitialAd?.fullScreenContentCallback =
-            object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    // Preload the next rewarded interstitial ad.
-                    isSplash = true
-                }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    rewardedInterstitialAd = null
-                }
-
-                override fun onAdShowedFullScreenContent() {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
-                    isSplash = false
-                    rewardedInterstitialAd = null
-                    loadRewardedInterstitialAd()
-                    function.invoke()
-                }
+        rewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
+                rewardedAd = null
+                isSplash = true
+                loadRewardedAd() // Preload the next rewarded ad
             }
 
-        rewardedInterstitialAd?.show(activity ?: return) { rewardItem ->
-            isLoadingAds = false
+            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
+                isSplash = true
+                rewardedAd = null
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
+                rewardedAd = null
+                isSplash = false
+                isLoadingAds = false
+            }
+        }
+
+        rewardedAd?.show(activity ?: return) { rewardItem ->
+            // Handle the reward
+            Log.d("MAIN_ACTIVITY_TAG", "User earned reward: ${rewardItem.amount} ${rewardItem.type}")
             function.invoke()
         }
     }

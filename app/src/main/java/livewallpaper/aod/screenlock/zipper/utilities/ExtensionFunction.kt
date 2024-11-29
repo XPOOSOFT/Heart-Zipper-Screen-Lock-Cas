@@ -832,3 +832,90 @@ fun Int.toSimpleTimeFormat(): String {
     val seconds = this % 60
     return "$minutes:${seconds.toString().padStart(2, '0')}"
 }
+
+fun getImageLanguage(position: String): Int {
+    when (position) {
+        "en" -> {
+            return R.drawable.uk
+        }
+
+        "ar" -> {
+            return R.drawable.arabic
+        }
+
+        "bag" -> {
+            return R.drawable.bangladash
+        }
+
+        "br" -> {
+            return R.drawable.brazil
+        }
+
+        "ca" -> {
+            return R.drawable.canada
+        }
+
+        "rom" -> {
+            return R.drawable.domican_republic
+        }
+        "fr" -> {
+            return R.drawable.france
+        }
+
+        "de" -> {
+            return R.drawable.germany
+        }
+
+        "hi" -> {
+            return R.drawable.hindi
+        }
+
+        "it" -> {
+            return R.drawable.italian
+        }
+
+        "ja" -> {
+            return R.drawable.japanese
+        }
+        "ky" -> {
+            return R.drawable.keynia
+        }
+
+        "ko" -> {
+            return R.drawable.korean
+        }
+
+        "mk" -> {
+            return R.drawable.mexicon
+        }
+
+        "nl" -> {
+            return R.drawable.netherland
+        }
+
+        "pt" -> {
+            return R.drawable.portuguese
+        }
+
+        "ru" -> {
+            return R.drawable.russian
+        }
+        "es" -> {
+            return R.drawable.spanish
+        }
+
+        "af" -> {
+            return R.drawable.africa
+        }
+
+        "tr" -> {
+            return R.drawable.turkey
+        }
+
+        "ur" -> {
+            return R.drawable.urdu
+        }
+
+    }
+    return R.drawable.uk
+}
