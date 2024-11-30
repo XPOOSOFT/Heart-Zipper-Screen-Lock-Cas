@@ -105,11 +105,11 @@ class WallpaperFragment : Fragment() {
 //            }
 //        """
         // Parse JSON
+//        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
         val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
         categories.clear()
         categories.addAll(categoriesResponse.categories)
         categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
-            Log.d("check", "setupRecyclerView: $Tilte_")
             if (!isNetworkAvailable(activity)) {
                 showToast(context ?: requireContext(), getString(R.string.no_internet))
                 return@CategoryAdapter
