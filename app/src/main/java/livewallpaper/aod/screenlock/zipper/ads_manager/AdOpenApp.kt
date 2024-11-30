@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.appopen.AppOpenAd
+import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ui.SplashFragment.Companion.splashTime
@@ -179,7 +180,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
         private const val LOG_TAG = "AppOpenManager"
         var isShowingAd = false
         var openAdForSplash: AppOpenAd? = null
-        var rewardedInterstitialAd: RewardedInterstitialAd? = null
+        var rewardedInterstitialAd: RewardedAd? = null
     }
 
     init {

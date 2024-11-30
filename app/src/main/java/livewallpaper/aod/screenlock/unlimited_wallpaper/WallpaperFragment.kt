@@ -48,7 +48,7 @@ class WallpaperFragment : Fragment() {
     private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
-    private var rewardedAd: RewardedAd? = null
+//    private var rewardedAd: RewardedAd? = null
     private var isLoadingAds = false
 
     override fun onCreateView(
@@ -140,11 +140,12 @@ class WallpaperFragment : Fragment() {
                             return@showAdsDialog
                         }
                         showRewardedVideo {
-                            findNavController().navigate(
-                                R.id.FragmentListCustomWallpaper,
-                                bundleOf("title" to Tilte_)
-                            )
                         }
+
+                        findNavController().navigate(
+                            R.id.FragmentListCustomWallpaper,
+                            bundleOf("title" to Tilte_)
+                        )
                     })
                 return@CategoryAdapter
 
@@ -158,26 +159,26 @@ class WallpaperFragment : Fragment() {
 
 
     private fun loadRewardedAd() {
-        if (rewardedAd == null) {
+        if (rewardedInterstitialAd == null) {
             val adRequest = AdRequest.Builder().build()
 
             // Load a rewarded ad.
             RewardedAd.load(
                 context ?: return,
-                if (!isDebug()) id_reward else "ca-app-pub-3940256099942544/5224354917",
+                id_reward,
                 adRequest,
                 object : RewardedAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
                         super.onAdFailedToLoad(adError)
                         Log.d("MAIN_ACTIVITY_TAG", "onAdFailedToLoad: ${adError.message}")
                         isLoadingAds = false
-                        rewardedAd = null
+                        rewardedInterstitialAd = null
                     }
 
                     override fun onAdLoaded(rewarded: RewardedAd) {
                         super.onAdLoaded(rewarded)
                         Log.d("MAIN_ACTIVITY_TAG", "Ad was loaded.")
-                        rewardedAd = rewarded
+                        rewardedInterstitialAd = rewarded
                         isLoadingAds = true
                     }
                 }
@@ -186,16 +187,16 @@ class WallpaperFragment : Fragment() {
     }
 
     private fun showRewardedVideo(function: (() -> Unit)) {
-        if (rewardedAd == null) {
+        if (rewardedInterstitialAd == null) {
             Log.d("MAIN_ACTIVITY_TAG", "The rewarded ad wasn't ready yet.")
             function.invoke()
             return
         }
 
-        rewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+        rewardedInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
                 Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
-                rewardedAd = null
+                rewardedInterstitialAd = null
                 isSplash = true
                 loadRewardedAd() // Preload the next rewarded ad
             }
@@ -203,18 +204,18 @@ class WallpaperFragment : Fragment() {
             override fun onAdFailedToShowFullScreenContent(adError: AdError) {
                 Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
                 isSplash = true
-                rewardedAd = null
+                rewardedInterstitialAd = null
             }
 
             override fun onAdShowedFullScreenContent() {
                 Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
-                rewardedAd = null
+                rewardedInterstitialAd = null
                 isSplash = false
                 isLoadingAds = false
             }
         }
 
-        rewardedAd?.show(activity ?: return) { rewardItem ->
+        rewardedInterstitialAd?.show(activity ?: return) { rewardItem ->
             // Handle the reward
             Log.d(
                 "MAIN_ACTIVITY_TAG",

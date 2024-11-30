@@ -9,7 +9,6 @@ interface PixabayApiService {
     fun searchImages(
         @Query("key") apiKey: String,
         @Query("q") query: String,
-        @Query("image_type") imageType: String = "photo",
-        @Query("pretty") pretty: Boolean = true
     ): Call<PixabayResponse>
 }
+

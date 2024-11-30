@@ -176,14 +176,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         try {
             lifecycleScope.launchWhenResumed {
                 try {
-                    isSplash = true
                     delay(splashTime)
                     if(val_ad_app_open_splash_screen) {
+                        isSplash = true
                         showOpenAd(activity ?: return@launchWhenResumed) {
                         }
                     }
-                    findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
+                    findNavController().navigate(R.id.myLoadingFragment)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
