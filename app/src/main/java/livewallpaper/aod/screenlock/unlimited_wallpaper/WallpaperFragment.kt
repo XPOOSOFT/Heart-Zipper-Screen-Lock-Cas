@@ -1,8 +1,6 @@
 package livewallpaper.aod.screenlock.unlimited_wallpaper
 
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
-import android.os.Debug
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +18,6 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
 import com.google.gson.Gson
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
@@ -106,53 +102,58 @@ class WallpaperFragment : Fragment() {
 //        """
         // Parse JSON
 //        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
-        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
-        categories.clear()
-        categories.addAll(categoriesResponse.categories)
-        categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
-            if (!isNetworkAvailable(activity)) {
-                showToast(context ?: requireContext(), getString(R.string.no_internet))
-                return@CategoryAdapter
-            }
-            if (BillingUtil(activity ?: return@CategoryAdapter).checkPurchased(
-                    activity ?: return@CategoryAdapter
-                )
-            ) {
-                findNavController().navigate(
-                    R.id.FragmentListCustomWallpaper,
-                    bundleOf("title" to Tilte_)
-                )
-                return@CategoryAdapter
-            }
-            showAdsDialog(
-                context = activity ?: return@CategoryAdapter,
-                onInApp = { ->
-                    findNavController().navigate(
-                        R.id.FragmentBuyScreen,
-                        bundleOf("isSplash" to false)
+        try {
+            val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
+            categories.clear()
+            categories.addAll(categoriesResponse.categories)
+            categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
+                if (!isNetworkAvailable(activity)) {
+                    showToast(context ?: requireContext(), getString(R.string.no_internet))
+                    return@CategoryAdapter
+                }
+                if (BillingUtil(activity ?: return@CategoryAdapter).checkPurchased(
+                        activity ?: return@CategoryAdapter
                     )
-                    return@showAdsDialog
-                },
-                onWatchAds = { ->
-                    if (rewardedInterstitialAd == null) {
-                        showToast(
-                            context ?: requireContext(),
-                            getString(R.string.try_agin_ad_not_load)
-                        )
-                        loadRewardedAd()
-                        return@showAdsDialog
-                    }
-                    showRewardedVideo {
+                ) {
+                    findNavController().navigate(
+                        R.id.FragmentListCustomWallpaper,
+                        bundleOf("title" to Tilte_)
+                    )
+                    return@CategoryAdapter
+                }
+                showAdsDialog(
+                    context = activity ?: return@CategoryAdapter,
+                    onInApp = { ->
                         findNavController().navigate(
-                            R.id.FragmentListCustomWallpaper,
-                            bundleOf("title" to Tilte_)
+                            R.id.FragmentBuyScreen,
+                            bundleOf("isSplash" to false)
                         )
-                    }
-                })
-            return@CategoryAdapter
+                        return@showAdsDialog
+                    },
+                    onWatchAds = { ->
+                        if (rewardedInterstitialAd == null) {
+                            showToast(
+                                context ?: requireContext(),
+                                getString(R.string.try_agin_ad_not_load)
+                            )
+                            loadRewardedAd()
+                            return@showAdsDialog
+                        }
+                        showRewardedVideo {
+                            findNavController().navigate(
+                                R.id.FragmentListCustomWallpaper,
+                                bundleOf("title" to Tilte_)
+                            )
+                        }
+                    })
+                return@CategoryAdapter
 
+            }
+            view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
+
     }
 
 
@@ -163,7 +164,7 @@ class WallpaperFragment : Fragment() {
             // Load a rewarded ad.
             RewardedAd.load(
                 context ?: return,
-                if(!isDebug()) id_reward else "ca-app-pub-3940256099942544/5224354917",
+                if (!isDebug()) id_reward else "ca-app-pub-3940256099942544/5224354917",
                 adRequest,
                 object : RewardedAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
@@ -215,7 +216,10 @@ class WallpaperFragment : Fragment() {
 
         rewardedAd?.show(activity ?: return) { rewardItem ->
             // Handle the reward
-            Log.d("MAIN_ACTIVITY_TAG", "User earned reward: ${rewardItem.amount} ${rewardItem.type}")
+            Log.d(
+                "MAIN_ACTIVITY_TAG",
+                "User earned reward: ${rewardItem.amount} ${rewardItem.type}"
+            )
             function.invoke()
         }
     }
