@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -17,9 +16,6 @@ import livewallpaper.aod.screenlock.zipper.databinding.ActivityMainBinding
 import livewallpaper.aod.screenlock.zipper.utilities.apiKey
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class FragmentListCustomWallpaper : Fragment() {
 
@@ -81,18 +77,26 @@ class FragmentListCustomWallpaper : Fragment() {
                     if (response.isSuccessful) {
                         // Handle the response
                         val images = response.body()?.hits
-                        Log.d( "onFailure:", "$images")
+                        _binding?.recyclerView?.adapter =
+                            images?.let {
+                                ImageAdapter(it) { image ->
+                                    findNavController().navigate(
+                                        R.id.ImageDetailFragment,
+                                        bundleOf("image_url" to image.largeImageURL)
+                                    )
+                                }
+                            }
                     } else {
                         // Handle error
-                        Log.d( "onFailure:", response.message())
+                        Log.d("onFailure:", response.message())
                     }
                 } catch (e: Exception) {
                     // Handle exception (e.g., network error)
-                    Log.d( "onFailure:", "$e")
+                    Log.d("onFailure:", "$e")
                 }
             }
         } catch (e: Exception) {
-            Log.d( "onFailure:", "${e.message}")
+            Log.d("onFailure:", "${e.message}")
         }
     }
 
