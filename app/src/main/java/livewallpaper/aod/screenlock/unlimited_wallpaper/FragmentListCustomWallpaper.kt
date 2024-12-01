@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.launch
+import livewallpaper.aod.screenlock.unlimited_wallpaper.RetrofitClient.apiService
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.ActivityMainBinding
 import livewallpaper.aod.screenlock.zipper.utilities.apiKey
@@ -51,28 +54,43 @@ class FragmentListCustomWallpaper : Fragment() {
 
     private fun fetchImages(query: String) {
         try {
-            RetrofitClient.apiService.searchImages(apiKey, query)
-                .enqueue(object : Callback<PixabayResponse> {
-                    override fun onResponse(
-                        call: Call<PixabayResponse>,
-                        response: Response<PixabayResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            val images = response.body()?.hits ?: emptyList()
-                            _binding?.recyclerView?.adapter = ImageAdapter(images) { image ->
-                                findNavController().navigate(
-                                    R.id.ImageDetailFragment,
-                                    bundleOf("image_url" to image.largeImageURL)
-                                )
-                            }
-                        } else {
-                            Log.d( "onFailure:", "${response.message()}")
-                        }
+//            RetrofitClient.apiService.searchImages(apiKey, query).enqueue(object : Callback<PixabayResponse> {
+//                    override fun onResponse(
+//                        call: Call<PixabayResponse>,
+//                        response: Response<PixabayResponse>
+//                    ) {
+//                        if (response.isSuccessful) {
+//                            val images = response.body()?.hits ?: emptyList()
+//                            _binding?.recyclerView?.adapter = ImageAdapter(images) { image ->
+//                                findNavController().navigate(
+//                                    R.id.ImageDetailFragment,
+//                                    bundleOf("image_url" to image.largeImageURL)
+//                                )
+//                            }
+//                        } else {
+//                            Log.d( "onFailure:", response.message())
+//                        }
+//                    }
+//                    override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
+//                        Log.d( "onFailure:", "${t.message}")
+//                    }
+//                })
+            lifecycleScope.launch {
+                try {
+                    val response = apiService.searchImages(apiKey, query)
+                    if (response.isSuccessful) {
+                        // Handle the response
+                        val images = response.body()?.hits
+                        Log.d( "onFailure:", "$images")
+                    } else {
+                        // Handle error
+                        Log.d( "onFailure:", response.message())
                     }
-                    override fun onFailure(call: Call<PixabayResponse>, t: Throwable) {
-                        Log.d( "onFailure:", "${t.message}")
-                    }
-                })
+                } catch (e: Exception) {
+                    // Handle exception (e.g., network error)
+                    Log.d( "onFailure:", "$e")
+                }
+            }
         } catch (e: Exception) {
             Log.d( "onFailure:", "${e.message}")
         }

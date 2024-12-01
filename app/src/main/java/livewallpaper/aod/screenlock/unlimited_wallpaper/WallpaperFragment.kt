@@ -48,7 +48,6 @@ class WallpaperFragment : Fragment() {
     private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
-//    private var rewardedAd: RewardedAd? = null
     private var isLoadingAds = false
 
     override fun onCreateView(
