@@ -13,7 +13,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.OnBordScreenAdapter
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -62,7 +61,6 @@ class OnBordScreenFragment :
         super.onViewCreated(view, savedInstanceState)
         firebaseAnalytics("intro_fragment_open", "intro_fragment_open -->  Click")
         onBordScreenAdapter = OnBordScreenAdapter(requireContext())
-        _binding?.mainbg?.setBackgroundResource(background)
         sharedPrefUtils = DbHelper(context ?: return)
         ads = AdsManager.appAdsInit(activity ?: return)
         _binding?.run {

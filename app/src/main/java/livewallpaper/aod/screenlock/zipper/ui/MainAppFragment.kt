@@ -34,7 +34,6 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -53,6 +52,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.Constants
 import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPrefString
+import livewallpaper.aod.screenlock.zipper.utilities.LANG_CODE
 import livewallpaper.aod.screenlock.zipper.utilities.NOTIFICATION_PERMISSION
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.Uscreen
@@ -60,6 +60,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.appUpdateType
 import livewallpaper.aod.screenlock.zipper.utilities.askRatings
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.getImageLanguage
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
@@ -135,7 +136,6 @@ class MainAppFragment : Fragment() {
         }
 
         loadNative()
-        _binding?.mainbg?.setBackgroundResource(background)
         setupBackPressedCallback {
             adsManager?.let {
                 showTwoInterAd(
@@ -191,6 +191,13 @@ class MainAppFragment : Fragment() {
 //                findNavController().navigate(R.id.rewardFragment)
 //            }
 //        }
+        sharedPrefUtils?.getStringData(requireContext(), LANG_CODE, "en")?.let { getImageLanguage(it) }
+            ?.let {
+                _binding?.topLay?.languageBtn?.loadImagethumbnail(
+                    context ?: return,
+                    it
+                )
+            }
         _binding?.customize?.clickWithThrottle {
             adsManager?.let {
                 showTwoInterAd(

@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainbg"
+    android:background="@color/main_bg"
     >
 
     <include
@@ -146,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:letterSpacing="0.2"
                 android:text="@string/ad"
-                android:textColor="@color/textColor"
+                android:textColor="@color/black"
                 android:textSize="@dimen/_14sdp"
                 app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
                 app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
@@ -349,8 +350,8 @@
                 />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@id/customize"
                 app:layout_constraintTop_toTopOf="@id/customize"
@@ -362,23 +363,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/customize_icon"
+                android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintVertical_bias="0.25"
                 app:layout_constraintBottom_toBottomOf="@id/customize"
                 app:layout_constraintStart_toStartOf="@id/customize"
-                app:layout_constraintEnd_toEndOf="@id/customize"
                 app:layout_constraintTop_toTopOf="@id/customize" />
             <TextView
                 android:id="@+id/customizeText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@string/customize"
+                android:layout_marginEnd="@dimen/_15sdp"
                 android:gravity="center"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_11sdp"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toTopOf="@id/customizeTextD"
+                app:layout_constraintBottom_toBottomOf="@id/customizeImage"
                 app:layout_constraintEnd_toEndOf="@id/customize"
-                app:layout_constraintStart_toStartOf="@id/customize"
-                app:layout_constraintTop_toBottomOf="@id/customizeImage" />
+                app:layout_constraintStart_toEndOf="@id/customizeImage"
+                app:layout_constraintTop_toTopOf="@id/customizeImage" />
             <TextView
                 android:id="@+id/customizeTextD"
                 android:layout_width="0dp"
@@ -406,8 +408,8 @@
                 />
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView1"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_40sdp"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
                 app:layout_constraintTop_toTopOf="@id/un_wallpaper"
@@ -418,24 +420,24 @@
                 android:id="@+id/un_wallpaperImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
-                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
                 app:layout_constraintStart_toStartOf="@id/un_wallpaper"
                 app:layout_constraintTop_toTopOf="@id/un_wallpaper"
-                app:layout_constraintVertical_bias="0.23"
-                app:srcCompat="@drawable/wallpaper_icon" />
+                app:srcCompat="@drawable/wallpaper_icon"
+                />
             <TextView
                 android:id="@+id/un_wallpaperText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_14sdp"
+                android:textSize="@dimen/_11sdp"
                 android:text="@string/un_wallpaper"
                 android:gravity="center"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
+                app:layout_constraintBottom_toBottomOf="@id/un_wallpaperImage"
                 app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
-                app:layout_constraintStart_toStartOf="@id/un_wallpaper"
-                app:layout_constraintTop_toBottomOf="@id/un_wallpaperImage" />
+                app:layout_constraintStart_toEndOf="@id/un_wallpaperImage"
+                app:layout_constraintTop_toTopOf="@id/un_wallpaperImage" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
@@ -489,7 +491,7 @@
         android:text="@string/ad"
         android:gravity="center"
         android:background="@drawable/round_btn_ads"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bannerAds"
         app:layout_constraintEnd_toEndOf="@+id/bannerAds"

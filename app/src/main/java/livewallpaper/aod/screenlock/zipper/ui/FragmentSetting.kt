@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
@@ -70,7 +69,6 @@ class FragmentSetting : Fragment() {
             loadBanner()
             isPassword = checkPasswordAct(context) ?: false
             Log.d("fragment_setting", "onViewCreated: $isPassword")
-            _binding?.activityGeneralSetting?.setBackgroundResource(background)
             switchCheck()
             _binding?.selectMusic?.setOnClickListener {
                 adsManager?.let {

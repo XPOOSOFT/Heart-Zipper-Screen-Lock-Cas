@@ -15,7 +15,7 @@
         android:padding="@dimen/_8sdp"
         android:layout_marginVertical="@dimen/_4sdp"
         android:layout_marginHorizontal="@dimen/_3sdp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/black"
         app:srcCompat="@drawable/back_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

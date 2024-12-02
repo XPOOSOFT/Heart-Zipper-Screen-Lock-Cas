@@ -228,6 +228,11 @@
     <string name="unlock">ロック解除</string>
     <string name="try_agin_ad_not_load">もう一度試してください、広告が読み込まれません</string>
 
+    <string name="background_style">背景壁紙</string>
+    <string name="custom_setting">カスタム設定</string>
+    <string name="customize">カスタマイズ</string>
+    <string name="customize_detail">好きなようにパーソナライズ</string>
+    <string name="un_wallpaper">無制限の壁紙</string>
 
 </resources>
 

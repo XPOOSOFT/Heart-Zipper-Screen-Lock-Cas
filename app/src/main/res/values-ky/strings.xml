@@ -224,5 +224,10 @@
     <string name="unlimited_themes">Mandhari Yasiyo na Kikomo</string>
     <string name="unlock">Fungua</string>
     <string name="try_agin_ad_not_load">Jaribu Tena, Tangazo Halijapakiwa</string>
+    <string name="background_style">Ukuta wa Mandharinyuma</string>
+    <string name="custom_setting">Mipangilio Maalum</string>
+    <string name="customize">Badilisha</string>
+    <string name="customize_detail">Binafsisha unachopenda</string>
+    <string name="un_wallpaper">Ukuta Usio na Kikomo</string>
 
 </resources>

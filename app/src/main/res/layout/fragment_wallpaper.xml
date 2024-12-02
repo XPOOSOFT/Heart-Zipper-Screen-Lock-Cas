@@ -4,37 +4,12 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:background="@drawable/bg_reaward"
-    android:padding="16dp">
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
-        android:id="@+id/titleBack"
-        android:layout_width="@dimen/_25sdp"
-        android:layout_height="@dimen/_25sdp"
-        android:padding="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:src="@drawable/back_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+    <include
+        android:id="@+id/top_lay"
+        layout="@layout/top_layout_all" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/reward"
-        android:textColor="@color/white"
-        android:paddingHorizontal="@dimen/_15sdp"
-        android:paddingVertical="@dimen/_14sdp"
-        android:textSize="@dimen/_16sdp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/titleBack"
-        app:layout_constraintBottom_toBottomOf="@id/titleBack"
-        app:layout_constraintStart_toEndOf="@id/titleBack"
-        tools:ignore="RtlSymmetry" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -46,7 +21,7 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="2"
         tools:listitem="@layout/item_category"
-        app:layout_constraintTop_toBottomOf="@id/titleBack"
+        app:layout_constraintTop_toBottomOf="@id/top_lay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
@@ -68,7 +43,7 @@
         android:letterSpacing="0.2"
         android:text="@string/ad"
         android:gravity="center"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:background="@drawable/round_btn_ads"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"

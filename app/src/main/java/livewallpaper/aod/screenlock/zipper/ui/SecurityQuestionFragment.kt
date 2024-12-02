@@ -13,7 +13,6 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
@@ -67,7 +66,6 @@ class SecurityQuestionFragment : Fragment() {
             if(isVisible && isAdded && !isDetached){
             adsManager = AdsManager.appAdsInit(activity?:requireActivity())
             _binding?.topLay?.title?.text = getString(R.string.security_question)
-            _binding?.mainbg?.setBackgroundResource(background)
             sharedPrefUtils = DbHelper(context?:return)
             _binding?.powerSpinnerView?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
                 showToast(context?:return@setOnSpinnerItemSelectedListener, "$newIndex selected!")

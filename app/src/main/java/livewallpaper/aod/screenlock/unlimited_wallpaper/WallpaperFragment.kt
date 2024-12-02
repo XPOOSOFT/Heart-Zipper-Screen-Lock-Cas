@@ -1,6 +1,5 @@
 package livewallpaper.aod.screenlock.unlimited_wallpaper
 
-import android.icu.text.CaseMap.Title
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,11 +16,12 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
-import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.gson.Gson
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners.isDebug
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
@@ -48,7 +48,6 @@ class WallpaperFragment : Fragment() {
     private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
     private var _binding: FragmentWallpaperBinding? = null
-
     private var isLoadingAds = false
 
     override fun onCreateView(
@@ -74,11 +73,12 @@ class WallpaperFragment : Fragment() {
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        _binding?.titleBack?.clickWithThrottle {
+        _binding?.topLay?.backBtn?.clickWithThrottle {
             findNavController().navigateUp()
         }
+        _binding?.topLay?.title?.text = getString(R.string.un_wallpaper)
         loadBanner()
-        loadRewardedInterstitialAd()
+        loadRewardedAd()
         setupRecyclerView(view)
     }
 
@@ -100,67 +100,73 @@ class WallpaperFragment : Fragment() {
 //            }
 //        """
         // Parse JSON
-        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
-        categories.clear()
-        categories.addAll(categoriesResponse.categories)
-        categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
-            Log.d("check", "setupRecyclerView: $Tilte_")
-            if (!isNetworkAvailable(activity)) {
-                showToast(context ?: requireContext(), getString(R.string.no_internet))
-                return@CategoryAdapter
-            }
-            if (BillingUtil(activity ?: return@CategoryAdapter).checkPurchased(
-                    activity ?: return@CategoryAdapter
-                )
-            ) {
-                findNavController().navigate(
-                    R.id.FragmentListCustomWallpaper,
-                    bundleOf("title" to Tilte_)
-                )
-                return@CategoryAdapter
-            }
-            showAdsDialog(
-                context = activity ?: return@CategoryAdapter,
-                onInApp = { ->
-                    findNavController().navigate(
-                        R.id.FragmentBuyScreen,
-                        bundleOf("isSplash" to false)
+//        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
+        try {
+            val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
+            categories.clear()
+            categories.addAll(categoriesResponse.categories)
+            categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
+                if (!isNetworkAvailable(activity)) {
+                    showToast(context ?: requireContext(), getString(R.string.no_internet))
+                    return@CategoryAdapter
+                }
+                if (BillingUtil(activity ?: return@CategoryAdapter).checkPurchased(
+                        activity ?: return@CategoryAdapter
                     )
-                    return@showAdsDialog
-                },
-                onWatchAds = { ->
-                    if (rewardedInterstitialAd == null) {
-                        showToast(
-                            context ?: requireContext(),
-                            getString(R.string.try_agin_ad_not_load)
+                ) {
+                    findNavController().navigate(
+                        R.id.FragmentListCustomWallpaper,
+                        bundleOf("title" to Tilte_)
+                    )
+                    return@CategoryAdapter
+                }
+                showAdsDialog(
+                    context = activity ?: return@CategoryAdapter,
+                    onInApp = { ->
+                        findNavController().navigate(
+                            R.id.FragmentBuyScreen,
+                            bundleOf("isSplash" to false)
                         )
-                        loadRewardedInterstitialAd()
                         return@showAdsDialog
-                    }
-                    showRewardedVideo {
+                    },
+                    onWatchAds = { ->
+                        if (rewardedInterstitialAd == null) {
+                            showToast(
+                                context ?: requireContext(),
+                                getString(R.string.try_agin_ad_not_load)
+                            )
+                            loadRewardedAd()
+                            return@showAdsDialog
+                        }
+                        showRewardedVideo {
+                        }
+
                         findNavController().navigate(
                             R.id.FragmentListCustomWallpaper,
                             bundleOf("title" to Tilte_)
                         )
-                    }
-                })
-            return@CategoryAdapter
+                    })
+                return@CategoryAdapter
 
+            }
+            view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
+
     }
 
-    private fun loadRewardedInterstitialAd() {
 
+    private fun loadRewardedAd() {
         if (rewardedInterstitialAd == null) {
             val adRequest = AdRequest.Builder().build()
 
-            // Load an ad.
-            RewardedInterstitialAd.load(
+            // Load a rewarded ad.
+            RewardedAd.load(
                 context ?: return,
                 id_reward,
                 adRequest,
-                object : RewardedInterstitialAdLoadCallback() {
+                object : RewardedAdLoadCallback() {
                     override fun onAdFailedToLoad(adError: LoadAdError) {
                         super.onAdFailedToLoad(adError)
                         Log.d("MAIN_ACTIVITY_TAG", "onAdFailedToLoad: ${adError.message}")
@@ -168,52 +174,52 @@ class WallpaperFragment : Fragment() {
                         rewardedInterstitialAd = null
                     }
 
-                    override fun onAdLoaded(rewardedAd: RewardedInterstitialAd) {
-                        super.onAdLoaded(rewardedAd)
+                    override fun onAdLoaded(rewarded: RewardedAd) {
+                        super.onAdLoaded(rewarded)
                         Log.d("MAIN_ACTIVITY_TAG", "Ad was loaded.")
-                        rewardedInterstitialAd = rewardedAd
+                        rewardedInterstitialAd = rewarded
                         isLoadingAds = true
                     }
-                },
+                }
             )
         }
     }
 
     private fun showRewardedVideo(function: (() -> Unit)) {
         if (rewardedInterstitialAd == null) {
-            Log.d("MAIN_ACTIVITY_TAG", "The rewarded interstitial ad wasn't ready yet.")
+            Log.d("MAIN_ACTIVITY_TAG", "The rewarded ad wasn't ready yet.")
             function.invoke()
             return
         }
 
-        rewardedInterstitialAd?.fullScreenContentCallback =
-            object : FullScreenContentCallback() {
-                override fun onAdDismissedFullScreenContent() {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    // Preload the next rewarded interstitial ad.
-                    isSplash = true
-                }
-
-                override fun onAdFailedToShowFullScreenContent(adError: AdError) {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
-                    // Don't forget to set the ad reference to null so you
-                    // don't show the ad a second time.
-                    rewardedInterstitialAd = null
-                }
-
-                override fun onAdShowedFullScreenContent() {
-                    Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
-                    isSplash = false
-                    rewardedInterstitialAd = null
-                    loadRewardedInterstitialAd()
-                    function.invoke()
-                }
+        rewardedInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad was dismissed.")
+                rewardedInterstitialAd = null
+                isSplash = true
+                loadRewardedAd() // Preload the next rewarded ad
             }
 
+            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad failed to show.")
+                isSplash = true
+                rewardedInterstitialAd = null
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                Log.d("MAIN_ACTIVITY_TAG", "Ad showed fullscreen content.")
+                rewardedInterstitialAd = null
+                isSplash = false
+                isLoadingAds = false
+            }
+        }
+
         rewardedInterstitialAd?.show(activity ?: return) { rewardItem ->
-            isLoadingAds = false
+            // Handle the reward
+            Log.d(
+                "MAIN_ACTIVITY_TAG",
+                "User earned reward: ${rewardItem.amount} ${rewardItem.type}"
+            )
             function.invoke()
         }
     }
@@ -282,4 +288,8 @@ class WallpaperFragment : Fragment() {
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
+    }
 }

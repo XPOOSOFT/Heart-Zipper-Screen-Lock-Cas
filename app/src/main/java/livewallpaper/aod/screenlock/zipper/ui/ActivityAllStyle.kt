@@ -23,7 +23,6 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.ZippersRecyclerAdapter
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -74,7 +73,6 @@ class ActivityAllStyle : Fragment() {
         }
         adsManager = AdsManager.appAdsInit(activity ?: return)
         loadBanner()
-        _binding?.mainbg?.setBackgroundResource(background)
         var name = ""
         arguments?.let {
             name = it.getString(StyleSelect).toString()

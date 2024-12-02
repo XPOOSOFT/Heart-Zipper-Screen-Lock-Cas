@@ -226,6 +226,11 @@
     <string name="unlimited_themes">مواضيع غير محدودة</string>
     <string name="unlock">فتح</string>
     <string name="try_agin_ad_not_load">حاول مرة أخرى، الإعلان لم يتم تحميله</string>
+    <string name="background_style">خلفية الشاشة</string>
+    <string name="custom_setting">إعداد مخصص</string>
+    <string name="customize">تخصيص</string>
+    <string name="customize_detail">خصص ما تحب</string>
+    <string name="un_wallpaper">خلفيات غير محدودة</string>
 
 </resources>
 

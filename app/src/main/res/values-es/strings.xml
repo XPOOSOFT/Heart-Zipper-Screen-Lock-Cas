@@ -226,5 +226,10 @@ Please Check it first!</string>
     <string name="unlimited_themes">Temas ilimitados</string>
     <string name="unlock">Desbloquear</string>
     <string name="try_agin_ad_not_load">Inténtalo de nuevo, el anuncio no se cargó</string>
+    <string name="background_style">Fondo de Pantalla</string>
+    <string name="custom_setting">Configuración Personalizada</string>
+    <string name="customize">Personalizar</string>
+    <string name="customize_detail">Personaliza lo que te gusta</string>
+    <string name="un_wallpaper">Fondos de Pantalla Ilimitados</string>
 
 </resources>

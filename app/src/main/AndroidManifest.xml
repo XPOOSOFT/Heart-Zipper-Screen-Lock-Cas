@@ -56,11 +56,6 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/app_id" />
 
-<!--        <activity-->
-<!--            android:name=".ui.ZipperThemePreviewActivity"-->
-<!--            android:exported="true"-->
-<!--            android:screenOrientation="portrait" />-->
-
         <service
             android:name=".service.LiveService"
             android:enabled="true"

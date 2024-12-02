@@ -10,7 +10,6 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import kotlinx.coroutines.delay
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.showOpenAd
@@ -58,10 +57,8 @@ class LoadingScreenFragment :
         inter_frequency_count = 0
         adsManager = AdsManager.appAdsInit(activity ?: return)
         dbHelper = DbHelper(context ?: return)
-        _binding?.mainbg?.setBackgroundResource(background)
         firebaseAnalytics("loading_fragment_open", "loading_fragment_open -->  Click")
         dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
-        _binding?.mainbg?.setBackgroundResource(background)
 
         if (DataBasePref.LoadPref("firstTime", context ?: return) == 0) {
             DataBasePref.SavePref("firstTime", "1", context ?: return)
@@ -69,24 +66,6 @@ class LoadingScreenFragment :
             AppAdapter.SaveWallpaper(context ?: return, 7)
         }
 
-
-        if (val_ad_app_open_screen) {
-            loadTwoInterAds(
-                ads = adsManager ?: return,
-                activity = activity ?: return,
-                remoteConfigNormal = true,
-                adIdNormal = id_inter_main_medium,
-                tagClass = "main_app_fragment"
-            )
-        } else {
-            loadTwoInterAdsSplash(
-                adsManager ?: return,
-                activity ?: return,
-                remoteConfigNormal = val_ad_inter_loading_screen,
-                adIdNormal = id_inter_splash_Screen,
-                "splash"
-            )
-        }
 
         if (isFlowOne) {
             lifecycleScope.launchWhenCreated {

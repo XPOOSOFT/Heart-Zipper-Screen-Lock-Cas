@@ -137,7 +137,7 @@ var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
 var id_collapsable_banner = ""
 var id_splash_native = ""
-var id_reward = "ca-app-pub-3940256099942544/5354046379"
+var id_reward = "ca-app-pub-3940256099942544/5224354917"
 var apiKey = ""
 var Wallpaper_Cat = ""
 
@@ -166,48 +166,6 @@ const val NOTIFICATION_PERMISSION = "android.permission.POST_NOTIFICATIONS"
 var slideImages = arrayOf(
     R.drawable.image_2, R.drawable.image_4, R.drawable.image_3, R.drawable.image_1
 )
-
-fun getRewardTitle(context: Context): ArrayList<String>
-{
-    val list = arrayListOf<String>()
-    list.add(context.getString(R.string.reward_1_1))
-    list.add(context.getString(R.string.reward_1_2))
-    list.add(context.getString(R.string.reward_1_3))
-    list.add(context.getString(R.string.reward_1_4))
-    list.add(context.getString(R.string.reward_1_5))
-    list.add(context.getString(R.string.reward_1_6))
-    list.add(context.getString(R.string.reward_1_7))
-    list.add(context.getString(R.string.reward_1_8))
-    return list
-}
-
-fun getIcon(): ArrayList<Int>
-{
-    val list = arrayListOf<Int>()
-    list.add(R.drawable.christmas)
-    list.add(R.drawable.santa)
-    list.add(R.drawable.nature)
-    list.add(R.drawable.sports)
-    list.add(R.drawable.newyear)
-    list.add(R.drawable.cartoon)
-    list.add(R.drawable.kpop)
-    list.add(R.drawable.vintage)
-    return list
-}
-
-fun getTimeTitle(): ArrayList<Int>
-{
-    val list = arrayListOf<Int>()
-    list.add(120)
-    list.add(240)
-    list.add(360)
-    list.add(480)
-    list.add(600)
-    list.add(720)
-    list.add(840)
-    list.add(960)
-    return list
-}
 
 fun showAdsDialog(
     context: Activity,
@@ -782,42 +740,6 @@ fun generateRandomNumberInRange(min: Int, max: Int): Int {
     }
 }
 
-fun getImage(position: Int): Int {
-    when (position) {
-        0 -> {
-            return R.drawable.bg_1
-        }
-
-        1 -> {
-            return R.drawable.bg_2
-        }
-
-        2 -> {
-            return R.drawable.bg_3
-        }
-
-        3 -> {
-            return R.drawable.bg_4
-        }
-
-        4 -> {
-            return R.drawable.bg_5
-        }
-
-        5 -> {
-            return R.drawable.bg_6
-        }
-
-        6 -> {
-            return R.drawable.bg_7
-        }
-
-        8 -> {
-            return R.drawable.main_bg
-        }
-    }
-    return R.drawable.main_bg
-}
 
 fun containsMultipleSpaces(str: String): Boolean {
     return str.contains("\\s{2,}".toRegex())
@@ -909,4 +831,91 @@ fun Int.toSimpleTimeFormat(): String {
     val minutes = this / 60
     val seconds = this % 60
     return "$minutes:${seconds.toString().padStart(2, '0')}"
+}
+
+fun getImageLanguage(position: String): Int {
+    when (position) {
+        "en" -> {
+            return R.drawable.uk
+        }
+
+        "ar" -> {
+            return R.drawable.arabic
+        }
+
+        "bag" -> {
+            return R.drawable.bangladash
+        }
+
+        "br" -> {
+            return R.drawable.brazil
+        }
+
+        "ca" -> {
+            return R.drawable.canada
+        }
+
+        "rom" -> {
+            return R.drawable.domican_republic
+        }
+        "fr" -> {
+            return R.drawable.france
+        }
+
+        "de" -> {
+            return R.drawable.germany
+        }
+
+        "hi" -> {
+            return R.drawable.hindi
+        }
+
+        "it" -> {
+            return R.drawable.italian
+        }
+
+        "ja" -> {
+            return R.drawable.japanese
+        }
+        "ky" -> {
+            return R.drawable.keynia
+        }
+
+        "ko" -> {
+            return R.drawable.korean
+        }
+
+        "mk" -> {
+            return R.drawable.mexicon
+        }
+
+        "nl" -> {
+            return R.drawable.netherland
+        }
+
+        "pt" -> {
+            return R.drawable.portuguese
+        }
+
+        "ru" -> {
+            return R.drawable.russian
+        }
+        "es" -> {
+            return R.drawable.spanish
+        }
+
+        "af" -> {
+            return R.drawable.africa
+        }
+
+        "tr" -> {
+            return R.drawable.turkey
+        }
+
+        "ur" -> {
+            return R.drawable.urdu
+        }
+
+    }
+    return R.drawable.uk
 }

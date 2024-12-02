@@ -51,7 +51,6 @@ class EnableFirstActivity : Fragment() {
     private var _binding: EnableFirstActivityBinding? = null
     private var adsManager: AdsManager? = null
     private var isFirst = false
-    private var shouldCheckForOverlayPermissionLoop = false
     private var sharedPrefUtils: DbHelper? = null
 
     override fun onCreateView(
@@ -73,7 +72,6 @@ class EnableFirstActivity : Fragment() {
             return
         }
         sharedPrefUtils = DbHelper(requireContext())
-        _binding?.main?.setBackgroundResource(MainActivity.background)
         adsManager = AdsManager.appAdsInit(activity ?: return)
         loadBanner()
 //        isShowAds = false

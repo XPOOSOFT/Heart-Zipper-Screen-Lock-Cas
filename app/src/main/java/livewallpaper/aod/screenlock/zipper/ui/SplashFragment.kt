@@ -18,7 +18,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
@@ -131,23 +130,21 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        CoroutineScope(Dispatchers.Main).launch {
             isSplash = false
             isRating=true
             splashTime = 8000L
             counter = 0
             inter_frequency_count = 0
-            val cmpClass = CmpClass(activity ?: return@launch)
+            val cmpClass = CmpClass(activity ?: return)
             cmpClass.initilaizeCMP()
-            adsManager = AdsManager.appAdsInit(activity ?: return@launch)
-            AdOpenApp(activity?.application ?:return@launch, id_app_open_splash_screen)
-            dbHelper = DbHelper(context ?: return@launch)
+            adsManager = AdsManager.appAdsInit(activity ?: return)
+            AdOpenApp(activity?.application ?:return, id_app_open_splash_screen)
+            dbHelper = DbHelper(context ?: return)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
-            _binding?.mainbg?.setBackgroundResource(background)
-            if (LoadPref("firstTime", context ?: return@launch) == 0) {
-                SavePref("firstTime", "1", context ?: return@launch)
-                SavePref(SpeedActivePref, "350", context ?: return@launch)
-                SaveWallpaper(context ?: return@launch, 7)
+            if (LoadPref("firstTime", context ?: return) == 0) {
+                SavePref("firstTime", "1", context ?: return)
+                SavePref(SpeedActivePref, "350", context ?: return)
+                SaveWallpaper(context ?: return, 7)
             }
 
             if (isNetworkAvailable(activity)) {
@@ -173,21 +170,20 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             setupBackPressedCallback {
                 //Do Nothing
             }
-        }
     }
 
     private fun observeSplashLiveData() {
         try {
             lifecycleScope.launchWhenResumed {
                 try {
-                    isSplash = true
                     delay(splashTime)
                     if(val_ad_app_open_splash_screen) {
+                        isSplash = true
                         showOpenAd(activity ?: return@launchWhenResumed) {
                         }
                     }
-                    findNavController().navigate(R.id.myLoadingFragment)
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
+                    findNavController().navigate(R.id.myLoadingFragment)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -498,7 +494,23 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 //                if(val_app_open){
 //                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
 //                }
-
+                if (val_ad_app_open_screen) {
+                    loadTwoInterAds(
+                        ads = adsManager ?: return@addOnCompleteListener,
+                        activity = activity ?: return@addOnCompleteListener,
+                        remoteConfigNormal = true,
+                        adIdNormal = id_inter_main_medium,
+                        tagClass = "main_app_fragment"
+                    )
+                } else {
+                    loadTwoInterAdsSplash(
+                        adsManager ?: return@addOnCompleteListener,
+                        activity ?: return@addOnCompleteListener,
+                        remoteConfigNormal = val_ad_inter_loading_screen,
+                        adIdNormal = id_inter_splash_Screen,
+                        "splash"
+                    )
+                }
                 observeSplashLiveData()
             }
 

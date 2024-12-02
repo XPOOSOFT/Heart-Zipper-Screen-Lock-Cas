@@ -16,7 +16,7 @@ class ImageAdapter(private val images: List<ImageData>,
 
     inner class ImageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView: ImageFilterView = itemView.findViewById(R.id.previewImageView)
-        val userTextView: TextView = itemView.findViewById(R.id.userTextView)
+//        val userTextView: TextView = itemView.findViewById(R.id.userTextView)
         init {
             itemView.setOnClickListener {
                 onItemClick(images[adapterPosition])
@@ -32,7 +32,7 @@ class ImageAdapter(private val images: List<ImageData>,
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         val image = images[position]
         Picasso.get().load(image.previewURL).into(holder.imageView)
-        holder.userTextView.text = image.user
+//        holder.userTextView.text = image.user
     }
 
     override fun getItemCount(): Int = images.size

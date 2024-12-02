@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/mainbg"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/password_bg">
+    android:background="@color/main_bg"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include
         android:id="@+id/top_lay"
@@ -63,8 +63,8 @@
         android:inputType="text"
         android:paddingHorizontal="@dimen/_10sdp"
         android:paddingVertical="@dimen/_10sdp"
-        android:textColorHint="#E4717171"
-        android:textColor="#E4717171"
+        android:textColorHint="#E4545454"
+        android:textColor="#E4545454"
         app:layout_constraintBottom_toBottomOf="@+id/questionView"
         app:layout_constraintEnd_toEndOf="@+id/questionView"
         app:layout_constraintStart_toStartOf="@+id/questionView"
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:letterSpacing="0.2"
         android:text="@string/ad"
-        android:textColor="@color/textColor"
+        android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
         app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"

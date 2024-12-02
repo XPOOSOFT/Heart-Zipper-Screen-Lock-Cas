@@ -1,14 +1,10 @@
 package livewallpaper.aod.screenlock.unlimited_wallpaper
 
+import com.google.gson.annotations.SerializedName
+
 data class PixabayResponse(
-    val total: Int,
-    val totalHits: Int,
-    val hits: List<ImageData>
+    @SerializedName("total") val total: Int,
+    @SerializedName("totalHits") val totalHits: Int,
+    @SerializedName("hits") val hits: List<ImageData>
 )
 
-data class ImageData(
-    val id: Int,
-    val previewURL: String,
-    val largeImageURL: String,
-    val user: String
-)

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#00FF0000"
+    android:background="@color/main_bg"
     android:padding="@dimen/_5sdp">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -14,7 +14,7 @@
         android:padding="@dimen/_8sdp"
         android:layout_marginVertical="@dimen/_4sdp"
         android:layout_marginHorizontal="@dimen/_3sdp"
-        android:backgroundTint="@color/white"
+        app:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,7 @@
         android:textSize="@dimen/_14sdp"
         android:paddingStart="@dimen/_10sdp"
         android:text="@string/app_name"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:singleLine="true"
         app:layout_constraintBottom_toBottomOf="@+id/nav_menu"
         app:layout_constraintEnd_toStartOf="@id/setting_btn"

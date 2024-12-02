@@ -14,6 +14,48 @@
 -keep class com.google.firebase.** { *; }
 -keep class com.google.android.gms.** { *; }
 -keep class com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock.** { *; }
+
+# Keep model classes
+-keepclassmembers class com.yourpackage.models.** {
+    <fields>;
+    <methods>;
+}
+
+# Keep classes used by Gson
+-keepattributes Signature
+-keepattributes *Annotation*
+-keepclassmembers,allowobfuscation class * {
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+
+# Keep CategoriesResponse and related classes
+-keep class livewallpaper.aod.screenlock.unlimited_wallpaper.* { *; }
+
+-keepattributes Signature
+-keepattributes Exceptions
+
+# Keep Retrofit interfaces
+-keep interface livewallpaper.aod.screenlock.unlimited_wallpaper.PixabayApiService { *; }
+
+# Keep data models (JSON responses)
+
+# Retrofit
+-dontwarn retrofit2.**
+-dontwarn okhttp3.**
+-dontwarn okio.**
+
+# Keep Retrofit and Gson classes
+-keep class com.squareup.retrofit2.** { *; }
+-keep class com.google.gson.** { *; }
+
+# Keep models
+
+# Keep annotations
+-keepattributes RuntimeVisibleAnnotations
+
+# Keep the type signatures for TypeToken and similar classes
+-keepclassmembers class com.google.gson.reflect.TypeToken { *; }
+
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
 #-keepattributes SourceFile,LineNumberTable

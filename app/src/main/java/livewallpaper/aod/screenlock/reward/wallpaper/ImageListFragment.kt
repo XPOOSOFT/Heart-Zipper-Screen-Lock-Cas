@@ -34,7 +34,7 @@ class ImageListFragment : Fragment() {
         try {// Get title from arguments
             val title = arguments?.getString("title") ?: ""
             view.findViewById<TextView>(R.id.title).text = title
-            view.findViewById<ImageFilterView>(R.id.titleBack).clickWithThrottle {
+            view.findViewById<ImageFilterView>(R.id.backBtn).clickWithThrottle {
                 findNavController().navigateUp()
             }
             setupBackPressedCallback {

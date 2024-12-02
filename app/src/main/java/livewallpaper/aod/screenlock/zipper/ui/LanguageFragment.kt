@@ -10,7 +10,6 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.MainActivity.Companion.background
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.AppLanguageAdapter
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -42,12 +41,12 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adsManager = AdsManager.appAdsInit(activity ?: return)
-        _binding?.mainbg?.setBackgroundResource(background)
         firebaseAnalytics("language_fragment_open", "language_fragment_open -->  Click")
         requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         arguments?.let {
             isLangScreen = it.getBoolean(LANG_SCREEN)
         }
+        sharedPrefUtils = DbHelper(context ?: return)
         _binding?.forwardBtn?.clickWithThrottle {
             sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
             if (!isLangScreen) {
@@ -66,14 +65,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 sharedPrefUtils?.saveData(requireContext(), LANG_CODE, positionSelected) ?: "en"
                 setLocaleMain(positionSelected)
                 sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
-//                if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
                 findNavController().navigate(R.id.myMainMenuFragment, bundleOf("is_splash" to true))
-//                } else {
-//                    findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to true))
-//                }
             }
         }
-        sharedPrefUtils = DbHelper(context ?: return)
         positionSelected = sharedPrefUtils?.getStringData(requireContext(), LANG_CODE, "en") ?: "en"
         adapter = AppLanguageAdapter(clickItem = {
             positionSelected = it.country_code

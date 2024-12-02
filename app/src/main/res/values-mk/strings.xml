@@ -222,5 +222,10 @@
     <string name="unlimited_themes">Temas Ilimitados</string>
     <string name="unlock">Desbloquear</string>
     <string name="try_agin_ad_not_load">Intenta de Nuevo, el Anuncio no se Cargó</string>
+    <string name="background_style">Fondo de Pantalla</string>
+    <string name="custom_setting">Configuración Personalizada</string>
+    <string name="customize">Personalizar</string>
+    <string name="customize_detail">Personaliza lo que te gusta</string>
+    <string name="un_wallpaper">Fondos de Pantalla Ilimitados</string>
 
 </resources>
