@@ -19,6 +19,7 @@ import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.appopen.AppOpenAd
+import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.R
@@ -181,6 +182,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
         var isShowingAd = false
         var openAdForSplash: AppOpenAd? = null
         var rewardedInterstitialAd: RewardedAd? = null
+        var preloadNativeAd: NativeAd? = null
     }
 
     init {

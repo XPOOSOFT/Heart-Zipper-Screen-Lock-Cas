@@ -1,5 +1,6 @@
 package livewallpaper.aod.screenlock.zipper.ads_manager
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.res.ColorStateList
@@ -124,8 +125,6 @@ object NativeAds {
                     currentNativeAd = null
                     isNativeLoading = false
                     Log.d(NativeAdsLogs, "onAdImpression native Ad")
-//                    loadNativeAd(activity,true,nativeAdId,nativeListener)
-                    if (native_precashe_copunt_current <= native_precashe_counter) {
                         native_precashe_copunt_current++
                         loadNativeAd(
                             activity,
@@ -138,7 +137,6 @@ object NativeAds {
                                 }
 
                             })
-                    }
                     super.onAdImpression()
                 }
 
@@ -206,7 +204,6 @@ object NativeAds {
                 currentNativeAd = null
                 isNativeLoading = false
                 Log.d(NativeAdsLogs, "onAdImpression native Ad")
-                if (native_precashe_copunt_current <= native_precashe_counter) {
                     native_precashe_copunt_current++
                     loadNativeAd(
                         activity,
@@ -219,7 +216,6 @@ object NativeAds {
                             }
 
                         })
-                }
                 super.onAdImpression()
             }
 
@@ -243,144 +239,42 @@ object NativeAds {
         return
     }
 
-    fun loadNativeAdExit(
-        activity: Activity,
-        addConfig: Boolean,
-        nativeAdId: String,
-        nativeListener: NativeListener
-    ) {
-        Log.d(
-            NativeAdsLogs,
-            "validate ${!BillingUtil(activity).checkPurchased(activity)}    $addConfig"
-        )
-
-        if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(
-                activity
-            ).checkPurchased(activity) && addConfig
-        ) {
-            nativeId = nativeAdId
-            val builder = AdLoader.Builder(
-                activity,
-                if (isDebug()) NativeAdsId else nativeId
-                    ?: NativeAdsId
-            )
-            if (isNativeLoading) {
-                Log.d(NativeAdsLogs, "Already loading Ad")
-//                loadedShoeNativeExit(activity, nativeListener, builder, nativeAdId)
-                return
-            }
-            if (currentNativeAd != null) {
-                nativeListener.nativeAdLoaded(currentNativeAd)
-                Log.d(NativeAdsLogs, "   Having loaded Ad")
-                builder.forNativeAd { nativeAd ->
-                    if (currentNativeAd != null) {
-                        currentNativeAd?.destroy()
-                    }
-                    isNativeLoading = false
-                    currentNativeAd = nativeAd
-                    Log.d(NativeAdsLogs, "   loaded native Ad")
-                    nativeListener.nativeAdLoaded(currentNativeAd)
-                }
-
-                return
-            }
-            isNativeLoading = true
-
-            builder.forNativeAd { nativeAd ->
-                if (currentNativeAd != null) {
-                    currentNativeAd?.destroy()
-                }
-                isNativeLoading = false
-                currentNativeAd = nativeAd
-                Log.d(NativeAdsLogs, "   loaded native Ad")
-                nativeListener.nativeAdLoaded(currentNativeAd)
-            }
-
-            val videoOptions = VideoOptions.Builder().setStartMuted(true).build()
-
-            val adOptions = NativeAdOptions.Builder().setVideoOptions(videoOptions)
-                .setAdChoicesPlacement(NativeAdOptions.ADCHOICES_TOP_RIGHT).build()
-            builder.withNativeAdOptions(adOptions)
-
-            val adLoader = builder.withAdListener(object : AdListener() {
-                override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                    FullScreenAds.logEventForAds(NativeAdsLogs, "failed", nativeAdId)
-                    if (isDebug()) {
-                        Snackbar.make(
-                            activity.window.decorView.rootView,
-                            "AD Error Native: ${loadAdError.message}",
-                            Snackbar.LENGTH_LONG
-                        ).show()
-                    }
-                    Log.d(NativeAdsLogs, "failed native Ad  ${loadAdError.message}")
-                    isNativeLoading = false
-                    nativeListener.nativeAdFailed(loadAdError)
-
-                }
-
-                override fun onAdImpression() {
-                    isNativeLoading = false
-                    Log.d(NativeAdsLogs, "onAdImpression native Ad")
-                    super.onAdImpression()
-                }
-
-                override fun onAdClicked() {
-                    Log.d(NativeAdsLogs, "onAdClicked native Ad")
-                    FullScreenAds.logEventForAds(NativeAdsLogs, "clicked", nativeAdId)
-                    isNativeLoading = false
-                    nativeListener.nativeAdClicked()
-                    super.onAdClicked()
-                }
-
-                override fun onAdLoaded() {
-                    isNativeLoading = false
-                    FullScreenAds.logEventForAds(NativeAdsLogs, "loaded", nativeAdId)
-
-                    Log.d(NativeAdsLogs, "onAdLoaded native Ad")
-                    super.onAdLoaded()
-                }
-            }).build()
-
-            adLoader.loadAd(AdRequest.Builder().build())
-        } else {
-            nativeListener.nativeAdValidate("hideAll")
-            if (isDebug()) {
-                Log.d(NativeAdsLogs, "config : $addConfig")
-                Snackbar.make(
-                    activity.window.decorView.rootView,
-                    activity.getString(R.string.check_ads),
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
-        }
-    }
-
-
     fun isDebug(): Boolean {
         return BuildConfig.BUILD_TYPE == "debug"
     }
 
-    fun nativeViewPolicy(context: Context, nativeAd: NativeAd, adView: NativeAdView) {
+    @SuppressLint("ResourceType")
+    fun nativeViewPolicy(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
 
         adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
         adView.iconView = adView.findViewById(R.id.custom_app_icon)
         adView.headlineView = adView.findViewById(R.id.custom_headline)
         adView.bodyView = adView.findViewById(R.id.custom_body)
+//        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
+//        adView.starRatingView = adView.findViewById(R.id.custom_stars)
+
+        (adView.headlineView as TextView).text = nativeAd.headline
+
         try {
-            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(getRandomColor()))
-//            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
-//                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+//            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+//            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        (adView.headlineView as TextView).text = nativeAd.headline
+//        if (nativeAd.starRating == null) {
+//            adView.starRatingView?.visibility = View.INVISIBLE
+//        } else {
+//            (adView.starRatingView as RatingBar).rating = nativeAd.starRating?.toFloat() ?: 0f
+//            adView.starRatingView?.visibility = View.VISIBLE
+//        }
+
         if (nativeAd.callToAction == null) {
             adView.callToActionView?.visibility = View.INVISIBLE
         } else {
             adView.callToActionView?.visibility = View.VISIBLE
             (adView.callToActionView as TextView).text = nativeAd.callToAction
         }
+
         if (nativeAd.icon == null) {
             adView.iconView?.visibility = View.INVISIBLE
         } else {
@@ -389,16 +283,27 @@ object NativeAds {
             )
             adView.iconView?.visibility = View.VISIBLE
         }
+
         if (nativeAd.body == null) {
             adView.bodyView?.visibility = View.INVISIBLE
         } else {
             adView.bodyView?.visibility = View.VISIBLE
             (adView.bodyView as TextView).text = nativeAd.body
         }
+
+//        if (nativeAd.advertiser == null) {
+//            adView.advertiserView?.visibility = View.INVISIBLE
+//        } else {
+//            (adView.advertiserView as TextView).text = nativeAd.advertiser
+//            adView.advertiserView?.visibility = View.VISIBLE
+//        }
+
         adView.setNativeAd(nativeAd)
+
     }
 
-    fun nativeViewMedia(context: Context, nativeAd: NativeAd, adView: NativeAdView) {
+    @SuppressLint("ResourceType")
+    fun nativeViewMedia(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
         adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
         adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
         adView.headlineView = adView.findViewById(R.id.custom_headline)
@@ -407,22 +312,14 @@ object NativeAds {
 //        adView.starRatingView = adView.findViewById(R.id.custom_stars)
         adView.mediaView = adView.findViewById(R.id.custom_media)
 
-
-        adView.mediaView?.mediaContent = (nativeAd.mediaContent ?: return)
-
-        (adView.headlineView as TextView).text = nativeAd.headline
         try {
-            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
-                ColorStateList.valueOf(
-                    Color.parseColor(
-                        getRandomColor()
-                    )
-                )
-//            (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
-//                ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+//            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+//            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
         }
+        (adView.headlineView as TextView).text = nativeAd.headline
+
         /*      if (nativeAd.starRating == null) {
                   adView.starRatingView?.visibility = View.GONE
               } else {
@@ -463,4 +360,5 @@ object NativeAds {
         adView.setNativeAd(nativeAd)
 
     }
+
 }

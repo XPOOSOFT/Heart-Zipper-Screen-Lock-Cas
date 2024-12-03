@@ -56,7 +56,7 @@ object Constants {
         return arrayList
     }
 
-    fun getBackground(): List<Int> {
+    fun getBackground(): MutableList<Int> {
         val arrayList: ArrayList<Int> = ArrayList()
         CoroutineScope(Dispatchers.IO).launch {
             arrayList.add(R.drawable.image1)
