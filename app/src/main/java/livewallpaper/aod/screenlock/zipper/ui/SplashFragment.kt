@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.whenResumed
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.firebase.FirebaseApp
@@ -130,21 +131,22 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lifecycleScope.launchWhenStarted {
             isSplash = false
             isRating=true
             splashTime = 8000L
             counter = 0
             inter_frequency_count = 0
-            val cmpClass = CmpClass(activity ?: return)
+            val cmpClass = CmpClass(activity ?: return@launchWhenStarted)
             cmpClass.initilaizeCMP()
-            adsManager = AdsManager.appAdsInit(activity ?: return)
-            AdOpenApp(activity?.application ?:return, id_app_open_splash_screen)
-            dbHelper = DbHelper(context ?: return)
+            adsManager = AdsManager.appAdsInit(activity ?: return@launchWhenStarted)
+            AdOpenApp(activity?.application ?:return@launchWhenStarted, id_app_open_splash_screen)
+            dbHelper = DbHelper(context ?: return@launchWhenStarted)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
-            if (LoadPref("firstTime", context ?: return) == 0) {
-                SavePref("firstTime", "1", context ?: return)
-                SavePref(SpeedActivePref, "350", context ?: return)
-                SaveWallpaper(context ?: return, 7)
+            if (LoadPref("firstTime", context ?: return@launchWhenStarted) == 0) {
+                SavePref("firstTime", "1", context ?: return@launchWhenStarted)
+                SavePref(SpeedActivePref, "350", context ?: return@launchWhenStarted)
+                SaveWallpaper(context ?: return@launchWhenStarted, 7)
             }
 
             if (isNetworkAvailable(activity)) {
@@ -170,24 +172,22 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             setupBackPressedCallback {
                 //Do Nothing
             }
+            }
     }
 
     private fun observeSplashLiveData() {
         try {
-            lifecycleScope.launchWhenResumed {
                 try {
-                    delay(splashTime)
-                    if(val_ad_app_open_splash_screen) {
-                        isSplash = true
-                        showOpenAd(activity ?: return@launchWhenResumed) {
-                        }
-                    }
+//                    if(val_ad_app_open_splash_screen) {
+//                        isSplash = true
+//                        showOpenAd(activity ?: return@launchWhenResumed) {
+//                        }
+//                    }
                     firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                     findNavController().navigate(R.id.myLoadingFragment)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-            }
 
         } catch (e: Exception) {
             e.printStackTrace()
@@ -247,16 +247,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         id_ads_button = remoteConfig.getString("id_ads_button")
         id_ads_bg = remoteConfig.getString("id_ads_bg")
 
-        Log.d("remote_ids", "$val_inapp_frequency")
-        Log.d("remote_ids", "$id_inter_counter")
-        Log.d("remote_ids", "$id_frequency_counter")
-        Log.d("remote_ids", id_inter_main_medium)
-        Log.d("remote_ids", id_native_screen)
-        Log.d("remote_ids", id_app_open_screen)
-        Log.d("remote_ids", id_adaptive_banner)
-        Log.d("remote_ids", id_inter_splash_Screen)
-        Log.d("remote_ids", id_collapsable_banner)
-        Log.d("remote_ids", id_splash_native)
+//        Log.d("remote_ids", "$val_inapp_frequency")
+//        Log.d("remote_ids", "$id_inter_counter")
+//        Log.d("remote_ids", "$id_frequency_counter")
+//        Log.d("remote_ids", id_inter_main_medium)
+//        Log.d("remote_ids", id_native_screen)
+//        Log.d("remote_ids", id_app_open_screen)
+//        Log.d("remote_ids", id_adaptive_banner)
+//        Log.d("remote_ids", id_inter_splash_Screen)
+//        Log.d("remote_ids", id_collapsable_banner)
+//        Log.d("remote_ids", id_splash_native)
         initRemoteConfig()
 
     }
@@ -491,9 +491,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
                  
 
-//                if(val_app_open){
-//                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
-//                }
+                if(val_app_open){
+                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
+                }
                 if (val_ad_app_open_screen) {
                     loadTwoInterAds(
                         ads = adsManager ?: return@addOnCompleteListener,
@@ -524,10 +524,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         super.onSaveInstanceState(outState)
         outState.clear()
     }
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
+
     override fun onLowMemory() {
         super.onLowMemory()
         activity?.finish()

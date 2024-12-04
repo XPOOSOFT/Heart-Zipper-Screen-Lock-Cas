@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -327,7 +328,7 @@ public class Urect {
         }
     }
 
-  
+
     public void drawChildrens(Canvas canvas) {
         if (this.DrawChilds && this.childrens != null) {
             int i = 0;
@@ -399,7 +400,7 @@ public class Urect {
     }
 
     public static void CheckRectsClickUp() {
-        if(list!=null) {
+        if (list != null) {
             for (int size = list.size() - 1; size >= 0; size--) {
                 try {
                     list.get(size).checkClickUp();
@@ -410,7 +411,7 @@ public class Urect {
     }
 
     public static void CheckRectTouchMove(double d, double d2) {
-        if(list!=null) {
+        if (list != null) {
             for (int size = list.size() - 1; size >= 0; size--) {
                 try {
                     list.get(size).checkTouchMove(d, d2);
@@ -421,7 +422,7 @@ public class Urect {
     }
 
     public static void CheckUpdates() {
-        if(list!=null) {
+        if (list != null) {
             for (int size = list.size() - 1; size >= 0; size--) {
                 try {
                     list.get(size).CheckObjUpdates();
@@ -433,7 +434,7 @@ public class Urect {
     }
 
     public boolean checkClickDown(double d, double d2) {
-        if(childrens!=null) {
+        if (childrens != null) {
             for (int size = this.childrens.size() - 1; size >= 0; size--) {
                 if (this.childrens.get(size).checkClickDown(d, d2)) {
                     return true;
@@ -456,7 +457,7 @@ public class Urect {
     }
 
     public void checkClickUp() {
-        if(ClickUplisteners!=null) {
+        if (ClickUplisteners != null) {
             if (this.Clicked && this.ClickUplisteners != null) {
                 for (int i = 0; i < this.ClickUplisteners.size(); i++) {
                     this.ClickUplisteners.get(i).OnClickUpDo(this.x, this.y);
@@ -468,7 +469,7 @@ public class Urect {
 
     public void checkTouchMove(double d, double d2) {
 
-        if(TouchMovelisteners!=null) {
+        if (TouchMovelisteners != null) {
             if (this.TouchMovelisteners != null) {
                 for (int i = 0; i < this.TouchMovelisteners.size(); i++) {
                     this.TouchMovelisteners.get(i).OnMoveDo(this, d, d2);
@@ -479,16 +480,16 @@ public class Urect {
 
     public void CheckObjUpdates() {
 
-            if (this.UpdateListners != null) {
-                for (int size = this.UpdateListners.size() - 1; size >= 0; size--) {
-                    this.UpdateListners.get(size).Update(this);
-                }
+        if (this.UpdateListners != null) {
+            for (int size = this.UpdateListners.size() - 1; size >= 0; size--) {
+                this.UpdateListners.get(size).Update(this);
             }
-            if (this.childrens != null) {
-                for (int size2 = this.childrens.size() - 1; size2 >= 0; size2--) {
-                    this.childrens.get(size2).CheckObjUpdates();
-                }
+        }
+        if (this.childrens != null) {
+            for (int size2 = this.childrens.size() - 1; size2 >= 0; size2--) {
+                this.childrens.get(size2).CheckObjUpdates();
             }
+        }
     }
 
     public boolean isCollide(Urect urect) {

@@ -34,27 +34,22 @@ object GameAdapter {
     var btesla: String? = null
     var closing = false
 
-    @JvmField
     var ctx: Context? = null
 
-    @JvmField
     var drawer: Drawer? = null
     var finalFinishCalled = false
 
-    @JvmField
     var finalFinishReached = false
     var itesla: String? = null
     var looper: ULooper? = null
     var readyToClose = false
 
-    @JvmField
     var stopUpdates = false
     fun GetMainRect(): Urect? {
         return Background
     }
 
     @SuppressLint("RestrictedApi")
-    @JvmStatic
     fun StartGame(context: Context): Boolean {
         Ispaused = true
         closing = false
@@ -91,7 +86,6 @@ object GameAdapter {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    @JvmStatic
     fun SetListeners() {
         drawer?.setOnClickListener { Urect.CheckRectsClickUp() }
         drawer?.setOnTouchListener { view, motionEvent ->
@@ -113,7 +107,6 @@ object GameAdapter {
         }
     }
 
-    @JvmStatic
     fun Pause(): Boolean {
         if (Ispaused) {
             Log.i("GAdapter pause skiped", "gameAdapter pause skiped")
@@ -133,7 +126,6 @@ object GameAdapter {
         return false
     }
 
-    @JvmStatic
     fun Resume(): Boolean {
         if (!Ispaused) {
             Log.i("GAdapter resume skiped", "gameAdapter resume skiped")
@@ -151,7 +143,6 @@ object GameAdapter {
         return true
     }
 
-    @JvmStatic
     fun Update(): Boolean {
         try {
             return if (finalFinishReached && !stopUpdates) {
@@ -204,7 +195,6 @@ object GameAdapter {
         }
     }
 
-    @JvmStatic
     fun close() {
         Inicialed = false
         actionLayer.CleareMemory()

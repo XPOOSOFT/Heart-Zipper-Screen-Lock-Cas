@@ -5,7 +5,6 @@ import livewallpaper.aod.screenlock.lib.UgameLib.Shapes.Urect.list
 
 
 object AnimationAdapter {
-    @JvmStatic
     fun Init() {
         Deplace.list = ArrayList()
         Fade.list = ArrayList()
@@ -15,7 +14,6 @@ object AnimationAdapter {
         Timer.list = ArrayList()
     }
 
-    @JvmStatic
     fun Update() {
         Deplace.update()
         Fade.update()
@@ -24,7 +22,6 @@ object AnimationAdapter {
         Rotation.update()
     }
 
-    @JvmStatic
     fun CleareMemory() {
         if (Deplace.list != null) {
             Deplace.list?.clear()

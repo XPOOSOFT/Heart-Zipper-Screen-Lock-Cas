@@ -43,7 +43,7 @@ object Constants {
     @SuppressLint("SuspiciousIndentation")
     fun getZippers(): List<Int> {
         val arrayList: ArrayList<Int> = ArrayList()
-        CoroutineScope(Dispatchers.IO).launch {
+//        CoroutineScope(Dispatchers.IO).launch {
             arrayList.add(R.drawable.zipper1)
             arrayList.add(R.drawable.zipper2)
             arrayList.add(R.drawable.zipper3)
@@ -52,13 +52,12 @@ object Constants {
             arrayList.add(R.drawable.zipper6)
             arrayList.add(R.drawable.zipper7)
             arrayList.add(R.drawable.zipper8)
-        }
+//        }
         return arrayList
     }
 
     fun getBackground(): MutableList<Int> {
         val arrayList: ArrayList<Int> = ArrayList()
-        CoroutineScope(Dispatchers.IO).launch {
             arrayList.add(R.drawable.image1)
             arrayList.add(R.drawable.image2)
             arrayList.add(R.drawable.image3)
@@ -89,7 +88,7 @@ object Constants {
             arrayList.add(R.drawable.image28)
             arrayList.add(R.drawable.image29)
             arrayList.add(R.drawable.image30)
-        }
+
         return arrayList
     }
 
@@ -130,7 +129,6 @@ object Constants {
 
     fun getRowsView(): List<Int>? {
         val arrayList: ArrayList<Int> = ArrayList()
-        CoroutineScope(Dispatchers.IO).launch {
             arrayList.add(R.drawable.row_view_1)
             arrayList.add(R.drawable.row_view_2)
             arrayList.add(R.drawable.row_view_3)
@@ -138,7 +136,6 @@ object Constants {
             arrayList.add(R.drawable.row_view_5)
             arrayList.add(R.drawable.row_view_6)
             arrayList.add(R.drawable.row_view_7)
-        }
         return arrayList
     }
 
