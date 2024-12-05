@@ -61,7 +61,7 @@ object Media {
                     getRows()?.get(LoadPref) ?: return@let)?.use { inputStream ->
                     BitmapFactory.decodeStream(inputStream, null, options)
                 }
-                zipper = LockScreenService.cc?.resources?.openRawResource(getZippers()[LoadPref] ?: return@let)?.use { inputStream ->
+                zipper = LockScreenService.cc?.resources?.openRawResource(getZippers()[LoadPref2] ?: return@let)?.use { inputStream ->
                     BitmapFactory.decodeStream(inputStream, null, options)
                 }
                 ChainRight = LockScreenService.cc?.resources?.openRawResource(
@@ -70,7 +70,6 @@ object Media {
                 }
                 ChainRight = rotate(ChainRight?:return, 180)
 
-                options.inJustDecodeBounds = false // Now decode the actual bitmap
                 LoadBgData()
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -125,11 +124,9 @@ object Media {
                             LockScreenService.cc
                         )
                 wallpapers?.add(0, R.drawable.transparent) // No need for Integer.valueOf()
-                val selectedBackgroundNumber = AppAdapter.getSelectedWallpaperBgNumber(GameAdapter.ctx) - 1
-                val selectedBackgroundResource = wallpapers?.get(selectedBackgroundNumber) ?: return
                 SelectedBackBg = GlideBitmapFactory.decodeResource(
                     LockScreenService.cc?.resources,
-                    selectedBackgroundResource
+                     wallpapers?.get( AppAdapter.getSelectedWallpaperBgNumber(GameAdapter.ctx) - 1) ?: return
                 )?.let { resizeBitmap(it, LockScreenService.cc, 800, 600) } // Adjust size as needed
 
             } catch (e: Exception) {
