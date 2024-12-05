@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_8sdp"
                 android:text="@string/zipperStyle_new_detail"
-                android:textColor="@color/black"
+                android:textColor="@color/teal_700"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@id/zipper"
                 app:layout_constraintEnd_toEndOf="@id/zipper"
@@ -240,7 +240,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_8sdp"
                 android:text="@string/row_style_new_detail"
-                android:textColor="@color/black"
+                android:textColor="@color/teal_700"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@id/row"
                 app:layout_constraintEnd_toEndOf="@id/row"
@@ -285,7 +285,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_8sdp"
                 android:text="@string/wallpaper_new_detail"
-                android:textColor="@color/black"
+                android:textColor="@color/teal_700"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@id/wallpaper"
                 app:layout_constraintEnd_toEndOf="@id/wallpaper"
@@ -329,7 +329,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/_8sdp"
                 android:text="@string/preview_new_detail"
-                android:textColor="@color/black"
+                android:textColor="@color/teal_700"
                 android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="@id/preview"
                 app:layout_constraintEnd_toEndOf="@id/preview"
@@ -356,8 +356,7 @@
                 app:layout_constraintEnd_toEndOf="@id/customize"
                 app:layout_constraintTop_toTopOf="@id/customize"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/new_anime" />
+                app:lottie_loop="true" />
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/customizeImage"
                 android:layout_width="wrap_content"
@@ -414,8 +413,7 @@
                 app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
                 app:layout_constraintTop_toTopOf="@id/un_wallpaper"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/new_anime" />
+                app:lottie_loop="true" />
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/un_wallpaperImage"
                 android:layout_width="wrap_content"
