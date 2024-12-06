@@ -41,6 +41,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_curr
 import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
@@ -154,11 +155,11 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                 activity,
                 _binding?.nativeExitAd!!,
                 id_native_screen,
-                if (val_ad_native_customize_screen)
+                if (val_ad_native_list_data_screen)
                     1 else 0,
                 isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
                 isInternetConnected = AdsManager.isNetworkAvailable(activity),
-                nativeType = NativeType.BANNER,
+                nativeType = if (val_ad_native_customize_screen_h) NativeType.LARGE else NativeType.BANNER,
                 nativeCallBack = object : NativeCallBack {
                     override fun onAdFailedToLoad(adError: String) {
                         _binding?.adView?.visibility = View.GONE}
@@ -179,14 +180,11 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             _binding?.adView?.visibility = View.GONE
                             val adView =
                                 layoutInflater.inflate(
-                                    R.layout.ad_unified_privacy,
+                                    if (val_ad_native_customize_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
                                     null
                                 ) as NativeAdView
-                            ads?.nativeAds()?.nativeViewPolicy(
-                                context ?: return,
-                                currentNativeAd ?: return,
-                                adView
-                            )
+                            ads?.nativeAds()
+                                ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
                             _binding?.nativeExitAd?.removeAllViews()
                             _binding?.nativeExitAd?.addView(adView)
                         }

@@ -91,14 +91,18 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_sound_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_sound_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_password_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_sound_screen
@@ -125,7 +129,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     companion object {
         var isUserConsent = false
-        var splashTime = 8000L
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
 
@@ -134,7 +137,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         lifecycleScope.launchWhenStarted {
             isSplash = false
             isRating=true
-            splashTime = 8000L
             counter = 0
             inter_frequency_count = 0
             val cmpClass = CmpClass(activity ?: return@launchWhenStarted)
@@ -177,18 +179,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun observeSplashLiveData() {
         try {
-                try {
-//                    if(val_ad_app_open_splash_screen) {
-//                        isSplash = true
-//                        showOpenAd(activity ?: return@launchWhenResumed) {
-//                        }
-//                    }
-                    firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
-                    findNavController().navigate(R.id.myLoadingFragment)
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
+            lifecycleScope.launchWhenCreated {
+                delay(3000)
+                firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
+                findNavController().navigate(R.id.myLoadingFragment)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -363,7 +358,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_banner_setting_screen = remoteConfig!!["val_banner_setting_screen"].asBoolean()
                 val_is_inapp_splash = remoteConfig!!["val_is_inapp_splash"].asBoolean()
                 val_is_inapp = remoteConfig!!["val_is_inapp"].asBoolean()
-
+                val_ad_native_language_screen_h =remoteConfig!!["val_ad_native_language_screen_h"].asBoolean()
+                val_ad_native_customize_screen_h =remoteConfig!!["val_ad_native_customize_screen_h"].asBoolean()
+                val_ad_native_reward_screen_h =remoteConfig!!["val_ad_native_reward_screen_h"].asBoolean()
+                val_ad_native_list_data_screen_h =remoteConfig!!["val_ad_native_list_data_screen_h"].asBoolean()
 
               /*  Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
                 Log.d("RemoteConfig", "Fetch val_inter_back_press -> $val_inter_back_press")

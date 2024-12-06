@@ -20,7 +20,6 @@ class CategoryAdapter(
     @SuppressLint("SetTextI18n", "SuspiciousIndentation")
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = itemList[position]
-//        holder.binding.topName.text = item.name
         Picasso.get().load(item.thumbnil_image_url).into(holder.binding.lockIcon)
         holder.itemView.clickWithThrottle {
             item.qurey?.let { function.invoke(it) }

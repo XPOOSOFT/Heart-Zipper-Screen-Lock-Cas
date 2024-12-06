@@ -117,6 +117,11 @@ var val_ad_inter_password_screen_front = true
 var val_ad_inter_list_data_screen_front = true
 var val_ad_native_customize_screen = true
 
+var val_ad_native_language_screen_h = true
+var val_ad_native_customize_screen_h = true
+var val_ad_native_reward_screen_h = true
+var val_ad_native_list_data_screen_h = true
+
 var val_ad_app_open_screen = true
 var val_is_inapp_splash = false
 var val_is_inapp = false

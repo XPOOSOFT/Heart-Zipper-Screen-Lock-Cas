@@ -45,6 +45,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
 
 
 class WallpaperFragment : Fragment() {
@@ -259,16 +260,23 @@ class WallpaperFragment : Fragment() {
                         id_native_screen,
                         if (val_ad_native_reward_screen)
                             1 else 0,
-                        isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
-                        isInternetConnected = AdsManager.isNetworkAvailable(activity),
-                        nativeType = NativeType.LARGE,
+                        isAppPurchased = BillingUtil(activity ?: return).checkPurchased(
+                            activity ?: return
+                        ),
+                        isInternetConnected = isNetworkAvailable(activity),
+                        nativeType = if (val_ad_native_reward_screen_h) NativeType.LARGE else NativeType.BANNER,
                         nativeCallBack = object : NativeCallBack {
                             override fun onAdFailedToLoad(adError: String) {
-                                _binding?.adView?.visibility = View.GONE}
+                                _binding?.adView?.visibility = View.GONE
+                            }
+
                             override fun onAdLoaded() {
-                                _binding?.adView?.visibility = View.GONE}
+                                _binding?.adView?.visibility = View.GONE
+                            }
+
                             override fun onAdImpression() {
-                                _binding?.adView?.visibility = View.GONE}
+                                _binding?.adView?.visibility = View.GONE
+                            }
                         }
                     )
                 } else {
@@ -282,7 +290,7 @@ class WallpaperFragment : Fragment() {
                                     _binding?.nativeExitAd?.visibility = View.VISIBLE
                                     _binding?.adView?.visibility = View.GONE
                                     val adView = layoutInflater.inflate(
-                                        R.layout.ad_unified_media,
+                                        if (val_ad_native_reward_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
                                         null
                                     ) as NativeAdView
                                     AdsManager.appAdsInit(activity ?: return).nativeAds()

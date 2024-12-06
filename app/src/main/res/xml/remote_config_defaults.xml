@@ -129,6 +129,27 @@
     </entry>
 
     <entry>
+        <key>val_ad_native_language_screen_h</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_customize_screen_h</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_reward_screen_h</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>val_ad_native_list_data_screen_h</key>
+        <value>true</value>
+    </entry>
+
+
+    <entry>
         <key>val_ad_inter_main_menu_screen_front</key>
         <value>true</value>
     </entry>

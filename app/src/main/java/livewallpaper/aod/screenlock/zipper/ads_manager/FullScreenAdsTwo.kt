@@ -116,7 +116,6 @@ object FullScreenAdsTwo {
                 }
 
                 override fun onAdShowedFullScreenContent() {
-//                    CheckForImage.IS_SHOW_OPEN_AD = false
                     Log.d(fullScreenAdLog, "Callback : Ad showed fullscreen content.")
                     adMobAdListener.fullScreenAdShow()
                 }

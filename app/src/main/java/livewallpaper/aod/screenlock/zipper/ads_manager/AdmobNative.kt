@@ -25,6 +25,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.preloadNativeAd
+import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.NativeAdsId
+import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.isDebug
 import livewallpaper.aod.screenlock.zipper.ads_manager.ScreenUtils.isSupportFullScreen
 
 /**
@@ -109,7 +111,7 @@ class AdmobNative {
             }
             if (adMobNativeAd == null) {
                 CoroutineScope(Dispatchers.IO + handlerException).launch {
-                    val builder: AdLoader.Builder = AdLoader.Builder(activity, nativeId)
+                    val builder: AdLoader.Builder = AdLoader.Builder(activity,  if (isDebug()) NativeAdsId else nativeId)
                     val adLoader =
                         builder.forNativeAd { unifiedNativeAd: NativeAd? ->
                             adMobNativeAd = unifiedNativeAd

@@ -48,6 +48,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_native
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
@@ -189,17 +190,6 @@ class ActivityAllStyle : Fragment() {
         _binding?.recyclerView?.adapter = zippersRecyclerAdapter
     }
 
-    private fun showPreview() {
-        if (Settings.canDrawOverlays(
-                context ?: return
-            )
-        ) {
-            LockScreenService.Start(context ?: return)
-            return
-        } else {
-            showCustomDialog()
-        }
-    }
 
     private fun loadBanner(){
         when (type_ad_native_list_data_screen) {
@@ -229,7 +219,7 @@ class ActivityAllStyle : Fragment() {
                             1 else 0,
                         isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
                         isInternetConnected = AdsManager.isNetworkAvailable(activity),
-                        nativeType = NativeType.LARGE,
+                        nativeType = if (val_ad_native_list_data_screen_h) NativeType.LARGE else NativeType.BANNER,
                         nativeCallBack = object : NativeCallBack {
                             override fun onAdFailedToLoad(adError: String) {
                                 _binding?.adView?.visibility = View.GONE}
@@ -250,7 +240,7 @@ class ActivityAllStyle : Fragment() {
                                     _binding?.nativeExitAd?.visibility = View.VISIBLE
                                     _binding?.adView?.visibility = View.GONE
                                     val adView = layoutInflater.inflate(
-                                        R.layout.ad_unified_media,
+                                        if (val_ad_native_list_data_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
                                         null
                                     ) as NativeAdView
                                     adsManager?.nativeAds()?.nativeViewMedia(

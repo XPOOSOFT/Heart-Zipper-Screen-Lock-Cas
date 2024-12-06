@@ -23,7 +23,6 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewardedinterstitial.RewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ui.SplashFragment.Companion.splashTime
 import livewallpaper.aod.screenlock.zipper.utilities.in_app_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
@@ -87,7 +86,6 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
                 if(!is_val_ad_inter_loading_screen){
                     in_app_val_ad_inter_loading_screen=false
                 }
-                splashTime=0L
                 super.onAdLoaded(appOpenAd)
             }
 

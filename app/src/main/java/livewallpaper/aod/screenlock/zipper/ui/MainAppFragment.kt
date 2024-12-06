@@ -3,9 +3,7 @@ package livewallpaper.aod.screenlock.zipper.ui
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlarmManager
 import android.app.Dialog
-import android.content.Context.ALARM_SERVICE
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -13,7 +11,6 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +18,6 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
-import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -92,7 +88,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_inter_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_native
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp
 
@@ -476,16 +471,21 @@ class MainAppFragment : Fragment() {
                 id_native_screen,
                 if (val_ad_native_main_menu_screen)
                     1 else 0,
-                isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
+                isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
                 isInternetConnected = AdsManager.isNetworkAvailable(activity),
-                nativeType = NativeType.BANNER,
+                nativeType = NativeType.LARGE,
                 nativeCallBack = object : NativeCallBack {
                     override fun onAdFailedToLoad(adError: String) {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
+
                     override fun onAdLoaded() {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
+
                     override fun onAdImpression() {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
                 }
             )
         } else {
@@ -498,7 +498,7 @@ class MainAppFragment : Fragment() {
                             _binding?.nativeExitAd?.visibility = View.VISIBLE
                             _binding?.adView?.visibility = View.GONE
                             val adView = layoutInflater.inflate(
-                                R.layout.ad_unified_privacy, null
+                                R.layout.ad_unified_media, null
                             ) as NativeAdView
                             adsManager?.nativeAds()
                                 ?.nativeViewPolicy(
@@ -552,7 +552,7 @@ class MainAppFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         shouldCheckForOverlayPermissionLoop = false
-    _binding = null
+        _binding = null
     }
 
     override fun onLowMemory() {

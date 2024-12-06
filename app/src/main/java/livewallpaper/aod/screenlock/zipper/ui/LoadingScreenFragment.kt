@@ -70,7 +70,7 @@ class LoadingScreenFragment :
         if (isFlowOne) {
             lifecycleScope.launchWhenCreated {
                 loadNative()
-                delay(8000)
+                delay(5000)
                 if (isAdded && isVisible && !isDetached) {
                     _binding?.next?.visibility = View.VISIBLE
                     _binding?.animationView?.visibility = View.INVISIBLE
@@ -81,7 +81,7 @@ class LoadingScreenFragment :
             _binding?.nativeExitAd?.visibility = View.INVISIBLE
             _binding?.animationView?.visibility = View.VISIBLE
             lifecycleScope.launchWhenCreated {
-                delay(8000)
+                delay(5000)
                 if (val_ad_app_open_screen) {
                     isSplash = true
                     showOpenAd(activity ?: return@launchWhenCreated) {
@@ -275,12 +275,7 @@ class LoadingScreenFragment :
                         _binding?.nativeExitAd?.addView(adView)
                         _binding?.next?.visibility = View.VISIBLE
                         _binding?.animationView?.visibility = View.INVISIBLE
-                        adsManager?.nativeAds()?.loadNativeAd(
-                            activity ?: return,
-                            true,
-                            id_native_screen,
-                            object : NativeListener {
-                            })
+
                     }
                     super.nativeAdLoaded(currentNativeAd)
                 }
@@ -318,13 +313,12 @@ class LoadingScreenFragment :
                 }
             })
 
-//        loadTwoInterAds(
-//            ads = adsManager ?: return,
-//            activity = activity ?: return,
-//            remoteConfigNormal = val_inter_main_medium,
-//            adIdNormal = id_inter_main_medium,
-//            tagClass = "main_app_fragment"
-//        )
+        adsManager?.nativeAds()?.loadNativeAd(
+            activity ?: return,
+            true,
+            id_native_screen,
+            object : NativeListener {
+            })
     }
 
     override fun onPause() {

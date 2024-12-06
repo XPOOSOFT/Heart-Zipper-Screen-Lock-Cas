@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.hypersoft.billing.BillingManager
 import com.hypersoft.billing.dataClasses.ProductType
@@ -20,6 +21,7 @@ import livewallpaper.aod.screenlock.zipper.ads_manager.billing.PurchasePrefs
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentPremiumScreenBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 
 class FragmentBuyScreen :
@@ -79,8 +81,7 @@ class FragmentBuyScreen :
                     if (productDetail.productType == ProductType.inapp) {
                         // productDetail (monthly)
                         _binding?.butBtn?.text =
-                            "${getString(R.string.purchase)} : ${productDetail.price}"
-                        productDetail.freeTrialDays = 3
+                            "${getString(R.string.purchase)} : ${productDetail.pricingDetails.get(0).price}"
                     }
 
                 }
@@ -141,8 +142,13 @@ class FragmentBuyScreen :
 
     override fun onResume() {
         super.onResume()
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
+        if(isSplash) {
+            lifecycleScope.launch {
+                delay(3000)
+                _binding?.closeBtn?.visibility = View.VISIBLE
+                _binding?.butClose?.visibility = View.VISIBLE
+            }
+        }else{
             _binding?.closeBtn?.visibility = View.VISIBLE
             _binding?.butClose?.visibility = View.VISIBLE
         }
