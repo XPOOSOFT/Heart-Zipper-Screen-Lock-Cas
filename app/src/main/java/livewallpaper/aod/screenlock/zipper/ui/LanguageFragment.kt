@@ -7,12 +7,18 @@ import android.view.WindowManager
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.nativead.NativeAd
+import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.LanguageGridAdapter
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.PurchasePrefs
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentLanguageBinding
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
@@ -23,9 +29,14 @@ import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
+import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
 
 
@@ -73,7 +84,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_language_screen_front,
+                            remoteConfigNormal = val_ad_inter_language_screen,
                             adIdNormal = id_inter_main_medium,
                             tagClass = "language_first",
                             isBackPress = true,
@@ -92,25 +103,25 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 }
             }
 
-            if (isNetworkAvailable(context ?: return) && !BillingUtil(
-                    activity ?: return
-                ).checkPurchased(activity ?: return)
-            ) {
-                insertAds()
-            } else {
-                languageGridAdapter =
-                    LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
-                        clickItem = {
-                            positionSelected = it.country_code
-                            languageGridAdapter?.selectLanguage(positionSelected)
-                            _binding?.forwardBtn?.visibility = View.VISIBLE
-                        }
-                    )
-                if (isLangScreen) {
-                    languageGridAdapter?.selectLanguage(positionSelected)
-                }
-                _binding?.conversationDetail?.adapter = languageGridAdapter
+//            if (isNetworkAvailable(context ?: return) && !BillingUtil(
+//                    activity ?: return
+//                ).checkPurchased(activity ?: return)
+//            ) {
+//                insertAds()
+//            } else {
+            languageGridAdapter =
+                LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
+                    clickItem = {
+                        positionSelected = it.country_code
+                        languageGridAdapter?.selectLanguage(positionSelected)
+                        _binding?.forwardBtn?.visibility = View.VISIBLE
+                    }
+                )
+            if (!isLangScreen) {
+                languageGridAdapter?.selectLanguage(positionSelected)
             }
+            _binding?.conversationDetail?.adapter = languageGridAdapter
+//            }
             _binding?.backBtn?.clickWithThrottle {
                 sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
                 if (!isLangScreen) {
@@ -133,7 +144,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_language_screen_front,
+                            remoteConfigNormal = val_ad_inter_language_screen,
                             adIdNormal = id_inter_main_medium,
                             tagClass = "language_first",
                             isBackPress = true,
@@ -173,7 +184,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_language_screen_front,
+                            remoteConfigNormal = val_ad_inter_language_screen,
                             adIdNormal = id_inter_main_medium,
                             tagClass = "language_first",
                             isBackPress = true,
@@ -191,6 +202,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                     }
                 }
             }
+            loadNative()
         } catch (e: Exception) {
             e.printStackTrace()
             Log.d("adapter", "onBindViewHolder: ${e.message}")
@@ -198,6 +210,68 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         }
     }
 
+    private val admobNative by lazy { AdmobNative() }
+
+    private fun loadNative() {
+        if (native_precashe_copunt_current >= native_precashe_counter) {
+            admobNative.loadNativeAds(
+                activity,
+                _binding?.nativeExitAd!!,
+                id_native_screen,
+                if (val_ad_native_language_screen)
+                    1 else 0,
+                isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
+                isInternetConnected = AdsManager.isNetworkAvailable(activity),
+                nativeType = if (val_ad_native_language_screen_h) NativeType.LARGE else NativeType.BANNER,
+                nativeCallBack = object : NativeCallBack {
+                    override fun onAdFailedToLoad(adError: String) {
+                        _binding?.adView?.visibility = View.GONE}
+                    override fun onAdLoaded() {
+                        _binding?.adView?.visibility = View.GONE}
+                    override fun onAdImpression() {
+                        _binding?.adView?.visibility = View.GONE}
+                }
+            )
+        } else {
+            AdsManager.appAdsInit(activity?:return).nativeAds()?.loadNativeAd(activity ?: return,
+                val_ad_native_language_screen,
+                id_native_screen,
+                object : NativeListener {
+                    override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.VISIBLE
+                            _binding?.adView?.visibility = View.GONE
+                            val adView =
+                                layoutInflater.inflate(
+                                    if (val_ad_native_language_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
+                                    null
+                                ) as NativeAdView
+                            AdsManager.appAdsInit(activity?:return).nativeAds()
+                                ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
+                            _binding?.nativeExitAd?.removeAllViews()
+                            _binding?.nativeExitAd?.addView(adView)
+                        }
+                        super.nativeAdLoaded(currentNativeAd)
+                    }
+
+                    override fun nativeAdFailed(loadAdError: LoadAdError) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.GONE
+                            _binding?.adView?.visibility = View.GONE
+                        }
+                        super.nativeAdFailed(loadAdError)
+                    }
+
+                    override fun nativeAdValidate(string: String) {
+                        if (isAdded && isVisible && !isDetached) {
+                            _binding?.nativeExitAd?.visibility = View.GONE
+                            _binding?.adView?.visibility = View.GONE
+                        }
+                        super.nativeAdValidate(string)
+                    }
+                })
+        }
+    }
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.clear()
@@ -260,7 +334,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                     _binding?.forwardBtn?.visibility = View.VISIBLE
                 }
             )
-        if (isLangScreen) {
+        if (!isLangScreen) {
             languageGridAdapter?.selectLanguage(positionSelected)
         }
         _binding?.conversationDetail?.adapter = languageGridAdapter

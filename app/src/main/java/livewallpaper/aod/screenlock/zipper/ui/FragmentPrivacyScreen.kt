@@ -27,41 +27,14 @@ class FragmentPrivacyScreen :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         dbHelper = DbHelper(context ?: return)
 
         setupBackPressedCallback {
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to true))
         }
 
         _binding?.startBtn?.clickWithThrottle {
-            if (dbHelper?.getBooleanData(
-                    context ?: return@clickWithThrottle, IS_INTRO, false
-                ) == false && val_on_bording_screen
-            ) {
-                firebaseAnalytics(
-                    "loading_fragment_load_next_btn_intro",
-                    "loading_fragment_load_next_btn_intro -->  Click"
-                )
-                findNavController().navigate(R.id.IntoScreenFragment)
-            } else if (dbHelper?.getBooleanData(
-                    context ?: return@clickWithThrottle, IS_FIRST, false
-                ) == false
-            ) {
-                firebaseAnalytics(
-                    "loading_fragment_load_next_btn_language",
-                    "loading_fragment_load_next_btn_language -->  Click"
-                )
-                findNavController().navigate(
-                    R.id.LanguageFragment, bundleOf(LANG_SCREEN to true)
-                )
-            } else {
-                firebaseAnalytics(
-                    "loading_fragment_load_next_btn_main",
-                    "loading_fragment_load_next_btn_main -->  Click"
-                )
-                    findNavController().navigate(R.id.myMainMenuFragment, bundleOf("is_splash" to true))
-            }
+            findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to true))
         }
 
     }

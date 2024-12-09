@@ -2,36 +2,42 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/_190sdp"
-    android:background="@drawable/rect_btn_item_new"
-    android:layout_margin="@dimen/_10sdp"
+    android:layout_height="@dimen/_150sdp"
     android:layout_gravity="center"
-    >
+    android:layout_margin="@dimen/_10sdp"
+    android:background="@drawable/rect_btn_item_new">
 
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/imageWallpaper"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:roundPercent="0.2" />
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
-            android:id="@+id/image"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:scaleType="fitCenter"
-            android:padding="@dimen/_10sdp"
-            app:srcCompat="@drawable/zipper1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/image"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ticket"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_25sdp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/_10sdp"
-            app:srcCompat="@drawable/check"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            />
+    <ImageView
+        android:id="@+id/ticket"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="@dimen/_10sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/check" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

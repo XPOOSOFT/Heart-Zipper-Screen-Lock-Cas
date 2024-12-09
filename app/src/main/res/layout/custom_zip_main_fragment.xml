@@ -10,7 +10,7 @@
     <include
         android:id="@+id/top_lay"
         layout="@layout/top_layout_all" />
-
+<!--
     <TextView
         android:id="@+id/titlezipperRecyclerView"
         android:layout_width="0dp"
@@ -120,6 +120,74 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titlewallpaperRecyclerView" />
 
+    <TextView
+        android:id="@+id/previewButton"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_35sdp"
+        app:layout_constraintWidth_percent="0.65"
+        android:text="@string/apply"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18sdp"
+        android:layout_marginVertical="@dimen/_10sdp"
+        android:background="@drawable/rect_btn_ad_btn_new"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>-->
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabSelectedTextColor="@color/selected_text_color"
+        app:tabTextColor="@color/non_selected_text_color"
+        app:tabIndicatorHeight="0dp"
+        app:tabRippleColor="@null"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@id/top_lay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/zipperRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        tools:listitem="@layout/item_image"
+        app:spanCount="2"
+        app:layout_constraintBottom_toTopOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rect_btn_custom"
+        android:minHeight="@dimen/_80sdp"
+        android:layout_margin="@dimen/_5sdp"
+        app:layout_constraintBottom_toTopOf="@id/previewButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
     <TextView
         android:id="@+id/previewButton"
         android:layout_width="0dp"

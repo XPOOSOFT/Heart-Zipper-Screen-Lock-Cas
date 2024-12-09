@@ -72,7 +72,8 @@ class OnBordScreenFragment :
                     "intro_fragment_move_to_next -->  Click"
                 )
                 sharedPrefUtils?.saveData(requireContext(), IS_INTRO, true)
-                findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to true))
+                findNavController().navigate(R.id.FragmentPrivacyScreen)
+//                findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to true))
             }
             nextApp.clickWithThrottle {
                 if (currentpage == 3) {
@@ -81,10 +82,11 @@ class OnBordScreenFragment :
                         "intro_fragment_move_to_next -->  Click"
                     )
                     sharedPrefUtils?.saveData(requireContext(), IS_INTRO, true)
-                    findNavController().navigate(
-                        R.id.LanguageFragment,
-                        bundleOf(LANG_SCREEN to true)
-                    )
+//                    findNavController().navigate(
+//                        R.id.LanguageFragment,
+//                        bundleOf(LANG_SCREEN to true)
+//                    )
+                    findNavController().navigate(R.id.FragmentPrivacyScreen)
                 } else {
                     mainSlideViewPager.setCurrentItem(getItem(+1), true)
                 }

@@ -18,11 +18,12 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.google.gson.JsonParseException
+import com.google.gson.JsonSyntaxException
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners.isDebug
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
@@ -43,7 +44,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
 
@@ -64,7 +64,6 @@ class WallpaperFragment : Fragment() {
     ): View? {
         _binding = FragmentWallpaperBinding.inflate(layoutInflater)
         Log.d("calling", "onCreateView: load main fragment")
-
         return _binding?.root
     }
 
@@ -75,44 +74,37 @@ class WallpaperFragment : Fragment() {
             "custom_wallpaper_fragment_open",
             "custom_wallpaper_fragment_open -->  Click"
         )
+        Log.d("calling", "onCreateView: load main fragment")
         adsmanager = AdsManager.appAdsInit(activity ?: requireActivity())
         sharedPrefUtils = DbHelper(requireContext())
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        _binding?.topLay?.backBtn?.clickWithThrottle {
+        _binding?.topLay?.title?.clickWithThrottle {
             findNavController().navigateUp()
         }
-        _binding?.topLay?.title?.text = getString(R.string.un_wallpaper)
+//        _binding?.title?.text = getString(R.string.un_wallpaper_single)
         loadBanner()
         loadRewardedAd()
         setupRecyclerView(view)
     }
 
-
     private fun setupRecyclerView(view: View) {
-        // Sample JSON
-//        val Wallpaper_Cat = """
-//            {
-//              "categories": [
-//                {
-//                  "title": "christmas",
-//                  "images": "http://fireitstudio-502880185.imgix.net/new/christmas/1.png"
-//                },
-//                {
-//                  "title": "vintage",
-//                  "images": "http://fireitstudio-502880185.imgix.net/new/vintage/1.png"
-//                }
-//              ]
-//            }
-//        """
-        // Parse JSON
-//        val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
         try {
-            val categoriesResponse = Gson().fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
+            if (Wallpaper_Cat.isEmpty()) {
+                Log.e("JSON_ERROR", "Wallpaper_Cat is null or empty")
+                return
+            }
+
+            val gson = GsonBuilder()
+                .registerTypeAdapter(CategoriesResponse::class.java, CategoriesResponseAdapter())
+                .create()
+
+            val categoriesResponse = gson.fromJson(Wallpaper_Cat, CategoriesResponse::class.java)
             categories.clear()
             categories.addAll(categoriesResponse.categories)
-            categoryAdapter = CategoryAdapter(categories) { Tilte_ ->
+
+            categoryAdapter = CategoryAdapter(context ?: return, categories) { Tilte_ ->
                 if (!isNetworkAvailable(activity)) {
                     showToast(context ?: requireContext(), getString(R.string.no_internet))
                     return@CategoryAdapter
@@ -134,7 +126,6 @@ class WallpaperFragment : Fragment() {
                             R.id.FragmentBuyScreen,
                             bundleOf("isSplash" to false)
                         )
-                        return@showAdsDialog
                     },
                     onWatchAds = { ->
                         if (rewardedInterstitialAd == null) {
@@ -145,24 +136,26 @@ class WallpaperFragment : Fragment() {
                             loadRewardedAd()
                             return@showAdsDialog
                         }
-                        showRewardedVideo {
-                        }
-
+                        showRewardedVideo {}
                         findNavController().navigate(
                             R.id.FragmentListCustomWallpaper,
                             bundleOf("title" to Tilte_)
                         )
-                    })
-                return@CategoryAdapter
-
+                    }
+                )
             }
-            view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
 
+            view.findViewById<RecyclerView>(R.id.recyclerView).adapter = categoryAdapter
+        } catch (e: JsonSyntaxException) {
+            Log.e("JSON_ERROR", "Malformed JSON: ${e.message}")
+        } catch (e: JsonParseException) {
+            Log.e("JSON_ERROR", "Parsing Error: ${e.message}")
+        } catch (e: Exception) {
+            Log.e("GENERAL_ERROR", "Error: ${e.message}")
+        }
     }
 
+    private val admobNative by lazy { AdmobNative() }
 
     private fun loadRewardedAd() {
         if (rewardedInterstitialAd == null) {
@@ -230,9 +223,6 @@ class WallpaperFragment : Fragment() {
             function.invoke()
         }
     }
-
-
-    private val admobNative by lazy { AdmobNative() }
 
     private fun loadBanner() {
         when (type_ad_native_reward_screen) {

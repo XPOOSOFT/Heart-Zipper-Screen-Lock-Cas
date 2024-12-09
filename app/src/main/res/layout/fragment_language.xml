@@ -72,13 +72,35 @@
         android:layout_height="0dp"
         android:layout_margin="@dimen/_3sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/nativeExitAd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topConstraint"
         tools:listitem="@layout/language_app_item" />
 
+    <FrameLayout
+        android:id="@+id/nativeExitAd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/_50sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/adView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:letterSpacing="0.2"
+        android:text="@string/ad"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:background="@drawable/round_btn_ads"
+        app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+        app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+        app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+        app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/ads_lay"
         android:layout_width="@dimen/_120sdp"

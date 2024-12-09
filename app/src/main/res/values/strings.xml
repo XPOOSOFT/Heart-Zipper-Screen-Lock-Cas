@@ -246,4 +246,8 @@ Please Check it first!</string>
     <string name="customize_detail">Personalize what you like</string>
     <string name="un_wallpaper">Unlimited Wallpapers</string>
 
+    <string name="k_wallpaper_new">4K Unlimited Wallpapers</string>
+    <string name="k_wallpaper">4K\nWallpaper</string>
+    <string name="background">Background</string>
+
 </resources>

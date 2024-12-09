@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.whenResumed
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.firebase.FirebaseApp
@@ -14,17 +13,12 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.showOpenAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.CmpClass
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
 import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAdsSplash
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
@@ -74,7 +68,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_splash_scre
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_back
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
@@ -227,6 +221,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
         val_inapp_frequency = remoteConfig.getLong("val_inapp_frequency").toInt()
         banner_height = remoteConfig.getLong("banner_height").toInt()
+        banner_type = remoteConfig.getLong("banner_type").toInt()
 
         id_inter_main_medium = remoteConfig.getString("id_inter_main_medium")
         id_native_screen = remoteConfig.getString("id_native_screen")
@@ -315,7 +310,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     remoteConfig!!["val_ad_app_open_splash_screen"].asBoolean()
                 val_ad_inter_main_menu_screen_back =
                     remoteConfig!!["val_ad_inter_main_menu_screen_back"].asBoolean()
-                val_ad_inter_language_screen_back =
+                val_ad_inter_language_screen =
                     remoteConfig!!["val_ad_inter_language_screen_back"].asBoolean()
                 val_ad_inter_sound_screen_back =
                     remoteConfig!!["val_ad_inter_sound_screen_back"].asBoolean()
@@ -334,8 +329,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
                 val_ad_inter_main_menu_screen_front =
                     remoteConfig!!["val_ad_inter_main_menu_screen_front"].asBoolean()
-                val_ad_inter_language_screen_front =
-                    remoteConfig!!["val_ad_inter_language_screen_front"].asBoolean()
+                val_ad_inter_language_screen =
+                    remoteConfig!!["val_ad_inter_language_screen"].asBoolean()
                 val_ad_inter_sound_screen_front =
                     remoteConfig!!["val_ad_inter_sound_screen_front"].asBoolean()
                 val_exit_dialog_inter_front =

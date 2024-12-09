@@ -89,15 +89,15 @@ var val_ad_inter_reward_screen = true
 var val_ad_inter_customize_screen = true
 
 var val_banner_language_screen = true
-var val_collapsable_banner = true
+var val_collapsable_banner = false
 var val_banner_setting_screen = true
 
 var is_val_ad_inter_loading_screen = true
 var val_ad_app_open_splash_screen = true
 var val_ad_inter_loading_screen = true
+var val_ad_inter_language_screen = true
 
 var val_ad_inter_main_menu_screen_back = true
-var val_ad_inter_language_screen_back = true
 var val_ad_inter_sound_screen_back = true
 var val_exit_dialog_inter_back = true
 var val_ad_inter_setting_screen_back = true
@@ -128,7 +128,7 @@ var val_is_inapp = false
 
 
 var banner_height = 160
-var banner_type = 0
+var banner_type = 1
 var appUpdateType = 0
 var inter_frequency_count = 0
 var id_frequency_counter = 10

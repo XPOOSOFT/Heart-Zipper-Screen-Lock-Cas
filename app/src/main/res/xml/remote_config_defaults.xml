@@ -79,7 +79,7 @@
     </entry>
 
     <entry>
-        <key>val_ad_inter_language_screen_back</key>
+        <key>val_ad_inter_language_screen</key>
         <value>true</value>
     </entry>
 
@@ -217,7 +217,7 @@
 
     <entry>
         <key>val_collapsable_banner</key>
-        <value>true</value>
+        <value>false</value>
     </entry>
 
     <entry>
