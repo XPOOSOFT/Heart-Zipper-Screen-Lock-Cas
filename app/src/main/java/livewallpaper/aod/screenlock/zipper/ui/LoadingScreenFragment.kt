@@ -14,8 +14,6 @@ import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.showOpenAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAdsSplash
 import livewallpaper.aod.screenlock.zipper.ads_manager.showNormalInterAdSingle
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentLoadingBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter
@@ -121,7 +119,7 @@ class LoadingScreenFragment :
                             activity ?: return@let,
                             remoteConfigNormal = val_ad_inter_loading_screen,
                             adIdNormal = id_inter_main_medium,
-                            tagClass = "splash",
+                            tagClass = "splash_ld",
                             layout = _binding?.adsLay ?: return@launchWhenCreated
                         ) {
                             if (dbHelper?.getBooleanData(

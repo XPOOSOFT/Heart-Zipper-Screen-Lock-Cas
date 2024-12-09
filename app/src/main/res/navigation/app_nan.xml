@@ -37,12 +37,28 @@
         android:id="@+id/myMainMenuFragment"
         android:name="livewallpaper.aod.screenlock.zipper.ui.MainAppFragment"
         android:label="myMainMenuFragment"
-        tools:layout="@layout/fragment_main_menu_activity" />
+        tools:layout="@layout/fragment_main_menu_activity">
+
+        <action
+            android:id="@+id/action_home_to_allStyles"
+            app:destination="@id/ActivityAllStyle"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/ActivityAllStyle" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/ActivityAllStyle"
         android:name="livewallpaper.aod.screenlock.zipper.ui.ActivityAllStyle"
         android:label="ActivityAllStyle"
-        tools:layout="@layout/fragment_all_styles" />
+        tools:layout="@layout/fragment_all_styles" >
+        <action
+            android:id="@+id/action_allStyles_to_home"
+            app:destination="@id/myMainMenuFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/myMainMenuFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/FragmentApplyPassword"
         android:name="livewallpaper.aod.screenlock.zipper.ui.FragmentApplyPassword"

@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -128,6 +129,7 @@ class MainAppFragment : Fragment() {
             arguments?.let {
                 isSplashScreen = it.getBoolean("is_splash")
             }
+            Log.d("main_create", "onViewCreated: Main Create")
             firebaseAnalytics("main_menu_fragment_open", "main_menu_fragment_open -->  Click")
             adsManager = AdsManager.appAdsInit(activity ?: return@launch)
             if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp) {
@@ -231,7 +233,7 @@ class MainAppFragment : Fragment() {
                         layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
-                            R.id.ActivityAllStyle,
+                            R.id.action_home_to_allStyles,
                             bundleOf(StyleSelect to getString(R.string.row_style))
                         )
                     }
@@ -250,7 +252,7 @@ class MainAppFragment : Fragment() {
                         layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
-                            R.id.ActivityAllStyle,
+                            R.id.action_home_to_allStyles,
                             bundleOf(StyleSelect to getString(R.string.wallpapers))
                         )
                     }
@@ -269,7 +271,7 @@ class MainAppFragment : Fragment() {
                         layout = _binding?.adsLay ?: return@clickWithThrottle
                     ) {
                         findNavController().navigate(
-                            R.id.ActivityAllStyle,
+                            R.id.action_home_to_allStyles,
                             bundleOf(StyleSelect to getString(R.string.zipperStyle))
                         )
                     }

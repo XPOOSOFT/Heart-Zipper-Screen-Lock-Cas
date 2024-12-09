@@ -103,12 +103,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 }
             }
 
-//            if (isNetworkAvailable(context ?: return) && !BillingUtil(
-//                    activity ?: return
-//                ).checkPurchased(activity ?: return)
-//            ) {
-//                insertAds()
-//            } else {
             languageGridAdapter =
                 LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
                     clickItem = {
@@ -121,7 +115,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                 languageGridAdapter?.selectLanguage(positionSelected)
             }
             _binding?.conversationDetail?.adapter = languageGridAdapter
-//            }
             _binding?.backBtn?.clickWithThrottle {
                 sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
                 if (!isLangScreen) {

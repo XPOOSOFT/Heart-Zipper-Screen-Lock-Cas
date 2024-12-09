@@ -88,11 +88,13 @@ class ActivityAllStyle : Fragment() {
         detData(name)
         _binding?.topLay?.backBtn?.clickWithThrottle {
 //            isBackShow = val_ad_inter_list_data_screen_back
-            findNavController().popBackStack()
+//            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_allStyles_to_home)
         }
         setupBackPressedCallback {
 //            isBackShow = val_ad_inter_list_data_screen_back
-            findNavController().popBackStack()
+//            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_allStyles_to_home)
         }
 
     }
@@ -103,7 +105,7 @@ class ActivityAllStyle : Fragment() {
             getString(R.string.wallpapers) -> {
                 list = Constants.getBackground()
                 name = ConstantValues.SelectedWallpaper
-                _binding?.topLay?.title?.text = getString(R.string.wallpapers)
+                _binding?.topLay?.title?.text = getString(R.string.background)
                 zippersRecyclerAdapter =
                     ZippersRecyclerAdapter(
                         list ?: return,

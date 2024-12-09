@@ -29,7 +29,7 @@
     <color name="unselected_tab_text">#808080</color> <!-- Example color for unselected tab -->
     <color name="tab_indicator_color">#FF4081</color> <!-- Color for the indicator below the tab -->
 
-    <color name="selected_tab_background">#FF5722</color>
+    <color name="selected_tab_background">#E70000</color>
     <color name="non_selected_tab_background">#E0E0E0</color>
     <color name="selected_text_color">#FFFFFF</color>
     <color name="non_selected_text_color">#757575</color>
