@@ -229,6 +229,9 @@
     <string name="customize">사용자 정의</string>
     <string name="customize_detail">좋아하는 것을 개인화하세요</string>
     <string name="un_wallpaper">무제한 배경화면</string>
+    <string name="k_wallpaper_new">4K 무제한 배경화면</string>
+    <string name="k_wallpaper">4K\n배경화면</string>
+    <string name="background">배경</string>
 
 
 </resources>

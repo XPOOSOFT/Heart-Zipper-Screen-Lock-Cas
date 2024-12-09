@@ -227,6 +227,9 @@
     <string name="customize">Personalizar</string>
     <string name="customize_detail">Personaliza lo que te gusta</string>
     <string name="un_wallpaper">Fondos de Pantalla Ilimitados</string>
+    <string name="k_wallpaper_new">Fondos de Pantalla 4K Ilimitados</string>
+    <string name="k_wallpaper">4K\nFondo de Pantalla</string>
+    <string name="background">Fondo</string>
 
 </resources>
 

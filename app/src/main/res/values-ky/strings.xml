@@ -229,5 +229,8 @@
     <string name="customize">Badilisha</string>
     <string name="customize_detail">Binafsisha unachopenda</string>
     <string name="un_wallpaper">Ukuta Usio na Kikomo</string>
+    <string name="k_wallpaper_new">Picha za Ukuta za 4K Bila Kiwango</string>
+    <string name="k_wallpaper">4K\nPicha ya Ukuta</string>
+    <string name="background">Mandharinyuma</string>
 
 </resources>

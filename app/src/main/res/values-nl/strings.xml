@@ -227,5 +227,8 @@
     <string name="customize">Aanpassen</string>
     <string name="customize_detail">Personaliseer wat je leuk vindt</string>
     <string name="un_wallpaper">Onbeperkte Achtergronden</string>
+    <string name="k_wallpaper_new">4K Onbeperkte Achtergronden</string>
+    <string name="k_wallpaper">4K\nAchtergrond</string>
+    <string name="background">Achtergrond</string>
 
 </resources>

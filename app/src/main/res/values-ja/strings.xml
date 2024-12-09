@@ -233,6 +233,9 @@
     <string name="customize">カスタマイズ</string>
     <string name="customize_detail">好きなようにパーソナライズ</string>
     <string name="un_wallpaper">無制限の壁紙</string>
+    <string name="k_wallpaper_new">4K 無制限の壁紙</string>
+    <string name="k_wallpaper">4K\n壁紙</string>
+    <string name="background">背景</string>
 
 </resources>
 

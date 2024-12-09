@@ -229,5 +229,8 @@
     <string name="customize">अनुकूलित करें</string>
     <string name="customize_detail">जो आपको पसंद हो उसे निजी बनाएं</string>
     <string name="un_wallpaper">अनलिमिटेड वॉलपेपर</string>
+    <string name="k_wallpaper_new">4K अनलिमिटेड वॉलपेपर</string>
+    <string name="k_wallpaper">4K\nवॉलपेपर</string>
+    <string name="background">पृष्ठभूमि</string>
 
 </resources>

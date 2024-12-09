@@ -238,6 +238,9 @@
     <string name="customize">Настроить</string>
     <string name="customize_detail">Персонализируйте то, что вам нравится</string>
     <string name="un_wallpaper">Неограниченные обои</string>
+    <string name="k_wallpaper_new">4K Безлимитные Обои</string>
+    <string name="k_wallpaper">4K\nОбои</string>
+    <string name="background">Фон</string>
 
 </resources>
 

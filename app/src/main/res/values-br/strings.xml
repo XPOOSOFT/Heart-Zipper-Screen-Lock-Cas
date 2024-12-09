@@ -230,5 +230,8 @@
     <string name="customize">Personalizar</string>
     <string name="customize_detail">Personalize o que você gosta</string>
     <string name="un_wallpaper">Papéis de Parede Ilimitados</string>
+    <string name="k_wallpaper_new">Papéis de Parede 4K Ilimitados</string>
+    <string name="k_wallpaper">4K\nPapel de Parede</string>
+    <string name="background">Plano de Fundo</string>
 
 </resources>

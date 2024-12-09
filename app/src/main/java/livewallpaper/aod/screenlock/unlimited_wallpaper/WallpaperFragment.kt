@@ -83,7 +83,7 @@ class WallpaperFragment : Fragment() {
         _binding?.topLay?.title?.clickWithThrottle {
             findNavController().navigateUp()
         }
-//        _binding?.title?.text = getString(R.string.un_wallpaper_single)
+        _binding?.topLay?.title?.text = getString(R.string.k_wallpaper_new)
         loadBanner()
         loadRewardedAd()
         setupRecyclerView(view)

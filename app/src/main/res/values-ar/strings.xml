@@ -232,5 +232,9 @@
     <string name="customize_detail">خصص ما تحب</string>
     <string name="un_wallpaper">خلفيات غير محدودة</string>
 
+    <string name="k_wallpaper_new">خلفيات 4K غير محدودة</string>
+    <string name="k_wallpaper">4K\nخلفية</string>
+    <string name="background">خلفية</string>
+
 </resources>
 

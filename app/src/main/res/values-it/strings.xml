@@ -233,5 +233,8 @@ Please Check it first!</string>
     <string name="customize">Personalizza</string>
     <string name="customize_detail">Personalizza ciò che ti piace</string>
     <string name="un_wallpaper">Sfondi Illimitati</string>
+    <string name="k_wallpaper_new">Sfondi 4K Illimitati</string>
+    <string name="k_wallpaper">4K\nSfondo</string>
+    <string name="background">Sfondo</string>
 
 </resources>

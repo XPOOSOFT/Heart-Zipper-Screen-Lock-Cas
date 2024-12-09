@@ -229,6 +229,9 @@
     <string name="customize">حسب ضرورت بنائیں</string>
     <string name="customize_detail">اپنی پسند کے مطابق بنائیں</string>
     <string name="un_wallpaper">لامحدود والپیپر</string>
+    <string name="k_wallpaper_new">4K لا محدود وال پیپرز</string>
+    <string name="k_wallpaper">4K\nوال پیپر</string>
+    <string name="background">پس منظر</string>
 
 </resources>
 

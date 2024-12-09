@@ -229,6 +229,9 @@
     <string name="customize">Kişiselleştir</string>
     <string name="customize_detail">Sevdiklerinizi kişiselleştirin</string>
     <string name="un_wallpaper">Sınırsız Duvar Kağıtları</string>
+    <string name="k_wallpaper_new">4K Sınırsız Duvar Kağıtları</string>
+    <string name="k_wallpaper">4K\nDuvar Kağıdı</string>
+    <string name="background">Arka Plan</string>
 
 </resources>
 

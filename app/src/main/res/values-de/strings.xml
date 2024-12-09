@@ -231,6 +231,9 @@
     <string name="customize">Anpassen</string>
     <string name="customize_detail">Personalisieren Sie, was Sie mögen</string>
     <string name="un_wallpaper">Unbegrenzte Hintergrundbilder</string>
+    <string name="k_wallpaper_new">4K Unbegrenzte Hintergrundbilder</string>
+    <string name="k_wallpaper">4K\nHintergrundbild</string>
+    <string name="background">Hintergrund</string>
 
 </resources>
 

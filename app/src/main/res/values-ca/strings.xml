@@ -230,5 +230,8 @@ Please Check it first!</string>
     <string name="customize">Personnaliser</string>
     <string name="customize_detail">Personnalisez ce que vous aimez</string>
     <string name="un_wallpaper">Fonds d\'écran illimités</string>
+    <string name="k_wallpaper_new">Fonds d\'écran 4K Illimités</string>
+    <string name="k_wallpaper">4K\nFond d\'écran</string>
+    <string name="background">Arrière-plan</string>
 
 </resources>
