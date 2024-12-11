@@ -13,14 +13,16 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
+import com.hypersoft.admobads.adsconfig.interstitial.AdmobInterstitial
 import kotlinx.coroutines.delay
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.CmpClass
+import livewallpaper.aod.screenlock.zipper.ads_manager.splash_interstitial.callbacks.InterstitialOnLoadCallBack
+import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAdsSplash
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.SaveWallpaper
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -69,7 +71,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_scre
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_back
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_loading_screen
@@ -125,7 +126,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         var isUserConsent = false
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
-
+    private val admobInterstitial by lazy { AdmobInterstitial() }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
@@ -496,12 +497,24 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                         tagClass = "main_app_fragment"
                     )
                 } else {
-                    loadTwoInterAdsSplash(
-                        adsManager ?: return@addOnCompleteListener,
+//                    loadTwoInterAdsSplash(
+//                        adsManager ?: return@addOnCompleteListener,
+//                        activity ?: return@addOnCompleteListener,
+//                        remoteConfigNormal = val_ad_inter_loading_screen,
+//                        adIdNormal = id_inter_splash_Screen,
+//                        "splash"
+//                    )
+                    admobInterstitial.loadInterstitialAd(
                         activity ?: return@addOnCompleteListener,
-                        remoteConfigNormal = val_ad_inter_loading_screen,
-                        adIdNormal = id_inter_splash_Screen,
-                        "splash"
+                        id_inter_splash_Screen,
+                        if(val_ad_inter_loading_screen) 1 else 0,
+                        isAppPurchased = BillingUtil(activity?:return@addOnCompleteListener).checkPurchased(activity?:return@addOnCompleteListener),
+                        isInternetConnected = AdsManager.isNetworkAvailable(activity),
+                        object : InterstitialOnLoadCallBack {
+                            override fun onAdFailedToLoad(adError: String) {}
+                            override fun onAdLoaded() {}
+                            override fun onPreloaded() {}
+                        }
                     )
                 }
                 observeSplashLiveData()

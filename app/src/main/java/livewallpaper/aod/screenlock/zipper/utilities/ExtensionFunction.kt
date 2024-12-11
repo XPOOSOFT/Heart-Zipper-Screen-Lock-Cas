@@ -1,5 +1,6 @@
 package livewallpaper.aod.screenlock.zipper.utilities
 
+import android.provider.Settings
 import android.app.Activity
 import android.app.ActivityManager
 import android.content.ActivityNotFoundException
@@ -25,7 +26,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
@@ -42,6 +45,11 @@ import livewallpaper.aod.screenlock.zipper.model.SoundModel
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.SpeedActivePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPref
 import livewallpaper.aod.screenlock.reward.wallpaper.Wallpaper
+import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
+import livewallpaper.aod.screenlock.zipper.model.MainMenu
+import livewallpaper.aod.screenlock.zipper.service.LockScreenService
+import livewallpaper.aod.screenlock.zipper.ui.MainAppFragment
+import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.StyleSelect
 import org.json.JSONArray
 import java.util.Calendar
 import java.util.Locale
@@ -261,6 +269,19 @@ fun introHeadingNew(context: Context): ArrayList<String>
     list.add(context.getString(R.string.zipperStyle))
     list.add(context.getString(R.string.row_style))
     list.add(context.getString(R.string.screen_lock))
+    return list
+}
+
+
+fun getMainMenu(context: Context): ArrayList<MainMenu>
+{
+    val list = arrayListOf<MainMenu>()
+    list.add(MainMenu(context.getString(R.string.zipper),R.drawable.zip_icon,context.getString(R.string.zipperStyle_new_detail)))
+    list.add(MainMenu(context.getString(R.string.row),R.drawable.row_icon,context.getString(R.string.row_style_new_detail)))
+    list.add(MainMenu(context.getString(R.string.background),R.drawable.wallpaper_icon,context.getString(R.string.wallpaper_new_detail)))
+    list.add(MainMenu(context.getString(R.string.preview),R.drawable.preview_icon,context.getString(R.string.preview_new_detail)))
+    list.add(MainMenu(context.getString(R.string.customize),R.drawable.customize_icon,context.getString(R.string.customize_detail)))
+    list.add(MainMenu(context.getString(R.string.wallpapers),R.drawable.wallpaper_icon,context.getString(R.string.k_wallpaper_new)))
     return list
 }
 
@@ -505,7 +526,7 @@ fun showRatingDialog(
 
 }
 
-private var ratingService: AlertDialog? = null
+var ratingService: AlertDialog? = null
 fun Fragment.showServiceDialog(
     onPositiveYesClick: () -> Unit,
     onPositiveNoClick: () -> Unit,

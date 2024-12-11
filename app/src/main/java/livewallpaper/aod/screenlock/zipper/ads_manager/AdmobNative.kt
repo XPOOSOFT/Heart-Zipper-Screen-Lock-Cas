@@ -16,6 +16,7 @@ import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.formats.NativeAdOptions
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -34,6 +35,8 @@ import livewallpaper.aod.screenlock.zipper.ads_manager.ScreenUtils.isSupportFull
  * @Date: 14,March,2024.
  * @Accounts
  */
+
+
 class AdmobNative {
 
     /**

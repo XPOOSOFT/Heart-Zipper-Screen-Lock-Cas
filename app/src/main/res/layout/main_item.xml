@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_60sdp"
+    android:id="@+id/customize"
+    android:layout_gravity="center"
+    android:layout_margin="@dimen/_5sdp"
+    android:background="@drawable/rect_white_item_menu"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="@id/customize"
+        app:layout_constraintTop_toTopOf="@id/customize"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+    <androidx.constraintlayout.utils.widget.ImageFilterView
+        android:id="@+id/customizeImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/customize_icon"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintVertical_bias="0.25"
+        app:layout_constraintBottom_toBottomOf="@id/customize"
+        app:layout_constraintStart_toStartOf="@id/customize"
+        app:layout_constraintTop_toTopOf="@id/customize" />
+    <TextView
+        android:id="@+id/customizeText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/customize"
+        android:paddingStart="@dimen/_15sdp"
+        android:gravity="start|center"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/customizeImage"
+        app:layout_constraintEnd_toEndOf="@id/customize"
+        app:layout_constraintStart_toEndOf="@id/customizeImage"
+        app:layout_constraintTop_toTopOf="@id/customizeImage"
+        tools:ignore="RtlSymmetry" />
+    <TextView
+        android:id="@+id/customizeTextD"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/customize_detail"
+        android:textColor="@color/teal_700"
+        android:textSize="@dimen/_8sdp"
+        android:maxLines="1"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/customize"
+        app:layout_constraintEnd_toEndOf="@id/customize"
+        app:layout_constraintStart_toStartOf="@id/customize"
+        app:layout_constraintTop_toBottomOf="@id/customizeText" />
+</androidx.constraintlayout.widget.ConstraintLayout>
