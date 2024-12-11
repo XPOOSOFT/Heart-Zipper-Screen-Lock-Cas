@@ -22,11 +22,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/top_lay">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+<!--        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <!--   Enable Lock-->
+            &lt;!&ndash;   Enable Lock&ndash;&gt;
             <View
                 android:id="@+id/enableLock"
                 android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toTopOf="@id/enableLock"
                 app:tint="@color/white"
                 app:srcCompat="@drawable/setting_next" />
-            <!--   setting-->
+            &lt;!&ndash;   setting&ndash;&gt;
             <View
                 android:id="@+id/setting"
                 android:layout_width="match_parent"
@@ -154,7 +154,7 @@
                 app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
                 app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
 
-            <!--   Zipper-->
+            &lt;!&ndash;   Zipper&ndash;&gt;
             <View
                 android:id="@+id/zipper"
                 android:layout_width="0dp"
@@ -172,7 +172,6 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
-                app:srcCompat="@drawable/zip_icon"
                 app:layout_constraintBottom_toBottomOf="@id/zipperText"
                 app:layout_constraintStart_toStartOf="@id/zipper"
                 app:layout_constraintTop_toTopOf="@id/zipperText" />
@@ -200,7 +199,7 @@
                 app:layout_constraintEnd_toEndOf="@id/zipper"
                 app:layout_constraintStart_toStartOf="@id/zipper"
                 app:layout_constraintTop_toBottomOf="@id/zipperImage" />
-            <!--   Row-->
+            &lt;!&ndash;   Row&ndash;&gt;
             <View
                 android:id="@+id/row"
                 android:layout_width="0dp"
@@ -217,7 +216,6 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
-                app:srcCompat="@drawable/row_icon"
                 app:layout_constraintBottom_toBottomOf="@id/rowText"
                 app:layout_constraintStart_toStartOf="@id/row"
                 app:layout_constraintTop_toTopOf="@id/rowText" />
@@ -246,7 +244,7 @@
                 app:layout_constraintEnd_toEndOf="@id/row"
                 app:layout_constraintStart_toStartOf="@id/row"
                 app:layout_constraintTop_toBottomOf="@id/rowImage" />
-            <!--   wallpaper-->
+            &lt;!&ndash;   wallpaper&ndash;&gt;
             <View
                 android:id="@+id/wallpaper"
                 android:layout_width="0dp"
@@ -263,7 +261,6 @@
                 android:layout_width="@dimen/_25sdp"
                 android:layout_height="@dimen/_30sdp"
                 android:layout_marginStart="@dimen/_15sdp"
-                app:srcCompat="@drawable/wallpaper_icon"
                 app:layout_constraintBottom_toBottomOf="@id/wallpaperText"
                 app:layout_constraintStart_toStartOf="@id/wallpaper"
                 app:layout_constraintTop_toTopOf="@id/wallpaperText" />
@@ -291,7 +288,7 @@
                 app:layout_constraintEnd_toEndOf="@id/wallpaper"
                 app:layout_constraintStart_toStartOf="@id/wallpaper"
                 app:layout_constraintTop_toBottomOf="@id/wallpaperImage" />
-            <!--   Preview-->
+            &lt;!&ndash;   Preview&ndash;&gt;
             <View
                 android:id="@+id/preview"
                 android:layout_width="0dp"
@@ -310,7 +307,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/previewText"
                 app:layout_constraintStart_toStartOf="@id/preview"
                 app:layout_constraintTop_toTopOf="@id/previewText"
-                app:srcCompat="@drawable/preview_icon" />
+                />
             <TextView
                 android:id="@+id/previewText"
                 android:layout_width="0dp"
@@ -335,7 +332,7 @@
                 app:layout_constraintEnd_toEndOf="@id/preview"
                 app:layout_constraintStart_toStartOf="@id/preview"
                 app:layout_constraintTop_toBottomOf="@id/previewImage" />
-            <!--   customize-->
+            &lt;!&ndash;   customize&ndash;&gt;
             <View
                 android:id="@+id/customize"
                 android:layout_width="0dp"
@@ -348,52 +345,51 @@
                 app:layout_constraintTop_toBottomOf="@id/preview"
                 app:layout_constraintBottom_toBottomOf="parent"
                 />
-            <com.airbnb.lottie.LottieAnimationView
-                android:id="@+id/animationView"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:visibility="visible"
-                app:layout_constraintEnd_toEndOf="@id/customize"
-                app:layout_constraintTop_toTopOf="@id/customize"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:id="@+id/customizeImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/customize_icon"
-                android:layout_marginStart="@dimen/_15sdp"
-                app:layout_constraintVertical_bias="0.25"
-                app:layout_constraintBottom_toBottomOf="@id/customize"
-                app:layout_constraintStart_toStartOf="@id/customize"
-                app:layout_constraintTop_toTopOf="@id/customize" />
-            <TextView
-                android:id="@+id/customizeText"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/customize"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:gravity="center"
-                android:textSize="@dimen/_11sdp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/customizeImage"
-                app:layout_constraintEnd_toEndOf="@id/customize"
-                app:layout_constraintStart_toEndOf="@id/customizeImage"
-                app:layout_constraintTop_toTopOf="@id/customizeImage" />
-            <TextView
-                android:id="@+id/customizeTextD"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="@string/customize_detail"
-                android:textColor="@color/teal_700"
-                android:textSize="@dimen/_10sdp"
-                android:maxLines="2"
-                android:gravity="center"
-                app:layout_constraintBottom_toBottomOf="@id/customize"
-                app:layout_constraintEnd_toEndOf="@id/customize"
-                app:layout_constraintStart_toStartOf="@id/customize"
-                app:layout_constraintTop_toBottomOf="@id/customizeText" />
-            <!--   un-Wallpaper-->
+&lt;!&ndash;            <com.airbnb.lottie.LottieAnimationView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/animationView"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="@dimen/_50sdp"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="@dimen/_30sdp"&ndash;&gt;
+&lt;!&ndash;                android:visibility="visible"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintEnd_toEndOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:lottie_autoPlay="true"&ndash;&gt;
+&lt;!&ndash;                app:lottie_loop="true" />&ndash;&gt;
+&lt;!&ndash;            <androidx.constraintlayout.utils.widget.ImageFilterView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/customizeImage"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:layout_marginStart="@dimen/_15sdp"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintVertical_bias="0.25"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintStart_toStartOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/customize" />&ndash;&gt;
+&lt;!&ndash;            <TextView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/customizeText"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:text="@string/customize"&ndash;&gt;
+&lt;!&ndash;                android:layout_marginEnd="@dimen/_15sdp"&ndash;&gt;
+&lt;!&ndash;                android:gravity="center"&ndash;&gt;
+&lt;!&ndash;                android:textSize="@dimen/_11sdp"&ndash;&gt;
+&lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@id/customizeImage"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintEnd_toEndOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintStart_toEndOf="@id/customizeImage"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/customizeImage" />&ndash;&gt;
+&lt;!&ndash;            <TextView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/customizeTextD"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:text="@string/customize_detail"&ndash;&gt;
+&lt;!&ndash;                android:textColor="@color/teal_700"&ndash;&gt;
+&lt;!&ndash;                android:textSize="@dimen/_10sdp"&ndash;&gt;
+&lt;!&ndash;                android:maxLines="2"&ndash;&gt;
+&lt;!&ndash;                android:gravity="center"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintEnd_toEndOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintStart_toStartOf="@id/customize"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toBottomOf="@id/customizeText" />&ndash;&gt;
+            &lt;!&ndash;   un-Wallpaper&ndash;&gt;
             <View
                 android:id="@+id/un_wallpaper"
                 android:layout_width="0dp"
@@ -405,38 +401,489 @@
                 app:layout_constraintBottom_toBottomOf="@id/customize"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
+&lt;!&ndash;            <com.airbnb.lottie.LottieAnimationView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/animationView1"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="@dimen/_50sdp"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="@dimen/_30sdp"&ndash;&gt;
+&lt;!&ndash;                android:visibility="visible"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                app:lottie_autoPlay="true"&ndash;&gt;
+&lt;!&ndash;                app:lottie_loop="true" />&ndash;&gt;
+&lt;!&ndash;            <androidx.constraintlayout.utils.widget.ImageFilterView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/un_wallpaperImage"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:layout_marginStart="@dimen/_15sdp"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintStart_toStartOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                />&ndash;&gt;
+&lt;!&ndash;            <TextView&ndash;&gt;
+&lt;!&ndash;                android:id="@+id/un_wallpaperText"&ndash;&gt;
+&lt;!&ndash;                android:layout_width="0dp"&ndash;&gt;
+&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;
+&lt;!&ndash;                android:textSize="@dimen/_11sdp"&ndash;&gt;
+&lt;!&ndash;                android:text="@string/k_wallpaper_new"&ndash;&gt;
+&lt;!&ndash;                android:gravity="center"&ndash;&gt;
+&lt;!&ndash;                android:textColor="@color/black"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintBottom_toBottomOf="@id/un_wallpaperImage"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintStart_toEndOf="@id/un_wallpaperImage"&ndash;&gt;
+&lt;!&ndash;                app:layout_constraintTop_toTopOf="@id/un_wallpaperImage" />&ndash;&gt;
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--   Enable Lock-->
+            <View
+                android:id="@+id/enableLock"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_btn_ad_btn_new"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/enableLockImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:padding="@dimen/_3sdp"
+                app:layout_constraintBottom_toBottomOf="@id/enableLock"
+                app:layout_constraintStart_toStartOf="@id/enableLock"
+                app:layout_constraintTop_toTopOf="@id/enableLock"
+                app:srcCompat="@drawable/enable_main_icon" />
+
+            <TextView
+                android:id="@+id/enableLockText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/enable_lockscreen"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintBottom_toBottomOf="@id/enableLock"
+                app:layout_constraintEnd_toStartOf="@id/enableLockSwitch"
+                app:layout_constraintStart_toEndOf="@id/enableLockImage"
+                app:layout_constraintTop_toTopOf="@id/enableLock" />
+
+            <Switch
+                android:id="@+id/enableLockSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:background="@null"
+                android:button="@drawable/checkbox_theme"
+                android:gravity="center"
+                android:thumb="@null"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="@id/enableLock"
+                app:layout_constraintEnd_toEndOf="@+id/enableLock"
+                app:layout_constraintStart_toEndOf="@+id/enableLockText"
+                app:layout_constraintTop_toTopOf="@id/enableLock"
+                app:track="@null"
+                tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/enableLockArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/enableLock"
+                app:layout_constraintEnd_toEndOf="@+id/enableLock"
+                app:layout_constraintStart_toEndOf="@+id/enableLockText"
+                app:layout_constraintTop_toTopOf="@id/enableLock"
+                app:srcCompat="@drawable/setting_next"
+                app:tint="@color/white" />
+            <!--   setting-->
+            <View
+                android:id="@+id/setting"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:background="@drawable/rect_btn_ad_btn_new"
+                app:layout_constraintEnd_toEndOf="@id/enableLock"
+                app:layout_constraintStart_toStartOf="@id/enableLock"
+                app:layout_constraintTop_toBottomOf="@id/enableLock" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/settingImage"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:padding="@dimen/_3sdp"
+                app:layout_constraintBottom_toBottomOf="@id/setting"
+                app:layout_constraintStart_toStartOf="@id/setting"
+                app:layout_constraintTop_toTopOf="@id/setting"
+                app:srcCompat="@drawable/pass_lock" />
+
+            <TextView
+                android:id="@+id/settingText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/margin5"
+                android:text="@string/app_security"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_11sdp"
+                app:layout_constraintBottom_toBottomOf="@id/setting"
+                app:layout_constraintEnd_toStartOf="@id/settingNext"
+                app:layout_constraintStart_toEndOf="@id/settingImage"
+                app:layout_constraintTop_toTopOf="@id/setting" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/settingNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_20sdp"
+                app:layout_constraintBottom_toBottomOf="@id/setting"
+                app:layout_constraintEnd_toEndOf="@+id/setting"
+                app:layout_constraintStart_toEndOf="@+id/settingText"
+                app:layout_constraintTop_toTopOf="@id/setting"
+                app:srcCompat="@drawable/setting_next"
+                app:tint="@color/white" />
+
+            <FrameLayout
+                android:id="@+id/nativeExitAd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:background="@drawable/round_btn_ads"
+                android:minHeight="@dimen/_180sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/setting" />
+
+            <TextView
+                android:id="@+id/adView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0.2"
+                android:text="@string/ad"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"
+                app:layout_constraintEnd_toEndOf="@+id/nativeExitAd"
+                app:layout_constraintStart_toStartOf="@+id/nativeExitAd"
+                app:layout_constraintTop_toTopOf="@+id/nativeExitAd" />
+
+            <!--   Zipper-->
+            <View
+                android:id="@+id/zipper"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintBottom_toTopOf="@id/wallpaper"
+                app:layout_constraintEnd_toStartOf="@id/row"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nativeExitAd" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/zipperImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/zipper"
+                app:layout_constraintEnd_toEndOf="@+id/zipper"
+                app:layout_constraintStart_toStartOf="@id/zipper"
+                app:layout_constraintTop_toTopOf="@id/zipper"
+                app:layout_constraintVertical_bias="0.25"
+                app:srcCompat="@drawable/zip_icon"
+                />
+
+            <TextView
+                android:id="@+id/zipperText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/zipperStyle"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@id/zipperTextD"
+                app:layout_constraintEnd_toEndOf="@id/zipper"
+                app:layout_constraintStart_toStartOf="@id/zipper"
+                app:layout_constraintTop_toBottomOf="@id/zipperImage" />
+
+            <TextView
+                android:id="@+id/zipperTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@string/zipperStyle_new_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@+id/zipper"
+                app:layout_constraintEnd_toEndOf="@id/zipperText"
+                app:layout_constraintStart_toStartOf="@id/zipperText"
+                app:layout_constraintTop_toBottomOf="@id/zipperText" />
+            <!--   Row-->
+            <View
+                android:id="@+id/row"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintBottom_toBottomOf="@id/zipper"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/zipper"
+                app:layout_constraintTop_toTopOf="@id/zipper" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/rowImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/row"
+                app:layout_constraintEnd_toEndOf="@+id/row"
+                app:layout_constraintStart_toStartOf="@id/row"
+                app:layout_constraintTop_toTopOf="@id/row"
+                app:layout_constraintVertical_bias="0.25"
+                app:srcCompat="@drawable/row_icon" />
+
+            <TextView
+                android:id="@+id/rowText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/row_style"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@id/rowTextD"
+                app:layout_constraintEnd_toEndOf="@id/row"
+                app:layout_constraintStart_toStartOf="@id/row"
+                app:layout_constraintTop_toBottomOf="@id/rowImage" />
+
+            <TextView
+                android:id="@+id/rowTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@string/row_style_new_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/row"
+                app:layout_constraintEnd_toEndOf="@id/row"
+                app:layout_constraintStart_toStartOf="@id/row"
+                app:layout_constraintTop_toBottomOf="@id/rowText" />
+            <!--   wallpaper-->
+            <View
+                android:id="@+id/wallpaper"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintEnd_toStartOf="@id/preview"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/zipper" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/wallpaperImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/wallpaper"
+                app:layout_constraintEnd_toEndOf="@id/wallpaper"
+                app:layout_constraintStart_toStartOf="@id/wallpaper"
+                app:layout_constraintTop_toTopOf="@id/wallpaper"
+                app:layout_constraintVertical_bias="0.25"
+                app:srcCompat="@drawable/wallpaper_icon" />
+
+            <TextView
+                android:id="@+id/wallpaperText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/background"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@id/wallpaperTextD"
+                app:layout_constraintEnd_toEndOf="@id/wallpaper"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@id/wallpaper"
+                app:layout_constraintTop_toBottomOf="@id/wallpaperImage" />
+
+            <TextView
+                android:id="@+id/wallpaperTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@string/wallpaper_new_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/wallpaper"
+                app:layout_constraintEnd_toEndOf="@id/wallpaper"
+                app:layout_constraintStart_toStartOf="@id/wallpaper"
+                app:layout_constraintTop_toBottomOf="@id/wallpaperText" />
+            <!--   Preview-->
+            <View
+                android:id="@+id/preview"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintBottom_toBottomOf="@id/wallpaper"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/wallpaper"
+                app:layout_constraintTop_toTopOf="@id/wallpaper" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/previewImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/preview"
+                app:layout_constraintEnd_toEndOf="@id/preview"
+                app:layout_constraintStart_toStartOf="@id/preview"
+                app:layout_constraintTop_toTopOf="@id/preview"
+                app:layout_constraintVertical_bias="0.25"
+                app:srcCompat="@drawable/preview_icon" />
+
+            <TextView
+                android:id="@+id/previewText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/preview"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@id/previewTextD"
+                app:layout_constraintEnd_toEndOf="@id/preview"
+                app:layout_constraintStart_toStartOf="@id/preview"
+                app:layout_constraintTop_toBottomOf="@id/previewImage" />
+
+            <TextView
+                android:id="@+id/previewTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center|top"
+                android:lines="2"
+                android:text="@string/preview_new_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/preview"
+                app:layout_constraintEnd_toEndOf="@id/preview"
+                app:layout_constraintStart_toStartOf="@id/preview"
+                app:layout_constraintTop_toBottomOf="@id/previewText" />
+            <!--   customize-->
+            <View
+                android:id="@+id/customize"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/un_wallpaper"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/wallpaper" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animationView"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize"
+                app:lottie_autoPlay="true"
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/new_anime" />
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/customizeImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize"
+                app:layout_constraintVertical_bias="0.25"
+                app:srcCompat="@drawable/customize_icon" />
+
+            <TextView
+                android:id="@+id/customizeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/customize"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toTopOf="@id/customizeTextD"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintTop_toBottomOf="@id/customizeImage" />
+
+            <TextView
+                android:id="@+id/customizeTextD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="@string/customize_detail"
+                android:textColor="@color/teal_700"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="@id/customize"
+                app:layout_constraintStart_toStartOf="@id/customize"
+                app:layout_constraintTop_toBottomOf="@id/customizeText" />
+            <!--   un-Wallpaper-->
+            <View
+                android:id="@+id/un_wallpaper"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_120sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:background="@drawable/rect_white_item_menu"
+                app:layout_constraintBottom_toBottomOf="@id/customize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/customize"
+                app:layout_constraintTop_toTopOf="@id/customize" />
+
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animationView1"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
                 app:layout_constraintTop_toTopOf="@id/un_wallpaper"
                 app:lottie_autoPlay="true"
-                app:lottie_loop="true" />
+                app:lottie_loop="true"
+                app:lottie_rawRes="@raw/new_anime" />
+
             <androidx.constraintlayout.utils.widget.ImageFilterView
                 android:id="@+id/un_wallpaperImage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
+                app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
                 app:layout_constraintStart_toStartOf="@id/un_wallpaper"
                 app:layout_constraintTop_toTopOf="@id/un_wallpaper"
-                app:srcCompat="@drawable/wallpaper_icon"
-                />
+                app:layout_constraintVertical_bias="0.23"
+                app:srcCompat="@drawable/wallpaper_icon" />
+
             <TextView
                 android:id="@+id/un_wallpaperText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/_11sdp"
-                android:text="@string/k_wallpaper_new"
                 android:gravity="center"
+                android:lines="2"
+                android:text="@string/k_wallpaper_new"
                 android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="@id/un_wallpaperImage"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintBottom_toBottomOf="@id/un_wallpaper"
                 app:layout_constraintEnd_toEndOf="@id/un_wallpaper"
-                app:layout_constraintStart_toEndOf="@id/un_wallpaperImage"
-                app:layout_constraintTop_toTopOf="@id/un_wallpaperImage" />
+                app:layout_constraintStart_toStartOf="@id/un_wallpaper"
+                app:layout_constraintTop_toBottomOf="@id/un_wallpaperImage" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </ScrollView>
 

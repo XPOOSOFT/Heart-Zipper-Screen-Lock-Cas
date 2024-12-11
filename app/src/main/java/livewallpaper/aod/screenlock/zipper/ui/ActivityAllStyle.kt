@@ -87,14 +87,10 @@ class ActivityAllStyle : Fragment() {
         }
         detData(name)
         _binding?.topLay?.backBtn?.clickWithThrottle {
-//            isBackShow = val_ad_inter_list_data_screen_back
-//            findNavController().popBackStack()
-            findNavController().navigate(R.id.action_allStyles_to_home)
+            findNavController().popBackStack()
         }
         setupBackPressedCallback {
-//            isBackShow = val_ad_inter_list_data_screen_back
-//            findNavController().popBackStack()
-            findNavController().navigate(R.id.action_allStyles_to_home)
+            findNavController().popBackStack()
         }
 
     }

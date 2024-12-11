@@ -118,7 +118,7 @@ class MainAppFragment : Fragment() {
         return _binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+ override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Uscreen.Init(activity ?: return)
         Log.d("main_fragment", "onViewCreated: calling")

@@ -27,19 +27,19 @@ object AppAdapter {
         DataBasePref.SavePref(SpeedActivePref, "350", context)
     }
 
-    fun GetSelectedPhont(context: Context?): String {
-        val selectedFontNumber = getSelectedFontNumber(context)
-        if (selectedFontNumber == 1) {
-            return "android_7.ttf"
-        }
-        if (selectedFontNumber == 2) {
-            return "Arizonia-Regular.ttf"
-        }
-        if (selectedFontNumber == 3) {
-            return "ArnoProRegular.otf"
-        }
-        return if (selectedFontNumber == 4) "TitilliumText22L003.otf" else "GSTIGNRM.TTF"
-    }
+//    fun GetSelectedPhont(context: Context?): String {
+//        val selectedFontNumber = getSelectedFontNumber(context)
+//        if (selectedFontNumber == 1) {
+//            return "android_7.ttf"
+//        }
+//        if (selectedFontNumber == 2) {
+//            return "Arizonia-Regular.ttf"
+//        }
+//        if (selectedFontNumber == 3) {
+//            return "ArnoProRegular.otf"
+//        }
+//        return if (selectedFontNumber == 4) "TitilliumText22L003.otf" else "GSTIGNRM.TTF"
+//    }
 
     @JvmStatic
     fun SaveFont(context: Context?, i: Int) {
