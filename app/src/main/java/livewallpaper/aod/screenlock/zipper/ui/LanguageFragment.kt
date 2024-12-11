@@ -16,9 +16,6 @@ import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.PurchasePrefs
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentLanguageBinding
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
@@ -37,7 +34,12 @@ import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 
 
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageBinding::inflate) {
