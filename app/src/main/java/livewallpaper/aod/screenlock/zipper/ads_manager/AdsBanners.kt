@@ -34,12 +34,13 @@ object AdsBanners {
         return adsBanner as AdsBanners
     }
 
+
     fun loadCollapsibleBanner(
         activity: Activity,
         view: FrameLayout,
-        viewFrame: TextView,
         addConfig: Boolean,
-        bannerId: String?
+        bannerId: String?,
+        bannerListener: () -> Unit
     ) {
 
         if (isNetworkAvailable(activity) && addConfig && !BillingUtil(activity).checkPurchased(activity)) {
@@ -53,49 +54,51 @@ object AdsBanners {
             view.addView(adView)
             adView?.adUnitId = if (isDebug()) bannerTestId else bannerId ?: bannerTestId
             adView?.setAdSize(adSize(activity, view))
-            val adRequest =
-                AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter::class.java, extras).build()
+            val adRequest = AdRequest.Builder().addNetworkExtrasBundle(AdMobAdapter::class.java, extras).build()
             adView?.loadAd(adRequest)
 
             adView?.adListener = object : AdListener() {
                 override fun onAdClicked() {
                     Log.d(bannerLogs, "BannerWithSize : onAdClicked")
+                    bannerListener.invoke()
                     super.onAdClicked()
                 }
 
                 override fun onAdClosed() {
                     Log.d(bannerLogs, "BannerWithSize : onAdClosed")
+                    bannerListener.invoke()
                     super.onAdClosed()
                 }
 
                 override fun onAdFailedToLoad(p0: LoadAdError) {
                     Log.d(bannerLogs, "BannerWithSize : onAdFailedToLoad ${p0.message}")
-                    viewFrame.visibility=View.INVISIBLE
+                    bannerListener.invoke()
                     super.onAdFailedToLoad(p0)
                 }
 
                 override fun onAdImpression() {
                     Log.d(bannerLogs, "BannerWithSize : onAdImpression")
-                    viewFrame.visibility=View.INVISIBLE
+                    bannerListener.invoke()
                     super.onAdImpression()
                 }
 
                 override fun onAdLoaded() {
                     Log.d(bannerLogs, "BannerWithSize : onAdLoaded")
-                    viewFrame.visibility=View.INVISIBLE
+                    bannerListener.invoke()
                     super.onAdLoaded()
                 }
 
                 override fun onAdOpened() {
                     Log.d(bannerLogs, "BannerWithSize : onAdOpened")
+                    bannerListener.invoke()
                     super.onAdOpened()
                 }
             }
         } else {
-            viewFrame.visibility=View.INVISIBLE
             view.visibility = View.GONE
         }
     }
+
 
     fun loadBanner(
         activity: Activity,
