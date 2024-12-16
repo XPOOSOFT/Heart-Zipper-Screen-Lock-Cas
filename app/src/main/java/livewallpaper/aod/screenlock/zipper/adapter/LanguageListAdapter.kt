@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper
+package livewallpaper.aod.screenlock.zipper.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater

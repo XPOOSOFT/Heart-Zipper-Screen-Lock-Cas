@@ -6,6 +6,10 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.cleversolutions.ads.AdPaidCallback
+import com.cleversolutions.ads.LoadingManagerMode
+import com.cleversolutions.ads.MediationManager
+import com.cleversolutions.ads.android.CAS
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -15,6 +19,7 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.hypersoft.admobads.adsconfig.interstitial.AdmobInterstitial
 import kotlinx.coroutines.delay
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -140,6 +145,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             AdOpenApp(activity?.application ?:return@launchWhenStarted, id_app_open_splash_screen)
             dbHelper = DbHelper(context ?: return@launchWhenStarted)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
+
             if (LoadPref("firstTime", context ?: return@launchWhenStarted) == 0) {
                 SavePref("firstTime", "1", context ?: return@launchWhenStarted)
                 SavePref(SpeedActivePref, "350", context ?: return@launchWhenStarted)
@@ -147,21 +153,22 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             }
 
             if (isNetworkAvailable(activity)) {
-                consentListener = {
-                    isUserConsent = it
-                    Log.d("check_contest", "onViewCreated: $isUserConsent")
-                    if (isUserConsent) {
-                        if (isNetworkAvailable(context)) {
-                            adsManager = AdsManager.appAdsInit(requireActivity())
-                            initRemoteIds()
-                        } else {
-                            observeSplashLiveData()
-                        }
-                    } else {
-                        observeSplashLiveData()
-                    }
-
-                }
+                observeSplashLiveData()
+//                consentListener = {
+//                    isUserConsent = it
+//                    Log.d("check_contest", "onViewCreated: $isUserConsent")
+//                    if (isUserConsent) {
+//                        if (isNetworkAvailable(context)) {
+//                            adsManager = AdsManager.appAdsInit(requireActivity())
+//                            initRemoteIds()
+//                        } else {
+//                            observeSplashLiveData()
+//                        }
+//                    } else {
+//                        observeSplashLiveData()
+//                    }
+//
+//                }
             } else {
                 observeSplashLiveData()
             }
@@ -185,7 +192,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     }
 
-    private fun initRemoteIds() {
+/*    private fun initRemoteIds() {
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(3600) // Set the minimum interval for fetching, in seconds
@@ -359,7 +366,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_ad_native_reward_screen_h =remoteConfig!!["val_ad_native_reward_screen_h"].asBoolean()
                 val_ad_native_list_data_screen_h =remoteConfig!!["val_ad_native_list_data_screen_h"].asBoolean()
 
-              /*  Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
+              *//*  Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
                 Log.d("RemoteConfig", "Fetch val_inter_back_press -> $val_inter_back_press")
 //                All Back Inter
                 Log.d(
@@ -482,7 +489,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 )
                 Log.d("RemoteConfig", "Fetch val_exit_dialog_native -> $val_exit_dialog_native")
 
-                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
+                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*//*
                  
 
                 if(val_app_open){
@@ -524,7 +531,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             e.printStackTrace()
         }
 
-    }
+    }*/
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -535,4 +542,5 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         super.onLowMemory()
         activity?.finish()
     }
+
 }

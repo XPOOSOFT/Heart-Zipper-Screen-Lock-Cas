@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
@@ -93,6 +95,7 @@
             android:theme="@style/Theme.AppThemeNoActionBar.AdTheme"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             tools:replace="android:theme"/>
+        <activity android:name="livewallpaper.aod.screenlock.SampleAppOpenAdActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -119,5 +119,6 @@ dependencies {
     implementation  ("com.google.ads.mediation:facebook:6.18.0.0")
     // Pangle Mediation
     implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
+    implementation ("com.cleveradssolutions:cas-sdk:3.9.7")
 }
 
