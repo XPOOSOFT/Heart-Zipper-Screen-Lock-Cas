@@ -175,7 +175,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     private fun observeSplashLiveData() {
         try {
             lifecycleScope.launchWhenCreated {
-                delay(3000)
+                delay(6000)
                 firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 findNavController().navigate(R.id.myLoadingFragment)
             }

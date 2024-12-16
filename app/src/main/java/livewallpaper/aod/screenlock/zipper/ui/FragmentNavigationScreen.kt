@@ -141,7 +141,9 @@ class FragmentNavigationScreen :
                     isBackPress = false,
                     layout = _binding?.adsLay ?: return@setOnClickListener,
                 ) {
-                    findNavController().navigate(R.id.LanguageFragment)
+                    if(isVisible && !isDetached && isAdded) {
+                        findNavController().navigate(R.id.LanguageFragment)
+                    }
                 }
             }
         }
@@ -156,7 +158,9 @@ class FragmentNavigationScreen :
                     isBackPress = false,
                     layout = _binding?.adsLay ?: return@setOnClickListener
                 ) {
-                    findNavController().navigate(R.id.SecurityQuestionFragment)
+                    if(isVisible && !isDetached && isAdded) {
+                        findNavController().navigate(R.id.SecurityQuestionFragment)
+                    }
                 }
             }
 

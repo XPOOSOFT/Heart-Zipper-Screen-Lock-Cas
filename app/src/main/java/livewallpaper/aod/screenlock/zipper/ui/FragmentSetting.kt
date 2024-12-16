@@ -87,7 +87,9 @@ class FragmentSetting : Fragment() {
                         isBackPress = false,
                         layout = _binding?.adsLay ?: return@setOnClickListener
                     ) {
-                        findNavController().navigate(R.id.FragmentSoundSelection)
+                        if(isVisible && !isDetached && isAdded) {
+                            findNavController().navigate(R.id.FragmentSoundSelection)
+                        }
                     }
                 }
             }
@@ -121,7 +123,9 @@ class FragmentSetting : Fragment() {
                             isBackPress = false,
                             layout = _binding?.adsLay ?: return@setOnClickListener
                         ) {
-                            findNavController().navigate(R.id.FragmentApplyPassword)
+                            if(isVisible && !isDetached && isAdded) {
+                                findNavController().navigate(R.id.FragmentApplyPassword)
+                            }
                         }
                     }
                 } else {
@@ -143,7 +147,9 @@ class FragmentSetting : Fragment() {
                         isBackPress = false,
                         layout = _binding?.adsLay ?: return@setOnClickListener
                     ) {
-                        findNavController().navigate(R.id.SecurityQuestionFragment)
+                        if(isVisible && !isDetached && isAdded) {
+                            findNavController().navigate(R.id.SecurityQuestionFragment)
+                        }
                     }
                 }
             }

@@ -71,7 +71,7 @@ class LoadingScreenFragment :
         if (isFlowOne) {
             lifecycleScope.launchWhenCreated {
                 loadNative()
-                delay(5000)
+                delay(3000)
                 if (isAdded && isVisible && !isDetached) {
                     _binding?.next?.visibility = View.VISIBLE
                     _binding?.animationView?.visibility = View.INVISIBLE
@@ -82,7 +82,7 @@ class LoadingScreenFragment :
             _binding?.nativeExitAd?.visibility = View.INVISIBLE
             _binding?.animationView?.visibility = View.VISIBLE
             lifecycleScope.launchWhenCreated {
-                delay(5000)
+                delay(3000)
                 if (val_ad_app_open_screen) {
                     isSplash = true
                     showOpenAd(activity ?: return@launchWhenCreated) {
