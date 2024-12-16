@@ -80,7 +80,7 @@ class WallpaperFragment : Fragment() {
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        _binding?.topLay?.title?.clickWithThrottle {
+        _binding?.topLay?.backBtn?.clickWithThrottle {
             findNavController().navigateUp()
         }
         _binding?.topLay?.title?.text = getString(R.string.k_wallpaper_new)
