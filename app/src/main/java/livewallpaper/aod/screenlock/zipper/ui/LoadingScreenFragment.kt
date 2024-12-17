@@ -57,7 +57,7 @@ class LoadingScreenFragment :
         isSplash = true
         counter = 0
         inter_frequency_count = 0
-        loadCASInterstitial(!val_ad_inter_loading_screen)
+        loadCASInterstitial(val_ad_inter_loading_screen)
         adsManager = AdsManager.appAdsInit(activity ?: return)
         dbHelper = DbHelper(context ?: return)
         firebaseAnalytics("loading_fragment_open", "loading_fragment_open -->  Click")
@@ -83,126 +83,9 @@ class LoadingScreenFragment :
             lifecycleScope.launchWhenCreated {
                 delay(3000)
                 if (val_ad_app_open_screen) {
-                    isSplash = true
-                    showOpenAd(activity ?: return@launchWhenCreated) {
 
-                    }
-                    if (dbHelper?.getBooleanData(
-                            context ?: return@launchWhenCreated, IS_INTRO, false
-                        ) == false && val_on_bording_screen
-                    ) {
-                        firebaseAnalytics(
-                            "loading_fragment_load_next_btn_intro",
-                            "loading_fragment_load_next_btn_intro -->  Click"
-                        )
-                        findNavController().navigate(R.id.IntoScreenFragment)
-                    } else if (dbHelper?.getBooleanData(
-                            context ?: return@launchWhenCreated, IS_FIRST, false
-                        ) == false
-                    ) {
-                        firebaseAnalytics(
-                            "loading_fragment_load_next_btn_language",
-                            "loading_fragment_load_next_btn_language -->  Click"
-                        )
-                        findNavController().navigate(
-                            R.id.LanguageFragment, bundleOf(LANG_SCREEN to true)
-                        )
-                    } else {
-                        firebaseAnalytics(
-                            "loading_fragment_load_next_btn_main",
-                            "loading_fragment_load_next_btn_main -->  Click"
-                        )
-                        findNavController().navigate(
-                            R.id.myMainMenuFragment,
-                            bundleOf("is_splash" to true)
-                        )
-                    }
                 } else {
-                    admobInterstitial.showInterstitialAd(
-                        activity ?: return@launchWhenCreated,
-                        object : InterstitialOnShowCallBack {
-                            override fun onAdDismissedFullScreenContent() {}
-                            override fun onAdFailedToShowFullScreenContent() {
-                                if (dbHelper?.getBooleanData(
-                                        context ?: return, IS_INTRO, false
-                                    ) == false && val_on_bording_screen
-                                ) {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_intro",
-                                        "loading_fragment_load_next_btn_intro -->  Click"
-                                    )
-                                    findNavController().navigate(R.id.IntoScreenFragment)
-                                } else if (dbHelper?.getBooleanData(
-                                        context ?: return, IS_FIRST, false
-                                    ) == false
-                                ) {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_language",
-                                        "loading_fragment_load_next_btn_language -->  Click"
-                                    )
-                                    findNavController().navigate(
-                                        R.id.LanguageFragment, bundleOf(LANG_SCREEN to true)
-                                    )
-                                } else {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_main",
-                                        "loading_fragment_load_next_btn_main -->  Click"
-                                    )
-                                    findNavController().navigate(
-                                        R.id.myMainMenuFragment,
-                                        bundleOf("is_splash" to true)
-                                    )
-                                }
-                            }
 
-                            override fun onAdShowedFullScreenContent() {
-                                if (dbHelper?.getBooleanData(
-                                        context ?: return, IS_INTRO, false
-                                    ) == false && val_on_bording_screen
-                                ) {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_intro",
-                                        "loading_fragment_load_next_btn_intro -->  Click"
-                                    )
-                                    findNavController().navigate(R.id.IntoScreenFragment)
-                                } else if (dbHelper?.getBooleanData(
-                                        context ?: return, IS_FIRST, false
-                                    ) == false
-                                ) {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_language",
-                                        "loading_fragment_load_next_btn_language -->  Click"
-                                    )
-                                    findNavController().navigate(
-                                        R.id.LanguageFragment, bundleOf(LANG_SCREEN to true)
-                                    )
-                                } else {
-                                    firebaseAnalytics(
-                                        "loading_fragment_load_next_btn_main",
-                                        "loading_fragment_load_next_btn_main -->  Click"
-                                    )
-                                    findNavController().navigate(
-                                        R.id.myMainMenuFragment,
-                                        bundleOf("is_splash" to true)
-                                    )
-                                }
-                            }
-
-                            override fun onAdImpression() {}
-                        }
-                    )
-//                    adsManager?.let {
-//                        showNormalInterAdSingle(
-//                            it,
-//                            activity ?: return@let,
-//                            remoteConfigNormal = !val_ad_inter_loading_screen,
-//                            adIdNormal = id_inter_main_medium,
-//                            tagClass = "splash_ld",
-//                            layout = _binding?.adsLay ?: return@launchWhenCreated
-//                        ) {
-//
-//                        }
-//                    }
                 }
 
             }
@@ -215,7 +98,7 @@ class LoadingScreenFragment :
             if (val_ad_app_open_screen) {
 
             } else {
-                showCASInterstitial(!val_ad_inter_loading_screen){
+                showCASInterstitial(val_ad_inter_loading_screen){
                     moveToNext()
                 }
             }
@@ -269,7 +152,7 @@ class LoadingScreenFragment :
             function.invoke()
             return
         }
-        interstitialAdManager?.showAd(isAdsShow) {
+        interstitialAdManager?.showAdSplash(isAdsShow) {
             function.invoke()
         }
     }

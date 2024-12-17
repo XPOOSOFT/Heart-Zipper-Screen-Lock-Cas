@@ -10,6 +10,13 @@ import com.cleversolutions.ads.AdType
 import com.cleversolutions.ads.LoadingManagerMode
 import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
+import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
+import livewallpaper.aod.screenlock.zipper.utilities.counter
+import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
+import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 
 class InterstitialAdManager(
     private val context: Context,
@@ -26,6 +33,9 @@ class InterstitialAdManager(
 
     // Function to load the interstitial ad
     fun loadAd(isAdsShow: Boolean) {
+//        if (id_inter_counter != counter) {
+//            return
+//        }
         if (CAS.settings.loadingMode == LoadingManagerMode.Manual && isAdsShow) {
             Log.d(TAG, "Loading Interstitial Ad")
             manager.loadInterstitial()
@@ -36,6 +46,25 @@ class InterstitialAdManager(
 
     // Function to show the interstitial ad
     fun showAd(isShowAds: Boolean, function: () -> Unit) {
+        if (id_inter_counter != counter) {
+            counter++
+            function.invoke()
+            return
+        } else {
+            counter = 0
+        }
+        if (manager.isInterstitialReady && isShowAds) {
+            Log.d(TAG, "Showing Interstitial Ad")
+            manager.showInterstitial(context as Activity, setupAdContentCallback{
+                function.invoke()
+            })
+        } else {
+            function.invoke()
+            Log.e(TAG, "Interstitial Ad not ready to show")
+        }
+    }
+    // Function to show the interstitial ad
+    fun showAdSplash(isShowAds: Boolean, function: () -> Unit) {
         if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
@@ -49,6 +78,12 @@ class InterstitialAdManager(
 
     // Private function to set up Ad load callback
     private fun setupAdLoadCallback() {
+        if (!isNetworkAvailable(context)) {
+            return
+        }
+        if (inter_frequency_count >= id_frequency_counter) {
+            return
+        }
         manager.onAdLoadEvent.add(object : AdLoadCallback {
             override fun onAdLoaded(type: AdType) {
                 if (type == AdType.Interstitial) {
@@ -66,8 +101,10 @@ class InterstitialAdManager(
 
     // Private function to set up Ad content callback
     private fun setupAdContentCallback(function: (()->Unit)): AdPaidCallback {
+
         return object : AdPaidCallback {
             override fun onShown(ad: AdImpression) {
+                id_inter_counter++
                 function.invoke()
                 Log.d(TAG, "Ad shown from ${ad.network}")
             }
