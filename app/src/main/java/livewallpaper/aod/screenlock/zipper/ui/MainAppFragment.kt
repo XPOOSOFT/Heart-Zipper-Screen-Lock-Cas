@@ -642,22 +642,6 @@ class MainAppFragment : Fragment() {
                         bundleOf(StyleSelect to getString(R.string.zipperStyle))
                     )
                 }
-             /*   adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@let,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "activity_all_style",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.zipperStyle))
-                        )
-                    }
-                }*/
             }
 
             1 -> {
@@ -667,22 +651,6 @@ class MainAppFragment : Fragment() {
                         bundleOf(StyleSelect to getString(R.string.row_style))
                     )
                 }
-          /*      adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@let,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "activity_all_style",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.row_style))
-                        )
-                    }
-                }*/
             }
 
             2 -> {
@@ -692,22 +660,6 @@ class MainAppFragment : Fragment() {
                         bundleOf(StyleSelect to getString(R.string.wallpapers))
                     )
                 }
-         /*       adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@let,
-                        remoteConfigNormal = val_ad_inter_list_data_screen_front,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "activity_all_style",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return
-                    ) {
-                        findNavController().navigate(
-                            R.id.ActivityAllStyle,
-                            bundleOf(StyleSelect to getString(R.string.wallpapers))
-                        )
-                    }
-                }*/
             }
 
             3 -> {
@@ -727,38 +679,12 @@ class MainAppFragment : Fragment() {
                 showCASInterstitial(val_ad_inter_customize_screen){
                     findNavController().navigate(R.id.CustomMainFragment)
                 }
-             /*   adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: return@let,
-                        remoteConfigNormal = val_ad_inter_customize_screen,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "activity_all_style",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return
-                    ) {
-                        findNavController().navigate(R.id.CustomMainFragment)
-                    }
-                }*/
             }
 
             5 -> {
                 showCASInterstitial(val_ad_inter_reward_screen){
                     findNavController().navigate(R.id.rewardFragment)
                 }
-             /*   adsManager?.let {
-                    showTwoInterAd(
-                        ads = it,
-                        activity = activity ?: requireActivity(),
-                        remoteConfigNormal = val_ad_inter_reward_screen,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "fragment_reward",
-                        isBackPress = false,
-                        layout = _binding?.adsLay ?: return
-                    ) {
-                        findNavController().navigate(R.id.rewardFragment)
-                    }
-                }*/
             }
         }
     }

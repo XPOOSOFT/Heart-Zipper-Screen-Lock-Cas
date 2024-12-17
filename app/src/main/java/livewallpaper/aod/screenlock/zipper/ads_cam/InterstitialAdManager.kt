@@ -63,6 +63,7 @@ class InterstitialAdManager(
             Log.e(TAG, "Interstitial Ad not ready to show")
         }
     }
+
     // Function to show the interstitial ad
     fun showAdSplash(isShowAds: Boolean, function: () -> Unit) {
         if (manager.isInterstitialReady && isShowAds) {
