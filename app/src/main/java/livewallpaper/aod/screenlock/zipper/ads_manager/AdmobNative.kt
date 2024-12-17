@@ -16,7 +16,6 @@ import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.formats.NativeAdOptions
-import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.nativead.MediaView
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -28,7 +27,7 @@ import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.preloadNativeAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.NativeAdsId
 import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.isDebug
-import livewallpaper.aod.screenlock.zipper.ads_manager.ScreenUtils.isSupportFullScreen
+import livewallpaper.aod.screenlock.zipper.utilities.ScreenUtils.isSupportFullScreen
 
 /**
  * @Author:Javed Khan

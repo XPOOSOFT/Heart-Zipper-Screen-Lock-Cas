@@ -114,11 +114,11 @@ dependencies {
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("com.squareup.retrofit2:adapter-rxjava2:2.9.0")
     // AppLovin Mediation
-    implementation ("com.google.ads.mediation:applovin:13.0.1.0")
+//    implementation ("com.google.ads.mediation:applovin:13.0.1.0")
     // Meta Audience Network (Facebook) Mediation
-    implementation  ("com.google.ads.mediation:facebook:6.18.0.0")
+//    implementation  ("com.google.ads.mediation:facebook:6.18.0.0")
     // Pangle Mediation
-    implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
+//    implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
     implementation ("com.cleveradssolutions:cas-sdk:3.9.7")
 }
 
