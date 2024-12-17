@@ -88,7 +88,6 @@ class SampleActivity : Activity() {
     }
 
     private fun createRewarded(manager: MediationManager) {
-        val label = findViewById<TextView>(R.id.rewardedStatusText)
 
         // Set Ad load callback
         manager.onAdLoadEvent.add(object : AdLoadCallback {

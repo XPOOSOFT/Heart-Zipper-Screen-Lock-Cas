@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.cleversolutions.ads.AdSize
+import com.cleversolutions.ads.android.CAS.manager
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -23,7 +24,9 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.RewardedAdManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
@@ -90,7 +93,7 @@ class WallpaperFragment : Fragment() {
         }
         _binding?.topLay?.title?.text = getString(R.string.k_wallpaper_new)
         loadBanner()
-        loadRewardedAd()
+        RewardedAdManager(adManager).initializeRewardedAd()
         setupRecyclerView(view)
     }
 
@@ -133,19 +136,20 @@ class WallpaperFragment : Fragment() {
                         )
                     },
                     onWatchAds = { ->
-                        if (rewardedInterstitialAd == null) {
+                        if (!adManager.isRewardedAdReady) {
                             showToast(
                                 context ?: requireContext(),
                                 getString(R.string.try_agin_ad_not_load)
                             )
-                            loadRewardedAd()
+                            RewardedAdManager(adManager).initializeRewardedAd()
                             return@showAdsDialog
                         }
-                        showRewardedVideo {}
-                        findNavController().navigate(
-                            R.id.FragmentListCustomWallpaper,
-                            bundleOf("title" to Tilte_)
-                        )
+                        RewardedAdManager(adManager).showRewardAds(activity?:return@showAdsDialog) {
+                            findNavController().navigate(
+                                R.id.FragmentListCustomWallpaper,
+                                bundleOf("title" to Tilte_)
+                            )
+                        }
                     }
                 )
             }
@@ -160,9 +164,7 @@ class WallpaperFragment : Fragment() {
         }
     }
 
-    private val admobNative by lazy { AdmobNative() }
-
-    private fun loadRewardedAd() {
+/*    private fun loadRewardedAd() {
         if (rewardedInterstitialAd == null) {
             val adRequest = AdRequest.Builder().build()
 
@@ -228,6 +230,7 @@ class WallpaperFragment : Fragment() {
             function.invoke()
         }
     }
+ */
 
     private fun loadBanner(){
         when (type_ad_native_reward_screen) {
