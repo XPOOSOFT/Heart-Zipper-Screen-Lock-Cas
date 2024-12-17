@@ -10,12 +10,17 @@ import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.LanguageGridAdapter
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.PurchasePrefs
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentLanguageBinding
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
@@ -34,12 +39,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 
 
 class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageBinding::inflate) {
@@ -49,7 +49,10 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     private var sharedPrefUtils: DbHelper? = null
     private var languageGridAdapter: LanguageGridAdapter? = null
     var list: ArrayList<LanguageModel>? = null
-    private var adsManager: AdsManager? = null
+
+    //    private var adsManager: AdsManager? = null
+    private var interstitialAdManager: InterstitialAdManager? = null
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         try {
@@ -59,7 +62,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             positionSelected =
                 sharedPrefUtils?.getStringData(requireContext(), LANG_CODE, "en") ?: "en"
             initializeData()
-            adsManager = AdsManager.appAdsInit(activity ?: return)
+//            adsManager = AdsManager.appAdsInit(activity ?: return)
             arguments?.let {
                 isLangScreen = it.getBoolean(LANG_SCREEN)
             }
@@ -82,31 +85,43 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                     sharedPrefUtils?.saveData(requireContext(), LANG_CODE, positionSelected) ?: "en"
                     setLocaleMain(positionSelected)
                     sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
-                    adsManager?.let {
-                        showTwoInterAd(
-                            ads = it,
-                            activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_language_screen,
-                            adIdNormal = id_inter_main_medium,
-                            tagClass = "language_first",
-                            isBackPress = true,
-                            layout = _binding?.adsLay ?: return@let
-                        ) {
-                            if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
-                                findNavController().navigate(R.id.myMainMenuFragment)
-                            } else {
-                                findNavController().navigate(
-                                    R.id.FragmentBuyScreen,
-                                    bundleOf("isSplash" to true)
-                                )
-                            }
+
+                    showCASInterstitial(val_ad_inter_language_screen) {
+                        if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
+                            findNavController().navigate(R.id.myMainMenuFragment)
+                        } else {
+                            findNavController().navigate(
+                                R.id.FragmentBuyScreen,
+                                bundleOf("isSplash" to true)
+                            )
                         }
+
                     }
+                    /*      adsManager?.let {
+                              showTwoInterAd(
+                                  ads = it,
+                                  activity = activity ?: requireActivity(),
+                                  remoteConfigNormal = val_ad_inter_language_screen,
+                                  adIdNormal = id_inter_main_medium,
+                                  tagClass = "language_first",
+                                  isBackPress = true,
+                                  layout = _binding?.adsLay ?: return@let
+                              ) {
+                                  if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
+                                      findNavController().navigate(R.id.myMainMenuFragment)
+                                  } else {
+                                      findNavController().navigate(
+                                          R.id.FragmentBuyScreen,
+                                          bundleOf("isSplash" to true)
+                                      )
+                                  }
+                              }
+                          }*/
                 }
             }
 
             languageGridAdapter =
-                LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
+                LanguageGridAdapter(list ?: return, activity ?: return,
                     clickItem = {
                         positionSelected = it.country_code
                         languageGridAdapter?.selectLanguage(positionSelected)
@@ -135,26 +150,34 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                     sharedPrefUtils?.saveData(requireContext(), LANG_CODE, positionSelected) ?: "en"
                     setLocaleMain(positionSelected)
                     sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
-                    adsManager?.let {
-                        showTwoInterAd(
-                            ads = it,
-                            activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_language_screen,
-                            adIdNormal = id_inter_main_medium,
-                            tagClass = "language_first",
-                            isBackPress = true,
-                            layout = _binding?.adsLay ?: return@let
-                        ) {
-                            if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
-                                findNavController().navigate(R.id.myMainMenuFragment)
-                            } else {
-                                findNavController().navigate(
-                                    R.id.FragmentBuyScreen,
-                                    bundleOf("isSplash" to true)
-                                )
-                            }
-                        }
+                    if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
+                        findNavController().navigate(R.id.myMainMenuFragment)
+                    } else {
+                        findNavController().navigate(
+                            R.id.FragmentBuyScreen,
+                            bundleOf("isSplash" to true)
+                        )
                     }
+                    /*    adsManager?.let {
+                            showTwoInterAd(
+                                ads = it,
+                                activity = activity ?: requireActivity(),
+                                remoteConfigNormal = val_ad_inter_language_screen,
+                                adIdNormal = id_inter_main_medium,
+                                tagClass = "language_first",
+                                isBackPress = true,
+                                layout = _binding?.adsLay ?: return@let
+                            ) {
+                                if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
+                                    findNavController().navigate(R.id.myMainMenuFragment)
+                                } else {
+                                    findNavController().navigate(
+                                        R.id.FragmentBuyScreen,
+                                        bundleOf("isSplash" to true)
+                                    )
+                                }
+                            }
+                        }*/
                 }
             }
             setupBackPressedCallback {
@@ -175,7 +198,17 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                     sharedPrefUtils?.saveData(requireContext(), LANG_CODE, positionSelected) ?: "en"
                     setLocaleMain(positionSelected)
                     sharedPrefUtils?.saveData(requireContext(), IS_FIRST, true)
-                    adsManager?.let {
+                    showCASInterstitial(val_ad_inter_language_screen){
+                        if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
+                            findNavController().navigate(R.id.myMainMenuFragment)
+                        } else {
+                            findNavController().navigate(
+                                R.id.FragmentBuyScreen,
+                                bundleOf("isSplash" to true)
+                            )
+                        }
+                    }
+/*                    adsManager?.let {
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
@@ -194,7 +227,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                                 )
                             }
                         }
-                    }
+                    }*/
                 }
             }
             loadNative()
@@ -205,30 +238,33 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         }
     }
 
-    private val admobNative by lazy { AdmobNative() }
-
     private fun loadNative() {
-        if (native_precashe_copunt_current >= native_precashe_counter) {
+   /*     if (native_precashe_copunt_current >= native_precashe_counter) {
             admobNative.loadNativeAds(
                 activity,
                 _binding?.nativeExitAd!!,
                 id_native_screen,
                 if (val_ad_native_language_screen)
                     1 else 0,
-                isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
+                isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
                 isInternetConnected = AdsManager.isNetworkAvailable(activity),
                 nativeType = if (val_ad_native_language_screen_h) NativeType.LARGE else NativeType.BANNER,
                 nativeCallBack = object : NativeCallBack {
                     override fun onAdFailedToLoad(adError: String) {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
+
                     override fun onAdLoaded() {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
+
                     override fun onAdImpression() {
-                        _binding?.adView?.visibility = View.GONE}
+                        _binding?.adView?.visibility = View.GONE
+                    }
                 }
             )
         } else {
-            AdsManager.appAdsInit(activity?:return).nativeAds()?.loadNativeAd(activity ?: return,
+            AdsManager.appAdsInit(activity ?: return).nativeAds().loadNativeAd(activity ?: return,
                 val_ad_native_language_screen,
                 id_native_screen,
                 object : NativeListener {
@@ -241,8 +277,12 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                                     if (val_ad_native_language_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
                                     null
                                 ) as NativeAdView
-                            AdsManager.appAdsInit(activity?:return).nativeAds()
-                                ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
+                            AdsManager.appAdsInit(activity ?: return).nativeAds()
+                                .nativeViewPolicy(
+                                    context ?: return,
+                                    currentNativeAd ?: return,
+                                    adView
+                                )
                             _binding?.nativeExitAd?.removeAllViews()
                             _binding?.nativeExitAd?.addView(adView)
                         }
@@ -265,8 +305,9 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                         super.nativeAdValidate(string)
                     }
                 })
-        }
+        }*/
     }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.clear()
@@ -322,7 +363,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             currentPos += repeatAdPosition
         }
         languageGridAdapter =
-            LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
+            LanguageGridAdapter(list ?: return,  activity ?: return,
                 clickItem = {
                     positionSelected = it.country_code
                     languageGridAdapter?.selectLanguage(positionSelected)
@@ -336,4 +377,28 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         Log.d("adapter_insertAds", "onBindViewHolder: ${list?.size}")
     }
 
+    private fun loadCASInterstitial(isAdsShow: Boolean) {
+        if (!isAdsShow) {
+            return
+        }
+        // Initialize the InterstitialAdManager
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        // Load and show the ad
+        interstitialAdManager?.loadAd(isAdsShow)
+    }
+
+    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
+        if (interstitialAdManager == null) {
+            function.invoke()
+            return
+        }
+        interstitialAdManager?.showAd(isAdsShow) {
+            function.invoke()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

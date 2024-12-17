@@ -6,10 +6,6 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdPaidCallback
-import com.cleversolutions.ads.LoadingManagerMode
-import com.cleversolutions.ads.MediationManager
-import com.cleversolutions.ads.android.CAS
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -19,15 +15,14 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.hypersoft.admobads.adsconfig.interstitial.AdmobInterstitial
 import kotlinx.coroutines.delay
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.ads_manager.CmpClass
-import livewallpaper.aod.screenlock.zipper.ads_manager.splash_interstitial.callbacks.InterstitialOnLoadCallBack
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
+import livewallpaper.aod.screenlock.zipper.ads_manager.splash_interstitial.callbacks.InterstitialOnLoadCallBack
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.SaveWallpaper
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -42,10 +37,10 @@ import livewallpaper.aod.screenlock.zipper.utilities.banner_height
 import livewallpaper.aod.screenlock.zipper.utilities.banner_type
 import livewallpaper.aod.screenlock.zipper.utilities.counter
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_screen
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_splash_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
@@ -96,9 +91,9 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen_h
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_password_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
@@ -131,18 +126,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         var isUserConsent = false
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
+
     private val admobInterstitial by lazy { AdmobInterstitial() }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             isSplash = false
-            isRating=true
+            isRating = true
             counter = 0
             inter_frequency_count = 0
             val cmpClass = CmpClass(activity ?: return@launchWhenStarted)
             cmpClass.initilaizeCMP()
             adsManager = AdsManager.appAdsInit(activity ?: return@launchWhenStarted)
-            AdOpenApp(activity?.application ?:return@launchWhenStarted, id_app_open_splash_screen)
             dbHelper = DbHelper(context ?: return@launchWhenStarted)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
 
@@ -152,8 +148,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 SaveWallpaper(context ?: return@launchWhenStarted, 7)
             }
 
-            if (isNetworkAvailable(activity)) {
+            if (isNetworkAvailable(context)) {
+//                            adsManager = AdsManager.appAdsInit(requireActivity())
+                initRemoteIds()
+            } else {
                 observeSplashLiveData()
+            }
 //                consentListener = {
 //                    isUserConsent = it
 //                    Log.d("check_contest", "onViewCreated: $isUserConsent")
@@ -169,14 +169,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 //                    }
 //
 //                }
-            } else {
-                observeSplashLiveData()
-            }
 
             setupBackPressedCallback {
                 //Do Nothing
             }
-            }
+        }
     }
 
     private fun observeSplashLiveData() {
@@ -192,7 +189,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     }
 
-/*    private fun initRemoteIds() {
+    private fun initRemoteIds() {
         val remoteConfig = FirebaseRemoteConfig.getInstance()
         val configSettings = FirebaseRemoteConfigSettings.Builder()
             .setMinimumFetchIntervalInSeconds(3600) // Set the minimum interval for fetching, in seconds
@@ -200,26 +197,30 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         remoteConfig.setConfigSettingsAsync(configSettings)
 // Fetch the remote config values
         remoteConfig.fetchAndActivate().addOnCompleteListener(activity ?: return) { task ->
-                if (task.isSuccessful) {
-                    // Apply the fetched values to your app
-                    applyAdIdsFromRemoteConfig(remoteConfig)
-                } else {
-                    // Handle the error
-                    // For example, use default values or log an error message
-                    observeSplashLiveData()
-                }
-
+            if (task.isSuccessful) {
+                // Apply the fetched values to your app
+                applyAdIdsFromRemoteConfig(remoteConfig)
+            } else {
+                // Handle the error
+                // For example, use default values or log an error message
+                observeSplashLiveData()
             }
+
+        }
     }
 
     private fun applyAdIdsFromRemoteConfig(remoteConfig: FirebaseRemoteConfig) {
 
-        type_ad_native_list_data_screen = remoteConfig.getLong("type_ad_native_list_data_screen").toInt()
+        type_ad_native_list_data_screen =
+            remoteConfig.getLong("type_ad_native_list_data_screen").toInt()
         type_ad_native_sound_screen = remoteConfig.getLong("type_ad_native_sound_screen").toInt()
-        type_ad_native_setting_screen = remoteConfig.getLong("type_ad_native_setting_screen").toInt()
-        type_ad_native_security_screen = remoteConfig.getLong("type_ad_native_security_screen").toInt()
+        type_ad_native_setting_screen =
+            remoteConfig.getLong("type_ad_native_setting_screen").toInt()
+        type_ad_native_security_screen =
+            remoteConfig.getLong("type_ad_native_security_screen").toInt()
         type_ad_native_enable_screen = remoteConfig.getLong("type_ad_native_enable_screen").toInt()
-        type_ad_native_password_screen = remoteConfig.getLong("type_ad_native_password_screen").toInt()
+        type_ad_native_password_screen =
+            remoteConfig.getLong("type_ad_native_password_screen").toInt()
         type_ad_native_reward_screen = remoteConfig.getLong("type_ad_native_reward_screen").toInt()
         native_precashe_counter = remoteConfig.getLong("native_precashe_counter").toInt()
 
@@ -361,15 +362,19 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_banner_setting_screen = remoteConfig!!["val_banner_setting_screen"].asBoolean()
                 val_is_inapp_splash = remoteConfig!!["val_is_inapp_splash"].asBoolean()
                 val_is_inapp = remoteConfig!!["val_is_inapp"].asBoolean()
-                val_ad_native_language_screen_h =remoteConfig!!["val_ad_native_language_screen_h"].asBoolean()
-                val_ad_native_customize_screen_h =remoteConfig!!["val_ad_native_customize_screen_h"].asBoolean()
-                val_ad_native_reward_screen_h =remoteConfig!!["val_ad_native_reward_screen_h"].asBoolean()
-                val_ad_native_list_data_screen_h =remoteConfig!!["val_ad_native_list_data_screen_h"].asBoolean()
+                val_ad_native_language_screen_h =
+                    remoteConfig!!["val_ad_native_language_screen_h"].asBoolean()
+                val_ad_native_customize_screen_h =
+                    remoteConfig!!["val_ad_native_customize_screen_h"].asBoolean()
+                val_ad_native_reward_screen_h =
+                    remoteConfig!!["val_ad_native_reward_screen_h"].asBoolean()
+                val_ad_native_list_data_screen_h =
+                    remoteConfig!!["val_ad_native_list_data_screen_h"].asBoolean()
 
-              *//*  Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
+                Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
                 Log.d("RemoteConfig", "Fetch val_inter_back_press -> $val_inter_back_press")
 //                All Back Inter
-                Log.d(
+             /*   Log.d(
                     "RemoteConfig",
                     "Fetch val_ad_inter_password_screen_back -> $val_ad_inter_password_screen_back"
                 )
@@ -489,12 +494,15 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 )
                 Log.d("RemoteConfig", "Fetch val_exit_dialog_native -> $val_exit_dialog_native")
 
-                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*//*
-                 
+                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
 
-                if(val_app_open){
-                    AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)
-                }
+
+//                if (val_app_open) {
+//                    AdOpenApp(
+//                        activity?.application ?: return@addOnCompleteListener,
+//                        id_app_open_screen
+//                    )
+//                }
                 if (val_ad_app_open_screen) {
                     loadTwoInterAds(
                         ads = adsManager ?: return@addOnCompleteListener,
@@ -514,9 +522,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     admobInterstitial.loadInterstitialAd(
                         activity ?: return@addOnCompleteListener,
                         id_inter_splash_Screen,
-                        if(val_ad_inter_loading_screen) 1 else 0,
-                        isAppPurchased = BillingUtil(activity?:return@addOnCompleteListener).checkPurchased(activity?:return@addOnCompleteListener),
-                        isInternetConnected = AdsManager.isNetworkAvailable(activity),
+                        if (val_ad_inter_loading_screen) 1 else 0,
+                        isAppPurchased = BillingUtil(
+                            activity ?: return@addOnCompleteListener
+                        ).checkPurchased(activity ?: return@addOnCompleteListener),
+                        isInternetConnected = isNetworkAvailable(activity),
                         object : InterstitialOnLoadCallBack {
                             override fun onAdFailedToLoad(adError: String) {}
                             override fun onAdLoaded() {}
@@ -531,7 +541,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             e.printStackTrace()
         }
 
-    }*/
+    }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)

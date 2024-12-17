@@ -287,7 +287,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
     private val admobNative by lazy { AdmobNative() }
 
     private fun loadNative() {
-        if (native_precashe_copunt_current >= native_precashe_counter) {
+ /*       if (native_precashe_copunt_current >= native_precashe_counter) {
             admobNative.loadNativeAds(
                 activity,
                 _binding?.nativeExitAd!!,
@@ -344,7 +344,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                         super.nativeAdValidate(string)
                     }
                 })
-        }
+        }*/
     }
 
     private fun showCustomDialog() {

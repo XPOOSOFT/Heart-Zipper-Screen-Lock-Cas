@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.cleversolutions.ads.AdSize
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -21,7 +22,9 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -44,13 +47,15 @@ import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
 
 
 class WallpaperFragment : Fragment() {
 
-    private var adsmanager: AdsManager? = null
+//    private var adsmanager: AdsManager? = null
     private lateinit var categoryAdapter: CategoryAdapter
     private val categories = mutableListOf<Category>()
     private var sharedPrefUtils: DbHelper? = null
@@ -75,7 +80,7 @@ class WallpaperFragment : Fragment() {
             "custom_wallpaper_fragment_open -->  Click"
         )
         Log.d("calling", "onCreateView: load main fragment")
-        adsmanager = AdsManager.appAdsInit(activity ?: requireActivity())
+//        adsmanager = AdsManager.appAdsInit(activity ?: requireActivity())
         sharedPrefUtils = DbHelper(requireContext())
         setupBackPressedCallback {
             findNavController().navigateUp()
@@ -224,96 +229,45 @@ class WallpaperFragment : Fragment() {
         }
     }
 
-    private fun loadBanner() {
+    private fun loadBanner(){
         when (type_ad_native_reward_screen) {
             0 -> {
                 _binding?.nativeExitAd?.visibility = View.GONE
-                _binding?.adView?.visibility = View.GONE
+                _binding?.adView?.visibility=View.GONE
             }
 
             1 -> {
-                AdsManager.appAdsInit(activity ?: return).adsBanners().loadBanner(
-                    activity = activity ?: return,
-                    view = _binding!!.nativeExitAd,
-                    addConfig = val_ad_native_reward_screen,
-                    bannerId = id_adaptive_banner
-                ) {
-                    _binding!!.adView.visibility = View.GONE
-                }
+                loadBanner(val_ad_native_reward_screen)
             }
 
             2 -> {
-                if (native_precashe_copunt_current >= native_precashe_counter) {
-                    admobNative.loadNativeAds(
-                        activity,
-                        _binding?.nativeExitAd!!,
-                        id_native_screen,
-                        if (val_ad_native_reward_screen)
-                            1 else 0,
-                        isAppPurchased = BillingUtil(activity ?: return).checkPurchased(
-                            activity ?: return
-                        ),
-                        isInternetConnected = isNetworkAvailable(activity),
-                        nativeType = if (val_ad_native_reward_screen_h) NativeType.LARGE else NativeType.BANNER,
-                        nativeCallBack = object : NativeCallBack {
-                            override fun onAdFailedToLoad(adError: String) {
-                                _binding?.adView?.visibility = View.GONE
-                            }
 
-                            override fun onAdLoaded() {
-                                _binding?.adView?.visibility = View.GONE
-                            }
-
-                            override fun onAdImpression() {
-                                _binding?.adView?.visibility = View.GONE
-                            }
-                        }
-                    )
-                } else {
-                    AdsManager.appAdsInit(activity ?: return).nativeAds().loadNativeAd(
-                        activity ?: return,
-                        val_ad_native_reward_screen,
-                        id_native_screen,
-                        object : NativeListener {
-                            override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                                if (isAdded && isVisible && !isDetached) {
-                                    _binding?.nativeExitAd?.visibility = View.VISIBLE
-                                    _binding?.adView?.visibility = View.GONE
-                                    val adView = layoutInflater.inflate(
-                                        if (val_ad_native_reward_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
-                                        null
-                                    ) as NativeAdView
-                                    AdsManager.appAdsInit(activity ?: return).nativeAds()
-                                        .nativeViewMedia(
-                                            context ?: return,
-                                            currentNativeAd ?: return,
-                                            adView
-                                        )
-                                    _binding?.nativeExitAd?.removeAllViews()
-                                    _binding?.nativeExitAd?.addView(adView)
-                                }
-                                super.nativeAdLoaded(currentNativeAd)
-                            }
-
-                            override fun nativeAdFailed(loadAdError: LoadAdError) {
-                                if (isAdded && isVisible && !isDetached) {
-                                    _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                                    _binding?.adView?.visibility = View.INVISIBLE
-                                }
-                                super.nativeAdFailed(loadAdError)
-                            }
-
-                            override fun nativeAdValidate(string: String) {
-                                if (isAdded && isVisible && !isDetached) {
-                                    _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                                    _binding?.adView?.visibility = View.INVISIBLE
-                                }
-                                super.nativeAdValidate(string)
-                            }
-                        })
-                }
             }
         }
+    }
+
+    private fun loadBanner(isAdsShow: Boolean) {
+        _binding?.nativeExitAd?.apply {
+            if (!isAdsShow) {
+                visibility = View.INVISIBLE
+                _binding?.adView?.visibility = View.INVISIBLE
+                return
+            }
+            loadNativeBanner(
+                context = requireContext(),
+                isAdsShow = true,
+                adSize = AdSize.LEADERBOARD, // Customize as needed
+                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
+                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
+                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
+                onAdClicked = { Log.d(TAG, "Ad clicked!") }
+            )
+        }
+    }
+
+    private fun toggleVisibility(view: View?, isVisible: Boolean) {
+        _binding?.adView?.visibility=View.INVISIBLE
+        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

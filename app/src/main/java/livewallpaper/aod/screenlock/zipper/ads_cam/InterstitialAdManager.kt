@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper
+package livewallpaper.aod.screenlock.zipper.ads_cam
 
 import android.app.Activity
 import android.content.Context
@@ -25,8 +25,8 @@ class InterstitialAdManager(
     }
 
     // Function to load the interstitial ad
-    fun loadAd() {
-        if (CAS.settings.loadingMode == LoadingManagerMode.Manual) {
+    fun loadAd(isAdsShow: Boolean) {
+        if (CAS.settings.loadingMode == LoadingManagerMode.Manual && isAdsShow) {
             Log.d(TAG, "Loading Interstitial Ad")
             manager.loadInterstitial()
         } else {
@@ -35,13 +35,14 @@ class InterstitialAdManager(
     }
 
     // Function to show the interstitial ad
-    fun showAd(function: (()->Unit)) {
-        if (manager.isInterstitialReady) {
+    fun showAd(isShowAds: Boolean, function: () -> Unit) {
+        if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
                 function.invoke()
             })
         } else {
+            function.invoke()
             Log.e(TAG, "Interstitial Ad not ready to show")
         }
     }

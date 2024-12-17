@@ -10,6 +10,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -19,7 +20,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.cleversolutions.ads.AdSize
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
+import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.FunctionClass.feedBackWithEmail
 import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
@@ -31,6 +37,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues
 import livewallpaper.aod.screenlock.zipper.utilities.Constants
 import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
+import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.Uscreen
 import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
@@ -54,6 +61,7 @@ class FragmentNavigationScreen :
     private var isFirst = false
     private var isActivated = false
     private var adsManager: AdsManager? = null
+    private var interstitialAdManager: InterstitialAdManager? = null
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -131,7 +139,12 @@ class FragmentNavigationScreen :
         }
         _binding?.navigationMain?.setOnClickListener { }
         _binding?.languageView?.setOnClickListener {
-            adsManager?.let {
+            showCASInterstitial(val_ad_inter_language_screen_front){
+                if(isVisible && !isDetached && isAdded) {
+                    findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to false))
+                }
+            }
+     /*       adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@setOnClickListener,
@@ -142,13 +155,13 @@ class FragmentNavigationScreen :
                     layout = _binding?.adsLay ?: return@setOnClickListener,
                 ) {
                     if(isVisible && !isDetached && isAdded) {
-                        findNavController().navigate(R.id.LanguageFragment)
+                        findNavController().navigate(R.id.LanguageFragment, _root_ide_package_.androidx.core.os.bundleOf(LANG_SCREEN to false))
                     }
                 }
-            }
+            }*/
         }
         _binding?.securityQView?.setOnClickListener {
-            adsManager?.let {
+     /*       adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@setOnClickListener,
@@ -161,6 +174,11 @@ class FragmentNavigationScreen :
                     if(isVisible && !isDetached && isAdded) {
                         findNavController().navigate(R.id.SecurityQuestionFragment)
                     }
+                }
+            }*/
+            showCASInterstitial(val_ad_inter_security_screen_front){
+                if(isVisible && !isDetached && isAdded) {
+                    findNavController().navigate(R.id.SecurityQuestionFragment)
                 }
             }
 
@@ -197,7 +215,8 @@ class FragmentNavigationScreen :
         _binding?.backIcon?.setOnClickListener {
             findNavController().navigateUp()
         }
-        loadNative()
+        loadBanner(val_banner_setting_screen)
+        loadCASInterstitial(true)
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
@@ -259,8 +278,9 @@ class FragmentNavigationScreen :
         startActivityForResult(intent, 100)
     }
 
-    private fun loadNative() {
-        adsManager?.adsBanners()?.loadBanner(
+/*    private fun loadNative() {
+
+    adsManager?.adsBanners()?.loadBanner(
             activity = activity ?: return,
             view = binding!!.adsView,
             addConfig = val_banner_setting_screen,
@@ -268,6 +288,50 @@ class FragmentNavigationScreen :
         ) {
 
             _binding!!.adView?.visibility=View.GONE
+        }
+    }*/
+
+    private fun loadBanner(isAdsShow: Boolean) {
+        _binding?.adsView?.apply {
+            if (!isAdsShow) {
+                visibility = View.INVISIBLE
+                _binding?.adView?.visibility = View.INVISIBLE
+                return
+            }
+
+            loadNativeBanner(
+                context = requireContext(),
+                isAdsShow = true,
+                adSize = AdSize.LEADERBOARD, // Customize as needed
+                onAdLoaded = { toggleVisibility(_binding?.adsView, true) },
+                onAdFailed = { toggleVisibility(_binding?.adsView, false) },
+                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
+                onAdClicked = { Log.d(TAG, "Ad clicked!") }
+            )
+        }
+    }
+
+    private fun toggleVisibility(view: View?, isVisible: Boolean) {
+        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun loadCASInterstitial(isAdsShow: Boolean) {
+        if (!isAdsShow) {
+            return
+        }
+        // Initialize the InterstitialAdManager
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        // Load and show the ad
+        interstitialAdManager?.loadAd(isAdsShow)
+    }
+
+    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+        if (interstitialAdManager == null) {
+            function.invoke()
+            return
+        }
+        interstitialAdManager?.showAd(isAdsShow) {
+            function.invoke()
         }
     }
 

@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.cleversolutions.ads.AdSize
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
@@ -32,8 +33,12 @@ import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.MainMenuAdapter
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
+import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsBanners
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
@@ -66,17 +71,11 @@ import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.getImageLanguage
 import livewallpaper.aod.screenlock.zipper.utilities.getMainMenu
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
-import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
-import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isFirstEnable
 import livewallpaper.aod.screenlock.zipper.utilities.isRating
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.loadImage
 import livewallpaper.aod.screenlock.zipper.utilities.loadImagethumbnail
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
@@ -84,11 +83,9 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_scree
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_main_menu_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_inter_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
-import livewallpaper.aod.screenlock.zipper.utilities.val_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp
 
 
@@ -96,14 +93,14 @@ class MainAppFragment : Fragment() {
 
     private var sharedPrefUtils: DbHelper? = null
     var _binding: FragmentMainMenuBinding? = null
-    var adsManager: AdsManager? = null
     private var isActivated = false
     private var isFirst = false
     private var shouldCheckForOverlayPermissionLoop = false
     private lateinit var appUpdateManager: AppUpdateManager
     private val RC_APP_UPDATE = 200
     private var isSplashScreen: Boolean = false
-    private val admobNative by lazy { AdmobNative() }
+    private var interstitialAdManager: InterstitialAdManager? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -137,7 +134,6 @@ class MainAppFragment : Fragment() {
         } else {
             _binding?.topLay?.settingBtn?.visibility = View.VISIBLE
         }
-        adsManager = AdsManager.appAdsInit(activity ?: return)
         if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp) {
             _binding?.topLay?.settingBtn?.visibility = View.GONE
         } else {
@@ -147,7 +143,10 @@ class MainAppFragment : Fragment() {
             findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
         }
         setupBackPressedCallback {
-            adsManager?.let {
+            showCASInterstitial(val_exit_dialog_inter_front){
+                findNavController().navigate(R.id.FragmentExitScreen)
+            }
+     /*       adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@let,
@@ -159,7 +158,7 @@ class MainAppFragment : Fragment() {
                 ) {
                     findNavController().navigate(R.id.FragmentExitScreen)
                 }
-            }
+            }*/
         }
         _binding?.topLay?.navMenu?.loadImage(
             context ?: return,
@@ -187,7 +186,11 @@ class MainAppFragment : Fragment() {
             }
 
         _binding?.topLay?.languageBtn?.clickWithThrottle {
-            adsManager?.let {
+
+            showCASInterstitial(val_ad_inter_language_screen_front){
+                findNavController().navigate(R.id.LanguageFragment)
+            }
+/*            adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@clickWithThrottle,
@@ -199,11 +202,14 @@ class MainAppFragment : Fragment() {
                 ) {
                     findNavController().navigate(R.id.LanguageFragment)
                 }
-            }
+            }*/
         }
 
         _binding?.setting?.clickWithThrottle {
-            adsManager?.let {
+            showCASInterstitial(val_ad_inter_setting_screen_front){
+                findNavController().navigate(R.id.FragmentSetting)
+            }
+   /*         adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@let,
@@ -215,7 +221,7 @@ class MainAppFragment : Fragment() {
                 ) {
                     findNavController().navigate(R.id.FragmentSetting)
                 }
-            }
+            }*/
         }
 
         val adapter = MainMenuAdapter(getMainMenu(context ?: return)) { selectedMenu ->
@@ -242,7 +248,11 @@ class MainAppFragment : Fragment() {
             _binding?.enableLockSwitch?.isChecked = false
         }
         _binding?.enableLock?.clickWithThrottle {
-            adsManager?.let {
+
+            showCASInterstitial(val_ad_inter_enable_screen_front){
+                findNavController().navigate(R.id.EnableFirstActivity)
+            }
+ /*           adsManager?.let {
                 showTwoInterAd(
                     ads = it,
                     activity = activity ?: return@clickWithThrottle,
@@ -254,7 +264,7 @@ class MainAppFragment : Fragment() {
                 ) {
                     findNavController().navigate(R.id.EnableFirstActivity)
                 }
-            }
+            }*/
         }
         _binding?.enableLockSwitch?.setOnCheckedChangeListener { compoundButton, z ->
             if (compoundButton.isPressed) {
@@ -347,25 +357,15 @@ class MainAppFragment : Fragment() {
             _binding?.enableLockSwitch?.visibility = View.INVISIBLE
             _binding?.enableLockSwitch?.isChecked = false
         }
-        loadInstertital()
+        loadCASInterstitial(true)
         // Initialize AppUpdateManager
         appUpdateManager = AppUpdateManagerFactory.create(context ?: return)
         // Fetch Remote Config and Check for App Update
         checkForUpdate()
     }
 
-    private fun loadInstertital() {
-        loadTwoInterAds(
-            ads = adsManager ?: return,
-            activity = activity ?: return,
-            remoteConfigNormal = val_inter_main_medium,
-            adIdNormal = id_inter_main_medium,
-            tagClass = "main_app_fragment"
-        )
-    }
-
     private fun loadNative() {
-        if (native_precashe_copunt_current >= native_precashe_counter) {
+/*        if (native_precashe_copunt_current >= native_precashe_counter) {
             admobNative.loadNativeAds(
                 activity,
                 _binding?.nativeExitAd!!,
@@ -431,27 +431,64 @@ class MainAppFragment : Fragment() {
                         super.nativeAdValidate(string)
                     }
                 })
-        }
-        if (val_collapsable_banner) {
-            AdsBanners.loadCollapsibleBanner(
-                activity ?: return,
-                _binding?.bannerAds!!,
-                true,
-                id_collapsable_banner
-            ) {
-                _binding!!.adViewB.visibility = View.GONE
-            }
-        } else {
-            adsManager?.adsBanners()?.loadBanner(
-                activity = activity ?: return,
-                view = _binding!!.bannerAds,
-                addConfig = true,
-                bannerId = id_adaptive_banner
-            ) {
-                _binding!!.adViewB.visibility = View.GONE
-            }
-        }
+        }*/
+//        if (val_collapsable_banner) {
+//            AdsBanners.loadCollapsibleBanner(
+//                activity ?: return,
+//                _binding?.bannerAds!!,
+//                true,
+//                id_collapsable_banner
+//            ) {
+//                _binding!!.adViewB.visibility = View.GONE
+//            }
+//        } else {
+            loadBanner(!val_collapsable_banner)
+//        }
 
+    }
+
+    private fun loadBanner(isAdsShow: Boolean) {
+        _binding?.bannerAds?.apply {
+            if (!isAdsShow) {
+                visibility = View.INVISIBLE
+                _binding?.adView?.visibility = View.INVISIBLE
+                return
+            }
+            loadNativeBanner(
+                context = requireContext(),
+                isAdsShow = true,
+                adSize = AdSize.LEADERBOARD, // Customize as needed
+                onAdLoaded = { toggleVisibility(_binding?.bannerAds, true) },
+                onAdFailed = { toggleVisibility(_binding?.bannerAds, false) },
+                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
+                onAdClicked = { Log.d(TAG, "Ad clicked!") }
+            )
+        }
+    }
+
+    private fun toggleVisibility(view: View?, isVisible: Boolean) {
+        _binding?.adViewB?.visibility=View.INVISIBLE
+        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun loadCASInterstitial(isAdsShow: Boolean) {
+        if (!isAdsShow) {
+            return
+        }
+        // Initialize the InterstitialAdManager
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        // Load and show the ad
+        interstitialAdManager?.loadAd(isAdsShow)
+    }
+
+    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+        if (interstitialAdManager == null) {
+            function.invoke()
+            return
+        }
+        interstitialAdManager?.showAd(isAdsShow) {
+            function.invoke()
+        }
     }
 
     override fun onDestroy() {
@@ -596,10 +633,16 @@ class MainAppFragment : Fragment() {
         }
     }
 
-    fun MenuCalling(position: Int) {
+    private fun MenuCalling(position: Int) {
         when (position) {
             0 -> {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_list_data_screen_front){
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.zipperStyle))
+                    )
+                }
+             /*   adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: return@let,
@@ -614,11 +657,17 @@ class MainAppFragment : Fragment() {
                             bundleOf(StyleSelect to getString(R.string.zipperStyle))
                         )
                     }
-                }
+                }*/
             }
 
             1 -> {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_list_data_screen_front){
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.row_style))
+                    )
+                }
+          /*      adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: return@let,
@@ -633,11 +682,17 @@ class MainAppFragment : Fragment() {
                             bundleOf(StyleSelect to getString(R.string.row_style))
                         )
                     }
-                }
+                }*/
             }
 
             2 -> {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_list_data_screen_front){
+                    findNavController().navigate(
+                        R.id.ActivityAllStyle,
+                        bundleOf(StyleSelect to getString(R.string.wallpapers))
+                    )
+                }
+         /*       adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: return@let,
@@ -652,7 +707,7 @@ class MainAppFragment : Fragment() {
                             bundleOf(StyleSelect to getString(R.string.wallpapers))
                         )
                     }
-                }
+                }*/
             }
 
             3 -> {
@@ -669,7 +724,10 @@ class MainAppFragment : Fragment() {
             }
 
             4 -> {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_customize_screen){
+                    findNavController().navigate(R.id.CustomMainFragment)
+                }
+             /*   adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: return@let,
@@ -681,11 +739,14 @@ class MainAppFragment : Fragment() {
                     ) {
                         findNavController().navigate(R.id.CustomMainFragment)
                     }
-                }
+                }*/
             }
 
             5 -> {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_reward_screen){
+                    findNavController().navigate(R.id.rewardFragment)
+                }
+             /*   adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: requireActivity(),
@@ -697,10 +758,9 @@ class MainAppFragment : Fragment() {
                     ) {
                         findNavController().navigate(R.id.rewardFragment)
                     }
-                }
+                }*/
             }
         }
     }
-
 
 }

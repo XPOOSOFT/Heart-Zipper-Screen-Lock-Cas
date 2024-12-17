@@ -29,7 +29,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_scre
 
 class LanguageGridAdapter(
     private val items: List<LanguageModel>,
-    private val ads: AdsManager,
     private val activity1: Activity,
     private var clickItem: ((LanguageModel) -> Unit)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

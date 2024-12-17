@@ -8,10 +8,15 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.cleversolutions.ads.AdSize
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
+import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
@@ -38,9 +43,11 @@ import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showSpeedDialogNew
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
+import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_password_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
@@ -49,7 +56,8 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 class FragmentSetting : Fragment() {
 
     private var isPassword: Boolean = false
-    private var adsManager: AdsManager? = null
+//    private var adsManager: AdsManager? = null
+private var interstitialAdManager: InterstitialAdManager? = null
     private var _binding: FragmentSettingBinding? = null
 
     override fun onCreateView(
@@ -71,13 +79,19 @@ class FragmentSetting : Fragment() {
             return
         }
         try {
-            adsManager = AdsManager.appAdsInit(activity ?: requireActivity())
+//            adsManager = AdsManager.appAdsInit(activity ?: requireActivity())
             loadBanner()
+            loadCASInterstitial(true)
             isPassword = checkPasswordAct(context) ?: false
             Log.d("fragment_setting", "onViewCreated: $isPassword")
             switchCheck()
             _binding?.selectMusic?.setOnClickListener {
-                adsManager?.let {
+                showCASInterstitial(val_ad_inter_setting_screen_front){
+                    if(isVisible && !isDetached && isAdded) {
+                        findNavController().navigate(R.id.FragmentSoundSelection)
+                    }
+                }
+             /*   adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: requireActivity(),
@@ -91,7 +105,7 @@ class FragmentSetting : Fragment() {
                             findNavController().navigate(R.id.FragmentSoundSelection)
                         }
                     }
-                }
+                }*/
             }
             _binding?.selectSpeed?.setOnClickListener {
                 showSpeedDialogNew(
@@ -113,7 +127,15 @@ class FragmentSetting : Fragment() {
             }
             _binding?.password?.setOnClickListener {
                 if (isPassword) {
-                    adsManager?.let {
+
+                    showCASInterstitial(val_ad_inter_setting_screen_front){
+                        if(isVisible && !isDetached && isAdded) {
+                            if(isVisible && !isDetached && isAdded) {
+                                findNavController().navigate(R.id.FragmentApplyPassword)
+                            }
+                        }
+                    }
+/*                    adsManager?.let {
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
@@ -127,7 +149,7 @@ class FragmentSetting : Fragment() {
                                 findNavController().navigate(R.id.FragmentApplyPassword)
                             }
                         }
-                    }
+                    }*/
                 } else {
                     showToast(
                         context ?: requireContext(),
@@ -137,7 +159,13 @@ class FragmentSetting : Fragment() {
             }
 
             _binding?.securityQView?.setOnClickListener {
-                adsManager?.let {
+
+                showCASInterstitial(val_ad_inter_setting_screen_front){
+                    if(isVisible && !isDetached && isAdded) {
+                        findNavController().navigate(R.id.SecurityQuestionFragment)
+                    }
+                }
+/*                adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: requireActivity(),
@@ -151,7 +179,7 @@ class FragmentSetting : Fragment() {
                             findNavController().navigate(R.id.SecurityQuestionFragment)
                         }
                     }
-                }
+                }*/
             }
             setupBackPressedCallback {
                 findNavController().navigateUp()
@@ -201,7 +229,13 @@ class FragmentSetting : Fragment() {
                 if (bool) {
                     if (!isPassword) {
                         _binding?.passwordSwitch?.isChecked = false
-                        adsManager?.let {
+
+                        showCASInterstitial(val_ad_inter_password_screen_front){
+                            if(isVisible && !isDetached && isAdded) {
+                                findNavController().navigate(R.id.FragmentApplyPassword)
+                            }
+                        }
+/*                        adsManager?.let {
                             showTwoInterAd(
                                 ads = it,
                                 activity = activity?:requireActivity(),
@@ -213,7 +247,7 @@ class FragmentSetting : Fragment() {
                             ){
                                 findNavController().navigate(R.id.FragmentApplyPassword)
                             }
-                        }
+                        }*/
                         return@setOnCheckedChangeListener
                     }
                     UCC(
@@ -241,89 +275,65 @@ class FragmentSetting : Fragment() {
         UL(ConstantValues.SoActivePref, context ?: requireContext(), _binding?.soundSwitch)
     }
 
-
-    private val admobNative by lazy { AdmobNative() }
     private fun loadBanner(){
-    when (type_ad_native_setting_screen) {
-        0 -> {
-            _binding?.nativeExitAd?.visibility = View.GONE
-            _binding?.adView?.visibility=View.GONE
-        }
-
-        1 -> {
-            adsManager?.adsBanners()?.loadBanner(
-                activity = activity ?: return,
-                view = _binding!!.nativeExitAd,
-                addConfig = val_ad_native_setting_screen,
-                bannerId = id_adaptive_banner
-            ) {
+        when (type_ad_native_setting_screen) {
+            0 -> {
+                _binding?.nativeExitAd?.visibility = View.GONE
                 _binding?.adView?.visibility=View.GONE
             }
-        }
 
-        2 -> {
-            if (native_precashe_copunt_current >= native_precashe_counter) {
-                admobNative.loadNativeAds(
-                    activity,
-                    _binding?.nativeExitAd!!,
-                    id_native_screen,
-                    if (val_ad_native_setting_screen)
-                        1 else 0,
-                    isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
-                    isInternetConnected = AdsManager.isNetworkAvailable(activity),
-                    nativeType = NativeType.LARGE,
-                    nativeCallBack = object : NativeCallBack {
-                        override fun onAdFailedToLoad(adError: String) {
-                            _binding?.adView?.visibility = View.GONE}
-                        override fun onAdLoaded() {
-                            _binding?.adView?.visibility = View.GONE}
-                        override fun onAdImpression() {
-                            _binding?.adView?.visibility = View.GONE}
-                    }
-                )
-            } else {
-                adsManager?.nativeAds()?.loadNativeAd(
-                    activity ?: return,
-                    val_ad_native_setting_screen,
-                    id_native_screen,
-                    object : NativeListener {
-                        override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                            if (isAdded && isVisible && !isDetached) {
-                                _binding?.nativeExitAd?.visibility = View.VISIBLE
-                                _binding?.adView?.visibility = View.GONE
-                                val adView = layoutInflater.inflate(
-                                    R.layout.ad_unified_media,
-                                    null
-                                ) as NativeAdView
-                                adsManager?.nativeAds()?.nativeViewMedia(
-                                    context ?: return,
-                                    currentNativeAd ?: return,
-                                    adView
-                                )
-                                _binding?.nativeExitAd?.removeAllViews()
-                                _binding?.nativeExitAd?.addView(adView)
-                            }
-                            super.nativeAdLoaded(currentNativeAd)
-                        }
+            1 -> {
+                loadBanner(val_ad_native_setting_screen)
+            }
 
-                        override fun nativeAdFailed(loadAdError: LoadAdError) {
-                            if (isAdded && isVisible && !isDetached) {
-                                _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                                _binding?.adView?.visibility = View.INVISIBLE
-                            }
-                            super.nativeAdFailed(loadAdError)
-                        }
+            2 -> {
 
-                        override fun nativeAdValidate(string: String) {
-                            if (isAdded && isVisible && !isDetached) {
-                                _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                                _binding?.adView?.visibility = View.INVISIBLE
-                            }
-                            super.nativeAdValidate(string)
-                        }
-                    })
             }
         }
+    }
+
+    private fun loadBanner(isAdsShow: Boolean) {
+        _binding?.nativeExitAd?.apply {
+            if (!isAdsShow) {
+                visibility = View.INVISIBLE
+                _binding?.adView?.visibility = View.INVISIBLE
+                return
+            }
+            loadNativeBanner(
+                context = requireContext(),
+                isAdsShow = true,
+                adSize = AdSize.LEADERBOARD, // Customize as needed
+                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
+                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
+                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
+                onAdClicked = { Log.d(TAG, "Ad clicked!") }
+            )
         }
     }
+
+    private fun toggleVisibility(view: View?, isVisible: Boolean) {
+        _binding?.adView?.visibility=View.INVISIBLE
+        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
+    }
+
+    private fun loadCASInterstitial(isAdsShow: Boolean) {
+        if (!isAdsShow) {
+            return
+        }
+        // Initialize the InterstitialAdManager
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        // Load and show the ad
+        interstitialAdManager?.loadAd(isAdsShow)
+    }
+
+    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+        if (interstitialAdManager == null) {
+            function.invoke()
+            return
+        }
+        interstitialAdManager?.showAd(isAdsShow) {
+            function.invoke()
+        }
+    }
+
 }

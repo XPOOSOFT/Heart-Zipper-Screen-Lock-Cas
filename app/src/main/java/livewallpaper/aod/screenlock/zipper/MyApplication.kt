@@ -1,6 +1,8 @@
 package livewallpaper.aod.screenlock.zipper
 
+import android.app.Activity
 import android.app.Application
+import android.os.Bundle
 import android.util.Log
 import com.cleversolutions.ads.AdType
 import com.cleversolutions.ads.Audience
@@ -9,6 +11,7 @@ import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 
 class MyApplication : Application() {
     companion object {
@@ -17,7 +20,7 @@ class MyApplication : Application() {
 
         lateinit var adManager: MediationManager
     }
-
+    private lateinit var appOpenManager: AppOpenManager
     override fun onCreate() {
         super.onCreate()
 
@@ -32,7 +35,7 @@ class MyApplication : Application() {
         adManager = CAS.buildManager()
             .withManagerId(CAS_ID)
             .withTestAdMode(BuildConfig.DEBUG)
-            .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native)
+            .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native, AdType.Rewarded)
             .withConsentFlow(
                 ConsentFlow(isEnabled = true)
                     .withDismissListener {
@@ -42,6 +45,22 @@ class MyApplication : Application() {
             .withCompletionListener {
                 if (it.error == null) {
                     Log.d(TAG, "Ad manager initialized")
+                    // Initialize App Open Manager
+                    appOpenManager = AppOpenManager(this, CAS_ID)
+
+                    // Register activity lifecycle callbacks
+                    registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+                        override fun onActivityResumed(activity: Activity) {
+                            appOpenManager.showAdIfAvailable(activity)
+                        }
+
+                        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+                        override fun onActivityStarted(activity: Activity) {}
+                        override fun onActivityPaused(activity: Activity) {}
+                        override fun onActivityStopped(activity: Activity) {}
+                        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+                        override fun onActivityDestroyed(activity: Activity) {}
+                    })
                 } else {
                     Log.d(TAG, "Ad manager initialization failed: " + it.error)
                 }

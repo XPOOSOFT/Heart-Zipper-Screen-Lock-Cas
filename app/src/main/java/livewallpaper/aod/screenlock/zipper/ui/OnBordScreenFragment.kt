@@ -13,8 +13,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.OnBordScreenAdapter
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentMainIntroBinding
@@ -34,7 +36,8 @@ class OnBordScreenFragment :
     var currentpage = 0
     private var onBordScreenAdapter: OnBordScreenAdapter? = null
     private var sharedPrefUtils: DbHelper? = null
-    private var ads: AdsManager? = null
+//    private var ads: AdsManager? = null
+private var interstitialAdManager: InterstitialAdManager? = null
 
     private var viewListener: OnPageChangeListener = object : OnPageChangeListener {
         override fun onPageScrolled(i: Int, v: Float, i1: Int) {
@@ -62,7 +65,7 @@ class OnBordScreenFragment :
         firebaseAnalytics("intro_fragment_open", "intro_fragment_open -->  Click")
         onBordScreenAdapter = OnBordScreenAdapter(requireContext())
         sharedPrefUtils = DbHelper(context ?: return)
-        ads = AdsManager.appAdsInit(activity ?: return)
+//        ads = AdsManager.appAdsInit(activity ?: return)
         _binding?.run {
             mainSlideViewPager.adapter = onBordScreenAdapter
             mainSlideViewPager.addOnPageChangeListener(viewListener)
@@ -104,7 +107,7 @@ class OnBordScreenFragment :
 
 
     private fun loadNative() {
-        ads?.nativeAds()?.loadNativeAd(
+      /*  ads?.nativeAds()?.loadNativeAd(
             activity ?: return,
             val_ad_native_intro_screen,
             id_native_screen,
@@ -144,7 +147,7 @@ class OnBordScreenFragment :
                     }
                     super.nativeAdValidate(string)
                 }
-            })
+            })*/
 
     }
 
@@ -165,8 +168,31 @@ class OnBordScreenFragment :
         super.onDestroy()
         _binding = null
     }
+
     override fun onLowMemory() {
         super.onLowMemory()
         activity?.finish()
     }
+
+
+    private fun loadCASInterstitial(isAdsShow: Boolean) {
+        if (!isAdsShow) {
+            return
+        }
+        // Initialize the InterstitialAdManager
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        // Load and show the ad
+        interstitialAdManager?.loadAd(isAdsShow)
+    }
+
+    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+        if (interstitialAdManager == null) {
+            function.invoke()
+            return
+        }
+        interstitialAdManager?.showAd(isAdsShow) {
+            function.invoke()
+        }
+    }
+
 }

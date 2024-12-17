@@ -33,7 +33,6 @@ class SampleAppOpenAdActivity : Activity() {
     private fun createAppOpenAd() {
         // Create an Ad
         val appOpenAd = CASAppOpen.create(CAS_ID)
-
         // Handle fullscreen callback events
         appOpenAd.contentCallback = object : AdCallback {
             override fun onShown(ad: AdStatusHandler) {
@@ -56,7 +55,6 @@ class SampleAppOpenAdActivity : Activity() {
                 startNextActivity()
             }
         }
-
         // Load the Ad
         appOpenAd.loadAd(this, object : LoadAdCallback {
             override fun onAdLoaded() {
@@ -69,7 +67,6 @@ class SampleAppOpenAdActivity : Activity() {
 
             override fun onAdFailedToLoad(error: AdError) {
                 Log.e(TAG, "App Open Ad failed to load: ${error.message}")
-                startNextActivity()
             }
         })
     }
@@ -86,7 +83,7 @@ class SampleAppOpenAdActivity : Activity() {
     private fun simulationLongAppResourcesLoading() {
         // Simulation of long application resources loading for 5 seconds.
         isLoadingAppResources = true
-        val timerText = findViewById<TextView>(R.id.timerView)
+     /*   val timerText = findViewById<TextView>(R.id.timerView)
         val timer = object : CountDownTimer(TimeUnit.SECONDS.toMillis(7), 1000) {
             @SuppressLint("SetTextI18n")
             override fun onTick(millisUntilFinished: Long) {
@@ -99,7 +96,7 @@ class SampleAppOpenAdActivity : Activity() {
                 startNextActivity()
             }
         }
-        timer.start()
+        timer.start()*/
 
         findViewById<View>(R.id.skipAppOpenAd).setOnClickListener { v: View? ->
             isLoadingAppResources = false
