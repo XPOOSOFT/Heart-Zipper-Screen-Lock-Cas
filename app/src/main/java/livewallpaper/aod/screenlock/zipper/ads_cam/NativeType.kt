@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_manager.interfaces
+package livewallpaper.aod.screenlock.zipper.ads_cam
 
 /**
  * @Author: Muhammad Yaqoob

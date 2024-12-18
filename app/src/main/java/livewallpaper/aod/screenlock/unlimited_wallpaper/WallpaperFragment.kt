@@ -11,49 +11,32 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.cleversolutions.ads.AdSize
-import com.cleversolutions.ads.android.CAS.manager
-import com.google.android.gms.ads.AdError
-import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.ads.FullScreenContentCallback
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
-import com.google.android.gms.ads.rewarded.RewardedAd
-import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
 import livewallpaper.aod.screenlock.zipper.ads_cam.RewardedAdManager
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentWallpaperBinding
 import livewallpaper.aod.screenlock.zipper.utilities.Wallpaper_Cat
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.id_reward
-import livewallpaper.aod.screenlock.zipper.utilities.isSplash
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
-import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
 
 
 class WallpaperFragment : Fragment() {
@@ -245,13 +228,37 @@ class WallpaperFragment : Fragment() {
 
             2 -> {
 
+                AdmobNative().loadNativeAds(
+                    activity,
+                    _binding?.nativeExitAd!!,
+                    id_native_screen,
+                    if (val_ad_native_reward_screen)
+                        1 else 0,
+                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
+                    isInternetConnected = isNetworkAvailable(activity),
+                    nativeType = if (val_ad_native_reward_screen_h) NativeType.LARGE else NativeType.BANNER,
+                    nativeCallBack = object : NativeCallBack {
+                        override fun onAdFailedToLoad(adError: String) {
+                            _binding?.adView?.visibility = View.GONE
+                            _binding?.nativeExitAd?.visibility = View.GONE
+                        }
+
+                        override fun onAdLoaded() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+
+                        override fun onAdImpression() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+                    }
+                )
             }
         }
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
         _binding?.nativeExitAd?.apply {
-            if (!isAdsShow) {
+            if   (!isAdsShow || !isNetworkAvailable(context)) {
                 visibility = View.INVISIBLE
                 _binding?.adView?.visibility = View.INVISIBLE
                 return

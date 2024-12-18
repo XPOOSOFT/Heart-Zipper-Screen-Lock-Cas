@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_manager
+package livewallpaper.aod.screenlock.zipper.ads_cam
 
 import android.app.Activity
 import android.content.ActivityNotFoundException

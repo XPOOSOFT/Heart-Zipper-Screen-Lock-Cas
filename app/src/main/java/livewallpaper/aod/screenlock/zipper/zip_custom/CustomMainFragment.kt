@@ -18,20 +18,15 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.databinding.CustomZipMainFragmentBinding
 import livewallpaper.aod.screenlock.zipper.service.LockScreenService
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues
@@ -42,10 +37,8 @@ import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
@@ -54,7 +47,6 @@ import livewallpaper.aod.screenlock.zipper.zip_custom.adapter.CustomAdapter
 class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
     private var _binding: CustomZipMainFragmentBinding? = null
-    private var ads: AdsManager? = null
     private var adapter: CustomAdapter? = null
     private var currentTab: String = "Zippers"
     private var zipperValue: String = "0"
@@ -83,7 +75,6 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                 findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
                 return@launch
             }
-            ads = AdsManager.appAdsInit(activity ?: return@launch)
 
             zipperValue = DataBasePref.LoadPrefString(
                 ConstantValues.SelectZipper,
@@ -287,7 +278,6 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
     private val admobNative by lazy { AdmobNative() }
 
     private fun loadNative() {
- /*       if (native_precashe_copunt_current >= native_precashe_counter) {
             admobNative.loadNativeAds(
                 activity,
                 _binding?.nativeExitAd!!,
@@ -295,7 +285,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                 if (val_ad_native_list_data_screen)
                     1 else 0,
                 isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
-                isInternetConnected = AdsManager.isNetworkAvailable(activity),
+                isInternetConnected = isNetworkAvailable(activity),
                 nativeType = if (val_ad_native_customize_screen_h) NativeType.LARGE else NativeType.BANNER,
                 nativeCallBack = object : NativeCallBack {
                     override fun onAdFailedToLoad(adError: String) {
@@ -306,45 +296,6 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                         _binding?.adView?.visibility = View.GONE}
                 }
             )
-        } else {
-            ads?.nativeAds()?.loadNativeAd(activity ?: return,
-                val_ad_native_customize_screen,
-                id_native_screen,
-                object : NativeListener {
-                    override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                        if (isAdded && isVisible && !isDetached) {
-                            _binding?.nativeExitAd?.visibility = View.VISIBLE
-                            _binding?.adView?.visibility = View.GONE
-                            val adView =
-                                layoutInflater.inflate(
-                                    if (val_ad_native_customize_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
-                                    null
-                                ) as NativeAdView
-                            ads?.nativeAds()
-                                ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
-                            _binding?.nativeExitAd?.removeAllViews()
-                            _binding?.nativeExitAd?.addView(adView)
-                        }
-                        super.nativeAdLoaded(currentNativeAd)
-                    }
-
-                    override fun nativeAdFailed(loadAdError: LoadAdError) {
-                        if (isAdded && isVisible && !isDetached) {
-                            _binding?.nativeExitAd?.visibility = View.GONE
-                            _binding?.adView?.visibility = View.GONE
-                        }
-                        super.nativeAdFailed(loadAdError)
-                    }
-
-                    override fun nativeAdValidate(string: String) {
-                        if (isAdded && isVisible && !isDetached) {
-                            _binding?.nativeExitAd?.visibility = View.GONE
-                            _binding?.adView?.visibility = View.GONE
-                        }
-                        super.nativeAdValidate(string)
-                    }
-                })
-        }*/
     }
 
     private fun showCustomDialog() {

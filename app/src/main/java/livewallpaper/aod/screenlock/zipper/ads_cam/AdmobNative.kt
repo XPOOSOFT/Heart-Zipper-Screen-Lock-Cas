@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_manager
+package livewallpaper.aod.screenlock.zipper.ads_cam
 
 import android.app.Activity
 import android.util.Log
@@ -9,8 +9,6 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -23,11 +21,11 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.NativeAdsId
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.preloadNativeAd
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp.Companion.preloadNativeAd
-import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.NativeAdsId
-import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.isDebug
 import livewallpaper.aod.screenlock.zipper.utilities.ScreenUtils.isSupportFullScreen
+import livewallpaper.aod.screenlock.zipper.utilities.isDebug
 
 /**
  * @Author:Javed Khan

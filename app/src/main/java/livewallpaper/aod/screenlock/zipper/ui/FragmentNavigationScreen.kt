@@ -26,9 +26,7 @@ import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.FunctionClass.feedBackWithEmail
-import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
+import livewallpaper.aod.screenlock.zipper.ads_cam.FunctionClass.feedBackWithEmail
 import livewallpaper.aod.screenlock.zipper.databinding.NavigationLayoutBinding
 import livewallpaper.aod.screenlock.zipper.service.LiveService
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -39,10 +37,8 @@ import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
-import livewallpaper.aod.screenlock.zipper.utilities.Uscreen
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.isFirstEnable
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.moreApp
 import livewallpaper.aod.screenlock.zipper.utilities.privacyPolicy
@@ -60,20 +56,18 @@ class FragmentNavigationScreen :
     private var sharedPrefUtils: DbHelper? = null
     private var isFirst = false
     private var isActivated = false
-    private var adsManager: AdsManager? = null
     private var interstitialAdManager: InterstitialAdManager? = null
 
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(++PurchaseScreen ==val_inapp_frequency){
-            PurchaseScreen =0
+        if (++PurchaseScreen == val_inapp_frequency) {
+            PurchaseScreen = 0
             findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
             return
         }
         sharedPrefUtils = DbHelper(context ?: return)
-        adsManager = AdsManager.appAdsInit(activity ?: return)
         _binding?.versionText?.text = getString(R.string.version) + "${
             context?.packageManager?.getPackageInfo(
                 context?.packageName!!,
@@ -139,45 +133,48 @@ class FragmentNavigationScreen :
         }
         _binding?.navigationMain?.setOnClickListener { }
         _binding?.languageView?.setOnClickListener {
-            showCASInterstitial(val_ad_inter_language_screen_front){
-                if(isVisible && !isDetached && isAdded) {
-                    findNavController().navigate(R.id.LanguageFragment, bundleOf(LANG_SCREEN to false))
+            showCASInterstitial(val_ad_inter_language_screen_front) {
+                if (isVisible && !isDetached && isAdded) {
+                    findNavController().navigate(
+                        R.id.LanguageFragment,
+                        bundleOf(LANG_SCREEN to false)
+                    )
                 }
             }
-     /*       adsManager?.let {
-                showTwoInterAd(
-                    ads = it,
-                    activity = activity ?: return@setOnClickListener,
-                    remoteConfigNormal = val_ad_inter_language_screen_front,
-                    adIdNormal = id_inter_main_medium,
-                    tagClass = "main_menu",
-                    isBackPress = false,
-                    layout = _binding?.adsLay ?: return@setOnClickListener,
-                ) {
-                    if(isVisible && !isDetached && isAdded) {
-                        findNavController().navigate(R.id.LanguageFragment, _root_ide_package_.androidx.core.os.bundleOf(LANG_SCREEN to false))
-                    }
-                }
-            }*/
+            /*       adsManager?.let {
+                       showTwoInterAd(
+                           ads = it,
+                           activity = activity ?: return@setOnClickListener,
+                           remoteConfigNormal = val_ad_inter_language_screen_front,
+                           adIdNormal = id_inter_main_medium,
+                           tagClass = "main_menu",
+                           isBackPress = false,
+                           layout = _binding?.adsLay ?: return@setOnClickListener,
+                       ) {
+                           if(isVisible && !isDetached && isAdded) {
+                               findNavController().navigate(R.id.LanguageFragment, _root_ide_package_.androidx.core.os.bundleOf(LANG_SCREEN to false))
+                           }
+                       }
+                   }*/
         }
         _binding?.securityQView?.setOnClickListener {
-     /*       adsManager?.let {
-                showTwoInterAd(
-                    ads = it,
-                    activity = activity ?: return@setOnClickListener,
-                    remoteConfigNormal = val_ad_inter_security_screen_front,
-                    adIdNormal = id_inter_main_medium,
-                    tagClass = "main_menu",
-                    isBackPress = false,
-                    layout = _binding?.adsLay ?: return@setOnClickListener
-                ) {
-                    if(isVisible && !isDetached && isAdded) {
-                        findNavController().navigate(R.id.SecurityQuestionFragment)
-                    }
-                }
-            }*/
-            showCASInterstitial(val_ad_inter_security_screen_front){
-                if(isVisible && !isDetached && isAdded) {
+            /*       adsManager?.let {
+                       showTwoInterAd(
+                           ads = it,
+                           activity = activity ?: return@setOnClickListener,
+                           remoteConfigNormal = val_ad_inter_security_screen_front,
+                           adIdNormal = id_inter_main_medium,
+                           tagClass = "main_menu",
+                           isBackPress = false,
+                           layout = _binding?.adsLay ?: return@setOnClickListener
+                       ) {
+                           if(isVisible && !isDetached && isAdded) {
+                               findNavController().navigate(R.id.SecurityQuestionFragment)
+                           }
+                       }
+                   }*/
+            showCASInterstitial(val_ad_inter_security_screen_front) {
+                if (isVisible && !isDetached && isAdded) {
                     findNavController().navigate(R.id.SecurityQuestionFragment)
                 }
             }
@@ -191,7 +188,7 @@ class FragmentNavigationScreen :
         }
         _binding?.customSView?.setOnClickListener {
             feedBackWithEmail(
-                context =activity?:return@setOnClickListener,
+                context = activity ?: return@setOnClickListener,
                 title = "Feed Back",
                 message = "User Send Feed Back",
                 emailId = "fireitinc.dev@gmail.com"
@@ -278,22 +275,22 @@ class FragmentNavigationScreen :
         startActivityForResult(intent, 100)
     }
 
-/*    private fun loadNative() {
+    /*    private fun loadNative() {
 
-    adsManager?.adsBanners()?.loadBanner(
-            activity = activity ?: return,
-            view = binding!!.adsView,
-            addConfig = val_banner_setting_screen,
-            bannerId = id_adaptive_banner
-        ) {
+        adsManager?.adsBanners()?.loadBanner(
+                activity = activity ?: return,
+                view = binding!!.adsView,
+                addConfig = val_banner_setting_screen,
+                bannerId = id_adaptive_banner
+            ) {
 
-            _binding!!.adView?.visibility=View.GONE
-        }
-    }*/
+                _binding!!.adView?.visibility=View.GONE
+            }
+        }*/
 
     private fun loadBanner(isAdsShow: Boolean) {
         _binding?.adsView?.apply {
-            if (!isAdsShow) {
+            if   (!isAdsShow || !isNetworkAvailable(context)) {
                 visibility = View.INVISIBLE
                 _binding?.adView?.visibility = View.INVISIBLE
                 return
@@ -316,7 +313,7 @@ class FragmentNavigationScreen :
     }
 
     private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if (!isAdsShow) {
+        if   (!isAdsShow || !isNetworkAvailable(context)) {
             return
         }
         // Initialize the InterstitialAdManager
@@ -325,7 +322,7 @@ class FragmentNavigationScreen :
         interstitialAdManager?.loadAd(isAdsShow)
     }
 
-    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
         if (interstitialAdManager == null) {
             function.invoke()
             return

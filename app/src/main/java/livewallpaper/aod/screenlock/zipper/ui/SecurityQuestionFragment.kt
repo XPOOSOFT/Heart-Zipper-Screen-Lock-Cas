@@ -5,57 +5,37 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.cleversolutions.ads.AdSize
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
-import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
-import livewallpaper.aod.screenlock.zipper.databinding.FragmentMainMenuActivityBinding
 import livewallpaper.aod.screenlock.zipper.databinding.SecurityQuestionFragmentBinding
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_ANS
 import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_QUESTION
 import livewallpaper.aod.screenlock.zipper.utilities.containsLeadingTrailingSpaces
 import livewallpaper.aod.screenlock.zipper.utilities.containsMultipleSpaces
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_screen
-import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
-import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_back
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_security_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
-import livewallpaper.aod.screenlock.zipper.utilities.val_inter_back_press
 
 class SecurityQuestionFragment : Fragment() {
 
     private var sharedPrefUtils: DbHelper? = null
     private var questionText: String? = ""
-    private var adsManager: AdsManager? = null
     private var _binding: SecurityQuestionFragmentBinding? = null
 
     override fun onCreateView(
@@ -76,7 +56,6 @@ class SecurityQuestionFragment : Fragment() {
                 return
             }
             if(isVisible && isAdded && !isDetached){
-            adsManager = AdsManager.appAdsInit(activity?:requireActivity())
             _binding?.topLay?.title?.text = getString(R.string.security_question)
             sharedPrefUtils = DbHelper(context?:return)
             _binding?.powerSpinnerView?.setOnSpinnerItemSelectedListener<String> { oldIndex, oldItem, newIndex, newText ->
@@ -137,13 +116,37 @@ class SecurityQuestionFragment : Fragment() {
 
             2 -> {
 
+                AdmobNative().loadNativeAds(
+                    activity,
+                    _binding?.nativeExitAd!!,
+                    id_native_screen,
+                    if (val_ad_native_security_screen)
+                        1 else 0,
+                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
+                    isInternetConnected = isNetworkAvailable(activity),
+                    nativeType = NativeType.LARGE,
+                    nativeCallBack = object : NativeCallBack {
+                        override fun onAdFailedToLoad(adError: String) {
+                            _binding?.adView?.visibility = View.GONE
+                            _binding?.nativeExitAd?.visibility = View.GONE
+                        }
+
+                        override fun onAdLoaded() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+
+                        override fun onAdImpression() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+                    }
+                )
             }
         }
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
         _binding?.nativeExitAd?.apply {
-            if (!isAdsShow) {
+            if   (!isAdsShow || !isNetworkAvailable(context)) {
                 visibility = View.INVISIBLE
                 _binding?.adView?.visibility = View.INVISIBLE
                 return

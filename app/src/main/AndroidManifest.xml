@@ -84,7 +84,7 @@
             android:resource="@color/colorPrimary" />
 
         <service
-            android:name=".ads_manager.MyFirebaseMessagingService"
+            android:name=".ads_cam.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>

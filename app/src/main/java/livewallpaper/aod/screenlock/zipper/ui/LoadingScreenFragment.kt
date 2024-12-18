@@ -1,28 +1,19 @@
 package livewallpaper.aod.screenlock.zipper.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdError
-import com.cleversolutions.ads.AdImpression
-import com.cleversolutions.ads.AdSize
-import com.cleversolutions.ads.AdViewListener
-import com.cleversolutions.ads.android.CAS.manager
-import com.cleversolutions.ads.android.CASBannerView
-import com.hypersoft.admobads.adsconfig.interstitial.AdmobInterstitial
-import com.hypersoft.admobads.adsconfig.interstitial.callbacks.InterstitialOnShowCallBack
 import kotlinx.coroutines.delay
-import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.showOpenAd
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentLoadingBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -34,8 +25,10 @@ import livewallpaper.aod.screenlock.zipper.utilities.LANG_CODE
 import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.counter
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
@@ -47,9 +40,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 class LoadingScreenFragment :
     BaseFragment<FragmentLoadingBinding>(FragmentLoadingBinding::inflate) {
 
-    private var adsManager: AdsManager? = null
     private var dbHelper: DbHelper? = null
-    private val admobInterstitial by lazy { AdmobInterstitial() }
     private var interstitialAdManager: InterstitialAdManager? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -58,7 +49,6 @@ class LoadingScreenFragment :
         counter = 0
         inter_frequency_count = 0
         loadCASInterstitial(val_ad_inter_loading_screen)
-        adsManager = AdsManager.appAdsInit(activity ?: return)
         dbHelper = DbHelper(context ?: return)
         firebaseAnalytics("loading_fragment_open", "loading_fragment_open -->  Click")
         dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
@@ -95,10 +85,14 @@ class LoadingScreenFragment :
             //Do Nothing
         }
         _binding?.next?.setOnClickListener {
+            if(!isNetworkAvailable(context)){
+                moveToNext()
+                return@setOnClickListener
+            }
             if (val_ad_app_open_screen) {
 
             } else {
-                showCASInterstitial(val_ad_inter_loading_screen){
+                showCASInterstitial(val_ad_inter_loading_screen) {
                     moveToNext()
                 }
             }
@@ -138,7 +132,7 @@ class LoadingScreenFragment :
     }
 
     private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if (!isAdsShow) {
+        if   (!isAdsShow || !isNetworkAvailable(context)) {
             return
         }
         // Initialize the InterstitialAdManager
@@ -147,7 +141,7 @@ class LoadingScreenFragment :
         interstitialAdManager?.loadAd(isAdsShow)
     }
 
-    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
         if (interstitialAdManager == null) {
             function.invoke()
             return
@@ -173,27 +167,34 @@ class LoadingScreenFragment :
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
-        _binding?.nativeExitAd?.apply {
-            if (!isAdsShow) {
-                visibility = View.INVISIBLE
-                _binding?.adView?.visibility = View.INVISIBLE
-                return
-            }
+        AdmobNative().loadNativeAds(
+            activity,
+            _binding?.nativeExitAd!!,
+            id_native_screen,
+            if (isAdsShow)
+                1 else 0,
+            isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
+            isInternetConnected = isNetworkAvailable(activity),
+            nativeType = NativeType.LARGE,
+            nativeCallBack = object : NativeCallBack {
+                override fun onAdFailedToLoad(adError: String) {
+                    _binding?.adView?.visibility = View.GONE
+                    _binding?.nativeExitAd?.visibility = View.GONE
+                }
 
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
-        }
+                override fun onAdLoaded() {
+                    _binding?.adView?.visibility = View.GONE
+                }
+
+                override fun onAdImpression() {
+                    _binding?.adView?.visibility = View.GONE
+                }
+            }
+        )
     }
 
     private fun toggleVisibility(view: View?, isVisible: Boolean) {
-        _binding?.adView?.visibility=View.INVISIBLE
+        _binding?.adView?.visibility = View.INVISIBLE
         view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 

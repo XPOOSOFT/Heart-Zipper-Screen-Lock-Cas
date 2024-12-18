@@ -39,13 +39,11 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.NativeAds.isDebug
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
 import livewallpaper.aod.screenlock.zipper.model.SoundModel
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues.SpeedActivePref
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref.LoadPref
 import livewallpaper.aod.screenlock.reward.wallpaper.Wallpaper
-import livewallpaper.aod.screenlock.zipper.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.model.MainMenu
 import livewallpaper.aod.screenlock.zipper.service.LockScreenService
 import livewallpaper.aod.screenlock.zipper.ui.MainAppFragment

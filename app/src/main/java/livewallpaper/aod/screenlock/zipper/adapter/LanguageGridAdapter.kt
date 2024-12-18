@@ -1,40 +1,25 @@
 package livewallpaper.aod.screenlock.zipper.adapter
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
-import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.databinding.AdsItemBinding
 import livewallpaper.aod.screenlock.zipper.databinding.LanguageAppItemBinding
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
-import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_h
 
 
 class LanguageGridAdapter(
     private val items: List<LanguageModel>,
-    private val activity1: Activity,
     private var clickItem: ((LanguageModel) -> Unit)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var context: Context? = null
     private var lastCheckedPosition: Int = -1
+
     companion object {
         const val ITEM_TYPE = 0
         const val AD_TYPE = 1
@@ -88,26 +73,7 @@ class LanguageGridAdapter(
             }
         } else {
             Log.d("adapter_ad", "onBindViewHolder: Adapter View Hoder $position")
-            AdmobNative().loadNativeAds(
-                activity1?:return,
-                (holder as AdViewHolder).bindingAds.nativeExitAd,
-                id_native_screen,
-                if (val_ad_native_language_screen)
-                    1 else 0,
-                isAppPurchased = BillingUtil(activity1?:return).checkPurchased(activity1?:return),
-                isInternetConnected = AdsManager.isNetworkAvailable(activity1),
-                nativeType = if (val_ad_native_language_screen_h) NativeType.LARGE else NativeType.BANNER,
-                nativeCallBack = object : NativeCallBack {
-                    override fun onAdFailedToLoad(adError: String) {
-                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE}
-                    override fun onAdLoaded() {
-                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE
-                    }
-                    override fun onAdImpression() {
-                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE
-                    }
-                }
-            )
+
         }
     }
 

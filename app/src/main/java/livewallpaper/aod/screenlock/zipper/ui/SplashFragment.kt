@@ -13,16 +13,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
-import com.hypersoft.admobads.adsconfig.interstitial.AdmobInterstitial
 import kotlinx.coroutines.delay
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdOpenApp
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.ads_manager.CmpClass
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
-import livewallpaper.aod.screenlock.zipper.ads_manager.splash_interstitial.callbacks.InterstitialOnLoadCallBack
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.SaveWallpaper
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -41,7 +33,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_screen
-import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_splash_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
@@ -52,6 +43,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_reward
 import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.isRating
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
@@ -119,7 +111,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
 
     private var dbHelper: DbHelper? = null
-    private var adsManager: AdsManager? = null
     private var remoteConfig: FirebaseRemoteConfig? = null
 
     companion object {
@@ -127,7 +118,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         var consentListener: ((consent: Boolean) -> Unit?)? = null
     }
 
-    private val admobInterstitial by lazy { AdmobInterstitial() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -136,9 +126,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             isRating = true
             counter = 0
             inter_frequency_count = 0
-            val cmpClass = CmpClass(activity ?: return@launchWhenStarted)
-            cmpClass.initilaizeCMP()
-            adsManager = AdsManager.appAdsInit(activity ?: return@launchWhenStarted)
             dbHelper = DbHelper(context ?: return@launchWhenStarted)
             dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
 
@@ -149,26 +136,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             }
 
             if (isNetworkAvailable(context)) {
-//                            adsManager = AdsManager.appAdsInit(requireActivity())
                 initRemoteIds()
             } else {
                 observeSplashLiveData()
             }
-//                consentListener = {
-//                    isUserConsent = it
-//                    Log.d("check_contest", "onViewCreated: $isUserConsent")
-//                    if (isUserConsent) {
-//                        if (isNetworkAvailable(context)) {
-//                            adsManager = AdsManager.appAdsInit(requireActivity())
-//                            initRemoteIds()
-//                        } else {
-//                            observeSplashLiveData()
-//                        }
-//                    } else {
-//                        observeSplashLiveData()
-//                    }
-//
-//                }
 
             setupBackPressedCallback {
                 //Do Nothing
@@ -373,167 +344,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
                 Log.d("RemoteConfig", "Fetch val_inter_main_medium -> $val_inter_main_medium")
                 Log.d("RemoteConfig", "Fetch val_inter_back_press -> $val_inter_back_press")
-//                All Back Inter
-             /*   Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_password_screen_back -> $val_ad_inter_password_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_loading_screen_back -> $val_ad_inter_loading_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_main_menu_screen_back -> $val_ad_inter_main_menu_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_language_screen_back -> $val_ad_inter_language_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_sound_screen_back -> $val_ad_inter_sound_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_exit_dialog_inter_back -> $val_exit_dialog_inter_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_setting_screen_back -> $val_ad_inter_setting_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_security_screen_back -> $val_ad_inter_security_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_enable_screen_back -> $val_ad_inter_enable_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_password_screen_back -> $val_ad_inter_password_screen_back"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_list_data_screen_back -> $val_ad_inter_list_data_screen_back"
-                )
-//All Front Inter
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_password_screen_front -> $val_ad_inter_password_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_list_data_screen_front -> $val_ad_inter_list_data_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_main_menu_screen_front -> $val_ad_inter_main_menu_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_language_screen_front -> $val_ad_inter_language_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_sound_screen_front -> $val_ad_inter_sound_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_exit_dialog_inter_front -> $val_exit_dialog_inter_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_setting_screen_front -> $val_ad_inter_setting_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_security_screen_front -> $val_ad_inter_security_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_enable_screen_front -> $val_ad_inter_enable_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_password_screen_front -> $val_ad_inter_password_screen_front"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_inter_list_data_screen_front -> $val_ad_inter_list_data_screen_front"
-                )
-
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_password_screen -> $val_ad_native_password_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_list_data_screen -> $val_ad_native_list_data_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_loading_screen -> $val_ad_native_loading_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_main_menu_screen -> $val_ad_native_main_menu_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_intro_screen -> $val_ad_native_intro_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_language_screen -> $val_ad_native_language_screen"
-                )
-                Log.d(
-                    "RemoteConfig",
-                    "Fetch val_ad_native_sound_screen -> $val_ad_native_sound_screen"
-                )
-                Log.d("RemoteConfig", "Fetch val_exit_dialog_native -> $val_exit_dialog_native")
-
-                Log.d("RemoteConfig", "Fetch val_ad_app_open_screen -> $val_ad_app_open_screen")*/
-
-
-//                if (val_app_open) {
-//                    AdOpenApp(
-//                        activity?.application ?: return@addOnCompleteListener,
-//                        id_app_open_screen
-//                    )
-//                }
-                if (val_ad_app_open_screen) {
-                    loadTwoInterAds(
-                        ads = adsManager ?: return@addOnCompleteListener,
-                        activity = activity ?: return@addOnCompleteListener,
-                        remoteConfigNormal = true,
-                        adIdNormal = id_inter_main_medium,
-                        tagClass = "main_app_fragment"
-                    )
-                } else {
-//                    loadTwoInterAdsSplash(
-//                        adsManager ?: return@addOnCompleteListener,
-//                        activity ?: return@addOnCompleteListener,
-//                        remoteConfigNormal = val_ad_inter_loading_screen,
-//                        adIdNormal = id_inter_splash_Screen,
-//                        "splash"
-//                    )
-                    admobInterstitial.loadInterstitialAd(
-                        activity ?: return@addOnCompleteListener,
-                        id_inter_splash_Screen,
-                        if (val_ad_inter_loading_screen) 1 else 0,
-                        isAppPurchased = BillingUtil(
-                            activity ?: return@addOnCompleteListener
-                        ).checkPurchased(activity ?: return@addOnCompleteListener),
-                        isInternetConnected = isNetworkAvailable(activity),
-                        object : InterstitialOnLoadCallBack {
-                            override fun onAdFailedToLoad(adError: String) {}
-                            override fun onAdLoaded() {}
-                            override fun onPreloaded() {}
-                        }
-                    )
-                }
                 observeSplashLiveData()
             }
 

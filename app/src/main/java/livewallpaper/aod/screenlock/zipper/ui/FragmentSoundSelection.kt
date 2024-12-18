@@ -12,42 +12,30 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.cleversolutions.ads.AdSize
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.SoundSelectLinearAdapter
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSoundSelectionBinding
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.ZIPPER_SOUND
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.soundData
-import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_enable_screen
-import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
 class FragmentSoundSelection : Fragment() {
 
     private var sharedPrefUtils: DbHelper? = null
-    private var adsManager: AdsManager? = null
     private var adapterLinear: SoundSelectLinearAdapter? = null
     private var _binding: FragmentSoundSelectionBinding? = null
     private var mediaPlayer: MediaPlayer? = null
@@ -70,7 +58,6 @@ class FragmentSoundSelection : Fragment() {
             return
         }
         try {
-            adsManager = AdsManager.appAdsInit(activity?:requireActivity())
             sharedPrefUtils = DbHelper(context?:requireContext())
             _binding?.topLay?.title?.text = getString(R.string.select_sound)
             _binding?.run {
@@ -110,40 +97,6 @@ class FragmentSoundSelection : Fragment() {
         outState.clear()
     }
 
-/*    private fun loadNative() {
-        adsManager?.nativeAds()?.loadNativeAd(
-            activity?:requireActivity(),
-            val_ad_native_sound_screen,
-            id_native_screen,
-            object : NativeListener {
-                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                    _binding?.nativeExitAd?.visibility = View.VISIBLE
-                    _binding?.adView?.visibility = View.GONE
-                    val adView = layoutInflater.inflate(
-                        R.layout.ad_unified_privacy,
-                        null
-                    ) as NativeAdView
-                    adsManager?.nativeAds()?.nativeViewPolicy(context?:requireContext(),currentNativeAd ?: return, adView)
-                    _binding?.nativeExitAd?.removeAllViews()
-                    _binding?.nativeExitAd?.addView(adView)
-                    super.nativeAdLoaded(currentNativeAd)
-                }
-
-                override fun nativeAdFailed(loadAdError: LoadAdError) {
-                    _binding?.nativeExitAd?.visibility = View.GONE
-                    _binding?.adView?.visibility = View.GONE
-                    super.nativeAdFailed(loadAdError)
-                }
-
-                override fun nativeAdValidate(string: String) {
-                    _binding?.nativeExitAd?.visibility = View.GONE
-                    _binding?.adView?.visibility = View.GONE
-                    super.nativeAdValidate(string)
-                }
-            })
-
-
-    }*/
 
     private fun loadBanner(){
         when (type_ad_native_sound_screen) {
@@ -158,13 +111,37 @@ class FragmentSoundSelection : Fragment() {
 
             2 -> {
 
+                AdmobNative().loadNativeAds(
+                    activity,
+                    _binding?.nativeExitAd!!,
+                    id_native_screen,
+                    if (val_ad_native_sound_screen)
+                        1 else 0,
+                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
+                    isInternetConnected = isNetworkAvailable(activity),
+                    nativeType = NativeType.LARGE,
+                    nativeCallBack = object : NativeCallBack {
+                        override fun onAdFailedToLoad(adError: String) {
+                            _binding?.adView?.visibility = View.GONE
+                            _binding?.nativeExitAd?.visibility = View.GONE
+                        }
+
+                        override fun onAdLoaded() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+
+                        override fun onAdImpression() {
+                            _binding?.adView?.visibility = View.GONE
+                        }
+                    }
+                )
             }
         }
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
         _binding?.nativeExitAd?.apply {
-            if (!isAdsShow) {
+            if   (!isAdsShow || !isNetworkAvailable(context)) {
                 visibility = View.INVISIBLE
                 _binding?.adView?.visibility = View.INVISIBLE
                 return

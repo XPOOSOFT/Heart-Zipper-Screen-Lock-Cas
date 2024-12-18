@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_manager.billing
+package livewallpaper.aod.screenlock.zipper.ads_cam.billing
 
 import android.content.Context
 import android.content.SharedPreferences

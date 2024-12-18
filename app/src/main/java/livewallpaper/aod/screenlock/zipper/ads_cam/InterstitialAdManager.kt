@@ -10,13 +10,11 @@ import com.cleversolutions.ads.AdType
 import com.cleversolutions.ads.LoadingManagerMode
 import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.ads_manager.loadTwoInterAds
 import livewallpaper.aod.screenlock.zipper.utilities.counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 
 class InterstitialAdManager(
     private val context: Context,

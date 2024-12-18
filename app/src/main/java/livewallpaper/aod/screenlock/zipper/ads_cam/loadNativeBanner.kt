@@ -10,6 +10,7 @@ import com.cleversolutions.ads.AdSize
 import com.cleversolutions.ads.AdViewListener
 import com.cleversolutions.ads.android.CAS.manager
 import com.cleversolutions.ads.android.CASBannerView
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 
 fun ViewGroup.loadNativeBanner(
     context: Context?,
@@ -20,10 +21,11 @@ fun ViewGroup.loadNativeBanner(
     onAdPresented: ((AdImpression) -> Unit)? = null,
     onAdClicked: (() -> Unit)? = null
 ) {
-    if (!isAdsShow) {
-        this.visibility = View.INVISIBLE
-        return
-    }
+//    if   (!isAdsShow || !isNetworkAvailable(context)) {
+//        this.visibility = View.INVISIBLE
+//        onAdFailed?.invoke()
+//        return
+//    }
 
     val bannerView = CASBannerView(context ?: return, manager).apply {
         size = adSize?:return

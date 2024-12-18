@@ -11,14 +11,16 @@ import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.RequestConfiguration
+import com.google.android.gms.ads.nativead.NativeAd
 import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 
 class MyApplication : Application() {
     companion object {
         const val TAG = "CAS Sample"
         const val CAS_ID = "demo"
-
+        const val NativeAdsId = "ca-app-pub-3940256099942544/2247696110"
         lateinit var adManager: MediationManager
+        var preloadNativeAd: NativeAd? = null
     }
     private lateinit var appOpenManager: AppOpenManager
     override fun onCreate() {
@@ -68,4 +70,7 @@ class MyApplication : Application() {
             .build(this)
     }
 
+    fun isDebug(): Boolean {
+        return BuildConfig.BUILD_TYPE == "debug"
+    }
 }

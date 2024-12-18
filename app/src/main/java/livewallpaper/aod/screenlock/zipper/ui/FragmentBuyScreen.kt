@@ -11,13 +11,11 @@ import com.hypersoft.billing.dataClasses.ProductType
 import com.hypersoft.billing.dataClasses.PurchaseDetail
 import com.hypersoft.billing.interfaces.BillingListener
 import com.hypersoft.billing.interfaces.OnPurchaseListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.BuildConfig.DEBUG
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_manager.billing.PurchasePrefs
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.PurchasePrefs
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentPremiumScreenBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle

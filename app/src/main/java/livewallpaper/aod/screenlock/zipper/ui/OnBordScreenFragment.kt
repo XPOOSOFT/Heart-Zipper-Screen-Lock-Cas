@@ -2,13 +2,9 @@ package livewallpaper.aod.screenlock.zipper.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager.widget.ViewPager.OnPageChangeListener
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.google.android.gms.ads.LoadAdError
-import com.google.android.gms.ads.nativead.NativeAd
-import com.google.android.gms.ads.nativead.NativeAdView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -16,18 +12,21 @@ import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.OnBordScreenAdapter
+import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.AdsManager
-import livewallpaper.aod.screenlock.zipper.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
+import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
+import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentMainIntroBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
 import livewallpaper.aod.screenlock.zipper.utilities.IS_INTRO
-import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 
 
 class OnBordScreenFragment :
@@ -36,8 +35,7 @@ class OnBordScreenFragment :
     var currentpage = 0
     private var onBordScreenAdapter: OnBordScreenAdapter? = null
     private var sharedPrefUtils: DbHelper? = null
-//    private var ads: AdsManager? = null
-private var interstitialAdManager: InterstitialAdManager? = null
+    private var interstitialAdManager: InterstitialAdManager? = null
 
     private var viewListener: OnPageChangeListener = object : OnPageChangeListener {
         override fun onPageScrolled(i: Int, v: Float, i1: Int) {
@@ -107,48 +105,30 @@ private var interstitialAdManager: InterstitialAdManager? = null
 
 
     private fun loadNative() {
-      /*  ads?.nativeAds()?.loadNativeAd(
-            activity ?: return,
-            val_ad_native_intro_screen,
+        AdmobNative().loadNativeAds(
+            activity,
+            _binding?.nativeExitAd!!,
             id_native_screen,
-            object : NativeListener {
-                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-                    if (isAdded && isVisible && !isDetached) {
-                        _binding?.nativeExitAd?.visibility = View.VISIBLE
-                        _binding?.nextApp?.visibility = View.VISIBLE
-                        _binding?.adView?.visibility = View.GONE
-                        val adView =
-                            layoutInflater.inflate(
-                                R.layout.ad_unified_privacy,
-                                null
-                            ) as NativeAdView
-                        ads?.nativeAds()
-                            ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
-                        _binding?.nativeExitAd?.removeAllViews()
-                        _binding?.nativeExitAd?.addView(adView)
-                    }
-                    super.nativeAdLoaded(currentNativeAd)
+            if (val_ad_native_intro_screen)
+                1 else 0,
+            isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
+            isInternetConnected = isNetworkAvailable(activity),
+            nativeType = NativeType.LARGE,
+            nativeCallBack = object : NativeCallBack {
+                override fun onAdFailedToLoad(adError: String) {
+                    _binding?.adView?.visibility = View.GONE
+                    _binding?.nativeExitAd?.visibility = View.GONE
                 }
 
-                override fun nativeAdFailed(loadAdError: LoadAdError) {
-                    if (isAdded && isVisible && !isDetached) {
-                        _binding?.nextApp?.visibility = View.VISIBLE
-                        _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                        _binding?.adView?.visibility = View.INVISIBLE
-                    }
-                    super.nativeAdFailed(loadAdError)
+                override fun onAdLoaded() {
+                    _binding?.adView?.visibility = View.GONE
                 }
 
-                override fun nativeAdValidate(string: String) {
-                    if (isAdded && isVisible && !isDetached) {
-                        _binding?.nextApp?.visibility = View.VISIBLE
-                        _binding?.nativeExitAd?.visibility = View.INVISIBLE
-                        _binding?.adView?.visibility = View.INVISIBLE
-                    }
-                    super.nativeAdValidate(string)
+                override fun onAdImpression() {
+                    _binding?.adView?.visibility = View.GONE
                 }
-            })*/
-
+            }
+        )
     }
 
     override fun onResume() {
@@ -176,7 +156,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
 
 
     private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if (!isAdsShow) {
+        if   (!isAdsShow || !isNetworkAvailable(context)) {
             return
         }
         // Initialize the InterstitialAdManager
@@ -185,7 +165,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
         interstitialAdManager?.loadAd(isAdsShow)
     }
 
-    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
+    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
         if (interstitialAdManager == null) {
             function.invoke()
             return
