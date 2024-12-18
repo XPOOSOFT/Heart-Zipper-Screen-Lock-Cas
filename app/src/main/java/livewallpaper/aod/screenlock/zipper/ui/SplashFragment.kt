@@ -29,18 +29,12 @@ import livewallpaper.aod.screenlock.zipper.utilities.banner_height
 import livewallpaper.aod.screenlock.zipper.utilities.banner_type
 import livewallpaper.aod.screenlock.zipper.utilities.counter
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
-import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
-import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_screen
-import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_splash_Screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_reward
-import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
@@ -203,13 +197,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         banner_height = remoteConfig.getLong("banner_height").toInt()
         banner_type = remoteConfig.getLong("banner_type").toInt()
 
-        id_inter_main_medium = remoteConfig.getString("id_inter_main_medium")
-        id_native_screen = remoteConfig.getString("id_native_screen")
-        id_adaptive_banner = remoteConfig.getString("id_adaptive_banner")
-        id_app_open_screen = remoteConfig.getString("id_app_open_screen")
-        id_inter_splash_Screen = remoteConfig.getString("id_inter_splash_Screen")
-        id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
-        id_splash_native = remoteConfig.getString("id_splash_native")
+        id_native_screen = "ca-app-pub-6480664593997158/1302287071"
+//        id_inter_main_medium = remoteConfig.getString("id_inter_main_medium")
+//        id_native_screen = remoteConfig.getString("id_native_screen")
+//        id_adaptive_banner = remoteConfig.getString("id_adaptive_banner")
+//        id_app_open_screen = remoteConfig.getString("id_app_open_screen")
+//        id_inter_splash_Screen = remoteConfig.getString("id_inter_splash_Screen")
+//        id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
+//        id_splash_native = remoteConfig.getString("id_splash_native")
         id_reward = remoteConfig.getString("id_reward")
         apiKey = remoteConfig.getString("apiKey")
         Wallpaper_Cat = remoteConfig.getString("Wallpaper_Cat")
