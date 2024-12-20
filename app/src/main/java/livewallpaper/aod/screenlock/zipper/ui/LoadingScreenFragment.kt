@@ -174,6 +174,10 @@ class LoadingScreenFragment :
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
+        if(!isAdsShow){
+            _binding?.adView?.visibility = View.INVISIBLE
+            _binding?.nativeExitAd?.visibility = View.INVISIBLE
+        }
         AdmobNative().loadNativeAds(
             activity,
             _binding?.nativeExitAd!!,
@@ -185,21 +189,20 @@ class LoadingScreenFragment :
             nativeType = NativeType.LARGE,
             nativeCallBack = object : NativeCallBack {
                 override fun onAdFailedToLoad(adError: String) {
-                    _binding?.adView?.visibility = View.GONE
-                    _binding?.nativeExitAd?.visibility = View.GONE
+                    _binding?.adView?.visibility = View.INVISIBLE
+                    _binding?.nativeExitAd?.visibility = View.INVISIBLE
                 }
 
                 override fun onAdLoaded() {
-                    _binding?.adView?.visibility = View.GONE
+                    _binding?.adView?.visibility = View.INVISIBLE
                 }
 
                 override fun onAdImpression() {
-                    _binding?.adView?.visibility = View.GONE
+                    _binding?.adView?.visibility = View.INVISIBLE
                 }
             }
         )
     }
-
 
     override fun onPause() {
         super.onPause()

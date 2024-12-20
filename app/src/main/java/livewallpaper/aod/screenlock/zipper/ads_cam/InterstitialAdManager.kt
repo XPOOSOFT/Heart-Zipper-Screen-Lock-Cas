@@ -54,12 +54,12 @@ class InterstitialAdManager(
         if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
-                function.invoke()
             })
         } else {
-            function.invoke()
             Log.e(TAG, "Interstitial Ad not ready to show")
         }
+        function.invoke()
+
     }
 
     // Function to show the interstitial ad
@@ -67,12 +67,12 @@ class InterstitialAdManager(
         if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
-                function.invoke()
+
             })
         } else {
-            function.invoke()
             Log.e(TAG, "Interstitial Ad not ready to show")
         }
+        function.invoke()
     }
 
     // Private function to set up Ad load callback
