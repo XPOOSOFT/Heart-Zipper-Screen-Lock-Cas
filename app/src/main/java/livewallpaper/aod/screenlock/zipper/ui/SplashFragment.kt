@@ -1,11 +1,16 @@
 package livewallpaper.aod.screenlock.zipper.ui
 
+import android.app.Activity
+import android.app.Application.ActivityLifecycleCallbacks
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.cleversolutions.ads.AdType
+import com.cleversolutions.ads.ConsentFlow
+import com.cleversolutions.ads.android.CAS
 import com.google.firebase.FirebaseApp
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
@@ -14,7 +19,12 @@ import com.google.firebase.remoteconfig.ktx.get
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import kotlinx.coroutines.delay
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.CAS_ID
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.SaveWallpaper
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -107,34 +117,49 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     private var dbHelper: DbHelper? = null
     private var remoteConfig: FirebaseRemoteConfig? = null
 
-    companion object {
-        var isUserConsent = false
-        var consentListener: ((consent: Boolean) -> Unit?)? = null
-    }
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            isSplash = false
-            isRating = true
-            counter = 0
-            inter_frequency_count = 0
-            dbHelper = DbHelper(context ?: return@launchWhenStarted)
-            dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
 
-            if (LoadPref("firstTime", context ?: return@launchWhenStarted) == 0) {
-                SavePref("firstTime", "1", context ?: return@launchWhenStarted)
-                SavePref(SpeedActivePref, "350", context ?: return@launchWhenStarted)
-                SaveWallpaper(context ?: return@launchWhenStarted, 7)
-            }
+            // Initialize SDK
+            adManager = CAS.buildManager()
+                .withManagerId(CAS_ID)
+                .withTestAdMode(BuildConfig.DEBUG)
+                .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native, AdType.Rewarded)
+                .withConsentFlow(
+                    ConsentFlow(isEnabled = true)
+                        .withDismissListener {
+                            Log.d(TAG, "Consent flow dismissed")
+                            observeSplashLiveData()
+                        }
+                )
+                .withCompletionListener {
+                    if (it.error == null) {
+                        Log.d(TAG, "Ad manager initialized")
+                        // Initialize App Open Manager
+                        isSplash = false
+                        isRating = true
+                        counter = 0
+                        inter_frequency_count = 0
+                        dbHelper = DbHelper(context ?: return@withCompletionListener)
+                        dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
 
-            if (isNetworkAvailable(context)) {
-                initRemoteIds()
-            } else {
-                observeSplashLiveData()
-            }
-
+                        if (LoadPref("firstTime", context ?: return@withCompletionListener) == 0) {
+                            SavePref("firstTime", "1", context ?: return@withCompletionListener)
+                            SavePref(SpeedActivePref, "350", context ?: return@withCompletionListener)
+                            SaveWallpaper(context ?: return@withCompletionListener, 7)
+                        }
+                        if (isNetworkAvailable(context)) {
+                            initRemoteIds()
+                        } else {
+                            observeSplashLiveData()
+                        }
+                    } else {
+                        observeSplashLiveData()
+                        Log.d(TAG, "Ad manager initialization failed: " + it.error)
+                    }
+                }
+                .build(context?:return@launchWhenStarted)
             setupBackPressedCallback {
                 //Do Nothing
             }

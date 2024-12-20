@@ -2,20 +2,28 @@ package livewallpaper.aod.screenlock.zipper.ads_cam
 
 import android.app.Activity
 import android.app.Application
+import android.app.Application.ActivityLifecycleCallbacks
+import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.OnLifecycleEvent
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.cleversolutions.ads.AdCallback
 import com.cleversolutions.ads.AdError
 import com.cleversolutions.ads.AdStatusHandler
 import com.cleversolutions.ads.CASAppOpen
 import com.cleversolutions.ads.LoadAdCallback
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.val_app_open
 
-class AppOpenManager(private val application: Application, private val casId: String) {
+class AppOpenManager(private val application: Application, private val casId: String) :
+    ActivityLifecycleCallbacks, LifecycleObserver {
 
     private var appOpenAd: CASAppOpen? = null
     private var isVisibleAppOpenAd: Boolean = false
     private val tag = "AppOpenManager"
+    private var currentActivity: Activity? = null
 
     init {
         // Initialize the App Open Ad
@@ -36,20 +44,21 @@ class AppOpenManager(private val application: Application, private val casId: St
 
                 override fun onClosed() {
                     Log.d(tag, "App Open Ad closed")
+                    loadAd(val_app_open)
                     isVisibleAppOpenAd = false
                 }
             }
         }
         loadAd(val_app_open)
+        application.registerActivityLifecycleCallbacks(this)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
-
-    fun loadAd( isLoadingAppResources: Boolean) {
+    fun loadAd(isLoadingAppResources: Boolean) {
         appOpenAd?.loadAd(application, object : LoadAdCallback {
             override fun onAdLoaded() {
                 Log.d(tag, "App Open Ad loaded")
                 if (isLoadingAppResources) {
                     isVisibleAppOpenAd = true
-//                    appOpenAd?.show(activity)
                 }
             }
 
@@ -63,8 +72,30 @@ class AppOpenManager(private val application: Application, private val casId: St
         if (isVisibleAppOpenAd) {
             appOpenAd?.show(activity)
         } else {
-//            loadAd(true)
+            loadAd(val_app_open)
             Log.d(tag, "App Open Ad is not ready to show")
         }
     }
+
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
+        currentActivity = activity}
+    override fun onActivityStarted(activity: Activity) {
+        currentActivity = activity
+    }
+    override fun onActivityResumed(p0: Activity) {
+        Log.d("onActivityResumed", "onActivityResumed: $p0")
+        currentActivity = p0
+//        currentActivity?.let { showAdIfAvailable(it) }
+    }
+    @OnLifecycleEvent(Lifecycle.Event.ON_START)
+    fun onStart() {
+        currentActivity?.let { showAdIfAvailable(it) }
+    }
+    override fun onActivityPaused(activity: Activity) {}
+    override fun onActivityStopped(activity: Activity) {}
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+    override fun onActivityDestroyed(activity: Activity) {
+        currentActivity = null
+    }
+
 }

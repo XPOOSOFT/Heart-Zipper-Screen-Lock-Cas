@@ -21,8 +21,8 @@ class MyApplication : Application() {
         const val NativeAdsId = "ca-app-pub-3940256099942544/2247696110"
         lateinit var adManager: MediationManager
         var preloadNativeAd: NativeAd? = null
+        lateinit var appOpenManager: AppOpenManager
     }
-    private lateinit var appOpenManager: AppOpenManager
     override fun onCreate() {
         super.onCreate()
 
@@ -33,41 +33,45 @@ class MyApplication : Application() {
         // Set Manual loading mode to disable auto requests
         //CAS.settings.loadingMode = LoadingManagerMode.Manual
 
-        // Initialize SDK
-        adManager = CAS.buildManager()
-            .withManagerId(CAS_ID)
-            .withTestAdMode(BuildConfig.DEBUG)
-            .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native, AdType.Rewarded)
-            .withConsentFlow(
-                ConsentFlow(isEnabled = true)
-                    .withDismissListener {
-                        Log.d(TAG, "Consent flow dismissed")
-                    }
-            )
-            .withCompletionListener {
-                if (it.error == null) {
-                    Log.d(TAG, "Ad manager initialized")
-                    // Initialize App Open Manager
-                    appOpenManager = AppOpenManager(this, CAS_ID)
+        appOpenManager =AppOpenManager(this, CAS_ID)
+        // Register activity lifecycle callbacks
 
-                    // Register activity lifecycle callbacks
-                    registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-                        override fun onActivityResumed(activity: Activity) {
-                            appOpenManager.showAdIfAvailable(activity)
-                        }
 
-                        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
-                        override fun onActivityStarted(activity: Activity) {}
-                        override fun onActivityPaused(activity: Activity) {}
-                        override fun onActivityStopped(activity: Activity) {}
-                        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-                        override fun onActivityDestroyed(activity: Activity) {}
-                    })
-                } else {
-                    Log.d(TAG, "Ad manager initialization failed: " + it.error)
-                }
-            }
-            .build(this)
+//        // Initialize SDK
+//        adManager = CAS.buildManager()
+//            .withManagerId(CAS_ID)
+//            .withTestAdMode(BuildConfig.DEBUG)
+//            .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native, AdType.Rewarded)
+//            .withConsentFlow(
+//                ConsentFlow(isEnabled = true)
+//                    .withDismissListener {
+//                        Log.d(TAG, "Consent flow dismissed")
+//                    }
+//            )
+//            .withCompletionListener {
+//                if (it.error == null) {
+//                    Log.d(TAG, "Ad manager initialized")
+//                    // Initialize App Open Manager
+//                    appOpenManager = AppOpenManager(this, CAS_ID)
+//
+//                    // Register activity lifecycle callbacks
+//                    registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+//                        override fun onActivityResumed(activity: Activity) {
+//                            appOpenManager.showAdIfAvailable(activity)
+//                        }
+//
+//                        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
+//                        override fun onActivityStarted(activity: Activity) {}
+//                        override fun onActivityPaused(activity: Activity) {}
+//                        override fun onActivityStopped(activity: Activity) {}
+//                        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
+//                        override fun onActivityDestroyed(activity: Activity) {}
+//                    })
+//                } else {
+//                    Log.d(TAG, "Ad manager initialization failed: " + it.error)
+//                }
+//            }
+//            .build(this)
     }
 
     fun isDebug(): Boolean {

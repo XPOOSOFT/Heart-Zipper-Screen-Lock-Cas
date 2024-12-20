@@ -3,6 +3,40 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("com.cleveradssolutions.gradle-plugin")
+}
+
+cas {
+    useAdvertisingId = true
+    adapters {
+        googleAds = true
+        ironSource = true
+        appLovin = true
+        audienceNetwork = true
+        bigoAds = true
+        casExchange = true
+        chartboost = true
+        crossPromo = true
+        dtExchange = true
+        hyprMX = true
+        inMobi = true
+        kidoz = true
+        liftoffMonetize = true
+        loopMe = true
+        madex = true
+        mintegral = true
+        myTarget = true
+        pangle = true
+//        smaato = true
+//        startIO = true
+//        superAwesome = true
+        unityAds = true
+        yandexAds = true
+        // Include more adapters here
+    }
+    // Instead of defining each adapter separately,
+    // you can simply include the list of recommended adapters in one line:
+    //includeOptimalAds = true
 }
 
 android {
@@ -12,8 +46,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 34
-        versionCode = 71
-        versionName = "25.1"
+        versionCode = 73
+        versionName = "25.3"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")
     }
@@ -29,7 +63,7 @@ android {
         release {
             isMinifyEnabled = false
             isShrinkResources = false
-            resValue ("string", "app_id", "ca-app-pub-9263479717968951~3775848424")
+            resValue ("string", "app_id", "ca-app-pub-6480664593997158~3660850936")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -120,5 +154,9 @@ dependencies {
     // Pangle Mediation
 //    implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
     implementation ("com.cleveradssolutions:cas-sdk:3.9.7")
+//    implementation("com.cleveradssolutions:smaato:22.7.1.0")
+//    implementation("com.cleveradssolutions:startio:5.1.0.0")
+
+
 }
 

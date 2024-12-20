@@ -38,6 +38,19 @@ dependencyResolutionManagement {
              url = uri("https://cboost.jfrog.io/artifactory/chartboost-ads/")
             content { includeGroup("com.chartboost") }
         }
+        maven {
+            name = "SmaatoAdsRepo"
+             url = uri("https://s3.amazonaws.com/smaato-sdk-releases/")
+            content { includeGroup("com.smaato.android.sdk") }
+        }
+        maven {
+            name = "MadexAdsRepo"
+             url = uri("https://sdkpkg.sspnet.tech")
+            content {
+                includeGroup("sspnet.tech")
+                includeGroup("sspnet.tech.adapters")
+            }
+        }
     }
 }
 

@@ -7,9 +7,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import kotlinx.coroutines.delay
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.CAS_ID
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
+import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.appOpenManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
+import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
 import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
@@ -73,9 +76,12 @@ class LoadingScreenFragment :
             lifecycleScope.launchWhenCreated {
                 delay(3000)
                 if (val_ad_app_open_screen) {
-
+                    appOpenManager.showAdIfAvailable(activity?:return@launchWhenCreated)
+                    moveToNext()
                 } else {
-
+                    showCASInterstitial(val_ad_inter_loading_screen) {
+                        moveToNext()
+                    }
                 }
 
             }
@@ -90,7 +96,8 @@ class LoadingScreenFragment :
                 return@setOnClickListener
             }
             if (val_ad_app_open_screen) {
-
+                appOpenManager.showAdIfAvailable(activity?:return@setOnClickListener)
+                moveToNext()
             } else {
                 showCASInterstitial(val_ad_inter_loading_screen) {
                     moveToNext()
@@ -193,10 +200,6 @@ class LoadingScreenFragment :
         )
     }
 
-    private fun toggleVisibility(view: View?, isVisible: Boolean) {
-        _binding?.adView?.visibility = View.INVISIBLE
-        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-    }
 
     override fun onPause() {
         super.onPause()
