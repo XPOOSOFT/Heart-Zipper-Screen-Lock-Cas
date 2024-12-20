@@ -24,7 +24,6 @@ import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.CAS_ID
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentSplashBinding
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.SaveWallpaper
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment

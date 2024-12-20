@@ -27,6 +27,8 @@ class AppOpenManager(private val application: Application, private val casId: St
 
     init {
         // Initialize the App Open Ad
+        application.registerActivityLifecycleCallbacks(this)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
         appOpenAd = CASAppOpen.create(casId).apply {
             contentCallback = object : AdCallback {
                 override fun onShown(ad: AdStatusHandler) {
@@ -50,8 +52,6 @@ class AppOpenManager(private val application: Application, private val casId: St
             }
         }
         loadAd(val_app_open)
-        application.registerActivityLifecycleCallbacks(this)
-        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
     fun loadAd(isLoadingAppResources: Boolean) {
         appOpenAd?.loadAd(application, object : LoadAdCallback {

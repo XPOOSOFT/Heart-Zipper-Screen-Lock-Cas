@@ -28,8 +28,8 @@ cas {
         myTarget = true
         pangle = true
 //        smaato = true
-//        startIO = true
-//        superAwesome = true
+        startIO = true
+        superAwesome = true
         unityAds = true
         yandexAds = true
         // Include more adapters here

@@ -12,7 +12,6 @@ import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.appOpenManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
 import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
@@ -177,6 +176,7 @@ class LoadingScreenFragment :
         if(!isAdsShow){
             _binding?.adView?.visibility = View.INVISIBLE
             _binding?.nativeExitAd?.visibility = View.INVISIBLE
+            return
         }
         AdmobNative().loadNativeAds(
             activity,

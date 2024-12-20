@@ -17,7 +17,8 @@ import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 class MyApplication : Application() {
     companion object {
         const val TAG = "CAS Sample"
-        const val CAS_ID = "demo"
+//        const val CAS_ID = "demo"
+        const val CAS_ID = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         const val NativeAdsId = "ca-app-pub-3940256099942544/2247696110"
         lateinit var adManager: MediationManager
         var preloadNativeAd: NativeAd? = null
@@ -27,7 +28,7 @@ class MyApplication : Application() {
         super.onCreate()
 
         // Set Ads Settings
-        CAS.settings.debugMode = BuildConfig.DEBUG
+        CAS.settings.debugMode = false
         CAS.settings.taggedAudience = Audience.NOT_CHILDREN
 
         // Set Manual loading mode to disable auto requests

@@ -291,7 +291,7 @@ class FragmentNavigationScreen :
     private fun loadBanner(isAdsShow: Boolean) {
         _binding?.adsView?.apply {
             if   (!isAdsShow || !isNetworkAvailable(context)) {
-                visibility = View.INVISIBLE
+                _binding?.adsView?.visibility = View.INVISIBLE
                 _binding?.adView?.visibility = View.INVISIBLE
                 return
             }
@@ -309,6 +309,7 @@ class FragmentNavigationScreen :
     }
 
     private fun toggleVisibility(view: View?, isVisible: Boolean) {
+        _binding?.adView?.visibility = View.INVISIBLE
         view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
