@@ -42,8 +42,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
     private var sharedPrefUtils: DbHelper? = null
     private var languageGridAdapter: LanguageGridAdapter? = null
     var list: ArrayList<LanguageModel>? = null
-
-    //    private var adsManager: AdsManager? = null
     private var interstitialAdManager: InterstitialAdManager? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -55,7 +53,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             positionSelected =
                 sharedPrefUtils?.getStringData(requireContext(), LANG_CODE, "en") ?: "en"
             initializeData()
-//            adsManager = AdsManager.appAdsInit(activity ?: return)
+            loadCASInterstitial(val_ad_inter_language_screen)
             arguments?.let {
                 isLangScreen = it.getBoolean(LANG_SCREEN)
             }
@@ -90,26 +88,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                         }
 
                     }
-                    /*      adsManager?.let {
-                              showTwoInterAd(
-                                  ads = it,
-                                  activity = activity ?: requireActivity(),
-                                  remoteConfigNormal = val_ad_inter_language_screen,
-                                  adIdNormal = id_inter_main_medium,
-                                  tagClass = "language_first",
-                                  isBackPress = true,
-                                  layout = _binding?.adsLay ?: return@let
-                              ) {
-                                  if (PurchasePrefs(context).getBoolean("inApp") || !val_is_inapp_splash) {
-                                      findNavController().navigate(R.id.myMainMenuFragment)
-                                  } else {
-                                      findNavController().navigate(
-                                          R.id.FragmentBuyScreen,
-                                          bundleOf("isSplash" to true)
-                                      )
-                                  }
-                              }
-                          }*/
                 }
             }
 
@@ -342,7 +320,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
             function.invoke()
             return
         }
-        interstitialAdManager?.showAd(isAdsShow) {
+        interstitialAdManager?.showAdSplash(isAdsShow) {
             function.invoke()
         }
     }

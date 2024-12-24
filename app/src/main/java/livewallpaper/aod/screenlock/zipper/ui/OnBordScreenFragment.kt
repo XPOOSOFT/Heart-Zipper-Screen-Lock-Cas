@@ -46,7 +46,6 @@ class OnBordScreenFragment :
                 _binding?.skipApp?.visibility = View.INVISIBLE
                 _binding?.nextApp?.text = getString(R.string.finish)
             } else {
-                _binding?.skipApp?.visibility = View.VISIBLE
                 _binding?.nextApp?.text = getString(R.string.next)
             }
         }
@@ -117,15 +116,18 @@ class OnBordScreenFragment :
             nativeCallBack = object : NativeCallBack {
                 override fun onAdFailedToLoad(adError: String) {
                     _binding?.adView?.visibility = View.GONE
+                    _binding?.skipApp?.visibility = View.VISIBLE
                     _binding?.nativeExitAd?.visibility = View.GONE
                 }
 
                 override fun onAdLoaded() {
                     _binding?.adView?.visibility = View.GONE
+                    _binding?.skipApp?.visibility = View.VISIBLE
                 }
 
                 override fun onAdImpression() {
                     _binding?.adView?.visibility = View.GONE
+                    _binding?.skipApp?.visibility = View.VISIBLE
                 }
             }
         )
@@ -135,7 +137,7 @@ class OnBordScreenFragment :
         super.onResume()
         CoroutineScope(Dispatchers.Main).launch {
             delay(3000)
-            _binding?.nextApp?.visibility = View.VISIBLE
+            _binding?.skipApp?.visibility = View.VISIBLE
         }
     }
 

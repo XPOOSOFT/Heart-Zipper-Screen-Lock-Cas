@@ -50,7 +50,6 @@ class LoadingScreenFragment :
         isSplash = true
         counter = 0
         inter_frequency_count = 0
-        loadCASInterstitial(val_ad_inter_loading_screen)
         dbHelper = DbHelper(context ?: return)
         firebaseAnalytics("loading_fragment_open", "loading_fragment_open -->  Click")
         dbHelper?.getStringData(requireContext(), LANG_CODE, "en")?.let { setLocaleMain(it) }
@@ -58,6 +57,9 @@ class LoadingScreenFragment :
             DataBasePref.SavePref("firstTime", "1", context ?: return)
             DataBasePref.SavePref(ConstantValues.SpeedActivePref, "350", context ?: return)
             AppAdapter.SaveWallpaper(context ?: return, 7)
+        }
+        if (!val_ad_app_open_screen) {
+            loadCASInterstitial(val_ad_inter_loading_screen)
         }
         if (isFlowOne) {
             lifecycleScope.launchWhenCreated {
@@ -81,6 +83,8 @@ class LoadingScreenFragment :
                     showCASInterstitial(val_ad_inter_loading_screen) {
                         moveToNext()
                     }
+
+
                 }
 
             }

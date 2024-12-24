@@ -15,15 +15,14 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 
 class InterstitialAdManager(
     private val context: Context,
     private val manager: MediationManager
 ) {
 
-    companion object {
-        private const val TAG = "InterstitialAdManager"
-    }
+        private  val TAG = "InterstitialAdManager"
 
     init {
         setupAdLoadCallback()
@@ -67,7 +66,6 @@ class InterstitialAdManager(
         if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
-
             })
         } else {
             Log.e(TAG, "Interstitial Ad not ready to show")
@@ -103,6 +101,7 @@ class InterstitialAdManager(
 
         return object : AdPaidCallback {
             override fun onShown(ad: AdImpression) {
+                isSplash=false
                 id_inter_counter++
                 function.invoke()
                 Log.d(TAG, "Ad shown from ${ad.network}")
@@ -114,6 +113,7 @@ class InterstitialAdManager(
             }
 
             override fun onShowFailed(message: String) {
+                isSplash=true
                 function.invoke()
                 Log.e(TAG, "Failed to show Ad: $message")
             }
@@ -123,6 +123,7 @@ class InterstitialAdManager(
             }
 
             override fun onClosed() {
+                isSplash=true
                 Log.d(TAG, "Ad closed")
             }
         }

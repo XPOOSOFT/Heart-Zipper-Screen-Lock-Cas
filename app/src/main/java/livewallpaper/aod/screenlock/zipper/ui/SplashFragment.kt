@@ -114,6 +114,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding::inflate) {
 
     private var dbHelper: DbHelper? = null
+
     private var remoteConfig: FirebaseRemoteConfig? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -168,7 +169,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
     private fun observeSplashLiveData() {
         try {
             lifecycleScope.launchWhenCreated {
-                delay(6000)
                 firebaseAnalytics("splash_fragment_load", "splash_fragment_load -->  Click")
                 findNavController().navigate(R.id.myLoadingFragment)
             }
@@ -309,8 +309,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                     remoteConfig!!["val_ad_app_open_splash_screen"].asBoolean()
                 val_ad_inter_main_menu_screen_back =
                     remoteConfig!!["val_ad_inter_main_menu_screen_back"].asBoolean()
-                val_ad_inter_language_screen =
-                    remoteConfig!!["val_ad_inter_language_screen_back"].asBoolean()
                 val_ad_inter_sound_screen_back =
                     remoteConfig!!["val_ad_inter_sound_screen_back"].asBoolean()
                 val_exit_dialog_inter_back =

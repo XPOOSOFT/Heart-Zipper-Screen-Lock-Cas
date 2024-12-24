@@ -69,6 +69,9 @@ class AppOpenManager(private val application: Application, private val casId: St
     }
 
     fun showAdIfAvailable(activity: Activity) {
+        if(!isSplash) {
+        return
+        }
         if (isVisibleAppOpenAd) {
             appOpenAd?.show(activity)
         } else {
@@ -89,7 +92,10 @@ class AppOpenManager(private val application: Application, private val casId: St
     }
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
     fun onStart() {
-        currentActivity?.let { showAdIfAvailable(it) }
+
+        Log.d(tag, "App Open Ad is not ready to show $isSplash")
+            currentActivity?.let { showAdIfAvailable(it) }
+
     }
     override fun onActivityPaused(activity: Activity) {}
     override fun onActivityStopped(activity: Activity) {}
