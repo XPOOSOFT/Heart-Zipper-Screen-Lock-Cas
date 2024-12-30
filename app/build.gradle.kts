@@ -10,7 +10,7 @@ cas {
     useAdvertisingId = true
     adapters {
         googleAds = true
-        ironSource = true
+//        ironSource = true
         appLovin = true
         audienceNetwork = true
         bigoAds = true
@@ -153,7 +153,7 @@ dependencies {
 //    implementation  ("com.google.ads.mediation:facebook:6.18.0.0")
     // Pangle Mediation
 //    implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
-    implementation ("com.cleveradssolutions:cas-sdk:3.9.7")
+    implementation ("com.cleveradssolutions:cas-sdk:3.9.8")
 //    implementation("com.cleveradssolutions:smaato:22.7.1.0")
 //    implementation("com.cleveradssolutions:startio:5.1.0.0")
 

@@ -9,7 +9,6 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven { url = uri("https://jitpack.io")  }
         maven { url = uri("https://artifact.bytedance.com/repository/pangle")  }

@@ -76,7 +76,7 @@ class WallpaperFragment : Fragment() {
         }
         _binding?.topLay?.title?.text = getString(R.string.k_wallpaper_new)
         loadBanner()
-        RewardedAdManager(adManager).initializeRewardedAd()
+        RewardedAdManager(adManager?:return).initializeRewardedAd()
         setupRecyclerView(view)
     }
 
@@ -119,15 +119,15 @@ class WallpaperFragment : Fragment() {
                         )
                     },
                     onWatchAds = { ->
-                        if (!adManager.isRewardedAdReady) {
+                        if (!(adManager?.isRewardedAdReady?:return@showAdsDialog)) {
                             showToast(
                                 context ?: requireContext(),
                                 getString(R.string.try_agin_ad_not_load)
                             )
-                            RewardedAdManager(adManager).initializeRewardedAd()
+                            RewardedAdManager(adManager?:return@showAdsDialog).initializeRewardedAd()
                             return@showAdsDialog
                         }
-                        RewardedAdManager(adManager).showRewardAds(activity?:return@showAdsDialog) {
+                        RewardedAdManager(adManager?:return@showAdsDialog).showRewardAds(activity?:return@showAdsDialog) {
                             findNavController().navigate(
                                 R.id.FragmentListCustomWallpaper,
                                 bundleOf("title" to Tilte_)

@@ -33,9 +33,9 @@ class SampleActivity : Activity() {
             startActivity(Intent(this, SampleAppOpenAdActivity::class.java))
         }
 
-        createBanner(adManager, findViewById<LinearLayout>(R.id.container))
-        createInterstitial(adManager)
-        createRewarded(adManager)
+        createBanner(adManager?:return, findViewById<LinearLayout>(R.id.container))
+        createInterstitial(adManager?:return)
+        createRewarded(adManager?:return)
 
     }
 
