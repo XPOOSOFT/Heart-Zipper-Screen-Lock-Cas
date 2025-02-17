@@ -43,21 +43,24 @@ class InterstitialAdManager(
 
     // Function to show the interstitial ad
     fun showAd(isShowAds: Boolean, function: () -> Unit) {
-        if (id_inter_counter != counter) {
-            counter++
-            function.invoke()
-            return
-        } else {
-            counter = 0
-        }
+//        if (id_inter_counter != counter) {
+//            Log.d(TAG, "Showing Interstitial if-counter")
+//            counter++
+//            function.invoke()
+//            return
+//        } else {
+//            Log.d(TAG, "Showing Interstitial else- $counter")
+//            counter = 0
+//        }
         if (manager.isInterstitialReady && isShowAds) {
             Log.d(TAG, "Showing Interstitial Ad")
             manager.showInterstitial(context as Activity, setupAdContentCallback{
+                function.invoke()
             })
         } else {
+            function.invoke()
             Log.e(TAG, "Interstitial Ad not ready to show")
         }
-        function.invoke()
 
     }
 
@@ -102,8 +105,8 @@ class InterstitialAdManager(
         return object : AdPaidCallback {
             override fun onShown(ad: AdImpression) {
                 isSplash=false
-                id_inter_counter++
-                function.invoke()
+//                id_inter_counter++
+//                function.invoke()
                 Log.d(TAG, "Ad shown from ${ad.network}")
             }
 

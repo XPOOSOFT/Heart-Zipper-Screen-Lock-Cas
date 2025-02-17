@@ -1,40 +1,33 @@
 package livewallpaper.aod.screenlock.zipper
 
-import android.app.Activity
 import android.app.Application
-import android.os.Bundle
-import android.util.Log
-import com.cleversolutions.ads.AdType
 import com.cleversolutions.ads.Audience
-import com.cleversolutions.ads.ConsentFlow
 import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
-import com.google.android.gms.ads.MobileAds
-import com.google.android.gms.ads.RequestConfiguration
 import com.google.android.gms.ads.nativead.NativeAd
 import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 
 class MyApplication : Application() {
     companion object {
         const val TAG = "CAS Sample"
-//        const val CAS_ID = "demo"
+
+        //        const val CAS_ID = "demo"
         const val CAS_ID = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         const val NativeAdsId = "ca-app-pub-3940256099942544/2247696110"
-        lateinit var adManager: MediationManager
+        var adManager: MediationManager? = null
         var preloadNativeAd: NativeAd? = null
-        lateinit var appOpenManager: AppOpenManager
+        var appOpenManager: AppOpenManager? = null
     }
+
     override fun onCreate() {
         super.onCreate()
 
         // Set Ads Settings
         CAS.settings.debugMode = false
         CAS.settings.taggedAudience = Audience.NOT_CHILDREN
-
         // Set Manual loading mode to disable auto requests
         //CAS.settings.loadingMode = LoadingManagerMode.Manual
-
-        appOpenManager =AppOpenManager(this, CAS_ID)
+        appOpenManager = AppOpenManager(this, CAS_ID)
         // Register activity lifecycle callbacks
 
 
@@ -75,7 +68,4 @@ class MyApplication : Application() {
 //            .build(this)
     }
 
-    fun isDebug(): Boolean {
-        return BuildConfig.BUILD_TYPE == "debug"
-    }
 }

@@ -77,7 +77,7 @@ class LoadingScreenFragment :
             lifecycleScope.launchWhenCreated {
                 delay(3000)
                 if (val_ad_app_open_screen) {
-                    appOpenManager.showAdIfAvailable(activity?:return@launchWhenCreated)
+                    appOpenManager?.showAdIfAvailable(activity?:return@launchWhenCreated)
                     moveToNext()
                 } else {
                     showCASInterstitial(val_ad_inter_loading_screen) {
@@ -99,7 +99,7 @@ class LoadingScreenFragment :
                 return@setOnClickListener
             }
             if (val_ad_app_open_screen) {
-                appOpenManager.showAdIfAvailable(activity?:return@setOnClickListener)
+                appOpenManager?.showAdIfAvailable(activity?:return@setOnClickListener)
                 moveToNext()
             } else {
                 showCASInterstitial(val_ad_inter_loading_screen) {
@@ -146,7 +146,7 @@ class LoadingScreenFragment :
             return
         }
         // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
         // Load and show the ad
         interstitialAdManager?.loadAd(isAdsShow)
     }

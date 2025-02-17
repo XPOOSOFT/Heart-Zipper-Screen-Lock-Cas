@@ -332,7 +332,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
             return
         }
         // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
         // Load and show the ad
         interstitialAdManager?.loadAd(isAdsShow)
     }

@@ -406,7 +406,7 @@ class MainAppFragment : Fragment() {
             return
         }
         // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager)
+        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
         // Load and show the ad
         interstitialAdManager?.loadAd(isAdsShow)
     }
@@ -422,8 +422,8 @@ class MainAppFragment : Fragment() {
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         shouldCheckForOverlayPermissionLoop = false
+        super.onDestroy()
     }
 
     override fun onRequestPermissionsResult(i: Int, strArr: Array<String>, iArr: IntArray) {
