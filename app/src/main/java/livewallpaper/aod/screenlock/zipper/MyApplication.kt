@@ -1,5 +1,6 @@
 package livewallpaper.aod.screenlock.zipper
 
+import android.annotation.SuppressLint
 import android.app.Application
 import com.cleversolutions.ads.Audience
 import com.cleversolutions.ads.MediationManager
@@ -10,12 +11,12 @@ import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 class MyApplication : Application() {
     companion object {
         const val TAG = "CAS Sample"
-
         //        const val CAS_ID = "demo"
         const val CAS_ID = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         const val NativeAdsId = "ca-app-pub-3940256099942544/2247696110"
         var adManager: MediationManager? = null
         var preloadNativeAd: NativeAd? = null
+        @SuppressLint("StaticFieldLeak")
         var appOpenManager: AppOpenManager? = null
     }
 

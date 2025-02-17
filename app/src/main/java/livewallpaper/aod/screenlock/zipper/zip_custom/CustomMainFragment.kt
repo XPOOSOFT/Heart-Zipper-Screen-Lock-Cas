@@ -78,16 +78,16 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
             zipperValue = DataBasePref.LoadPrefString(
                 ConstantValues.SelectZipper,
-                context ?: requireContext()
+                context ?: return@launch
             ).toString()
             rowValue = DataBasePref.LoadPrefString(
                 ConstantValues.SelectRow,
-                context ?: requireContext()
+                context ?: return@launch
             ).toString()
             wallpaperValue =
                 DataBasePref.LoadPrefString(
                     ConstantValues.SelectedWallpaper,
-                    context ?: requireContext()
+                    context ?: return@launch
                 )
                     .toString()
 
@@ -128,7 +128,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectZipper,
-                            context ?: requireContext()
+                            context ?: return@launch
                         ).toInt(),0
                     )
                     getZippers().let { adapter?.submitList(it) }
@@ -139,7 +139,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectRow,
-                            context ?: requireContext()
+                            context ?: return@launch
                         ).toInt(),0
                     )
                     getRowsView().let {
@@ -153,7 +153,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectedWallpaper,
-                            context ?: requireContext()
+                            context ?: return@launch
                         ).toInt(),1
                     )
                     getWallpapers().let {
@@ -167,7 +167,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectedWallpaper,
-                            context ?: requireContext()
+                            context ?: return@launch
                         ).toInt(),1
                     )
                     getWallpapers().let {
@@ -187,7 +187,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectZipper,
-                                    context ?: requireContext()
+                                    context ?: return
                                 ).toInt(),0
                             )
                             getZippers().let { adapter?.submitList(it) }
@@ -198,7 +198,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectRow,
-                                    context ?: requireContext()
+                                    context ?: return
                                 ).toInt(),0
                             )
                             getRowsView()?.let { adapter?.submitList(it) }
@@ -208,7 +208,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectedWallpaper,
-                                    context ?: requireContext()
+                                    context ?: return
                                 ).toInt(),1
                             )
                             getWallpapers()?.let { adapter?.submitList(it) }
@@ -218,7 +218,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectedWallpaper,
-                                    context ?: requireContext()
+                                    context ?: return
                                 ).toInt(),1
                             )
                             getWallpapers()?.let { adapter?.submitList(it) }
@@ -235,26 +235,26 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
             _binding?.previewButton?.setOnClickListener {
                 if (Settings.canDrawOverlays(
-                        context ?: requireContext()
+                        context ?: return@setOnClickListener
                     )
                 ) {
                     DataBasePref.SavePref(
                         ConstantValues.SelectedWallpaper,
                         wallpaperValue,
-                        context ?: requireContext()
+                        context ?: return@setOnClickListener
                     )
                     DataBasePref.SavePref(
                         ConstantValues.SelectZipper,
                         zipperValue,
-                        context ?: requireContext()
+                        context ?: return@setOnClickListener
                     )
                     DataBasePref.SavePref(
                         ConstantValues.SelectRow,
                         rowValue,
-                        context ?: requireContext()
+                        context ?: return@setOnClickListener
                     )
                     Log.d("values_theme", "onViewCreated: $wallpaperValue $rowValue $zipperValue")
-                    LockScreenService.Start(context ?: requireContext())
+                    LockScreenService.Start(context ?: return@setOnClickListener)
                 } else {
                     showCustomDialog()
                 }
