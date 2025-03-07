@@ -2,13 +2,18 @@ package livewallpaper.aod.screenlock.zipper
 
 import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
+import android.os.Build
+import android.webkit.WebView
+import androidx.work.Configuration
+import androidx.work.WorkManager
 import com.cleversolutions.ads.Audience
 import com.cleversolutions.ads.MediationManager
 import com.cleversolutions.ads.android.CAS
 import com.google.android.gms.ads.nativead.NativeAd
 import livewallpaper.aod.screenlock.zipper.ads_cam.AppOpenManager
 
-class MyApplication : Application() {
+class MyApplication : Application(), Configuration.Provider {
     companion object {
         const val TAG = "CAS Sample"
         //        const val CAS_ID = "demo"
@@ -31,42 +36,30 @@ class MyApplication : Application() {
         appOpenManager = AppOpenManager(this, CAS_ID)
         // Register activity lifecycle callbacks
 
+//        WorkManager.initialize(
+//            this,
+//            Configuration.Builder()
+//                .setMinimumLoggingLevel(android.util.Log.DEBUG)
+//                .build()
+//        )
 
-//        // Initialize SDK
-//        adManager = CAS.buildManager()
-//            .withManagerId(CAS_ID)
-//            .withTestAdMode(BuildConfig.DEBUG)
-//            .withAdTypes(AdType.Banner, AdType.Interstitial, AdType.Rewarded, AdType.AppOpen, AdType.Native, AdType.Rewarded)
-//            .withConsentFlow(
-//                ConsentFlow(isEnabled = true)
-//                    .withDismissListener {
-//                        Log.d(TAG, "Consent flow dismissed")
-//                    }
-//            )
-//            .withCompletionListener {
-//                if (it.error == null) {
-//                    Log.d(TAG, "Ad manager initialized")
-//                    // Initialize App Open Manager
-//                    appOpenManager = AppOpenManager(this, CAS_ID)
-//
-//                    // Register activity lifecycle callbacks
-//                    registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
-//                        override fun onActivityResumed(activity: Activity) {
-//                            appOpenManager.showAdIfAvailable(activity)
-//                        }
-//
-//                        override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {}
-//                        override fun onActivityStarted(activity: Activity) {}
-//                        override fun onActivityPaused(activity: Activity) {}
-//                        override fun onActivityStopped(activity: Activity) {}
-//                        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
-//                        override fun onActivityDestroyed(activity: Activity) {}
-//                    })
-//                } else {
-//                    Log.d(TAG, "Ad manager initialization failed: " + it.error)
-//                }
-//            }
-//            .build(this)
+    }
+
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(base)
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                WebView.setDataDirectorySuffix("my_webview_suffix")
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder()
+            .setMinimumLoggingLevel(android.util.Log.DEBUG)
+            .build()
     }
 
 }

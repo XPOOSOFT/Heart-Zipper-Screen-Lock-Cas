@@ -617,7 +617,7 @@ class LockScreenService : Service() {
 
         private fun enqueueLockScreenTaskWithWorkManager(context: Context) {
             val overlayWorkRequest = OneTimeWorkRequestBuilder<OverlayWorker>()
-                .setInitialDelay(100, TimeUnit.MILLISECONDS) // Just an example delay
+                .setInitialDelay(200, TimeUnit.MILLISECONDS) // Just an example delay
                 .build()
 
             WorkManager.getInstance(context).enqueue(overlayWorkRequest)
