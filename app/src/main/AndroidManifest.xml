@@ -62,14 +62,12 @@
             android:name=".service.LiveService"
             android:enabled="true"
             android:exported="false"
-            android:process=":remote"
             android:foregroundServiceType="specialUse" />
 
         <service
             android:name=".service.LockScreenService"
             android:enabled="true"
             android:exported="false"
-            android:process=":remote"
             android:foregroundServiceType="specialUse" />
 
 
