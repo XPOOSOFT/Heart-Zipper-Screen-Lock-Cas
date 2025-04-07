@@ -46,8 +46,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 34
-        versionCode = 77
-        versionName = "25.7"
+        versionCode = 78
+        versionName = "25.8"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")
     }
@@ -134,7 +134,7 @@ dependencies {
     implementation ("com.google.firebase:firebase-messaging:24.1.0")
     implementation("com.tbuonomo:dotsindicator:5.0")
     implementation ("com.iabtcf:iabtcf-decoder:2.0.10")
-    implementation ("com.github.hypersoftdev:inappbilling:3.0.1")
+    implementation ("com.github.hypersoftdev:inappbilling:3.0.3")
     // So, make sure you also include that repository in your project's build.gradle file.
     implementation("com.google.android.play:app-update:2.1.0")
     implementation("com.google.android.play:app-update-ktx:2.1.0")

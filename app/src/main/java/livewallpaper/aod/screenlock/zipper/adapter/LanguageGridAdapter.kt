@@ -27,12 +27,11 @@ class LanguageGridAdapter(
 
     class ViewHolder(val binding: LanguageAppItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class AdViewHolder(val bindingAds: AdsItemBinding) : RecyclerView.ViewHolder(bindingAds.root)
+    class AdViewHolder(private val bindingAds: AdsItemBinding) : RecyclerView.ViewHolder(bindingAds.root)
 
 
     override fun getItemViewType(position: Int): Int {
         return if (items[position].country_name == "Ad") AD_TYPE else ITEM_TYPE
-//        return if ((position + 1) % 5 == 0) AD_TYPE else ITEM_TYPE
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

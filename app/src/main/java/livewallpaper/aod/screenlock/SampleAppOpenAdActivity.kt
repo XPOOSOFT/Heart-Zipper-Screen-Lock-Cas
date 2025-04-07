@@ -75,9 +75,13 @@ class SampleAppOpenAdActivity : Activity() {
         if (isLoadingAppResources || isVisibleAppOpenAd || isCompletedSplash)
             return
         isCompletedSplash = true
-        val intent = Intent(this, SampleActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
+        try {
+            val intent = Intent(this, SampleActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+        } catch (e: Exception) {
+           e.printStackTrace()
+        }
     }
 
     private fun simulationLongAppResourcesLoading() {
