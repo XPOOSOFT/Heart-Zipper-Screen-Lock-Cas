@@ -46,8 +46,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 34
-        versionCode = 75
-        versionName = "25.5"
+        versionCode = 77
+        versionName = "25.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")
     }
@@ -153,10 +153,8 @@ dependencies {
 //    implementation  ("com.google.ads.mediation:facebook:6.18.0.0")
     // Pangle Mediation
 //    implementation  ("com.google.ads.mediation:pangle:6.3.0.4.0")
-    implementation ("com.cleveradssolutions:cas-sdk:3.9.8")
+    implementation ("com.cleveradssolutions:cas-sdk:3.9.10")
 //    implementation("com.cleveradssolutions:smaato:22.7.1.0")
 //    implementation("com.cleveradssolutions:startio:5.1.0.0")
-
-
 }
 

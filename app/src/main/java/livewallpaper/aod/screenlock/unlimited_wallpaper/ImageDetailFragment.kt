@@ -30,32 +30,38 @@ class ImageDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val imageUrl = arguments?.getString("image_url")
+        try {
+            if (imageUrl != null) {
+                // Show the progress bar and load the image
+                Picasso.get().load(imageUrl).into(_binding?.fullscreenImageView, object : Callback {
+                    override fun onSuccess() {
+                        // Hide progress bar and show image
+                        _binding?.loadingIndicator?.visibility = View.GONE
+                        _binding?.fullscreenImageView?.visibility = View.VISIBLE
+                        _binding?.applyWallpaperButton?.visibility = View.VISIBLE
+                    }
 
-        if (imageUrl != null) {
-            // Show the progress bar and load the image
-            Picasso.get().load(imageUrl).into(_binding?.fullscreenImageView, object : Callback {
-                override fun onSuccess() {
-                    // Hide progress bar and show image
-                    _binding?.loadingIndicator?.visibility = View.GONE
-                    _binding?.fullscreenImageView?.visibility = View.VISIBLE
-                    _binding?.applyWallpaperButton?.visibility = View.VISIBLE
-                }
-
-                override fun onError(e: Exception?) {
-                    // Hide progress bar and show error
-                    _binding?.loadingIndicator?.visibility = View.GONE
-                    Toast.makeText(context, "Failed to load image", Toast.LENGTH_SHORT).show()
-                }
-            })
-        } else {
-            Toast.makeText(context, "Image URL is missing", Toast.LENGTH_SHORT).show()
+                    override fun onError(e: Exception?) {
+                        // Hide progress bar and show error
+                        _binding?.loadingIndicator?.visibility = View.GONE
+                        Toast.makeText(context, "Failed to load image", Toast.LENGTH_SHORT).show()
+                    }
+                })
+            } else {
+                Toast.makeText(context, "Image URL is missing", Toast.LENGTH_SHORT).show()
+            }
+        }catch (e :Exception){
+            e.printStackTrace()
         }
 
         _binding?.applyWallpaperButton?.setOnClickListener {
-            if (imageUrl != null) {
-                setAsWallpaper(imageUrl)
+            try {
+                if (imageUrl != null) {
+                    setAsWallpaper(imageUrl)
+                }
+            } catch (e: Exception) {
+              e.printStackTrace()
             }
         }
 

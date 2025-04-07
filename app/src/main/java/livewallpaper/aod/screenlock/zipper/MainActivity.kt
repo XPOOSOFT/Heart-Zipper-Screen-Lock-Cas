@@ -16,15 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         isSplash =false
-        binding = MainActivityApplicationBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
-//      setStatusBar()
-//        val config: UXConfig = UXConfig.Builder("fxxc29oeie8g0rl")
-//            .enableAutomaticScreenNameTagging(true)
-//            .enableImprovedScreenCapture(true)
-//            .build()
-//        UXCam.startWithConfiguration(config)
-        // Check if intent has the update value when activity is first created
+        try {
+            binding = MainActivityApplicationBinding.inflate(layoutInflater)
+            setContentView(binding?.root)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
 
     }
 
