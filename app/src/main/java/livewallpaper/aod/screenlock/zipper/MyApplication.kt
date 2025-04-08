@@ -1,10 +1,12 @@
 package livewallpaper.aod.screenlock.zipper
 
 import android.annotation.SuppressLint
+import android.app.ActivityManager
 import android.app.Application
 import android.content.Context
 import android.os.Build
 import android.webkit.WebView
+import androidx.annotation.RequiresApi
 import androidx.work.Configuration
 import androidx.work.WorkManager
 import com.cleversolutions.ads.Audience
@@ -36,25 +38,26 @@ class MyApplication : Application(), Configuration.Provider {
         appOpenManager = AppOpenManager(this, CAS_ID)
         // Register activity lifecycle callbacks
 
-//        WorkManager.initialize(
-//            this,
-//            Configuration.Builder()
-//                .setMinimumLoggingLevel(android.util.Log.DEBUG)
-//                .build()
-//        )
 
-    }
-
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(base)
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-                WebView.setDataDirectorySuffix("my_webview_suffix")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            val processName = Application.getProcessName()
+            if (processName != packageName) {
+                WebView.setDataDirectorySuffix(processName)
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
+
+    private fun getCurrentProcessName(context: Context): String {
+        val pid = android.os.Process.myPid()
+        val manager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (process in manager.runningAppProcesses) {
+            if (process.pid == pid) {
+                return process.processName ?: ""
+            }
+        }
+        return ""
+    }
+
 
     override fun getWorkManagerConfiguration(): Configuration {
         return Configuration.Builder()

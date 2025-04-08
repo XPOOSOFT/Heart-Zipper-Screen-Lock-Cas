@@ -41,11 +41,11 @@ cas {
 
 android {
     namespace = "livewallpaper.aod.screenlock.zipper"
-    compileSdk = 34
+    compileSdk = 35
     defaultConfig {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 78
         versionName = "25.8"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"

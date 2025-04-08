@@ -538,22 +538,30 @@ class MainAppFragment : Fragment() {
                     when (appUpdateType) {
                         0 -> {
                             // Request the update
-                            appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.IMMEDIATE,
-                                activity ?: return@addOnSuccessListener,
-                                RC_APP_UPDATE
-                            )
+                            try {
+                                appUpdateManager.startUpdateFlowForResult(
+                                    appUpdateInfo,
+                                    AppUpdateType.IMMEDIATE,
+                                    activity ?: return@addOnSuccessListener,
+                                    RC_APP_UPDATE
+                                )
+                            } catch (e: Exception) {
+                               e.printStackTrace()
+                            }
                         }
 
                         1 -> {
                             // Request the update
-                            appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.FLEXIBLE,
-                                activity ?: return@addOnSuccessListener,
-                                RC_APP_UPDATE
-                            )
+                            try {
+                                appUpdateManager.startUpdateFlowForResult(
+                                    appUpdateInfo,
+                                    AppUpdateType.FLEXIBLE,
+                                    activity ?: return@addOnSuccessListener,
+                                    RC_APP_UPDATE
+                                )
+                            } catch (e: Exception) {
+                               e.printStackTrace()
+                            }
                         }
                     }
                 }
