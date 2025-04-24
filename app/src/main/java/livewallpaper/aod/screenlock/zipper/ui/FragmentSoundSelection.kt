@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.SoundSelectLinearAdapter
 import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
@@ -146,15 +144,7 @@ class FragmentSoundSelection : Fragment() {
                 _binding?.adView?.visibility = View.INVISIBLE
                 return
             }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
+
         }
     }
 

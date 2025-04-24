@@ -8,9 +8,6 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
@@ -29,6 +26,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.PasswordAdapter
 import livewallpaper.aod.screenlock.zipper.utilities.PasswordAdapter.checkPasswordAct
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
@@ -68,17 +66,16 @@ private var interstitialAdManager: InterstitialAdManager? = null
         try {
 //            adsManager = AdsManager.appAdsInit(activity ?: requireActivity())
             loadBanner()
-            loadCASInterstitial(true)
             isPassword = checkPasswordAct(context) ?: false
             Log.d("fragment_setting", "onViewCreated: $isPassword")
             switchCheck()
             _binding?.selectMusic?.setOnClickListener {
-                showCASInterstitial(val_ad_inter_setting_screen_front){
-                    if(isVisible && !isDetached && isAdded) {
-                        findNavController().navigate(R.id.FragmentSoundSelection)
-                    }
-                }
-             /*   adsManager?.let {
+//                showCASInterstitial(val_ad_inter_setting_screen_front){
+//                    if(isVisible && !isDetached && isAdded) {
+//                        findNavController().navigate(R.id.FragmentSoundSelection)
+//                    }
+//                }
+                adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: requireActivity(),
@@ -92,7 +89,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
                             findNavController().navigate(R.id.FragmentSoundSelection)
                         }
                     }
-                }*/
+                }
             }
             _binding?.selectSpeed?.setOnClickListener {
                 showSpeedDialogNew(
@@ -115,14 +112,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
             _binding?.password?.setOnClickListener {
                 if (isPassword) {
 
-                    showCASInterstitial(val_ad_inter_setting_screen_front){
-                        if(isVisible && !isDetached && isAdded) {
-                            if(isVisible && !isDetached && isAdded) {
-                                findNavController().navigate(R.id.FragmentApplyPassword)
-                            }
-                        }
-                    }
-/*                    adsManager?.let {
+                    adsManager?.let {
                         showTwoInterAd(
                             ads = it,
                             activity = activity ?: requireActivity(),
@@ -136,7 +126,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
                                 findNavController().navigate(R.id.FragmentApplyPassword)
                             }
                         }
-                    }*/
+                    }
                 } else {
                     showToast(
                         context ?: requireContext(),
@@ -147,12 +137,12 @@ private var interstitialAdManager: InterstitialAdManager? = null
 
             _binding?.securityQView?.setOnClickListener {
 
-                showCASInterstitial(val_ad_inter_setting_screen_front){
-                    if(isVisible && !isDetached && isAdded) {
-                        findNavController().navigate(R.id.SecurityQuestionFragment)
-                    }
-                }
-/*                adsManager?.let {
+//                showCASInterstitial(val_ad_inter_setting_screen_front){
+//                    if(isVisible && !isDetached && isAdded) {
+//                        findNavController().navigate(R.id.SecurityQuestionFragment)
+//                    }
+//                }
+               adsManager?.let {
                     showTwoInterAd(
                         ads = it,
                         activity = activity ?: requireActivity(),
@@ -166,7 +156,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
                             findNavController().navigate(R.id.SecurityQuestionFragment)
                         }
                     }
-                }*/
+                }
             }
             setupBackPressedCallback {
                 findNavController().navigateUp()
@@ -217,12 +207,12 @@ private var interstitialAdManager: InterstitialAdManager? = null
                     if (!isPassword) {
                         _binding?.passwordSwitch?.isChecked = false
 
-                        showCASInterstitial(val_ad_inter_password_screen_front){
-                            if(isVisible && !isDetached && isAdded) {
-                                findNavController().navigate(R.id.FragmentApplyPassword)
-                            }
-                        }
-/*                        adsManager?.let {
+//                        showCASInterstitial(val_ad_inter_password_screen_front){
+//                            if(isVisible && !isDetached && isAdded) {
+//                                findNavController().navigate(R.id.FragmentApplyPassword)
+//                            }
+//                        }
+                       adsManager?.let {
                             showTwoInterAd(
                                 ads = it,
                                 activity = activity?:requireActivity(),
@@ -234,7 +224,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
                             ){
                                 findNavController().navigate(R.id.FragmentApplyPassword)
                             }
-                        }*/
+                        }
                         return@setOnCheckedChangeListener
                     }
                     UCC(
@@ -275,30 +265,7 @@ private var interstitialAdManager: InterstitialAdManager? = null
 
             2 -> {
 
-                AdmobNative().loadNativeAds(
-                    activity,
-                    _binding?.nativeExitAd!!,
-                    id_native_screen,
-                    if (val_ad_native_setting_screen)
-                        1 else 0,
-                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
-                    isInternetConnected = isNetworkAvailable(activity),
-                    nativeType = NativeType.LARGE,
-                    nativeCallBack = object : NativeCallBack {
-                        override fun onAdFailedToLoad(adError: String) {
-                            _binding?.adView?.visibility = View.GONE
-                            _binding?.nativeExitAd?.visibility = View.GONE
-                        }
 
-                        override fun onAdLoaded() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-
-                        override fun onAdImpression() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-                    }
-                )
             }
         }
     }
@@ -310,41 +277,13 @@ private var interstitialAdManager: InterstitialAdManager? = null
                 _binding?.adView?.visibility = View.INVISIBLE
                 return
             }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
+
         }
     }
 
     private fun toggleVisibility(view: View?, isVisible: Boolean) {
         _binding?.adView?.visibility=View.INVISIBLE
         view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if   (!isAdsShow || !isNetworkAvailable(context)) {
-            return
-        }
-        // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
-        // Load and show the ad
-        interstitialAdManager?.loadAd(isAdsShow)
-    }
-
-    private fun showCASInterstitial(isAdsShow: Boolean,function: (()->Unit)) {
-        if (interstitialAdManager == null) {
-            function.invoke()
-            return
-        }
-        interstitialAdManager?.showAd(isAdsShow) {
-            function.invoke()
-        }
     }
 
 }

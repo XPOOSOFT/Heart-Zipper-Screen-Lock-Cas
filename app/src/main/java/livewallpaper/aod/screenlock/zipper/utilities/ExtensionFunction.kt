@@ -13,9 +13,12 @@ import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.SystemClock
+import android.util.Log
+import android.util.TypedValue
 import android.view.View
 import android.view.WindowInsetsController
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.SeekBar
@@ -942,4 +945,49 @@ fun getImageLanguage(position: String): Int {
 
     }
     return R.drawable.uk
+}
+
+fun getNativeLayout(position: Int, layout: FrameLayout, context: Context): Int {
+    Log.d("check_layout", "getNativeLayout: $position")
+    when (position) {
+        1 -> {
+            layout.minimumHeight = convertDpToPixel(50f, context).toInt()
+            return R.layout.layout_native_80
+        }
+
+        2 -> {
+            layout.minimumHeight = convertDpToPixel(100F, context).toInt()
+            return R.layout.layout_native_140
+        }
+
+        3 -> {
+            layout.minimumHeight = convertDpToPixel(120F, context).toInt()
+            return R.layout.layout_native_176
+        }
+
+        4 -> {
+            layout.minimumHeight = convertDpToPixel(150F, context).toInt()
+            return R.layout.native_layout_190
+        }
+
+        5 -> {
+            layout.minimumHeight = convertDpToPixel(150F, context).toInt()
+            return R.layout.native_layout_276
+        }
+
+        6 -> {
+            layout.minimumHeight = convertDpToPixel(150F, context).toInt()
+            return R.layout.layout_native_260
+        }
+    }
+    layout.minimumHeight = convertDpToPixel(50f, context).toInt()
+    return R.layout.layout_native_80
+}
+
+private fun convertDpToPixel(valueDp: Float, context: Context): Float {
+    val displayMetrics = context.resources.displayMetrics
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP, valueDp,
+        displayMetrics
+    )
 }

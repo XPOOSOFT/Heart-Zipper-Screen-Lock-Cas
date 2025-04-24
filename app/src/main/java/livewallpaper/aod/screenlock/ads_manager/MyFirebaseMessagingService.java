@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_cam;
+package livewallpaper.aod.screenlock.ads_manager;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -16,6 +16,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
+import com.gold.zipper.goldzipper.lockscreen.royalgold.R;
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.MainActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -23,8 +25,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
-import livewallpaper.aod.screenlock.zipper.MainActivity;
-import livewallpaper.aod.screenlock.zipper.R;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
@@ -49,7 +49,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 		Intent intent = new Intent(this, MainActivity.class);
 		intent.putExtras(bundle);
 
-		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "default")
 				.setContentTitle(notification.getTitle())

@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_cam
+package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
 
 import android.app.Activity
 import android.util.Log
@@ -9,9 +9,18 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import com.gold.zipper.goldzipper.lockscreen.royalgold.R
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdOpenApp.Companion.preloadNativeAd
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsBanners.isDebug
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.NativeAds.NativeAdsId
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.ScreenUtils.isSupportFullScreen
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeType
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.convertDpToPixel
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.formats.NativeAdOptions
 import com.google.android.gms.ads.nativead.MediaView
@@ -21,19 +30,12 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.NativeAdsId
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.preloadNativeAd
-import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.utilities.ScreenUtils.isSupportFullScreen
-import livewallpaper.aod.screenlock.zipper.utilities.isDebug
 
 /**
  * @Author:Javed Khan
  * @Date: 14,March,2024.
  * @Accounts
  */
-
-
 class AdmobNative {
 
     /**
@@ -53,7 +55,7 @@ class AdmobNative {
         adEnable: Int,
         isAppPurchased: Boolean,
         isInternetConnected: Boolean,
-        nativeType: NativeType,
+        nativeType: Int,
         nativeCallBack: NativeCallBack? = null
     ) {
         val handlerException = CoroutineExceptionHandler { coroutineContext, throwable ->
@@ -87,13 +89,13 @@ class AdmobNative {
 
         if (activity.isFinishing || activity.isDestroyed) {
             Log.e("AdsInformation", "onAdFailedToLoad -> activity is finishing or destroyed")
-              nativeCallBack?.onAdFailedToLoad("onAdFailedToLoad -> activity is finishing or destroyed")
+            nativeCallBack?.onAdFailedToLoad("onAdFailedToLoad -> activity is finishing or destroyed")
             return
         }
 
         if (nativeId.trim().isEmpty()) {
             Log.e("AdsInformation", "onAdFailedToLoad -> Ad id is empty")
-              nativeCallBack?.onAdFailedToLoad("onAdFailedToLoad -> Ad id is empty")
+            nativeCallBack?.onAdFailedToLoad("onAdFailedToLoad -> Ad id is empty")
             return
         }
 
@@ -111,7 +113,8 @@ class AdmobNative {
             }
             if (adMobNativeAd == null) {
                 CoroutineScope(Dispatchers.IO + handlerException).launch {
-                    val builder: AdLoader.Builder = AdLoader.Builder(activity,  if (isDebug()) NativeAdsId else nativeId)
+                    val builder: AdLoader.Builder =
+                        AdLoader.Builder(activity, if (isDebug()) NativeAdsId else nativeId)
                     val adLoader =
                         builder.forNativeAd { unifiedNativeAd: NativeAd? ->
                             adMobNativeAd = unifiedNativeAd
@@ -125,7 +128,10 @@ class AdmobNative {
                                 }
 
                                 override fun onAdFailedToLoad(loadAdError: LoadAdError) {
-                                    Log.e("AdsInformation", "admob native onAdFailedToLoad: ${loadAdError.message}")
+                                    Log.e(
+                                        "AdsInformation",
+                                        "admob native onAdFailedToLoad: ${loadAdError.message}"
+                                    )
                                     nativeCallBack?.onAdFailedToLoad(loadAdError.message)
                                     adsPlaceHolder.visibility = View.GONE
                                     adMobNativeAd = null
@@ -160,58 +166,132 @@ class AdmobNative {
             nativeCallBack?.onAdFailedToLoad("${ex.message}")
         }
     }
-
+    var adView: NativeAdView? = null
     private fun displayNativeAd(
         activity: Activity?,
         adMobNativeContainer: FrameLayout,
-        nativeType: NativeType,
+        nativeType: Int,
     ) {
         activity?.let { mActivity ->
             try {
                 adMobNativeAd?.let { ad ->
                     val inflater = LayoutInflater.from(mActivity)
 
-                    val adView: NativeAdView = when (nativeType) {
-                        NativeType.BANNER -> inflater.inflate(R.layout.ad_unified_privacy, null) as NativeAdView
-                        NativeType.SMALL -> inflater.inflate(R.layout.ad_unified_privacy, null) as NativeAdView
-                        NativeType.LARGE -> inflater.inflate(R.layout.ad_unified_media, null) as NativeAdView
-                        NativeType.LARGE_ADJUSTED -> if (mActivity.isSupportFullScreen()) {
-                            inflater.inflate(R.layout.native_layout_190, null) as NativeAdView
-                        } else {
-                            inflater.inflate(R.layout.native_layout_190, null) as NativeAdView
+                    when (nativeType) {
+                        1 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(40F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.layout_native_80,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        2 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(80F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.layout_native_140,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        3 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(120F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.layout_native_176,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        4 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(190F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.native_layout_190,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        5 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(220F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.native_layout_276,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        6 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(220F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.layout_native_260,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        7 -> {
+                            adMobNativeContainer.minimumHeight = convertDpToPixel(220F, activity).toInt()
+                            adView =inflater.inflate(
+                                R.layout.ad_undified_media_heigh,
+                                null
+                            ) as NativeAdView
+                        }
+
+                        8 -> {
+                            adView =inflater.inflate(
+                                R.layout.ad_unified_media_full,
+                                null
+                            ) as NativeAdView
                         }
                     }
-                    val viewGroup: ViewGroup? = adView.parent as ViewGroup?
+                    val viewGroup: ViewGroup? = adView?.parent as ViewGroup?
                     viewGroup?.removeView(adView)
-
                     adMobNativeContainer.removeAllViews()
                     adMobNativeContainer.addView(adView)
 
-                    if (nativeType == NativeType.LARGE) {
-                        val mediaView: MediaView = adView.findViewById(R.id.custom_media)
-                        adView.mediaView = mediaView
-                    }
-                    if (nativeType == NativeType.LARGE_ADJUSTED) {
-                        if (mActivity.isSupportFullScreen()) {
-                            val mediaView: MediaView = adView.findViewById(R.id.custom_media)
-                            adView.mediaView = mediaView
-                        }
+                    adView?.callToActionView = adView?.findViewById(R.id.ad_call_to_action)
+                    adView?.iconView = adView?.findViewById<ImageView>(R.id.ad_app_icon)!!
+                    adView?.headlineView = adView?.findViewById(R.id.ad_headline)
+                    adView?.bodyView = adView?.findViewById(R.id.ad_body)
+                    adView?.mediaView = adView?.findViewById(R.id.ad_media)
+
+                    (adView?.headlineView as TextView).text = ad.headline
+                    if (ad.body == null) {
+                        adView?.bodyView?.visibility = View.INVISIBLE
+                    } else {
+                        adView?.bodyView?.visibility = View.VISIBLE
+                        (adView?.bodyView as TextView).text = ad.body
                     }
 
-                    // Set other ad assets.
-                    adView.headlineView = adView.findViewById(R.id.custom_headline)
-                    adView.bodyView = adView.findViewById(R.id.custom_body)
-                    adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
-                    adView.iconView = adView.findViewById(R.id.custom_app_icon)
+                    if (ad.callToAction == null) {
+                        adView?.callToActionView?.visibility = View.INVISIBLE
+                    } else {
+                        adView?.callToActionView?.visibility = View.VISIBLE
+                        (adView?.callToActionView as TextView).text = ad.callToAction
+                    }
+
+                    if (ad.icon == null) {
+                        adView?.iconView?.visibility = View.INVISIBLE
+                    } else {
+                        (adView?.iconView as ImageView).setImageDrawable(
+                            ad.icon?.drawable
+                        )
+                        adView?.iconView?.visibility = View.VISIBLE
+                    }
+
+
+                    adView?.setNativeAd(ad)
+/*                    // Set other ad assets.
+                    adView?.headlineView = adView?.findViewById(R.id.ad_headline)
+                    adView?.bodyView = adView?.findViewById(R.id.ad_body)
+                    adView?.callToActionView = adView?.findViewById(R.id.ad_call_to_action)
+                    adView?.iconView = adView?.findViewById(R.id.ad_app_icon)
 
                     //Headline
-                    adView.headlineView?.let { headline ->
+                    adView?.headlineView?.let { headline ->
                         (headline as TextView).text = ad.headline
                         headline.isSelected = true
                     }
 
                     //Body
-                    adView.bodyView?.let { bodyView ->
+                    adView?.bodyView?.let { bodyView ->
                         if (ad.body == null) {
                             bodyView.visibility = View.INVISIBLE
                         } else {
@@ -221,9 +301,9 @@ class AdmobNative {
                     }
 
                     //Call to Action
-                    adView.callToActionView?.let { ctaView ->
+                    adView?.callToActionView?.let { ctaView ->
                         if (ad.callToAction == null) {
-                            ctaView.visibility = View.VISIBLE
+                            ctaView.visibility = View.INVISIBLE
                         } else {
                             ctaView.visibility = View.VISIBLE
                             (ctaView as Button).text = ad.callToAction
@@ -231,25 +311,28 @@ class AdmobNative {
                     }
 
                     //Icon
-                    adView.iconView?.let { iconView ->
+                    adView?.iconView?.let { iconView ->
                         if (ad.icon == null) {
-                            iconView.visibility = View.VISIBLE
+                            iconView.visibility = View.INVISIBLE
                         } else {
                             (iconView as ImageView).setImageDrawable(ad.icon?.drawable)
                             iconView.visibility = View.VISIBLE
                         }
                     }
 
-                    adView.advertiserView?.let { adverView ->
+                    adView?.advertiserView?.let { adverView ->
                         if (ad.advertiser == null) {
-                            adverView.visibility = View.VISIBLE
+                            adverView.visibility = View.GONE
                         } else {
                             (adverView as TextView).text = ad.advertiser
                             adverView.visibility = View.GONE
                         }
                     }
-
-                    adView.setNativeAd(ad)
+//                    if (mActivity.isSupportFullScreen()) {
+                        val mediaView: MediaView = adView?.findViewById(R.id.ad_media)?:return
+                        adView?.mediaView = mediaView
+//                    }
+                    adView?.setNativeAd(ad)*/
                 }
             } catch (ex: Exception) {
                 Log.e("AdsInformation", "displayNativeAd: ${ex.message}")

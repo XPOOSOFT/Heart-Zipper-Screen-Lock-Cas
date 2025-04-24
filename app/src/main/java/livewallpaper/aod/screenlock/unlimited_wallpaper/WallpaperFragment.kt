@@ -10,19 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeType
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParseException
 import com.google.gson.JsonSyntaxException
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
-import livewallpaper.aod.screenlock.zipper.ads_cam.RewardedAdManager
-import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentWallpaperBinding
 import livewallpaper.aod.screenlock.zipper.utilities.Wallpaper_Cat
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
@@ -76,7 +71,6 @@ class WallpaperFragment : Fragment() {
         }
         _binding?.topLay?.title?.text = getString(R.string.k_wallpaper_new)
         loadBanner()
-        RewardedAdManager(adManager?:return).initializeRewardedAd()
         setupRecyclerView(view)
     }
 
@@ -119,20 +113,20 @@ class WallpaperFragment : Fragment() {
                         )
                     },
                     onWatchAds = { ->
-                        if (!(adManager?.isRewardedAdReady?:return@showAdsDialog)) {
-                            showToast(
-                                context ?: requireContext(),
-                                getString(R.string.try_agin_ad_not_load)
-                            )
-                            RewardedAdManager(adManager?:return@showAdsDialog).initializeRewardedAd()
-                            return@showAdsDialog
-                        }
-                        RewardedAdManager(adManager?:return@showAdsDialog).showRewardAds(activity?:return@showAdsDialog) {
-                            findNavController().navigate(
-                                R.id.FragmentListCustomWallpaper,
-                                bundleOf("title" to Tilte_)
-                            )
-                        }
+//                        if (!(adManager?.isRewardedAdReady?:return@showAdsDialog)) {
+//                            showToast(
+//                                context ?: requireContext(),
+//                                getString(R.string.try_agin_ad_not_load)
+//                            )
+//                            RewardedAdManager(adManager?:return@showAdsDialog).initializeRewardedAd()
+//                            return@showAdsDialog
+//                        }
+//                        RewardedAdManager(adManager?:return@showAdsDialog).showRewardAds(activity?:return@showAdsDialog) {
+//                            findNavController().navigate(
+//                                R.id.FragmentListCustomWallpaper,
+//                                bundleOf("title" to Tilte_)
+//                            )
+//                        }
                     }
                 )
             }
@@ -228,51 +222,27 @@ class WallpaperFragment : Fragment() {
 
             2 -> {
 
-                AdmobNative().loadNativeAds(
-                    activity,
-                    _binding?.nativeExitAd!!,
-                    id_native_screen,
-                    if (val_ad_native_reward_screen)
-                        1 else 0,
-                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
-                    isInternetConnected = isNetworkAvailable(activity),
-                    nativeType = if (val_ad_native_reward_screen_h) NativeType.LARGE else NativeType.BANNER,
-                    nativeCallBack = object : NativeCallBack {
-                        override fun onAdFailedToLoad(adError: String) {
-                            _binding?.adView?.visibility = View.GONE
-                            _binding?.nativeExitAd?.visibility = View.GONE
-                        }
-
-                        override fun onAdLoaded() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-
-                        override fun onAdImpression() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-                    }
-                )
             }
         }
     }
 
     private fun loadBanner(isAdsShow: Boolean) {
-        _binding?.nativeExitAd?.apply {
-            if   (!isAdsShow || !isNetworkAvailable(context)) {
-                visibility = View.INVISIBLE
-                _binding?.adView?.visibility = View.INVISIBLE
-                return
-            }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
-        }
+//        _binding?.nativeExitAd?.apply {
+//            if   (!isAdsShow || !isNetworkAvailable(context)) {
+//                visibility = View.INVISIBLE
+//                _binding?.adView?.visibility = View.INVISIBLE
+//                return
+//            }
+//            loadNativeBanner(
+//                context = requireContext(),
+//                isAdsShow = true,
+//                adSize = AdSize.LEADERBOARD, // Customize as needed
+//                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
+//                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
+//                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
+//                onAdClicked = { Log.d(TAG, "Ad clicked!") }
+//            )
+//        }
     }
 
     private fun toggleVisibility(view: View?, isVisible: Boolean) {

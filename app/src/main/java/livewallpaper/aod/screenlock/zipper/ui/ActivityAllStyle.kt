@@ -20,16 +20,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.ZippersRecyclerAdapter
-import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
-import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentAllStylesBinding
 import livewallpaper.aod.screenlock.zipper.service.LockScreenService
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues
@@ -56,9 +48,7 @@ class ActivityAllStyle : Fragment() {
     private var _binding: FragmentAllStylesBinding? = null
 
     //    private var adsManager: AdsManager? = null
-    private var interstitialAdManager: InterstitialAdManager? = null
     var isShowAdsNative = false
-    private val admobNative by lazy { AdmobNative() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -199,32 +189,7 @@ class ActivityAllStyle : Fragment() {
             }
 
             2 -> {
-                AdmobNative().loadNativeAds(
-                    activity,
-                    _binding?.nativeExitAd!!,
-                    id_native_screen,
-                    if (val_ad_native_list_data_screen)
-                        1 else 0,
-                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(
-                        activity ?: return
-                    ),
-                    isInternetConnected = isNetworkAvailable(activity),
-                    nativeType = if (val_ad_native_list_data_screen_h) NativeType.LARGE else NativeType.BANNER,
-                    nativeCallBack = object : NativeCallBack {
-                        override fun onAdFailedToLoad(adError: String) {
-                            _binding?.adView?.visibility = View.GONE
-                            _binding?.nativeExitAd?.visibility = View.GONE
-                        }
 
-                        override fun onAdLoaded() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-
-                        override fun onAdImpression() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-                    }
-                )
             }
         }
     }
@@ -236,15 +201,7 @@ class ActivityAllStyle : Fragment() {
                 _binding?.adView?.visibility = View.INVISIBLE
                 return
             }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
+
         }
     }
 

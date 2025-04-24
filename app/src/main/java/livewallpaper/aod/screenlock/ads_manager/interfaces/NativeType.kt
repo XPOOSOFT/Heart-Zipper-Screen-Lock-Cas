@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_cam
+package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces
 
 /**
  * @Author: Muhammad Yaqoob

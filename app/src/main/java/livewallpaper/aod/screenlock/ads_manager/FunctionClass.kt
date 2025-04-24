@@ -1,4 +1,4 @@
-package livewallpaper.aod.screenlock.zipper.ads_cam
+package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
 
 import android.app.Activity
 import android.content.ActivityNotFoundException
@@ -169,9 +169,7 @@ object FunctionClass {
                 clearFocus()
                 val imm =
                     context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
-                imm!!.hideSoftInputFromWindow(editText.windowToken,
-                    InputMethodManager.HIDE_IMPLICIT_ONLY
-                )
+                imm!!.hideSoftInputFromWindow(editText.windowToken, 0)
             }
         }
     }

@@ -20,9 +20,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
 import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
@@ -133,15 +130,15 @@ class FragmentNavigationScreen :
         }
         _binding?.navigationMain?.setOnClickListener { }
         _binding?.languageView?.setOnClickListener {
-            showCASInterstitial(val_ad_inter_language_screen_front) {
-                if (isVisible && !isDetached && isAdded) {
-                    findNavController().navigate(
-                        R.id.LanguageFragment,
-                        bundleOf(LANG_SCREEN to false)
-                    )
-                }
-            }
-            /*       adsManager?.let {
+//            showCASInterstitial(val_ad_inter_language_screen_front) {
+//                if (isVisible && !isDetached && isAdded) {
+//                    findNavController().navigate(
+//                        R.id.LanguageFragment,
+//                        bundleOf(LANG_SCREEN to false)
+//                    )
+//                }
+//            }
+               adsManager?.let {
                        showTwoInterAd(
                            ads = it,
                            activity = activity ?: return@setOnClickListener,
@@ -155,10 +152,10 @@ class FragmentNavigationScreen :
                                findNavController().navigate(R.id.LanguageFragment, _root_ide_package_.androidx.core.os.bundleOf(LANG_SCREEN to false))
                            }
                        }
-                   }*/
+                   }
         }
         _binding?.securityQView?.setOnClickListener {
-            /*       adsManager?.let {
+                 adsManager?.let {
                        showTwoInterAd(
                            ads = it,
                            activity = activity ?: return@setOnClickListener,
@@ -172,12 +169,12 @@ class FragmentNavigationScreen :
                                findNavController().navigate(R.id.SecurityQuestionFragment)
                            }
                        }
-                   }*/
-            showCASInterstitial(val_ad_inter_security_screen_front) {
-                if (isVisible && !isDetached && isAdded) {
-                    findNavController().navigate(R.id.SecurityQuestionFragment)
-                }
-            }
+                   }
+//            showCASInterstitial(val_ad_inter_security_screen_front) {
+//                if (isVisible && !isDetached && isAdded) {
+//                    findNavController().navigate(R.id.SecurityQuestionFragment)
+//                }
+//            }
 
         }
         _binding?.rateUsView?.setOnClickListener {
@@ -213,7 +210,6 @@ class FragmentNavigationScreen :
             findNavController().navigateUp()
         }
         loadBanner(val_banner_setting_screen)
-        loadCASInterstitial(true)
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
@@ -296,15 +292,6 @@ class FragmentNavigationScreen :
                 return
             }
 
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.adsView, true) },
-                onAdFailed = { toggleVisibility(_binding?.adsView, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
         }
     }
 
@@ -313,24 +300,5 @@ class FragmentNavigationScreen :
         view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
-    private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if   (!isAdsShow || !isNetworkAvailable(context)) {
-            return
-        }
-        // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
-        // Load and show the ad
-        interstitialAdManager?.loadAd(isAdsShow)
-    }
-
-    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
-        if (interstitialAdManager == null) {
-            function.invoke()
-            return
-        }
-        interstitialAdManager?.showAd(isAdsShow) {
-            function.invoke()
-        }
-    }
 
 }
