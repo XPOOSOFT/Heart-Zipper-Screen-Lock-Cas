@@ -24,6 +24,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.PurchasePrefs
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
@@ -92,7 +94,6 @@ class MainAppFragment : Fragment() {
     private lateinit var appUpdateManager: AppUpdateManager
     private val RC_APP_UPDATE = 200
     private var isSplashScreen: Boolean = false
-    private var interstitialAdManager: InterstitialAdManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,

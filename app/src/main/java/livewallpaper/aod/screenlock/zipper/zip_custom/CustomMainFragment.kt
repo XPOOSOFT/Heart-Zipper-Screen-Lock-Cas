@@ -18,6 +18,11 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -47,6 +52,7 @@ import livewallpaper.aod.screenlock.zipper.zip_custom.adapter.CustomAdapter
 class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
     private var _binding: CustomZipMainFragmentBinding? = null
+    private var ads: AdsManager? = null
     private var adapter: CustomAdapter? = null
     private var currentTab: String = "Zippers"
     private var zipperValue: String = "0"
@@ -75,19 +81,20 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                 findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
                 return@launch
             }
+            ads = AdsManager.appAdsInit(activity ?: return@launch)
 
             zipperValue = DataBasePref.LoadPrefString(
                 ConstantValues.SelectZipper,
-                context ?: return@launch
+                context ?: requireContext()
             ).toString()
             rowValue = DataBasePref.LoadPrefString(
                 ConstantValues.SelectRow,
-                context ?: return@launch
+                context ?: requireContext()
             ).toString()
             wallpaperValue =
                 DataBasePref.LoadPrefString(
                     ConstantValues.SelectedWallpaper,
-                    context ?: return@launch
+                    context ?: requireContext()
                 )
                     .toString()
 
@@ -128,7 +135,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectZipper,
-                            context ?: return@launch
+                            context ?: requireContext()
                         ).toInt(),0
                     )
                     getZippers().let { adapter?.submitList(it) }
@@ -139,42 +146,30 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectRow,
-                            context ?: return@launch
+                            context ?: requireContext()
                         ).toInt(),0
                     )
-                    getRowsView().let {
-                        if (it != null) {
-                            adapter?.submitList(it)
-                        }
-                    }
+                    getRowsView().let { adapter?.submitList(it) }
                 }
 
                 getString(R.string.wallpaper) -> {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectedWallpaper,
-                            context ?: return@launch
+                            context ?: requireContext()
                         ).toInt(),1
                     )
-                    getWallpapers().let {
-                        if (it != null) {
-                            adapter?.submitList(it)
-                        }
-                    }
+                    getWallpapers().let { adapter?.submitList(it) }
                 }
 
                 else -> {
                     adapter?.updateItem(
                         DataBasePref.LoadPref(
                             ConstantValues.SelectedWallpaper,
-                            context ?: return@launch
+                            context ?: requireContext()
                         ).toInt(),1
                     )
-                    getWallpapers().let {
-                        if (it != null) {
-                            adapter?.submitList(it)
-                        }
-                    }
+                    getWallpapers().let { adapter?.submitList(it) }
                 }
             }
 
@@ -187,7 +182,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectZipper,
-                                    context ?: return
+                                    context ?: requireContext()
                                 ).toInt(),0
                             )
                             getZippers().let { adapter?.submitList(it) }
@@ -198,30 +193,30 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectRow,
-                                    context ?: return
+                                    context ?: requireContext()
                                 ).toInt(),0
                             )
-                            getRowsView()?.let { adapter?.submitList(it) }
+                            getRowsView().let { adapter?.submitList(it) }
                         }
 
                         getString(R.string.wallpaper) -> {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectedWallpaper,
-                                    context ?: return
+                                    context ?: requireContext()
                                 ).toInt(),1
                             )
-                            getWallpapers()?.let { adapter?.submitList(it) }
+                            getWallpapers().let { adapter?.submitList(it) }
                         }
 
                         else -> {
                             adapter?.updateItem(
                                 DataBasePref.LoadPref(
                                     ConstantValues.SelectedWallpaper,
-                                    context ?: return
+                                    context ?: requireContext()
                                 ).toInt(),1
                             )
-                            getWallpapers()?.let { adapter?.submitList(it) }
+                            getWallpapers().let { adapter?.submitList(it) }
                         }
                     }
                 }
@@ -235,26 +230,26 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
             _binding?.previewButton?.setOnClickListener {
                 if (Settings.canDrawOverlays(
-                        context ?: return@setOnClickListener
+                        context ?: requireContext()
                     )
                 ) {
                     DataBasePref.SavePref(
                         ConstantValues.SelectedWallpaper,
                         wallpaperValue,
-                        context ?: return@setOnClickListener
+                        context ?: requireContext()
                     )
                     DataBasePref.SavePref(
                         ConstantValues.SelectZipper,
                         zipperValue,
-                        context ?: return@setOnClickListener
+                        context ?: requireContext()
                     )
                     DataBasePref.SavePref(
                         ConstantValues.SelectRow,
                         rowValue,
-                        context ?: return@setOnClickListener
+                        context ?: requireContext()
                     )
                     Log.d("values_theme", "onViewCreated: $wallpaperValue $rowValue $zipperValue")
-                    LockScreenService.Start(context ?: return@setOnClickListener)
+                    LockScreenService.Start(context ?: requireContext())
                 } else {
                     showCustomDialog()
                 }
@@ -278,24 +273,72 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
     private val admobNative by lazy { AdmobNative() }
 
     private fun loadNative() {
-            admobNative.loadNativeAds(
-                activity,
-                _binding?.nativeExitAd!!,
-                id_native_screen,
-                if (val_ad_native_list_data_screen)
-                    1 else 0,
-                isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
-                isInternetConnected = isNetworkAvailable(activity),
-                nativeType = if (val_ad_native_customize_screen_h) NativeType.LARGE else NativeType.BANNER,
-                nativeCallBack = object : NativeCallBack {
-                    override fun onAdFailedToLoad(adError: String) {
-                        _binding?.adView?.visibility = View.GONE}
-                    override fun onAdLoaded() {
-                        _binding?.adView?.visibility = View.GONE}
-                    override fun onAdImpression() {
-                        _binding?.adView?.visibility = View.GONE}
-                }
-            )
+//        if (native_precashe_copunt_current >= native_precashe_counter) {
+        val adView = activity?.layoutInflater?.inflate(
+            getNativeLayout(
+                custtom_main, _binding?.nativeExitAd!!,
+                activity?:return
+            ),
+            null
+        ) as NativeAdView
+        admobNative.loadNativeAds(
+            activity,
+            _binding?.nativeExitAd!!,
+            id_native_screen,
+            if (val_ad_native_list_data_screen)
+                1 else 0,
+            isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
+            isInternetConnected = AdsManager.isNetworkAvailable(activity),
+            nativeType = custtom_main,
+            nativeCallBack = object : NativeCallBack {
+                override fun onAdFailedToLoad(adError: String) {
+                    _binding?.nativeExitAd?.visibility = View.GONE
+                    _binding?.adView?.visibility = View.GONE}
+                override fun onAdLoaded() {
+                    _binding?.adView?.visibility = View.GONE}
+                override fun onAdImpression() {
+                    _binding?.adView?.visibility = View.GONE}
+            }
+        )
+//        } else {
+//        ads?.nativeAds()?.loadNativeAd(activity ?: return,
+//            val_ad_native_customize_screen,
+//            id_native_screen,
+//            object : NativeListener {
+//                override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+//                    if (isAdded && isVisible && !isDetached) {
+//                        _binding?.nativeExitAd?.visibility = View.VISIBLE
+//                        _binding?.adView?.visibility = View.GONE
+//                        val adView =
+//                            layoutInflater.inflate(
+//                                if (val_ad_native_customize_screen_h) R.layout.ad_unified_media else R.layout.ad_unified_privacy,
+//                                null
+//                            ) as NativeAdView
+//                        ads?.nativeAds()
+//                            ?.nativeViewPolicy(context ?: return, currentNativeAd ?: return, adView)
+//                        _binding?.nativeExitAd?.removeAllViews()
+//                        _binding?.nativeExitAd?.addView(adView)
+//                    }
+//                    super.nativeAdLoaded(currentNativeAd)
+//                }
+//
+//                override fun nativeAdFailed(loadAdError: LoadAdError) {
+//                    if (isAdded && isVisible && !isDetached) {
+//                        _binding?.nativeExitAd?.visibility = View.GONE
+//                        _binding?.adView?.visibility = View.GONE
+//                    }
+//                    super.nativeAdFailed(loadAdError)
+//                }
+//
+//                override fun nativeAdValidate(string: String) {
+//                    if (isAdded && isVisible && !isDetached) {
+//                        _binding?.nativeExitAd?.visibility = View.GONE
+//                        _binding?.adView?.visibility = View.GONE
+//                    }
+//                    super.nativeAdValidate(string)
+//                }
+//            })
+//    }
     }
 
     private fun showCustomDialog() {

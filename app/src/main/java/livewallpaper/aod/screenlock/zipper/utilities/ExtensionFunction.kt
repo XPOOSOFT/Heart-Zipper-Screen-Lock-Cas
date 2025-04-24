@@ -58,16 +58,16 @@ import kotlin.random.Random
 
 var isRating = true
 var PurchaseScreen = 0
-var isShowPurchaseScreen = false
-var in_app_val_ad_inter_loading_screen = false
 
 var counter = 0
 var isSplash = true
 
+var native_precashe_counter = 3
+var native_precashe_copunt_current = 0
+
 var isFlowOne = true
 var val_app_open = true
 var val_on_bording_screen = true
-var val_inter_back_press = false
 var val_inter_main_medium = true
 
 var val_ad_native_sound_screen = true
@@ -91,9 +91,6 @@ var type_ad_native_password_screen = 2
 var type_ad_native_list_data_screen = 2
 var type_ad_native_reward_screen = 2
 
-var native_precashe_counter = 4
-var native_precashe_copunt_current = 0
-
 var val_ad_inter_reward_screen = true
 var val_ad_inter_customize_screen = true
 
@@ -106,15 +103,6 @@ var val_ad_app_open_splash_screen = true
 var val_ad_inter_loading_screen = true
 var val_ad_inter_language_screen = true
 
-var val_ad_inter_main_menu_screen_back = true
-var val_ad_inter_sound_screen_back = true
-var val_exit_dialog_inter_back = true
-var val_ad_inter_setting_screen_back = true
-var val_ad_inter_security_screen_back = true
-var val_ad_inter_enable_screen_back = true
-var val_ad_inter_password_screen_back = true
-var val_ad_inter_list_data_screen_back = true
-
 var val_ad_inter_main_menu_screen_front = true
 var val_ad_inter_language_screen_front = true
 var val_ad_inter_sound_screen_front = true
@@ -126,16 +114,38 @@ var val_ad_inter_password_screen_front = true
 var val_ad_inter_list_data_screen_front = true
 var val_ad_native_customize_screen = true
 
-var val_ad_native_language_screen_h = true
-var val_ad_native_customize_screen_h = true
-var val_ad_native_reward_screen_h = true
-var val_ad_native_list_data_screen_h = true
-
+//New
 var val_ad_app_open_screen = true
 var val_is_inapp_splash = false
 var val_is_inapp = false
 
+var sessionOpenLanguageNew = 2
+var sessionOnboarding = 1
 
+var splash_bottom = 2
+var language_bottom = 2
+var home_native = 2
+var on_bord_native = 2
+var thankyou_bottom = 2
+
+var custtom_main = 2
+var wallpaper_fragment = 2
+var theme_all = 2
+var enable_first = 2
+var apply_password = 2
+var setting_fragment = 2
+var sound_select = 2
+var security_question = 2
+
+//New Ids
+
+var id_inter_watch_ads_Screen = ""
+var val_ad_inter_watch_ads_screen = true
+var val_ad_inter_wallpaper_server_screen = true
+var val_ad_inter_in_app = true
+var val_ad_inter_on_board = true
+
+//end new
 var banner_height = 160
 var banner_type = 1
 var appUpdateType = 0

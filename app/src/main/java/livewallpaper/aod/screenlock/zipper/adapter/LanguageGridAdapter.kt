@@ -4,22 +4,32 @@ import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.databinding.AdsItemBinding
 import livewallpaper.aod.screenlock.zipper.databinding.LanguageAppItemBinding
 import livewallpaper.aod.screenlock.zipper.model.LanguageModel
+import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.language_bottom
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
 
 
 class LanguageGridAdapter(
     private val items: List<LanguageModel>,
+    private val ads: AdsManager,
+    private val activity1: Activity,
     private var clickItem: ((LanguageModel) -> Unit)
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var context: Context? = null
     private var lastCheckedPosition: Int = -1
-
     companion object {
         const val ITEM_TYPE = 0
         const val AD_TYPE = 1
@@ -27,11 +37,12 @@ class LanguageGridAdapter(
 
     class ViewHolder(val binding: LanguageAppItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    class AdViewHolder(private val bindingAds: AdsItemBinding) : RecyclerView.ViewHolder(bindingAds.root)
+    class AdViewHolder(val bindingAds: AdsItemBinding) : RecyclerView.ViewHolder(bindingAds.root)
 
 
     override fun getItemViewType(position: Int): Int {
         return if (items[position].country_name == "Ad") AD_TYPE else ITEM_TYPE
+//        return if ((position + 1) % 5 == 0) AD_TYPE else ITEM_TYPE
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -72,7 +83,26 @@ class LanguageGridAdapter(
             }
         } else {
             Log.d("adapter_ad", "onBindViewHolder: Adapter View Hoder $position")
-
+            AdmobNative().loadNativeAds(
+                activity1?:return,
+                (holder as AdViewHolder).bindingAds.nativeExitAd,
+                id_native_screen,
+                if (val_ad_native_language_screen)
+                    1 else 0,
+                isAppPurchased = BillingUtil(activity1?:return).checkPurchased(activity1?:return),
+                isInternetConnected = AdsManager.isNetworkAvailable(activity1),
+                nativeType = language_bottom,
+                nativeCallBack = object : NativeCallBack {
+                    override fun onAdFailedToLoad(adError: String) {
+                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE}
+                    override fun onAdLoaded() {
+                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE
+                    }
+                    override fun onAdImpression() {
+                        (holder as AdViewHolder).bindingAds.adView.visibility = View.GONE
+                    }
+                }
+            )
         }
     }
 
