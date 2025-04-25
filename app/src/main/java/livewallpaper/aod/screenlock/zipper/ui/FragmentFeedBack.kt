@@ -11,13 +11,18 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentFeedBackBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
+import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
+import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
 class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackBinding::inflate) {
 
@@ -57,34 +62,38 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        try {
-            _binding?.sendFeedBack?.setOnClickListener {
-                if (imageUri != null && _binding?.editTextText?.text?.toString()?.isEmpty() == false) {
-                    shareContent(
-                        title = "Bugs Find Alert",
-                        text = "Bugs Find By User.Need to Fixed" + "\n+${_binding?.editTextText?.text?.toString()} "+"\n ${getStringFeedBack()}",
-                        imageResId = imageUri!! // Replace with your image
-                    )
-                } else {
-                    showToast(context ?: return@setOnClickListener, "Empty Field")
-                }
-            }
+        if(++PurchaseScreen == val_inapp_frequency && !BillingUtil(activity?:return).checkPurchased(activity?:return)){
+            PurchaseScreen =0
+            findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
+            return
+        }
 
-            _binding?.uploadTitleFrame?.setOnClickListener {
-                if (checkStoragePermission()) {
-                    openGallery()
-                } else {
-                    requestStoragePermission()
-                }
+        _binding?.sendFeedBack?.setOnClickListener {
+            if (imageUri != null && _binding?.editTextText?.text?.toString()?.isEmpty() == false) {
+                shareContent(
+                    title = "Bugs Find Alert ",
+                    text = "Bugs Find By User.Need to Fixed" + "\n " +
+                            "${_binding?.editTextText?.text?.toString()} \n" +
+                            "${getStringFeedBack()}",
+                    imageResId = imageUri!! // Replace with your image
+                )
+            } else {
+                showToast(context ?: return@setOnClickListener, "Empty Field")
             }
-            _binding?.backBtn?.clickWithThrottle {
-                findNavController().navigateUp()
+        }
+
+        _binding?.uploadTitleFrame?.setOnClickListener {
+            if (checkStoragePermission()) {
+                openGallery()
+            } else {
+                requestStoragePermission()
             }
-            setupBackPressedCallback {
-                findNavController().navigateUp()
-            }
-        } catch (e: Exception) {
-           e.printStackTrace()
+        }
+        _binding?.backBtn?.clickWithThrottle {
+            findNavController().navigateUp()
+        }
+        setupBackPressedCallback {
+            findNavController().navigateUp()
         }
     }
 
@@ -116,52 +125,44 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
 
     private fun shareContent(title: String, text: String, imageResId: Uri) {
         // Create the sharing intent
-        try {
-            val shareIntent = Intent(Intent.ACTION_SEND).apply {
-                type = "*/*" // General type; can be customized based on what you're sharing
-                // Add the text and title
-                putExtra(Intent.EXTRA_EMAIL, arrayOf("fireitinc.dev@gmail.com"))
-                putExtra(Intent.EXTRA_SUBJECT, title)
-                putExtra(Intent.EXTRA_TEXT, text)
-                // Add the image (optional)
-                imageResId.let {
-                    putExtra(Intent.EXTRA_STREAM, it)
-                    type = "image/*" // Specify the MIME type for images
-                    addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Ensure permission for sharing the image
-                }
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "*/*" // General type; can be customized based on what you're sharing
+            // Add the text and title
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("masterofdoor@outlook.com"))
+            putExtra(Intent.EXTRA_SUBJECT, title)
+            putExtra(Intent.EXTRA_TEXT, text)
+            // Add the image (optional)
+            imageResId.let {
+                putExtra(Intent.EXTRA_STREAM, it)
+                type = "image/*" // Specify the MIME type for images
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION) // Ensure permission for sharing the image
             }
-            // Launch the chooser for sharing
-            val chooser = Intent.createChooser(shareIntent, "Share via")
-            startActivity(chooser)
-        } catch (e: Exception) {
-          e.printStackTrace()
         }
+        // Launch the chooser for sharing
+        val chooser = Intent.createChooser(shareIntent, "Share via")
+        startActivity(chooser)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-            try {
-                imageUri = data.data
+            imageUri = data.data
 
-                // Load image into the TextView background
-                Glide.with(this).load(imageUri).into(object :
-                        com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
-                        override fun onResourceReady(
-                            resource: android.graphics.drawable.Drawable,
-                            transition: com.bumptech.glide.request.transition.Transition<in android.graphics.drawable.Drawable>?
-                        ) {
-                            _binding?.uploadTitleFrame?.background = resource
-                        }
+            // Load image into the TextView background
+            Glide.with(this).load(imageUri).into(object :
+                com.bumptech.glide.request.target.CustomTarget<android.graphics.drawable.Drawable>() {
+                override fun onResourceReady(
+                    resource: android.graphics.drawable.Drawable,
+                    transition: com.bumptech.glide.request.transition.Transition<in android.graphics.drawable.Drawable>?
+                ) {
+                    _binding?.uploadTitleFrame?.background = resource
+                }
 
-                        override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
-                            _binding?.uploadTitleFrame?.background = placeholder
-                        }
-                    })
-            } catch (e: Exception) {
-               e.printStackTrace()
-            }
+                override fun onLoadCleared(placeholder: android.graphics.drawable.Drawable?) {
+                    _binding?.uploadTitleFrame?.background = placeholder
+                }
+            })
         }
     }
 
@@ -170,12 +171,14 @@ class FragmentFeedBack : BaseFragment<FragmentFeedBackBinding>(FragmentFeedBackB
         intent.type = "image/*"
         startActivityForResult(intent, PICK_IMAGE_REQUEST_CODE)
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
+        _binding=null
+    }
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-    override fun onLowMemory() {
-        super.onLowMemory()
-        activity?.finish()
     }
 }

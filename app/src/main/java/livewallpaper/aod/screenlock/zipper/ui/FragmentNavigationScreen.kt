@@ -20,13 +20,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.FunctionClass.feedBackWithEmail
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.InterstitialAdManager
-import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
-import livewallpaper.aod.screenlock.zipper.ads_cam.FunctionClass.feedBackWithEmail
 import livewallpaper.aod.screenlock.zipper.databinding.NavigationLayoutBinding
 import livewallpaper.aod.screenlock.zipper.service.LiveService
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
@@ -35,14 +33,14 @@ import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues
 import livewallpaper.aod.screenlock.zipper.utilities.Constants
 import livewallpaper.aod.screenlock.zipper.utilities.Constants.isServiceRunning
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
-import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
+import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.isFirstEnable
-import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.moreApp
 import livewallpaper.aod.screenlock.zipper.utilities.privacyPolicy
-import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.shareApp
 import livewallpaper.aod.screenlock.zipper.utilities.showRatingDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showServiceDialog
@@ -52,33 +50,27 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_banner_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
 class FragmentNavigationScreen :
-    BaseFragment<NavigationLayoutBinding>(NavigationLayoutBinding::inflate) {
+BaseFragment<NavigationLayoutBinding>(NavigationLayoutBinding::inflate) {
     private var sharedPrefUtils: DbHelper? = null
     private var isFirst = false
     private var isActivated = false
-    private var interstitialAdManager: InterstitialAdManager? = null
+    private var adsManager: AdsManager? = null
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "UseSwitchCompatOrMaterialCode")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (++PurchaseScreen == val_inapp_frequency) {
-            PurchaseScreen = 0
+        if(++PurchaseScreen == val_inapp_frequency && !BillingUtil(activity?:return).checkPurchased(activity?:return)){
+            PurchaseScreen =0
             findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
             return
         }
         sharedPrefUtils = DbHelper(context ?: return)
-        _binding?.versionText?.text = getString(R.string.version) + "${
-            context?.packageManager?.getPackageInfo(
-                context?.packageName!!,
-                0
-            )?.versionName
-        }"
+        adsManager = AdsManager.appAdsInit(activity ?: return)
+        _binding?.versionText?.text=getString(R.string.version)+"${context?.packageManager?.getPackageInfo(context?.packageName!!, 0)?.versionName}"
         _binding?.customSwitch?.setOnCheckedChangeListener { compoundButton, z ->
             if (compoundButton.isPressed) {
                 if (!isFirst) {
                     _binding?.customSwitch?.isChecked = false
-//                    startActivity(Intent(requireContext(), EnableFirstActivity::class.java))
                     findNavController().navigate(R.id.EnableFirstActivity)
                     return@setOnCheckedChangeListener
                 }
@@ -131,101 +123,80 @@ class FragmentNavigationScreen :
                 }
             }
         }
-        _binding?.navigationMain?.setOnClickListener { }
-        _binding?.languageView?.setOnClickListener {
-            showCASInterstitial(val_ad_inter_language_screen_front) {
-                if (isVisible && !isDetached && isAdded) {
-                    findNavController().navigate(
-                        R.id.LanguageFragment,
-                        bundleOf(LANG_SCREEN to false)
-                    )
+        _binding?.navigationMain?.clickWithThrottle { }
+        _binding?.languageView?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_language_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "main_menu",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle,
+                ) {
+                    findNavController().navigate(R.id.LanguageFragment)
                 }
             }
-            /*       adsManager?.let {
-                       showTwoInterAd(
-                           ads = it,
-                           activity = activity ?: return@setOnClickListener,
-                           remoteConfigNormal = val_ad_inter_language_screen_front,
-                           adIdNormal = id_inter_main_medium,
-                           tagClass = "main_menu",
-                           isBackPress = false,
-                           layout = _binding?.adsLay ?: return@setOnClickListener,
-                       ) {
-                           if(isVisible && !isDetached && isAdded) {
-                               findNavController().navigate(R.id.LanguageFragment, _root_ide_package_.androidx.core.os.bundleOf(LANG_SCREEN to false))
-                           }
-                       }
-                   }*/
         }
-        _binding?.securityQView?.setOnClickListener {
-            /*       adsManager?.let {
-                       showTwoInterAd(
-                           ads = it,
-                           activity = activity ?: return@setOnClickListener,
-                           remoteConfigNormal = val_ad_inter_security_screen_front,
-                           adIdNormal = id_inter_main_medium,
-                           tagClass = "main_menu",
-                           isBackPress = false,
-                           layout = _binding?.adsLay ?: return@setOnClickListener
-                       ) {
-                           if(isVisible && !isDetached && isAdded) {
-                               findNavController().navigate(R.id.SecurityQuestionFragment)
-                           }
-                       }
-                   }*/
-            showCASInterstitial(val_ad_inter_security_screen_front) {
-                if (isVisible && !isDetached && isAdded) {
-                    findNavController().navigate(R.id.SecurityQuestionFragment)
-                }
-            }
-
+        _binding?.rateUsView?.clickWithThrottle {
+            showRatingDialog(activity, onPositiveButtonClick = { it, _dialog ->
+            })
         }
-        _binding?.rateUsView?.setOnClickListener {
-            lifecycleScope.launchWhenCreated {
-                showRatingDialog(activity, onPositiveButtonClick = { it, _dialog ->
-                })
-            }
+        _binding?.shareAppView?.clickWithThrottle {
+            requireContext().shareApp()
         }
-        _binding?.customSView?.setOnClickListener {
+        _binding?.privacyView?.clickWithThrottle {
+            requireContext().privacyPolicy()
+        }
+        _binding?.customSView?.clickWithThrottle {
             feedBackWithEmail(
-                context = activity ?: return@setOnClickListener,
+                context =activity?:return@clickWithThrottle,
                 title = "Feed Back",
                 message = "User Send Feed Back",
                 emailId = "fireitinc.dev@gmail.com"
             )
         }
-        _binding?.feedBackView?.setOnClickListener {
+        _binding?.feedBackView?.clickWithThrottle {
             findNavController().navigate(R.id.FragmentFeedBack)
         }
-        _binding?.shareAppView?.setOnClickListener {
-            requireContext().shareApp()
-        }
-        _binding?.privacyView?.setOnClickListener {
-            requireContext().privacyPolicy()
-        }
-        _binding?.moreAppView?.setOnClickListener {
+        _binding?.moreAppView?.clickWithThrottle {
             requireContext().moreApp()
         }
-        _binding?.exitAppView?.setOnClickListener {
+        _binding?.exitAppView?.clickWithThrottle {
             findNavController().navigate(R.id.FragmentExitScreen)
         }
-        _binding?.backIcon?.setOnClickListener {
-            findNavController().navigateUp()
+        _binding?.securityQView?.clickWithThrottle {
+            adsManager?.let {
+                showTwoInterAd(
+                    ads = it,
+                    activity = activity ?: return@clickWithThrottle,
+                    remoteConfigNormal = val_ad_inter_security_screen_front,
+                    adIdNormal = id_inter_main_medium,
+                    tagClass = "setting",
+                    isBackPress = false,
+                    layout = _binding?.adsLay ?: return@clickWithThrottle
+                ){
+                    findNavController().navigate(R.id.SecurityQuestionFragment)
+                }
+            }
+
         }
-        loadBanner(val_banner_setting_screen)
-        loadCASInterstitial(true)
-        setupBackPressedCallback {
-            findNavController().navigateUp()
+        _binding?.backIcon?.clickWithThrottle {
+            findNavController().popBackStack()
         }
+        loadBanner()
     }
 
     override fun onResume() {
         super.onResume()
         isFirst = sharedPrefUtils?.chkBroadCast(isFirstEnable) == true
         if (isFirst) {
-            _binding?.customSwitch?.isChecked =
-                DataBasePref.LoadPrefString(ConstantValues.ActivePref, context ?: return)
-                    .equals("1")
+            if (DataBasePref.LoadPrefString(ConstantValues.ActivePref, context ?: return).equals("1")) {
+                _binding?.customSwitch?.isChecked = true
+            } else {
+                _binding?.customSwitch?.isChecked = false
+            }
         } else {
             _binding?.customSwitch?.isChecked = false
         }
@@ -251,23 +222,24 @@ class FragmentNavigationScreen :
         Glide.with(this)
             .load(R.raw.dialog)
             .into(dialog.findViewById<ImageView>(R.id.animationView))
+
         dialog.window?.apply {
             // Set the dialog to be full-screen
             setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             setBackgroundDrawable(ColorDrawable(Color.WHITE))  // Optional: Set background to transparent
         }
+        dialog.findViewById<View>(R.id.buttonOk).clickWithThrottle {
+            dialog.dismiss()
+            askPermission(activity ?: return@clickWithThrottle)
+        }
+
         dialog.findViewById<View>(R.id.closeBtn).setOnClickListener {
             dialog.dismiss()
         }
-        dialog.findViewById<View>(R.id.buttonOk).setOnClickListener {
-            dialog.dismiss()
-            askPermission(activity ?: return@setOnClickListener)
-        }
-
     }
 
     private fun askPermission(activity: Activity) {
-        isSplash = false
+        isSplash =false
         val intent = Intent(
             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
             Uri.parse("package:${context?.packageName}")
@@ -275,61 +247,14 @@ class FragmentNavigationScreen :
         startActivityForResult(intent, 100)
     }
 
-    /*    private fun loadNative() {
-
+    private fun loadBanner(){
         adsManager?.adsBanners()?.loadBanner(
-                activity = activity ?: return,
-                view = binding!!.adsView,
-                addConfig = val_banner_setting_screen,
-                bannerId = id_adaptive_banner
-            ) {
+            activity = activity ?: return,
+            view = _binding!!.adsView,
+            addConfig = val_banner_setting_screen,
+            bannerId = id_adaptive_banner
+        ) {
 
-                _binding!!.adView?.visibility=View.GONE
-            }
-        }*/
-
-    private fun loadBanner(isAdsShow: Boolean) {
-        _binding?.adsView?.apply {
-            if   (!isAdsShow || !isNetworkAvailable(context)) {
-                _binding?.adsView?.visibility = View.INVISIBLE
-                _binding?.adView?.visibility = View.INVISIBLE
-                return
-            }
-
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.adsView, true) },
-                onAdFailed = { toggleVisibility(_binding?.adsView, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
-        }
-    }
-
-    private fun toggleVisibility(view: View?, isVisible: Boolean) {
-        _binding?.adView?.visibility = View.INVISIBLE
-        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-    }
-
-    private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if   (!isAdsShow || !isNetworkAvailable(context)) {
-            return
-        }
-        // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
-        // Load and show the ad
-        interstitialAdManager?.loadAd(isAdsShow)
-    }
-
-    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
-        if (interstitialAdManager == null) {
-            function.invoke()
-            return
-        }
-        interstitialAdManager?.showAd(isAdsShow) {
-            function.invoke()
         }
     }
 

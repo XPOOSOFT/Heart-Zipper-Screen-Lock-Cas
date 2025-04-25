@@ -24,14 +24,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.cleversolutions.ads.AdSize
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.PurchasePrefs
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.UpdateAvailability
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.adManager
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.MainMenuAdapter
 import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
@@ -95,7 +94,6 @@ class MainAppFragment : Fragment() {
     private lateinit var appUpdateManager: AppUpdateManager
     private val RC_APP_UPDATE = 200
     private var isSplashScreen: Boolean = false
-    private var interstitialAdManager: InterstitialAdManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -384,15 +382,6 @@ class MainAppFragment : Fragment() {
                 _binding?.adViewB?.visibility = View.INVISIBLE
                 return
             }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.bannerAds, true) },
-                onAdFailed = { toggleVisibility(_binding?.bannerAds, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
         }
     }
 
@@ -401,25 +390,7 @@ class MainAppFragment : Fragment() {
         view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
     }
 
-    private fun loadCASInterstitial(isAdsShow: Boolean) {
-        if   (!isAdsShow || !isNetworkAvailable(context)) {
-            return
-        }
-        // Initialize the InterstitialAdManager
-        interstitialAdManager = InterstitialAdManager(context ?: return, adManager?:return)
-        // Load and show the ad
-        interstitialAdManager?.loadAd(isAdsShow)
-    }
 
-    private fun showCASInterstitial(isAdsShow: Boolean, function: (() -> Unit)) {
-        if (interstitialAdManager == null) {
-            function.invoke()
-            return
-        }
-        interstitialAdManager?.showAd(isAdsShow) {
-            function.invoke()
-        }
-    }
 
     override fun onDestroy() {
         shouldCheckForOverlayPermissionLoop = false
@@ -538,22 +509,30 @@ class MainAppFragment : Fragment() {
                     when (appUpdateType) {
                         0 -> {
                             // Request the update
-                            appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.IMMEDIATE,
-                                activity ?: return@addOnSuccessListener,
-                                RC_APP_UPDATE
-                            )
+                            try {
+                                appUpdateManager.startUpdateFlowForResult(
+                                    appUpdateInfo,
+                                    AppUpdateType.IMMEDIATE,
+                                    activity ?: return@addOnSuccessListener,
+                                    RC_APP_UPDATE
+                                )
+                            } catch (e: Exception) {
+                               e.printStackTrace()
+                            }
                         }
 
                         1 -> {
                             // Request the update
-                            appUpdateManager.startUpdateFlowForResult(
-                                appUpdateInfo,
-                                AppUpdateType.FLEXIBLE,
-                                activity ?: return@addOnSuccessListener,
-                                RC_APP_UPDATE
-                            )
+                            try {
+                                appUpdateManager.startUpdateFlowForResult(
+                                    appUpdateInfo,
+                                    AppUpdateType.FLEXIBLE,
+                                    activity ?: return@addOnSuccessListener,
+                                    RC_APP_UPDATE
+                                )
+                            } catch (e: Exception) {
+                               e.printStackTrace()
+                            }
                         }
                     }
                 }

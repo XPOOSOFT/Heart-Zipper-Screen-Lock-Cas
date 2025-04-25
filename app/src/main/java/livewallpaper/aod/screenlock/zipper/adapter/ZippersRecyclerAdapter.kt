@@ -14,40 +14,41 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
+import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 
-class ZippersRecyclerAdapter(private val list: List<Int>, var pref: String, val context: Context?, val isWallpaper: Boolean?) :
+class ZippersRecyclerAdapter(
+                             private val list1: Int,
+                             private val list: List<Int>,
+                             private var pref: String,
+                             val context: Context?
+) :
     RecyclerView.Adapter<ZippersRecyclerAdapter.MyViewHolder>() {
-    var selected = 0
+    private var selected = 0
     var onClick: ((Int) -> Unit)? = null
 
     inner class MyViewHolder(private var parent: View) : RecyclerView.ViewHolder(
         parent
     ) {
         var image: ImageFilterView
+        var imageWallpaper: ImageFilterView
         var selectedTicket: ImageView
 
         init {
             image = parent.findViewById(R.id.image)
+            imageWallpaper = parent.findViewById(R.id.imageWallpaper)
             selectedTicket = parent.findViewById(R.id.ticket)
         }
     }
 
     init {
-        selected = context?.let { DataBasePref.LoadPref(pref, it) }?: 0
+        selected = DataBasePref.LoadPref(pref, context!!)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): MyViewHolder {
-        return if(isWallpaper == true){
-            MyViewHolder(
-                LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.zipper_item_wallpaper_layout, viewGroup, false)
-            )
-        }else{
-            MyViewHolder(
-                LayoutInflater.from(viewGroup.context)
-                    .inflate(R.layout.zipper_item_layout, viewGroup, false)
-            )
-        }
+        return MyViewHolder(
+            LayoutInflater.from(viewGroup.context)
+                .inflate(R.layout.zipper_item_layout, viewGroup, false)
+        )
     }
 
     override fun getItemViewType(i: Int): Int {
@@ -58,19 +59,25 @@ class ZippersRecyclerAdapter(private val list: List<Int>, var pref: String, val 
         myViewHolder: MyViewHolder,
         @SuppressLint("RecyclerView") i: Int
     ) {
-        Glide.with(context ?: return).load(list[i]).thumbnail().into(myViewHolder.image)
-        if (i == selected) {
-            Glide.with(context ?: return).load(R.drawable.check).into(myViewHolder.selectedTicket)
-        } else {
-            Glide.with(context ?: return).load(R.drawable.uncheck).into(myViewHolder.selectedTicket)
+        if(list1==0){
+            Glide.with(context ?: return).load(list[i]).apply(RequestOptions()
+                .centerCrop() // Ensures the image is scaled correctly within the ImageView
+                .transform(RoundedCorners(30)) ).placeholder(R.drawable.error_ic).into(myViewHolder.imageWallpaper)
+        }else{
+            Glide.with(context ?: return).load(list[i]).thumbnail().placeholder(R.drawable.error_ic).into(myViewHolder.image)
         }
-        myViewHolder.image.setOnClickListener { view ->
+        if (i == selected) {
+            Glide.with(context?: return).load(R.drawable.check).into(myViewHolder.selectedTicket)
+        } else {
+            Glide.with(context?: return).load(R.drawable.uncheck).into(myViewHolder.selectedTicket)
+        }
+        myViewHolder.itemView.clickWithThrottle {
             onClick?.invoke(i)
         }
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return list.size?:return 0
     }
 
     fun updateItem(position: Int) {

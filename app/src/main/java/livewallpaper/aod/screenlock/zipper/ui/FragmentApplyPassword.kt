@@ -10,18 +10,20 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.cleversolutions.ads.AdSize
-import livewallpaper.aod.screenlock.zipper.MyApplication.Companion.TAG
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
-import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
-import livewallpaper.aod.screenlock.zipper.ads_cam.loadNativeBanner
 import livewallpaper.aod.screenlock.zipper.databinding.SetPasswordLyBinding
 import livewallpaper.aod.screenlock.zipper.utilities.PasswordAdapter
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
+import livewallpaper.aod.screenlock.zipper.utilities.apply_password
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.getNativeLayout
+import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
@@ -31,10 +33,11 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_password_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 
-class FragmentApplyPassword : Fragment() {
+class FragmentApplyPassword  : Fragment() {
 
     private lateinit var vibrator: Vibrator
     private var noOfPasswordWritten = 0
+    private var adsManager: AdsManager? = null
     var paswordValue2 = ""
     var passwordValue1 = ""
     var mainPassword = ""
@@ -52,24 +55,21 @@ class FragmentApplyPassword : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        if (++PurchaseScreen == val_inapp_frequency) {
-            PurchaseScreen = 0
+        if(++PurchaseScreen == val_inapp_frequency && !BillingUtil(activity?:return).checkPurchased(activity?:return)){
+            PurchaseScreen =0
             findNavController().navigate(R.id.FragmentBuyScreen, bundleOf("isSplash" to false))
             return
         }
-        try {
-            loadBanner()
-            mClickListener()
-            vibrator = context?.getSystemService(VIBRATOR_SERVICE) as Vibrator
-            setupBackPressedCallback {
-                findNavController().navigateUp()
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
+
+        firebaseAnalytics("fragment_open_pass_screen", "fragment_open_pass_screen")
+        adsManager = AdsManager.appAdsInit(activity?:return)
+        loadBanner()
+        mClickListener()
+        vibrator = context?.getSystemService(VIBRATOR_SERVICE) as Vibrator
+        setupBackPressedCallback {
+            findNavController().navigateUp()
         }
     }
-
 
     private fun mClickListener() {
 
@@ -232,15 +232,15 @@ class FragmentApplyPassword : Fragment() {
         paswordValue2 = mainPassword
         mainPassword = ""
         if (paswordValue2 == passwordValue1) {
-            PasswordAdapter.SavePassword(context, passwordValue1)
-            showToast(context ?: requireContext(), "password is applied successfully")
+            PasswordAdapter.SavePassword(context?:requireContext(), passwordValue1)
+            showToast(context?:requireContext(), "password is applied successfully")
             findNavController().navigateUp()
         } else {
             _binding?.goldPasswordId?.text = getString(R.string.set_password)
             noOfPasswordWritten = 0
             paswordValue2 = ""
             passwordValue1 = ""
-            showToast(context ?: requireContext(), "Password Mismatch")
+            showToast(context?:requireContext(), "Password Mismatch")
         }
     }
 
@@ -250,118 +250,105 @@ class FragmentApplyPassword : Fragment() {
         _binding?.goldDot3?.setImageResource(dotImg3)
         _binding?.goldDot4?.setImageResource(dotImg4)
     }
-
-    /*    private fun loadNative() {
-            adsManager?.nativeAds()?.loadNativeAd(
-                activity?:requireActivity(),
-                val_ad_native_password_screen,
-                id_native_screen,
-                object : NativeListener {
-                    override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
-
-                        _binding?.nativeExitAd?.visibility = View.VISIBLE
-                        _binding?.adView?.visibility = View.GONE
-                        val adView = layoutInflater.inflate(
-                            R.layout.ad_unified_privacy,
-                            null
-                        ) as NativeAdView
-                        adsManager?.nativeAds()
-                            ?.nativeViewPolicy(context?:requireContext(),currentNativeAd ?: return, adView)
-                        _binding?.nativeExitAd?.removeAllViews()
-                        _binding?.nativeExitAd?.addView(adView)
-                        super.nativeAdLoaded(currentNativeAd)
-                    }
-
-                    override fun nativeAdFailed(loadAdError: LoadAdError) {
-                        _binding?.nativeExitAd?.visibility = View.GONE
-                        _binding?.adView?.visibility = View.GONE
-                        super.nativeAdFailed(loadAdError)
-                    }
-
-                    override fun nativeAdValidate(string: String) {
-                        _binding?.nativeExitAd?.visibility = View.GONE
-                        _binding?.adView?.visibility = View.GONE
-                        super.nativeAdValidate(string)
-                    }
-                })
-        }*/
-
-
-    private fun loadBanner() {
+    private val admobNative by lazy { AdmobNative() }
+    private fun loadBanner(){
         when (type_ad_native_password_screen) {
             0 -> {
                 _binding?.nativeExitAd?.visibility = View.GONE
-                _binding?.adView?.visibility = View.GONE
+                _binding?.adView?.visibility=View.GONE
             }
 
             1 -> {
-                loadBanner(val_ad_native_password_screen)
+                adsManager?.adsBanners()?.loadBanner(
+                    activity = activity ?: return,
+                    view = _binding!!.nativeExitAd,
+                    addConfig = val_ad_native_password_screen,
+                    bannerId = id_adaptive_banner
+                ) {
+                    _binding!!.adView?.visibility=View.GONE
+                }
             }
 
             2 -> {
-
-                AdmobNative().loadNativeAds(
+//                if (native_precashe_copunt_current >= native_precashe_counter) {
+                val adView = activity?.layoutInflater?.inflate(
+                    getNativeLayout(
+                        apply_password, _binding?.nativeExitAd!!,
+                        activity?:return
+                    ),
+                    null
+                ) as NativeAdView
+                admobNative.loadNativeAds(
                     activity,
                     _binding?.nativeExitAd!!,
                     id_native_screen,
                     if (val_ad_native_password_screen)
                         1 else 0,
-                    isAppPurchased = BillingUtil(activity ?: return).checkPurchased(
-                        activity ?: return
-                    ),
-                    isInternetConnected = isNetworkAvailable(activity),
-                    nativeType = NativeType.SMALL,
+                    isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
+                    isInternetConnected = AdsManager.isNetworkAvailable(activity),
+                    nativeType = apply_password,
                     nativeCallBack = object : NativeCallBack {
                         override fun onAdFailedToLoad(adError: String) {
-                            _binding?.adView?.visibility = View.GONE
                             _binding?.nativeExitAd?.visibility = View.GONE
-                        }
-
+                            _binding?.adView?.visibility = View.GONE}
                         override fun onAdLoaded() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
-
+                            _binding?.adView?.visibility = View.GONE}
                         override fun onAdImpression() {
-                            _binding?.adView?.visibility = View.GONE
-                        }
+                            _binding?.adView?.visibility = View.GONE}
                     }
                 )
+//                } else {
+//                    adsManager?.nativeAds()?.loadNativeAd(
+//                        activity ?: return,
+//                        val_ad_native_password_screen,
+//                        id_native_screen,
+//                        object : NativeListener {
+//                            override fun nativeAdLoaded(currentNativeAd: NativeAd?) {
+//                                if (isAdded && isVisible && !isDetached) {
+//                                    _binding?.nativeExitAd?.visibility = View.VISIBLE
+//                                    _binding?.adView?.visibility = View.GONE
+//                                    val adView = layoutInflater.inflate(
+//                                        R.layout.ad_unified_media,
+//                                        null
+//                                    ) as NativeAdView
+//                                    adsManager?.nativeAds()?.nativeViewMedia(
+//                                        context ?: return,
+//                                        currentNativeAd ?: return,
+//                                        adView
+//                                    )
+//                                    _binding?.nativeExitAd?.removeAllViews()
+//                                    _binding?.nativeExitAd?.addView(adView)
+//                                }
+//                                super.nativeAdLoaded(currentNativeAd)
+//                            }
+//
+//                            override fun nativeAdFailed(loadAdError: LoadAdError) {
+//                                if (isAdded && isVisible && !isDetached) {
+//                                    _binding?.nativeExitAd?.visibility = View.INVISIBLE
+//                                    _binding?.adView?.visibility = View.INVISIBLE
+//                                }
+//                                super.nativeAdFailed(loadAdError)
+//                            }
+//
+//                            override fun nativeAdValidate(string: String) {
+//                                if (isAdded && isVisible && !isDetached) {
+//                                    _binding?.nativeExitAd?.visibility = View.INVISIBLE
+//                                    _binding?.adView?.visibility = View.INVISIBLE
+//                                }
+//                                super.nativeAdValidate(string)
+//                            }
+//                        })
+//                }
             }
         }
     }
-
-    private fun loadBanner(isAdsShow: Boolean) {
-        _binding?.nativeExitAd?.apply {
-            if   (!isAdsShow || !isNetworkAvailable(context)) {
-                visibility = View.INVISIBLE
-                _binding?.adView?.visibility = View.INVISIBLE
-                return
-            }
-            loadNativeBanner(
-                context = requireContext(),
-                isAdsShow = true,
-                adSize = AdSize.LEADERBOARD, // Customize as needed
-                onAdLoaded = { toggleVisibility(_binding?.nativeExitAd, true) },
-                onAdFailed = { toggleVisibility(_binding?.nativeExitAd, false) },
-                onAdPresented = { Log.d(TAG, "Ad presented from network: ${it.network}") },
-                onAdClicked = { Log.d(TAG, "Ad clicked!") }
-            )
-        }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.clear()
+        _binding=null
     }
-
-    private fun toggleVisibility(view: View?, isVisible: Boolean) {
-        _binding?.adView?.visibility = View.INVISIBLE
-        view?.visibility = if (isVisible) View.VISIBLE else View.INVISIBLE
-    }
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        activity?.finish()
     }
 }
