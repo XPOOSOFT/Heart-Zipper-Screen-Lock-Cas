@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 
 import android.annotation.SuppressLint
@@ -20,16 +20,16 @@ import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.snackbar.Snackbar
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.getRandomColor
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_ads_bg
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_ads_button
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_native_screen
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.native_precashe_copunt_current
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
+import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
 /**
  * Created by
@@ -448,10 +448,10 @@ object NativeAds {
     @SuppressLint("ResourceType")
     fun nativeViewPolicy(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
 
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById(R.id.ad_app_icon)
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById(R.id.custom_app_icon)
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
 
         (adView.headlineView as TextView).text = nativeAd.headline
 
@@ -491,11 +491,11 @@ object NativeAds {
 
     @SuppressLint("ResourceType")
     fun nativeViewMedia(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById<ImageView>(R.id.ad_app_icon)!!
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-        adView.mediaView = adView.findViewById(R.id.ad_media)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
+        adView.mediaView = adView.findViewById(R.id.custom_media)
 
         (adView.headlineView as TextView).text = nativeAd.headline
         if (nativeAd.body == null) {

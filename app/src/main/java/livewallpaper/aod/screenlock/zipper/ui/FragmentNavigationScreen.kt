@@ -20,10 +20,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.FunctionClass.feedBackWithEmail
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.showTwoInterAd
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.FunctionClass.feedBackWithEmail
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.showTwoInterAd
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.NavigationLayoutBinding
 import livewallpaper.aod.screenlock.zipper.service.LiveService

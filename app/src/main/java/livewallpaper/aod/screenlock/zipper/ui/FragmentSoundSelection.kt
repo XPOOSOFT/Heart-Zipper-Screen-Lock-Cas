@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.ads_manager.AdmobNative
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
 import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.SoundSelectLinearAdapter

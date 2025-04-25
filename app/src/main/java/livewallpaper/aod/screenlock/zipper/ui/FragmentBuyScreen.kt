@@ -8,9 +8,9 @@ import android.view.View
 import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.PurchasePrefs
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.showTwoInterAdStart
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.billing.PurchasePrefs
+import livewallpaper.aod.screenlock.ads_manager.showTwoInterAdStart
 import com.hypersoft.billing.BillingManager
 import com.hypersoft.billing.dataClasses.ProductType
 import com.hypersoft.billing.dataClasses.PurchaseDetail

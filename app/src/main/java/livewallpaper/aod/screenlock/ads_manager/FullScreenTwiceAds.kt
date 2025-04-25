@@ -1,19 +1,19 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.FullScreenAdsTwo.mInterstitialAd
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdMobAdListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdsListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.counter
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.firebaseAnalytics
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_frequency_counter
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_inter_counter
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.inter_frequency_count
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.isSplash
+import livewallpaper.aod.screenlock.ads_manager.FullScreenAdsTwo.mInterstitialAd
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdMobAdListener
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdsListener
+import livewallpaper.aod.screenlock.zipper.utilities.counter
+import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
+import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 
 
 const val TAG = "TwoInterAds"

@@ -16,8 +16,8 @@ import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R;
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.MainActivity;
+import livewallpaper.aod.screenlock.zipper.MainActivity;
+import livewallpaper.aod.screenlock.zipper.R;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 

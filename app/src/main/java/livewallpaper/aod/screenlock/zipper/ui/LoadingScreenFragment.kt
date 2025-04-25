@@ -6,11 +6,11 @@ import androidx.core.os.bundleOf
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager.showOpenAd
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.showNormalInterAdSingle
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.AdsManager.showOpenAd
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.ads_manager.showNormalInterAdSingle
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView

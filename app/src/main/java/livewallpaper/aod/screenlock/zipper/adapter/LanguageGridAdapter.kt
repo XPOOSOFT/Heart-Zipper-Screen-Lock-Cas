@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.ads_manager.AdmobNative
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
 import com.google.android.gms.ads.nativead.NativeAdView
 import livewallpaper.aod.screenlock.zipper.databinding.AdsItemBinding
 import livewallpaper.aod.screenlock.zipper.databinding.LanguageAppItemBinding

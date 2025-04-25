@@ -10,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeType
+import livewallpaper.aod.screenlock.ads_manager.AdOpenApp.Companion.rewardedInterstitialAd
+import livewallpaper.aod.screenlock.ads_manager.AdmobNative
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeType
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -31,16 +31,18 @@ import livewallpaper.aod.screenlock.zipper.databinding.FragmentWallpaperBinding
 import livewallpaper.aod.screenlock.zipper.utilities.Wallpaper_Cat
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_reward
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen_h
+import livewallpaper.aod.screenlock.zipper.utilities.wallpaper_fragment
 
 
 class WallpaperFragment  : Fragment() {
@@ -75,7 +77,7 @@ class WallpaperFragment  : Fragment() {
         setupBackPressedCallback {
             findNavController().navigateUp()
         }
-        _binding?.titleBack?.clickWithThrottle {
+        _binding?.topLay?.backBtn?.clickWithThrottle {
             findNavController().navigateUp()
         }
 //        _binding?.title?.text = getString(R.string.un_wallpaper_single)
@@ -239,13 +241,6 @@ class WallpaperFragment  : Fragment() {
 
             2 -> {
 //                if (native_precashe_copunt_current >= native_precashe_counter) {
-                val adView = activity?.layoutInflater?.inflate(
-                    getNativeLayout(
-                        wallpaper_fragment, _binding?.nativeExitAd!!,
-                        activity?:return
-                    ),
-                    null
-                ) as NativeAdView
                 admobNative.loadNativeAds(
                     activity,
                     _binding?.nativeExitAd!!,

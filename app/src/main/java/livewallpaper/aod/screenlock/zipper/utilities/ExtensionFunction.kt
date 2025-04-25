@@ -58,7 +58,7 @@ import kotlin.random.Random
 
 var isRating = true
 var PurchaseScreen = 0
-
+var isMainAdsShow = true
 var counter = 0
 var isSplash = true
 
@@ -144,6 +144,7 @@ var val_ad_inter_watch_ads_screen = true
 var val_ad_inter_wallpaper_server_screen = true
 var val_ad_inter_in_app = true
 var val_ad_inter_on_board = true
+var val_collapsable_banner_home = true
 
 //end new
 var banner_height = 160
@@ -994,7 +995,7 @@ fun getNativeLayout(position: Int, layout: FrameLayout, context: Context): Int {
     return R.layout.layout_native_80
 }
 
-private fun convertDpToPixel(valueDp: Float, context: Context): Float {
+fun convertDpToPixel(valueDp: Float, context: Context): Float {
     val displayMetrics = context.resources.displayMetrics
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP, valueDp,

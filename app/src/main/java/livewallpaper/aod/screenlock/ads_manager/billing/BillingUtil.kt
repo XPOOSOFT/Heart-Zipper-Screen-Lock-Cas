@@ -1,14 +1,14 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing
+package livewallpaper.aod.screenlock.ads_manager.billing
 
 import android.app.Activity
 import android.app.ActivityManager
 import android.app.ActivityManager.RunningAppProcessInfo
 import android.content.Context
 import android.util.Log
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.FullScreenAds
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.FullScreenAdsTwo
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.NativeAds
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.ads_manager.FullScreenAds
+import livewallpaper.aod.screenlock.ads_manager.FullScreenAdsTwo
+import livewallpaper.aod.screenlock.ads_manager.NativeAds
 
     class BillingUtil(
         val activity: Activity

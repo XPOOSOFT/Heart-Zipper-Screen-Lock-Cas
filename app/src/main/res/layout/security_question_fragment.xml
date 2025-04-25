@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:letterSpacing="0.2"
         android:text="@string/ad"
+        android:visibility="invisible"
         android:textColor="@color/black"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/nativeExitAd"

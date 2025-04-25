@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.content.Context
@@ -6,8 +6,8 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.util.Log
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdOpenApp.Companion.openAdForSplash
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_app_open_screen
+import livewallpaper.aod.screenlock.ads_manager.AdOpenApp.Companion.openAdForSplash
+import livewallpaper.aod.screenlock.zipper.utilities.id_app_open_screen
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.MobileAds

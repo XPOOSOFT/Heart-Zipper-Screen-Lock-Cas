@@ -1,14 +1,14 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdMobAdListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdsListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.firebaseAnalytics
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_inter_main_medium
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdMobAdListener
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdsListener
+import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 
 var iS_SPLASH_AD_DISMISS = false
 private const val TAGGED = "TwoInterAdsSplash"

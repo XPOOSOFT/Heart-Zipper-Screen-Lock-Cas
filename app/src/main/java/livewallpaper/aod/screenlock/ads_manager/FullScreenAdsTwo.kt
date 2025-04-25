@@ -1,9 +1,9 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.util.Log
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdMobAdListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.AdsListener
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdMobAdListener
+import livewallpaper.aod.screenlock.ads_manager.interfaces.AdsListener
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
@@ -11,9 +11,9 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 import com.google.android.material.snackbar.Snackbar
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.analytics.logEvent
 import com.google.firebase.ktx.Firebase

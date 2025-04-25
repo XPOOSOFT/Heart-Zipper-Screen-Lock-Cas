@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing
+package livewallpaper.aod.screenlock.ads_manager.billing
 
 import android.content.Context
 import android.content.SharedPreferences

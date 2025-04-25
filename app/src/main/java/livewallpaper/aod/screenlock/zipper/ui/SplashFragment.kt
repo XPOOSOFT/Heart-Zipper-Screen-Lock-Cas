@@ -8,13 +8,13 @@ import android.view.View
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.clap.whistle.phonefinder.utilities.DbHelper
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdOpenApp
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.CmpClass
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.PurchasePrefs
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.loadTwoInterAds
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.loadTwoInterAdsSplash
+import livewallpaper.aod.screenlock.ads_manager.AdOpenApp
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.CmpClass
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.billing.PurchasePrefs
+import livewallpaper.aod.screenlock.ads_manager.loadTwoInterAds
+import livewallpaper.aod.screenlock.ads_manager.loadTwoInterAdsSplash
 import com.google.common.reflect.TypeToken
 import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
@@ -74,6 +74,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.security_question
 import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
+import livewallpaper.aod.screenlock.zipper.utilities.isMainAdsShow
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.isRating
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
@@ -126,6 +127,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_app_open
 import livewallpaper.aod.screenlock.zipper.utilities.val_banner_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_banner_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner
+import livewallpaper.aod.screenlock.zipper.utilities.val_collapsable_banner_home
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_inter_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_exit_dialog_native
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
@@ -154,6 +156,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             // Initialize App Open Manager
             counter = 0
             inter_frequency_count = 0
+            isMainAdsShow= true
             val cmpClass = CmpClass(activity ?: return@launchWhenStarted)
             cmpClass.initilaizeCMP()
             adsManager = AdsManager.appAdsInit(activity ?: return@launchWhenStarted)
@@ -314,7 +317,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 //        Log.d("remote_ids", id_collapsable_banner)
 //        Log.d("remote_ids", id_splash_native)
         initRemoteConfig()
-        parseJsonWithGson(remoteConfig.getString("test_ui_native"))
+//        parseJsonWithGson(remoteConfig.getString("test_ui_native"))
 
     }
 
@@ -397,6 +400,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_ad_inter_watch_ads_screen =remoteConfig!!["val_ad_inter_watch_ads_screen"].asBoolean()
                 val_ad_inter_wallpaper_server_screen =remoteConfig!!["val_ad_inter_wallpaper_server_screen"].asBoolean()
                 val_ad_inter_on_board =remoteConfig!!["val_ad_inter_on_board"].asBoolean()
+                val_collapsable_banner_home =remoteConfig!!["val_collapsable_banner_home"].asBoolean()
 
                 if(val_app_open){
                     AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)

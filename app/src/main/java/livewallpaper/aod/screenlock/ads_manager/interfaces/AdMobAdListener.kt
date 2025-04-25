@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces
+package livewallpaper.aod.screenlock.ads_manager.interfaces
 
 /**
  * Created by

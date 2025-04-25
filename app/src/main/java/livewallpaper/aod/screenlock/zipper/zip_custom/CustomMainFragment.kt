@@ -18,20 +18,16 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdmobNative
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.ads_manager.AdmobNative
+import livewallpaper.aod.screenlock.ads_manager.AdsManager
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
-import livewallpaper.aod.screenlock.zipper.ads_cam.AdmobNative
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeCallBack
-import livewallpaper.aod.screenlock.zipper.ads_cam.NativeType
-import livewallpaper.aod.screenlock.zipper.ads_cam.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.databinding.CustomZipMainFragmentBinding
 import livewallpaper.aod.screenlock.zipper.service.LockScreenService
 import livewallpaper.aod.screenlock.zipper.utilities.ConstantValues
@@ -41,10 +37,9 @@ import livewallpaper.aod.screenlock.zipper.utilities.Constants.getZippers
 import livewallpaper.aod.screenlock.zipper.utilities.DataBasePref
 import livewallpaper.aod.screenlock.zipper.utilities.PurchaseScreen
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
+import livewallpaper.aod.screenlock.zipper.utilities.custtom_main
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen_h
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.zip_custom.adapter.CustomAdapter
@@ -149,7 +144,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             context ?: requireContext()
                         ).toInt(),0
                     )
-                    getRowsView().let { adapter?.submitList(it) }
+                    getRowsView().let { adapter?.submitList(it?:return@let) }
                 }
 
                 getString(R.string.wallpaper) -> {
@@ -159,7 +154,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             context ?: requireContext()
                         ).toInt(),1
                     )
-                    getWallpapers().let { adapter?.submitList(it) }
+                    getWallpapers().let { adapter?.submitList(it?:return@let) }
                 }
 
                 else -> {
@@ -169,7 +164,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                             context ?: requireContext()
                         ).toInt(),1
                     )
-                    getWallpapers().let { adapter?.submitList(it) }
+                    getWallpapers().let { adapter?.submitList(it?:return@let) }
                 }
             }
 
@@ -196,7 +191,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                                     context ?: requireContext()
                                 ).toInt(),0
                             )
-                            getRowsView().let { adapter?.submitList(it) }
+                            getRowsView().let { adapter?.submitList(it?:return@let) }
                         }
 
                         getString(R.string.wallpaper) -> {
@@ -206,7 +201,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                                     context ?: requireContext()
                                 ).toInt(),1
                             )
-                            getWallpapers().let { adapter?.submitList(it) }
+                            getWallpapers().let { adapter?.submitList(it?:return@let) }
                         }
 
                         else -> {
@@ -216,7 +211,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
                                     context ?: requireContext()
                                 ).toInt(),1
                             )
-                            getWallpapers().let { adapter?.submitList(it) }
+                            getWallpapers().let { adapter?.submitList(it?:return@let) }
                         }
                     }
                 }
@@ -274,13 +269,6 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
 
     private fun loadNative() {
 //        if (native_precashe_copunt_current >= native_precashe_counter) {
-        val adView = activity?.layoutInflater?.inflate(
-            getNativeLayout(
-                custtom_main, _binding?.nativeExitAd!!,
-                activity?:return
-            ),
-            null
-        ) as NativeAdView
         admobNative.loadNativeAds(
             activity,
             _binding?.nativeExitAd!!,

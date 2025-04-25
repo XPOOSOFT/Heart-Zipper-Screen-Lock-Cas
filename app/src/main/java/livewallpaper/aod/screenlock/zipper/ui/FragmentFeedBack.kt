@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentFeedBackBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment

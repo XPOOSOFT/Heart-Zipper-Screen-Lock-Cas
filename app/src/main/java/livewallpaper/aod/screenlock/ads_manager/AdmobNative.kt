@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.util.Log
@@ -9,14 +9,13 @@ import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdOpenApp.Companion.preloadNativeAd
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsBanners.isDebug
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.NativeAds.NativeAdsId
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.ScreenUtils.isSupportFullScreen
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeCallBack
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeType
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.convertDpToPixel
+import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.ads_manager.AdOpenApp.Companion.preloadNativeAd
+import livewallpaper.aod.screenlock.ads_manager.AdsBanners.isDebug
+import livewallpaper.aod.screenlock.ads_manager.NativeAds.NativeAdsId
+import livewallpaper.aod.screenlock.ads_manager.ScreenUtils.isSupportFullScreen
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeType
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdLoader
 import com.google.android.gms.ads.AdRequest
@@ -30,6 +29,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import livewallpaper.aod.screenlock.zipper.utilities.convertDpToPixel
 
 /**
  * @Author:Javed Khan
@@ -246,11 +246,11 @@ class AdmobNative {
                     adMobNativeContainer.removeAllViews()
                     adMobNativeContainer.addView(adView)
 
-                    adView?.callToActionView = adView?.findViewById(R.id.ad_call_to_action)
-                    adView?.iconView = adView?.findViewById<ImageView>(R.id.ad_app_icon)!!
-                    adView?.headlineView = adView?.findViewById(R.id.ad_headline)
-                    adView?.bodyView = adView?.findViewById(R.id.ad_body)
-                    adView?.mediaView = adView?.findViewById(R.id.ad_media)
+                    adView?.callToActionView = adView?.findViewById(R.id.custom_call_to_action)
+                    adView?.iconView = adView?.findViewById<ImageView>(R.id.custom_app_icon)!!
+                    adView?.headlineView = adView?.findViewById(R.id.custom_headline)
+                    adView?.bodyView = adView?.findViewById(R.id.custom_body)
+                    adView?.mediaView = adView?.findViewById(R.id.custom_media)
 
                     (adView?.headlineView as TextView).text = ad.headline
                     if (ad.body == null) {
@@ -279,10 +279,10 @@ class AdmobNative {
 
                     adView?.setNativeAd(ad)
 /*                    // Set other ad assets.
-                    adView?.headlineView = adView?.findViewById(R.id.ad_headline)
-                    adView?.bodyView = adView?.findViewById(R.id.ad_body)
-                    adView?.callToActionView = adView?.findViewById(R.id.ad_call_to_action)
-                    adView?.iconView = adView?.findViewById(R.id.ad_app_icon)
+                    adView?.headlineView = adView?.findViewById(R.id.custom_headline)
+                    adView?.bodyView = adView?.findViewById(R.id.custom_body)
+                    adView?.callToActionView = adView?.findViewById(R.id.custom_call_to_action)
+                    adView?.iconView = adView?.findViewById(R.id.custom_app_icon)
 
                     //Headline
                     adView?.headlineView?.let { headline ->
@@ -329,7 +329,7 @@ class AdmobNative {
                         }
                     }
 //                    if (mActivity.isSupportFullScreen()) {
-                        val mediaView: MediaView = adView?.findViewById(R.id.ad_media)?:return
+                        val mediaView: MediaView = adView?.findViewById(R.id.custom_media)?:return
                         adView?.mediaView = mediaView
 //                    }
                     adView?.setNativeAd(ad)*/

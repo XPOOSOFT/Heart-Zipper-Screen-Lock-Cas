@@ -1,14 +1,14 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.preference.PreferenceManager
 import android.util.Log
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ui.SplashFragment.Companion.consentListener
 import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
 import com.google.android.ump.ConsentRequestParameters
 import com.google.android.ump.UserMessagingPlatform
 import com.iabtcf.decoder.TCString
+import livewallpaper.aod.screenlock.zipper.ui.SplashFragment.Companion.consentListener
 
 class CmpClass(val activity: Activity) {
 

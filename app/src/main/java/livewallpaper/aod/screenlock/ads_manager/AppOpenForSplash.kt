@@ -1,15 +1,15 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.content.Context
 import android.util.Log
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
+import livewallpaper.aod.screenlock.zipper.BuildConfig
 import java.util.Date
 
 private const val LOG_TAG = "MyApplication"

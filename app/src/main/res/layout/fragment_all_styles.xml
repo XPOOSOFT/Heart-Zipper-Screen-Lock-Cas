@@ -41,6 +41,7 @@
         android:letterSpacing="0.2"
         android:text="@string/ad"
         android:gravity="center"
+        android:visibility="invisible"
         android:textColor="@color/black"
         android:textSize="14sp"
         android:background="@drawable/round_btn_ads"

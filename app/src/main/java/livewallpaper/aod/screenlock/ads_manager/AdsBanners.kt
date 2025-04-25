@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.os.Build
@@ -8,15 +8,15 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import com.google.ads.mediation.admob.AdMobAdapter
 import com.google.android.gms.ads.*
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.AdsManager.isNetworkAvailable
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.BannerListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.banner_height
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.banner_type
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.ads_manager.AdsManager.isNetworkAvailable
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.BannerListener
+import livewallpaper.aod.screenlock.zipper.utilities.banner_height
+import livewallpaper.aod.screenlock.zipper.utilities.banner_type
 
 object AdsBanners {
     private var adView: AdView? = null

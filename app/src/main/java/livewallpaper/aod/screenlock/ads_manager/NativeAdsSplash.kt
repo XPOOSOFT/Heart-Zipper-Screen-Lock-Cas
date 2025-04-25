@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -20,15 +20,15 @@ import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdOptions.ADCHOICES_TOP_RIGHT
 import com.google.android.gms.ads.nativead.NativeAdView
 import com.google.android.material.snackbar.Snackbar
-import com.gold.zipper.goldzipper.lockscreen.royalgold.BuildConfig
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.billing.BillingUtil
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager.interfaces.NativeListener
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.getRandomColor
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_ads_bg
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.id_ads_button
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.native_precashe_copunt_current
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.native_precashe_counter
+import livewallpaper.aod.screenlock.zipper.BuildConfig
+import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
+import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeListener
+import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
+import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
 object NativeAdsSplash {
 
@@ -172,17 +172,17 @@ object NativeAdsSplash {
     @SuppressLint("ResourceType")
     fun nativeViewPolicy(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
 
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById(R.id.ad_app_icon)
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-//        adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
-//        adView.starRatingView = adView.findViewById(R.id.ad_stars)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById(R.id.custom_app_icon)
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
+//        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
+//        adView.starRatingView = adView.findViewById(R.id.custom_stars)
 
         (adView.headlineView as TextView).text = nativeAd.headline
 
         try {
-//            (adView.findViewById<Button>(R.id.ad_call_to_action)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+//            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
 //            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()
@@ -230,17 +230,17 @@ object NativeAdsSplash {
 
     @SuppressLint("ResourceType")
     fun nativeViewMedia(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById<ImageView>(R.id.ad_app_icon)!!
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-//        adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
-//        adView.starRatingView = adView.findViewById(R.id.ad_stars)
-        adView.mediaView = adView.findViewById(R.id.ad_media)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
+//        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
+//        adView.starRatingView = adView.findViewById(R.id.custom_stars)
+        adView.mediaView = adView.findViewById(R.id.custom_media)
 
 
         try {
-//            (adView.findViewById(R.id.ad_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(
+//            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(
 //                Color.parseColor(id_ads_button))
 //            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(
 //                Color.parseColor(id_ads_bg))
@@ -294,15 +294,15 @@ object NativeAdsSplash {
 
     @SuppressLint("ResourceType", "UseCompatLoadingForColorStateLists")
     fun nativeViewMediaSplash(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
-        adView.callToActionView = adView.findViewById(R.id.ad_call_to_action)
-        adView.iconView = adView.findViewById(R.id.ad_app_icon) as ImageView
-        adView.headlineView = adView.findViewById(R.id.ad_headline)
-        adView.bodyView = adView.findViewById(R.id.ad_body)
-//        adView.advertiserView = adView.findViewById(R.id.ad_advertiser)
-//        adView.starRatingView = adView.findViewById(R.id.ad_stars)
-        adView.mediaView = adView.findViewById(R.id.ad_media)
+        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
+        adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
+        adView.headlineView = adView.findViewById(R.id.custom_headline)
+        adView.bodyView = adView.findViewById(R.id.custom_body)
+//        adView.advertiserView = adView.findViewById(R.id.custom_advertiser)
+//        adView.starRatingView = adView.findViewById(R.id.custom_stars)
+        adView.mediaView = adView.findViewById(R.id.custom_media)
         try {
-//            (adView.findViewById(R.id.ad_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
+//            (adView.findViewById(R.id.custom_call_to_action) as Button).backgroundTintList = ColorStateList.valueOf(Color.parseColor(getRandomColor()))
 //            (adView.findViewById(R.id.layoutMedia) as NativeAdView).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
         } catch (e: Exception) {
             e.printStackTrace()

@@ -1,4 +1,4 @@
-package com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_ads_manager
+package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
 import android.app.Application
@@ -15,51 +15,50 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ProcessLifecycleOwner
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.isSplash
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.appopen.AppOpenAd
 import java.util.*
 
-import com.gold.zipper.goldzipper.lockscreen.royalgold.R
-import com.gold.zipper.goldzipper.lockscreen.royalgold.gold.gold_utilities.val_app_open
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.rewarded.RewardedAd
+import livewallpaper.aod.screenlock.zipper.utilities.isSplash
+import livewallpaper.aod.screenlock.zipper.utilities.val_app_open
 
 
 class AdOpenApp(private val myApplication: Application, private var openAppAdId: String) :
     Application.ActivityLifecycleCallbacks, LifecycleObserver {
     private var customDialog: Dialog? = null
-//    private var appOpenAd: AppOpenAd? = null
+    //    private var appOpenAd: AppOpenAd? = null
     private var currentActivity: Activity? = null
     private var loadTime: Long = 0
     private var loadCallback: AppOpenAd.AppOpenAdLoadCallback? = null
 
     fun showCustomDialogAndAd() {
         showAdIfAvailable()
- /*       customDialog = Dialog(currentActivity ?: return)
-        val inflater = LayoutInflater.from(currentActivity)
-        customDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        val view: View = inflater.inflate(R.layout.custom_dialog, null)
-        customDialog?.setContentView(view)
-        customDialog?.setCancelable(false)
-        // Make the dialog full-screen
-        val window: Window? = customDialog?.window
-        window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
-        window?.setBackgroundDrawableResource(android.R.color.transparent) // Set the background transparent if needed
+        /*       customDialog = Dialog(currentActivity ?: return)
+               val inflater = LayoutInflater.from(currentActivity)
+               customDialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+               val view: View = inflater.inflate(R.layout.custom_dialog, null)
+               customDialog?.setContentView(view)
+               customDialog?.setCancelable(false)
+               // Make the dialog full-screen
+               val window: Window? = customDialog?.window
+               window?.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT)
+               window?.setBackgroundDrawableResource(android.R.color.transparent) // Set the background transparent if needed
 
-        // Optionally, you can hide the status bar and navigation bar for true fullscreen
-        window?.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
-        // Show the dialog
-        customDialog?.show()
-        // Use a Handler to delay the showing of the ad for 3 seconds
-        Handler(Looper.getMainLooper()).postDelayed({
-            showAdIfAvailable()
-        }, 3000) // 3 seconds delay*/
+               // Optionally, you can hide the status bar and navigation bar for true fullscreen
+               window?.setFlags(
+                   WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                   WindowManager.LayoutParams.FLAG_FULLSCREEN
+               )
+               // Show the dialog
+               customDialog?.show()
+               // Use a Handler to delay the showing of the ad for 3 seconds
+               Handler(Looper.getMainLooper()).postDelayed({
+                   showAdIfAvailable()
+               }, 3000) // 3 seconds delay*/
     }
     fun fetchAd() {
         if (!val_app_open) {
@@ -82,8 +81,7 @@ class AdOpenApp(private val myApplication: Application, private var openAppAdId:
             openAppAdId = "ca-app-pub-3940256099942544/3419835294"
         }
         AppOpenAd.load(
-            myApplication, openAppAdId, request,
-            AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT, loadCallback ?: return
+            myApplication, openAppAdId, request,loadCallback ?: return
         )
     }
 
