@@ -27,8 +27,6 @@ import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
 object NativeAdsSplash {
 

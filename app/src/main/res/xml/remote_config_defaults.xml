@@ -23,6 +23,34 @@
         <value>true</value>
     </entry>
     <entry>
+        <key>val_ad_app_open_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_inter_watch_ads_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_inter_wallpaper_server_screen</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_ad_inter_in_app</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_collapsable_banner_home</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_is_inapp_splash</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>val_is_inapp</key>
+        <value>true</value>
+    </entry>
+    <entry>
         <key>val_native_loading_screen</key>
         <value>true</value>
     </entry>
@@ -212,10 +240,6 @@
     <entry>
         <key>val_ad_inter_customize_screen</key>
         <value>true</value>
-    </entry>
-    <entry>
-        <key>val_is_inapp_splash</key>
-        <value>false</value>
     </entry>
 
     <entry>

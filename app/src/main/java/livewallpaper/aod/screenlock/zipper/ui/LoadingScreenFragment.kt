@@ -44,7 +44,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
-import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 
 class LoadingScreenFragment:
     BaseFragment<FragmentLoadingBinding>(FragmentLoadingBinding::inflate) {

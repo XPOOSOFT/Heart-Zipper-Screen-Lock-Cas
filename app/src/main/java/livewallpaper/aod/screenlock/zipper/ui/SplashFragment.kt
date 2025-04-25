@@ -75,12 +75,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isMainAdsShow
-import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
-import livewallpaper.aod.screenlock.zipper.utilities.isRating
-import livewallpaper.aod.screenlock.zipper.utilities.isSplash
-import livewallpaper.aod.screenlock.zipper.utilities.is_val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.language_bottom
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 import livewallpaper.aod.screenlock.zipper.utilities.on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOnboarding
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOpenLanguageNew
@@ -96,15 +91,13 @@ import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_security_scr
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_sound_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_app_open_splash_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_enable_screen_front
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_in_app
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_list_data_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_loading_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_main_menu_screen_front
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_on_board
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_password_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_security_screen_front
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_setting_screen_front
@@ -299,7 +292,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
         id_splash_native = remoteConfig.getString("id_splash_native")
         id_inter_watch_ads_Screen = remoteConfig.getString("id_inter_watch_ads_Screen")
-        native_precashe_counter = remoteConfig.getLong("native_precashe_counter").toInt()
+//        native_precashe_counter = remoteConfig.getLong("native_precashe_counter").toInt()
 
         sessionOpenLanguageNew = remoteConfig.getLong("sessionOpenLanguageNew").toInt()
         sessionOnboarding = remoteConfig.getLong("sessionOnboarding").toInt()
@@ -399,8 +392,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 val_ad_inter_customize_screen =remoteConfig!!["val_ad_inter_customize_screen"].asBoolean()
                 val_ad_inter_watch_ads_screen =remoteConfig!!["val_ad_inter_watch_ads_screen"].asBoolean()
                 val_ad_inter_wallpaper_server_screen =remoteConfig!!["val_ad_inter_wallpaper_server_screen"].asBoolean()
-                val_ad_inter_on_board =remoteConfig!!["val_ad_inter_on_board"].asBoolean()
                 val_collapsable_banner_home =remoteConfig!!["val_collapsable_banner_home"].asBoolean()
+                val_ad_inter_in_app =remoteConfig!!["val_ad_inter_in_app"].asBoolean()
 
                 if(val_app_open){
                     AdOpenApp(activity?.application ?:return@addOnCompleteListener, id_app_open_screen)

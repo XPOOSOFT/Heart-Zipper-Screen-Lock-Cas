@@ -40,6 +40,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.custtom_main
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_customize_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
 import livewallpaper.aod.screenlock.zipper.zip_custom.adapter.CustomAdapter
@@ -273,7 +274,7 @@ class CustomMainFragment : Fragment(R.layout.custom_zip_main_fragment) {
             activity,
             _binding?.nativeExitAd!!,
             id_native_screen,
-            if (val_ad_native_list_data_screen)
+            if (val_ad_native_customize_screen)
                 1 else 0,
             isAppPurchased = BillingUtil(activity?:return).checkPurchased(activity?:return),
             isInternetConnected = AdsManager.isNetworkAvailable(activity),

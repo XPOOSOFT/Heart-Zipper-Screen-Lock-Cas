@@ -28,8 +28,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_copunt_current
-import livewallpaper.aod.screenlock.zipper.utilities.native_precashe_counter
 
 /**
  * Created by
@@ -134,7 +132,7 @@ object NativeAds {
                     currentNativeAd = null
                     isNativeLoading = false
                     Log.d(NativeAdsLogs, "onAdImpression native Ad")
-                        native_precashe_copunt_current++
+//                        native_precashe_copunt_current++
                         loadNativeAd(
                             activity,
                             true,
@@ -405,7 +403,7 @@ object NativeAds {
                 currentNativeAd = null
                 isNativeLoading = false
                 Log.d(NativeAdsLogs, "onAdImpression native Ad")
-                    native_precashe_copunt_current++
+//                    native_precashe_copunt_current++
                     loadNativeAd(
                         activity,
                         true,

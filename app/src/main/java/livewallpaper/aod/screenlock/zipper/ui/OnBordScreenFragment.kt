@@ -29,14 +29,12 @@ import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
-import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
 import livewallpaper.aod.screenlock.zipper.utilities.on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOpenLanguageNew
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_on_board
+import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_setting_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
 
 
@@ -54,12 +52,10 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
         override fun onPageScrolled(i: Int, v: Float, i1: Int) {
             currentpage = i
             Log.d("pager", "onPageScrolled: $i")
-            if (i == 1) {
+            if (i == 4) {
                 view?.findViewById<TextView>(R.id.skipApp)?.visibility = View.INVISIBLE
-                view?.findViewById<TextView>(R.id.nextApp)?.visibility = View.VISIBLE
             } else {
                 view?.findViewById<TextView>(R.id.skipApp)?.visibility = View.VISIBLE
-                view?.findViewById<TextView>(R.id.nextApp)?.visibility = View.INVISIBLE
             }
             _binding?.wormDotsIndicator?.attachTo(_binding?.mainSlideViewPager ?: return)
         }
@@ -91,7 +87,7 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
                         showTwoInterAdStart(
                             ads = it,
                             activity = activity ?: requireActivity(),
-                            remoteConfigNormal = val_ad_inter_on_board,
+                            remoteConfigNormal = val_on_bording_screen,
                             adIdNormal = id_inter_main_medium,
                             tagClass = "on_bord",
                             isBackPress = true,
@@ -204,7 +200,7 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
                             showTwoInterAdStart(
                                 ads = it,
                                 activity = activity ?: requireActivity(),
-                                remoteConfigNormal = val_ad_inter_on_board,
+                                remoteConfigNormal = val_on_bording_screen,
                                 adIdNormal = id_inter_main_medium,
                                 tagClass = "on_bord",
                                 isBackPress = true,
@@ -282,10 +278,8 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
                             }
                         }
                     }else{
-                        mainSlideViewPager.setCurrentItem(getItem(1), true)
+                        mainSlideViewPager.setCurrentItem(getItem(currentpage), true)
                     }
-
-
                 }
             }
             _binding?.mainSlideViewPager?.adapter = onBordScreenAdapter
@@ -300,7 +294,7 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
     }
 
     private fun getItem(i: Int): Int {
-        return 1
+        return i+1
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

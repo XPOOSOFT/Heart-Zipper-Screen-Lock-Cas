@@ -40,6 +40,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.showAdsDialog
 import livewallpaper.aod.screenlock.zipper.utilities.showToast
 import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_reward_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.wallpaper_fragment
@@ -155,6 +156,10 @@ class WallpaperFragment  : Fragment() {
     private val admobNative by lazy { AdmobNative() }
 
     private fun loadRewardedAd() {
+
+        if(!val_ad_inter_reward_screen){
+            return
+        }
         if (rewardedInterstitialAd == null) {
             val adRequest = AdRequest.Builder().build()
 
@@ -183,6 +188,10 @@ class WallpaperFragment  : Fragment() {
     }
 
     private fun showRewardedVideo(function: (() -> Unit)) {
+
+        if(!val_ad_inter_reward_screen){
+            return
+        }
         if (rewardedInterstitialAd == null) {
             Log.d("MAIN_ACTIVITY_TAG", "The rewarded ad wasn't ready yet.")
             function.invoke()

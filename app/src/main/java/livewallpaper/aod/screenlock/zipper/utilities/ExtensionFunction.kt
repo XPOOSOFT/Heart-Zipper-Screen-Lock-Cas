@@ -62,8 +62,8 @@ var isMainAdsShow = true
 var counter = 0
 var isSplash = true
 
-var native_precashe_counter = 3
-var native_precashe_copunt_current = 0
+//var native_precashe_counter = 3
+//var native_precashe_copunt_current = 0
 
 var isFlowOne = true
 var val_app_open = true
@@ -98,8 +98,6 @@ var val_banner_language_screen = true
 var val_collapsable_banner = false
 var val_banner_setting_screen = true
 
-var is_val_ad_inter_loading_screen = true
-var val_ad_app_open_splash_screen = true
 var val_ad_inter_loading_screen = true
 var val_ad_inter_language_screen = true
 
@@ -143,7 +141,6 @@ var id_inter_watch_ads_Screen = ""
 var val_ad_inter_watch_ads_screen = true
 var val_ad_inter_wallpaper_server_screen = true
 var val_ad_inter_in_app = true
-var val_ad_inter_on_board = true
 var val_collapsable_banner_home = true
 
 //end new
@@ -157,7 +154,6 @@ var id_inter_counter = 0
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
 var id_app_open_screen = ""
-var id_app_open_splash_screen = ""
 var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
 var id_collapsable_banner = ""
