@@ -34,23 +34,21 @@ class FragmentBuyScreen  :
     var isSplashFrom: Boolean? = false
     var adsManager: AdsManager? = null
 
-    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        try {//      isSplash =true
             adsManager = AdsManager.appAdsInit(activity?:return)
             arguments?.let {
                 isSplashFrom = it.getBoolean("isSplash")
             }
-            if (isSplash) {
-                Handler().postDelayed({
-                    _binding?.closeBtn?.visibility = View.VISIBLE
-                    _binding?.butClose?.visibility = View.VISIBLE
-                },3000)
-            } else {
+        if (isSplashFrom == true) {
+            Handler().postDelayed({
                 _binding?.closeBtn?.visibility = View.VISIBLE
                 _binding?.butClose?.visibility = View.VISIBLE
-            }
+            },3000)
+        } else {
+            _binding?.closeBtn?.visibility = View.VISIBLE
+            _binding?.butClose?.visibility = View.VISIBLE
+        }
 
             planId = "gold-plan-yearly"
             billingManager = BillingManager(context ?: return)
@@ -102,6 +100,7 @@ class FragmentBuyScreen  :
 
                 }
             }
+
             setupBackPressedCallback {
                 if (isSplashFrom == true) {
                     adsManager?.let {
@@ -182,9 +181,7 @@ class FragmentBuyScreen  :
                     findNavController().navigateUp()
                 }
             }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
