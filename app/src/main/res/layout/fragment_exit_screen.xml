@@ -40,7 +40,7 @@
         android:id="@+id/yesBtn"
         android:layout_width="0dp"
         android:layout_height="@dimen/_30sdp"
-        android:background="@drawable/rect_btn_no"
+        android:background="@drawable/rect_btn_loading"
         app:layout_constraintWidth_percent="0.70"
         android:layout_marginTop="@dimen/_10sdp"
         android:text="@string/yes"
