@@ -60,6 +60,7 @@ var isRating = true
 var PurchaseScreen = 0
 var isMainAdsShow = true
 var counter = 0
+var firstCounter = 0
 var isSplash = true
 
 //var native_precashe_counter = 3

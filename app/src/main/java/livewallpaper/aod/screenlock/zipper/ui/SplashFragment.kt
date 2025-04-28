@@ -68,6 +68,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.wallpaper_fragment
 import livewallpaper.aod.screenlock.zipper.utilities.theme_all
 import livewallpaper.aod.screenlock.zipper.utilities.enable_first
 import livewallpaper.aod.screenlock.zipper.utilities.apply_password
+import livewallpaper.aod.screenlock.zipper.utilities.firstCounter
 import livewallpaper.aod.screenlock.zipper.utilities.setting_fragment
 import livewallpaper.aod.screenlock.zipper.utilities.sound_select
 import livewallpaper.aod.screenlock.zipper.utilities.security_question
@@ -265,6 +266,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun applyAdIdsFromRemoteConfig(remoteConfig: FirebaseRemoteConfig) {
 
+        firstCounter = remoteConfig.getLong("firstCounter").toInt()
         type_ad_native_list_data_screen = remoteConfig.getLong("type_ad_native_list_data_screen").toInt()
         type_ad_native_sound_screen = remoteConfig.getLong("type_ad_native_sound_screen").toInt()
         type_ad_native_setting_screen = remoteConfig.getLong("type_ad_native_setting_screen").toInt()

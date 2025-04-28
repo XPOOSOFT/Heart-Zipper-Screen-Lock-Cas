@@ -10,6 +10,7 @@ import livewallpaper.aod.screenlock.ads_manager.interfaces.AdMobAdListener
 import livewallpaper.aod.screenlock.ads_manager.interfaces.AdsListener
 import livewallpaper.aod.screenlock.zipper.utilities.counter
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
+import livewallpaper.aod.screenlock.zipper.utilities.firstCounter
 import livewallpaper.aod.screenlock.zipper.utilities.id_frequency_counter
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_counter
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
@@ -199,7 +200,7 @@ fun showTwoInterAd(
 //        Log.d(TAG, "showTwoInterAd->adIdNormalCounter: $counter")
 //    }
     if (id_inter_counter != counter) {
-        if(counter==0){
+        if(counter==0 && firstCounter ==0){
             counter = 1
             Log.d(TAG, "showTwoInterAd->adIdNormalCounter: $counter")
         }else {
