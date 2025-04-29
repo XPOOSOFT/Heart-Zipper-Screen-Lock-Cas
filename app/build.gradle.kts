@@ -45,8 +45,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 35
-        versionCode = 80
-        versionName = "26.0"
+        versionCode = 81
+        versionName = "26.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")
     }

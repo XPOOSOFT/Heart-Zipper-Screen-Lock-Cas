@@ -312,7 +312,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 //        Log.d("remote_ids", id_collapsable_banner)
 //        Log.d("remote_ids", id_splash_native)
         initRemoteConfig()
-//        parseJsonWithGson(remoteConfig.getString("test_ui_native"))
+        parseJsonWithGson(remoteConfig.getString("test_ui_native"))
 
     }
 
