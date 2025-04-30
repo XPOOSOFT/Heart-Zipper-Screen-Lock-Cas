@@ -45,7 +45,6 @@ import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_reward_screen
 import livewallpaper.aod.screenlock.zipper.utilities.wallpaper_fragment
 
-
 class WallpaperFragment  : Fragment() {
 
     private var adsmanager: AdsManager? = null
@@ -81,7 +80,6 @@ class WallpaperFragment  : Fragment() {
         _binding?.topLay?.backBtn?.clickWithThrottle {
             findNavController().navigateUp()
         }
-//        _binding?.title?.text = getString(R.string.un_wallpaper_single)
         loadBanner()
         loadRewardedAd()
         setupRecyclerView(view)
@@ -156,7 +154,6 @@ class WallpaperFragment  : Fragment() {
     private val admobNative by lazy { AdmobNative() }
 
     private fun loadRewardedAd() {
-
         if(!val_ad_inter_reward_screen){
             return
         }
@@ -327,4 +324,5 @@ class WallpaperFragment  : Fragment() {
         super.onSaveInstanceState(outState)
         outState.clear()
     }
+
 }
