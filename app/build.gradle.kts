@@ -62,7 +62,7 @@ android {
         release {
             isMinifyEnabled = false
             isShrinkResources = false
-            resValue ("string", "app_id", "ca-app-pub-9263479717968951~3775848424")
+            resValue ("string", "app_id", "ca-app-pub-9156380751701337~2164135461")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
