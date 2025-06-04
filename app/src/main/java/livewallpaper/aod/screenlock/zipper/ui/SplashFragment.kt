@@ -207,24 +207,24 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             consentMap[ConsentType.AD_USER_DATA] = FirebaseAnalytics.ConsentStatus.GRANTED
             consentMap[ConsentType.AD_PERSONALIZATION] = FirebaseAnalytics.ConsentStatus.GRANTED
             Firebase.analytics.setConsent(consentMap)
-            if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(activity?:return@launchWhenStarted).checkPurchased(activity?:return@launchWhenStarted)){
-                consentListener = {
-                    isUserConsent = it
-                    Log.d("check_contest", "onViewCreated: $isUserConsent")
-                    if (isUserConsent) {
-                        if (AdsManager.isNetworkAvailable(context)) {
+//            if (AdsManager.isNetworkAvailable(activity) && !BillingUtil(activity?:return@launchWhenStarted).checkPurchased(activity?:return@launchWhenStarted)){
+//                consentListener = {
+//                    isUserConsent = it
+//                    Log.d("check_contest", "onViewCreated: $isUserConsent")
+//                    if (isUserConsent) {
+                        if (AdsManager.isNetworkAvailable(context)  && !BillingUtil(activity?:return@launchWhenStarted).checkPurchased(activity?:return@launchWhenStarted)) {
                             adsManager = AdsManager.appAdsInit(requireActivity())
                             initRemoteIds()
                         } else {
                             observeSplashLiveData()
                         }
-                    } else {
-                        observeSplashLiveData()
-                    }
-                }
-            }else{
-                observeSplashLiveData()
-            }
+//                    } else {
+//                        observeSplashLiveData()
+//                    }
+//                }
+//            }else{
+//                observeSplashLiveData()
+//            }
             setupBackPressedCallback {
                 //Do Nothing
             }
