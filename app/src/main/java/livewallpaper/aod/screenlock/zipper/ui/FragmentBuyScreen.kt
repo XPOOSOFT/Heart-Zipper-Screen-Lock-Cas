@@ -36,19 +36,20 @@ class FragmentBuyScreen  :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        try {
             adsManager = AdsManager.appAdsInit(activity?:return)
             arguments?.let {
                 isSplashFrom = it.getBoolean("isSplash")
             }
-        if (isSplashFrom == true) {
-            Handler().postDelayed({
+            if (isSplashFrom == true) {
+                Handler().postDelayed({
+                    _binding?.closeBtn?.visibility = View.VISIBLE
+                    _binding?.butClose?.visibility = View.VISIBLE
+                },3000)
+            } else {
                 _binding?.closeBtn?.visibility = View.VISIBLE
                 _binding?.butClose?.visibility = View.VISIBLE
-            },3000)
-        } else {
-            _binding?.closeBtn?.visibility = View.VISIBLE
-            _binding?.butClose?.visibility = View.VISIBLE
-        }
+            }
 
             planId = "gold-plan-yearly"
             billingManager = BillingManager(context ?: return)
@@ -181,6 +182,9 @@ class FragmentBuyScreen  :
                     findNavController().navigateUp()
                 }
             }
+        } catch (e: Exception) {
+          e.printStackTrace()
+        }
 
     }
 

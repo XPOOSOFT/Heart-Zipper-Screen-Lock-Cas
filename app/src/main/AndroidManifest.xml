@@ -110,5 +110,13 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <receiver android:name=".new_service.ScreenReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SCREEN_ON" />
+                <action android:name="com.example.ACTION_START_LOCK_WORK" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>

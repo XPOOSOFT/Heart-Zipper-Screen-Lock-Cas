@@ -72,13 +72,12 @@ class ImageDetailFragment : Fragment() {
 
     private fun setAsWallpaper(imageUrl: String) {
         Picasso.get().load(imageUrl).into(object : com.squareup.picasso.Target {
-            override fun onBitmapLoaded(bitmap: Bitmap, from: Picasso.LoadedFrom?) {
+            override fun onBitmapLoaded(bitmap: Bitmap?, from: Picasso.LoadedFrom?) {
                 try {
                     val wallpaperManager = WallpaperManager.getInstance(context)
                     wallpaperManager.setBitmap(bitmap)
                     Toast.makeText(context, "Wallpaper applied!", Toast.LENGTH_SHORT).show()
                 } catch (e: Exception) {
-                    Toast.makeText(context, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
             }
 

@@ -32,8 +32,6 @@ class LiveService : Service() {
     var mybroadcast: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val action = intent?.action
-            @SuppressLint("WrongConstant") val keyguardManager =
-                context?.getSystemService("keyguard") as KeyguardManager
             if (action == ACTION_SCREEN_ON) {
                 Start(this@LiveService)
                 return
@@ -143,9 +141,8 @@ class LiveService : Service() {
     override fun onCreate() {
         super.onCreate()
         try {
-            service = this
-            RegiserScreenLock()
             startForeground()
+            RegiserScreenLock()
         } catch (e: Exception) {
             e.printStackTrace()
         }

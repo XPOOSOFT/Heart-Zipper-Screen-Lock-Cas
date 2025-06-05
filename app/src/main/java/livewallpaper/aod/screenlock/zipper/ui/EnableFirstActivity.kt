@@ -44,6 +44,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.type_ad_native_enable_scree
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_enable_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_list_data_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_inapp_frequency
+import androidx.core.net.toUri
 
 class EnableFirstActivity : Fragment() {
 
@@ -194,6 +195,7 @@ class EnableFirstActivity : Fragment() {
         }
         dialog.findViewById<View>(R.id.buttonOk).setOnClickListener {
             dialog.dismiss()
+            if(isAdded && isVisible)
             askPermission()
         }
 
@@ -206,7 +208,7 @@ class EnableFirstActivity : Fragment() {
     private fun askPermission() {
         val intent = Intent(
             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:${context?.packageName}")
+            "package:${context?.packageName}".toUri()
         )
         startActivityForResult(intent, 100)
     }

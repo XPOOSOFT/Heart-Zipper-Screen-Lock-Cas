@@ -1,12 +1,15 @@
-package livewallpaper.aod.screenlock.zipper.service
+package livewallpaper.aod.screenlock.zipper.new_service
 
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
-import android.app.Service
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.Context.LAYOUT_INFLATER_SERVICE
+import android.content.Context.VIBRATOR_SERVICE
+import android.content.Context.WINDOW_SERVICE
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.ServiceInfo
@@ -16,7 +19,6 @@ import android.graphics.Point
 import android.media.SoundPool
 import android.os.Build
 import android.os.Handler
-import android.os.IBinder
 import android.os.Looper
 import android.os.Vibrator
 import android.util.Log
@@ -24,10 +26,10 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewStub
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-import android.view.WindowManager.LayoutParams.MATCH_PARENT
 import android.view.WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
 import android.view.WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY
 import android.view.inputmethod.InputMethodManager
@@ -40,8 +42,12 @@ import android.widget.RemoteViews
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.work.CoroutineWorker
+import androidx.work.ForegroundInfo
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
+import androidx.work.WorkerParameters
 import com.clap.whistle.phonefinder.utilities.DbHelper
 import com.skydoves.powerspinner.PowerSpinnerView
 import kotlinx.coroutines.CoroutineScope
@@ -58,6 +64,10 @@ import livewallpaper.aod.screenlock.lib.UgameLib.GameAdapters.GameAdapter.StartG
 import livewallpaper.aod.screenlock.lib.UgameLib.GameAdapters.GameAdapter.close
 import livewallpaper.aod.screenlock.zipper.MainActivity
 import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.service.LockScreenService
+import livewallpaper.aod.screenlock.zipper.service.LockScreenService.Companion.cc
+import livewallpaper.aod.screenlock.zipper.service.LockScreenService.Companion.lockStarted
+import livewallpaper.aod.screenlock.zipper.new_service.OverlayWorker
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.IsSoundActive
 import livewallpaper.aod.screenlock.zipper.utilities.AppAdapter.IsVibrateActive
 import livewallpaper.aod.screenlock.zipper.utilities.NOTIFY_CHANNEL_ID
@@ -66,13 +76,13 @@ import livewallpaper.aod.screenlock.zipper.utilities.PasswordAdapter.checkPasswo
 import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_ANS
 import livewallpaper.aod.screenlock.zipper.utilities.SECURITY_QUESTION
 import livewallpaper.aod.screenlock.zipper.utilities.ZIPPER_SOUND
-import livewallpaper.aod.screenlock.zipper.utilities.isAppInForeground
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import java.util.concurrent.TimeUnit
-import androidx.core.graphics.toColorInt
-import livewallpaper.aod.screenlock.zipper.new_service.OverlayWorker
 
-class LockScreenService : Service() {
+class LockWorker(
+    appContext: Context,
+    workerParams: WorkerParameters
+) : CoroutineWorker(appContext, workerParams) {
 
     private var sq: String? = ""
     private var sa: String? = ""
@@ -92,132 +102,55 @@ class LockScreenService : Service() {
     private var sharedPrefUtils: DbHelper? = null
     var soundPool: SoundPool? = null
 
-/*    override fun onCreate() {
-        super.onCreate()
+    override suspend fun doWork(): Result {
         try {
-            startForeground()
-            lockStarted = true
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
 
-    override fun onStart(intent: Intent?, startId: Int) {
-        super.onStart(intent, startId)
-    }
-
-    override fun onStartCommand(intent: Intent?, i: Int, i2: Int): Int {
-        try {
-            if (intent == null) {
-                stopSelf()
-            }
             isSplash = false
+            val notification = createNotification()
+            setForeground(ForegroundInfo(1, notification))
             svsHandler = Handler()
             InitialWindowAndObjects()
             viewStubDrawer = mOverlay?.findViewById(R.id.viewStubMain)
             viewStubPasswordHolder = mOverlay?.findViewById(R.id.viewStubPasswordHolder)
             viewStubQuestionHolder = mOverlay?.findViewById(R.id.viewStubSecuritydHolder)
-            sharedPrefUtils = DbHelper(this)
-            Passcode = LoadPassword(this)
-            sq = sharedPrefUtils?.getStringData(this, SECURITY_QUESTION, "")
-            sa = sharedPrefUtils?.getStringData(this, SECURITY_ANS, "")
-            lockerLayer.PasswordCorrect = !(checkPasswordAct(this) ?: false)
+            sharedPrefUtils = DbHelper(applicationContext)
+            Passcode = LoadPassword(applicationContext)
+            sq = sharedPrefUtils?.getStringData(applicationContext, SECURITY_QUESTION, "")
+            sa = sharedPrefUtils?.getStringData(applicationContext, SECURITY_ANS, "")
+            lockerLayer.PasswordCorrect = checkPasswordAct(applicationContext) != true
             soundPool = build(10, 3, 1)
-            vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+            vibrator = applicationContext.getSystemService(VIBRATOR_SERVICE) as Vibrator
             beep =
                 soundPool?.load(
-                    this,
-                    loadSound(sharedPrefUtils?.getTone(this, ZIPPER_SOUND) ?: 0),
+                    applicationContext,
+                    loadSound(sharedPrefUtils?.getTone(applicationContext, ZIPPER_SOUND) ?: 0),
                     1
                 )
                     ?: R.raw.unzip
-            soundActive = IsSoundActive(this)
-            vibrateActive = IsVibrateActive(this)
+            soundActive = IsSoundActive(applicationContext)
+            vibrateActive = IsVibrateActive(applicationContext)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-        return START_STICKY
-    }*/
-
-    override fun onStart(intent: Intent?, i: Int) {
-        super.onStart(intent, i)
-        try {
-            lockStarted = true
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        return Result.success()
     }
 
-    override fun onStartCommand(intent: Intent?, i: Int, i2: Int): Int {
-        try {
-            if (intent == null) {
-                stopSelf()
-            }
-            startForeground()
-            isSplash = false
-            svsHandler = Handler()
-            InitialWindowAndObjects()
-            viewStubDrawer = mOverlay?.findViewById(R.id.viewStubMain)
-            viewStubPasswordHolder = mOverlay?.findViewById(R.id.viewStubPasswordHolder)
-            viewStubQuestionHolder = mOverlay?.findViewById(R.id.viewStubSecuritydHolder)
-            sharedPrefUtils = DbHelper(this)
-            Passcode = LoadPassword(this)
-            sq = sharedPrefUtils?.getStringData(this, SECURITY_QUESTION, "")
-            sa = sharedPrefUtils?.getStringData(this, SECURITY_ANS, "")
-            lockerLayer.PasswordCorrect = !(checkPasswordAct(this) ?: false)
-            soundPool = build(10, 3, 1)
-            vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
-            beep =
-                soundPool?.load(
-                    this,
-                    loadSound(sharedPrefUtils?.getTone(this, ZIPPER_SOUND) ?: 0),
-                    1
-                )
-                    ?: R.raw.unzip
-            soundActive = IsSoundActive(this)
-            vibrateActive = IsVibrateActive(this)
-        } catch (e: Exception) {
-            stopSelf()
-            e.printStackTrace()
-        }
-        return START_STICKY
-    }
-
-    override fun onCreate() {
-        super.onCreate()
-        try {
-            cc = this
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    override fun onBind(intent: Intent?): IBinder? {
-        cc = this
-        return null
-    }
-
-
-    override fun onLowMemory() {
-        super.onLowMemory()
-        onDestroy()
-    }
-    override fun onDestroy() {
-        svsHandler?.removeCallbacksAndMessages(null)
-//        Log.e("LockScreenService", "on destroy: ")
-        isSplash = true
-        cc = null
-        mOverlay = null
-        viewStubQuestionHolder = null
-        viewStubPasswordHolder = null
-        viewStubDrawer = null
-        GameAdapter.drawer = null
-        soundPool?.release()
-        soundPool = null
-        close()
-        super.onDestroy()
-//        System.gc()
-    }
+//    override fun onDestroy() {
+//        svsHandler?.removeCallbacksAndMessages(null)
+////        Log.e("LockScreenService", "on destroy: ")
+//        isSplash = true
+//        cc = null
+//        mOverlay = null
+//        viewStubQuestionHolder = null
+//        viewStubPasswordHolder = null
+//        viewStubDrawer = null
+//        GameAdapter.drawer = null
+//        soundPool?.release()
+//        soundPool = null
+//        close()
+//        super.onDestroy()
+////        System.gc()
+//    }
 
     fun build(i: Int, i2: Int, i3: Int): SoundPool {
         return SoundPool.Builder().build()
@@ -261,7 +194,7 @@ class LockScreenService : Service() {
     private fun lockFromPasswordCorect() {
         lockerLayer.PasswordCorrect = false
         if (viewStubPasswordHolder != null) {
-            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+            (applicationContext.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
                 viewStubPasswordHolder?.windowToken, HIDE_IMPLICIT_ONLY
             )
         }
@@ -271,7 +204,7 @@ class LockScreenService : Service() {
     private fun UnlockFromPasswordCorect() {
         lockerLayer.PasswordCorrect = true
         if (viewStubPasswordHolder != null) {
-            (getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
+            (applicationContext.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager).hideSoftInputFromWindow(
                 viewStubPasswordHolder?.windowToken, HIDE_IMPLICIT_ONLY
             )
         }
@@ -326,7 +259,7 @@ class LockScreenService : Service() {
             viewStubDrawer = mOverlay?.findViewById(R.id.viewStubMain)
             viewStubDrawer?.visibility = View.VISIBLE
             GameAdapter.drawer = mOverlay?.findViewById<View>(R.id.drawer) as Drawer
-            StartGame(this)
+            StartGame(applicationContext)
             SetListeners()
             Resume()
         } catch (unused: Exception) {
@@ -347,22 +280,22 @@ class LockScreenService : Service() {
     }
 
     fun finish() {
-            try {
-                GameAdapter.stopUpdates = true
-                viewStubDrawer = null
-                viewStubPasswordHolder = null
-                viewStubQuestionHolder = null
-                    close()
-                    (cc?.getSystemService(WINDOW_SERVICE) as WindowManager).removeViewImmediate(
-                        mOverlay
-                    )
-                stopForeground(true)
-                stopSelf()
-                cc = null
-                lockStarted = false
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+        try {
+            GameAdapter.stopUpdates = true
+            viewStubDrawer = null
+            viewStubPasswordHolder = null
+            viewStubQuestionHolder = null
+            close()
+            (cc?.getSystemService(WINDOW_SERVICE) as WindowManager).removeViewImmediate(
+                mOverlay
+            )
+//            stopForeground(true)
+//            stopSelf()
+            cc = null
+            lockStarted = false
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     fun setZipPasswordListener() {
@@ -444,7 +377,7 @@ class LockScreenService : Service() {
 
     }
 
-    private fun passwordDotViews(passwordLength: Int?) {
+    private fun passwordDotViews(passwordLength: Int) {
         vibrator?.vibrate(100)
         when (passwordLength) {
             0 -> {
@@ -513,12 +446,12 @@ class LockScreenService : Service() {
         } else {
             ++count
             if (count < 4) {
-                Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Invalid Password", Toast.LENGTH_SHORT).show()
                 applyPassword = ""
             } else {
                 if (sa.equals("")) {
                     applyPassword = ""
-                    Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(applicationContext, "Invalid Password", Toast.LENGTH_SHORT).show()
                     return
                 }
                 applyPassword = ""
@@ -549,7 +482,7 @@ class LockScreenService : Service() {
                     )
 
                     if (editTextText?.text?.toString()?.isEmpty() == true) {
-                        editTextText.error = getText(R.string.empty_field)
+                        editTextText.error = applicationContext.getText(R.string.empty_field)
                         return@setOnClickListener
                     }
                     if (editTextText?.text?.toString()
@@ -559,7 +492,7 @@ class LockScreenService : Service() {
                         viewStubPasswordHolder?.visibility = View.GONE
                         UnlockFromPasswordCorect()
                     } else {
-                        editTextText?.error = getText(R.string.wrong_ans)
+                        editTextText?.error = applicationContext.getText(R.string.wrong_ans)
                     }
                 }
             }
@@ -574,36 +507,48 @@ class LockScreenService : Service() {
 
     }
 
-    private fun startForeground() {
+    private fun createNotification(): Notification {
+        val channelId = "lock_channel"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val channel = NotificationChannel(channelId, "Lock Tasks", NotificationManager.IMPORTANCE_LOW)
+            val manager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            manager.createNotificationChannel(channel)
+        }
+        return NotificationCompat.Builder(applicationContext, channelId)
+            .setSmallIcon(R.drawable.ic_notification)
+            .setContentTitle("Lock Screen Active")
+            .setContentText("Performing lock task...")
+            .build()
+    }
+ /*   private fun startForeground() {
         createNotificationChannel()
-        val remoteViews = RemoteViews(packageName, R.layout.notification_collapsed)
+        val remoteViews = RemoteViews(applicationContext.packageName, R.layout.notification_collapsed)
         var z = false
         val activity = PendingIntent.getActivity(
-            this,
+            applicationContext,
             0,
-            Intent(this, MainActivity::class.java),
+            Intent(applicationContext, MainActivity::class.java),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         remoteViews.setTextViewText(R.id.text_view_collapsed_2, "Lockscreen working")
-        val i = resources.configuration.uiMode and 48
+        val i = applicationContext.resources.configuration.uiMode and 48
         if (!(i == 0 || i == 16 || i != 32)) {
             z = true
         }
         if (z) {
-            remoteViews.setTextColor(R.id.text_view_collapsed_2, "#FFFFFF".toColorInt())
-            remoteViews.setTextColor(R.id.text_view_collapsed_1, "#FFFFFF".toColorInt())
+            remoteViews.setTextColor(R.id.text_view_collapsed_2, Color.parseColor("#FFFFFF"))
+            remoteViews.setTextColor(R.id.text_view_collapsed_1, Color.parseColor("#FFFFFF"))
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             startForeground(
                 5,
                 NotificationCompat.Builder(
-                    this,
+                    applicationContext,
                     NOTIFY_CHANNEL_ID
                 ).setOngoing(true)
                     .setColor(-1)
                     .setSmallIcon(R.drawable.ic_notification)
                     .setCustomContentView(remoteViews)
-                    .setPriority(NotificationCompat.PRIORITY_MIN)
                     .setContentIntent(activity).build(),
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE
             )
@@ -611,30 +556,29 @@ class LockScreenService : Service() {
             startForeground(
                 5,
                 NotificationCompat.Builder(
-                    this,
+                    applicationContext,
                     NOTIFY_CHANNEL_ID
                 ).setOngoing(true)
                     .setColor(-1)
                     .setSmallIcon(R.drawable.ic_notification)
-                    .setPriority(NotificationCompat.PRIORITY_MIN)
                     .setContentIntent(activity).build()
             )
         }
-    }
+    }*/
 
-    private fun createNotificationChannel() {
+/*    private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= 26) {
             val channel = NotificationChannel(
                 NOTIFY_CHANNEL_ID,
                 "Foreground Service Channel",
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
             (getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(
                 channel
             )
         }
-    }
+    }*/
 
     companion object {
         @SuppressLint("StaticFieldLeak")
@@ -671,4 +615,5 @@ class LockScreenService : Service() {
             WorkManager.getInstance(context).enqueue(overlayWorkRequest)
         }
     }
+
 }

@@ -1,15 +1,11 @@
-package livewallpaper.aod.screenlock.zipper.service
+package livewallpaper.aod.screenlock.zipper.new_service
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.PixelFormat
 import android.os.Build
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.WindowManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import livewallpaper.aod.screenlock.zipper.R
+import livewallpaper.aod.screenlock.zipper.service.LockScreenService
 
 class OverlayWorker(private val context: Context, workerParams: WorkerParameters) : Worker(context, workerParams) {
 
