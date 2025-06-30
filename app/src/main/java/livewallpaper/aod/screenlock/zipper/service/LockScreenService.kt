@@ -351,7 +351,6 @@ class LockScreenService : Service() {
                 GameAdapter.stopUpdates = true
                 viewStubDrawer = null
                 viewStubPasswordHolder = null
-                viewStubQuestionHolder = null
                     close()
                     (cc?.getSystemService(WINDOW_SERVICE) as WindowManager).removeViewImmediate(
                         mOverlay
