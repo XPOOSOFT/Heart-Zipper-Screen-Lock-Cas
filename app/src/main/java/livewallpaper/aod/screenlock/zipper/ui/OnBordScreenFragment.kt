@@ -3,6 +3,7 @@ package livewallpaper.aod.screenlock.zipper.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
@@ -14,11 +15,6 @@ import livewallpaper.aod.screenlock.ads_manager.AdsManager
 import livewallpaper.aod.screenlock.ads_manager.billing.BillingUtil
 import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
 import livewallpaper.aod.screenlock.ads_manager.showTwoInterAdStart
-import com.google.android.gms.ads.nativead.NativeAdView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.OnBordScreenAdapter
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentMainIntroBinding
@@ -33,12 +29,13 @@ import livewallpaper.aod.screenlock.zipper.utilities.on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOpenLanguageNew
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
-import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_intro_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
+import livewallpaper.aod.screenlock.zipper.utilities.val_on_bording_screen
 
 
-class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentMainIntroBinding::inflate) {
+class OnBordScreenFragment :
+    BaseFragment<FragmentMainIntroBinding>(FragmentMainIntroBinding::inflate) {
 
     var currentpage = 0
     private var onBordScreenAdapter: OnBordScreenAdapter? = null
@@ -52,12 +49,20 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
         override fun onPageScrolled(i: Int, v: Float, i1: Int) {
             currentpage = i
             Log.d("pager", "onPageScrolled: $i")
+
+            if (i == 1) {
+                view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.VISIBLE
+            } else {
+                view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.GONE
+            }
+
             if (i == 4) {
                 view?.findViewById<TextView>(R.id.skipApp)?.visibility = View.INVISIBLE
             } else {
                 view?.findViewById<TextView>(R.id.skipApp)?.visibility = View.VISIBLE
             }
             _binding?.wormDotsIndicator?.attachTo(_binding?.mainSlideViewPager ?: return)
+
         }
 
         override fun onPageSelected(i: Int) {
@@ -190,13 +195,18 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
                 }
 
                 nextApp.clickWithThrottle {
-                    if(currentpage==3){
+                    if (currentpage == 1) {
+                        view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.VISIBLE
+                    } else {
+                        view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.GONE
+                    }
+                    if (currentpage == 3) {
                         firebaseAnalytics(
                             "intro_fragment_move_to_next",
                             "intro_fragment_move_to_next -->  Click"
                         )
                         sharedPrefUtils?.saveData(requireContext(), IS_INTRO, true)
-                        AdsManager.appAdsInit(activity?:return@clickWithThrottle)?.let {
+                        AdsManager.appAdsInit(activity ?: return@clickWithThrottle)?.let {
                             showTwoInterAdStart(
                                 ads = it,
                                 activity = activity ?: requireActivity(),
@@ -277,7 +287,7 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
                                 }
                             }
                         }
-                    }else{
+                    } else {
                         mainSlideViewPager.setCurrentItem(getItem(currentpage), true)
                     }
                 }
@@ -294,7 +304,7 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
     }
 
     private fun getItem(i: Int): Int {
-        return i+1
+        return i + 1
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -309,6 +319,10 @@ class OnBordScreenFragment   :  BaseFragment<FragmentMainIntroBinding>(FragmentM
     }
 
     private fun loadNative() {
+        if(!val_ad_native_intro_screen){
+            _binding?.nativeExitAd?.visibility = View.GONE
+            _binding?.adView?.visibility = View.GONE
+        }
         admobNative.loadNativeAds(
             activity,
             _binding?.nativeExitAd!!,
