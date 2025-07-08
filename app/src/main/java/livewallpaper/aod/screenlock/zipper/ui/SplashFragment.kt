@@ -69,7 +69,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.theme_all
 import livewallpaper.aod.screenlock.zipper.utilities.enable_first
 import livewallpaper.aod.screenlock.zipper.utilities.apply_password
 import livewallpaper.aod.screenlock.zipper.utilities.firstCounter
-import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_colo
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_color
 import livewallpaper.aod.screenlock.zipper.utilities.setting_fragment
 import livewallpaper.aod.screenlock.zipper.utilities.sound_select
 import livewallpaper.aod.screenlock.zipper.utilities.security_question
@@ -301,7 +301,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         sessionOnboarding = remoteConfig.getLong("sessionOnboarding").toInt()
         id_ads_button = remoteConfig.getString("id_ads_button")
         id_ads_bg = remoteConfig.getString("id_ads_bg")
-        id_ads_text_colo = remoteConfig.getString("id_ads_text_colo")
+        id_ads_text_color = remoteConfig.getString("id_ads_text_color")
 
 //        Log.d("remote_ids", "$val_inapp_frequency")
 //        Log.d("remote_ids", "$id_inter_counter")

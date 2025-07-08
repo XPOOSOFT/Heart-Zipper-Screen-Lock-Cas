@@ -38,6 +38,7 @@ class OnBordScreenFragment :
     BaseFragment<FragmentMainIntroBinding>(FragmentMainIntroBinding::inflate) {
 
     var currentpage = 0
+    var isLoaded = false
     private var onBordScreenAdapter: OnBordScreenAdapter? = null
     private var sharedPrefUtils: DbHelper? = null
     private var adsManager: AdsManager? = null
@@ -49,13 +50,13 @@ class OnBordScreenFragment :
         override fun onPageScrolled(i: Int, v: Float, i1: Int) {
             currentpage = i
             Log.d("pager", "onPageScrolled: $i")
-
-            if (i == 1) {
-                view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.VISIBLE
-            } else {
-                view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.GONE
+            if (isLoaded) {
+                if (i == 1) {
+                    view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.VISIBLE
+                } else {
+                    view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.GONE
+                }
             }
-
             if (i == 4) {
                 view?.findViewById<TextView>(R.id.skipApp)?.visibility = View.INVISIBLE
             } else {
@@ -196,7 +197,8 @@ class OnBordScreenFragment :
 
                 nextApp.clickWithThrottle {
                     if (currentpage == 1) {
-                        view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.VISIBLE
+                        view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility =
+                            View.VISIBLE
                     } else {
                         view?.findViewById<FrameLayout>(R.id.nativeExitAd)?.visibility = View.GONE
                     }
@@ -319,7 +321,7 @@ class OnBordScreenFragment :
     }
 
     private fun loadNative() {
-        if(!val_ad_native_intro_screen){
+        if (!val_ad_native_intro_screen) {
             _binding?.nativeExitAd?.visibility = View.GONE
             _binding?.adView?.visibility = View.GONE
         }
@@ -334,15 +336,18 @@ class OnBordScreenFragment :
             nativeType = on_bord_native,
             nativeCallBack = object : NativeCallBack {
                 override fun onAdFailedToLoad(adError: String) {
+                    isLoaded = false
                     _binding?.nativeExitAd?.visibility = View.GONE
                     _binding?.adView?.visibility = View.GONE
                 }
 
                 override fun onAdLoaded() {
+                    isLoaded = true
                     _binding?.adView?.visibility = View.GONE
                 }
 
                 override fun onAdImpression() {
+                    isLoaded = true
                     _binding?.adView?.visibility = View.GONE
                 }
             }
