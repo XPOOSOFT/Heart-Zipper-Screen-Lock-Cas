@@ -165,6 +165,7 @@ var Wallpaper_Cat = ""
 
 var id_ads_button = "#F3202F"
 var id_ads_bg = "#232323"
+var id_ads_text_colo = "#232323"
 
 const val NOTIFY_CHANNEL_ID = "AppNameBackgroundService"
 

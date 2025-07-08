@@ -7,6 +7,7 @@
     android:layout_height="190dp"
     android:padding="@dimen/_5sdp"
     android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/layoutMedia"
     android:background="@drawable/button_rate_bg"
     tools:ignore="SpUsage">
 

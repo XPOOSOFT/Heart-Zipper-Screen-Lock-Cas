@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="176dp"
     android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/layoutMedia"
     android:background="@drawable/button_rate_bg"
     android:padding="@dimen/_5sdp"
     tools:ignore="MissingDefaultResource,SpUsage">

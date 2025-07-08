@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/_5sdp"
+    android:id="@+id/layoutMedia"
     android:layout_margin="@dimen/_5sdp"
     android:background="@drawable/button_rate_bg"
     tools:ignore="SpUsage">

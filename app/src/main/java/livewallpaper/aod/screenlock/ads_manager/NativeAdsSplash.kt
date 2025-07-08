@@ -27,6 +27,7 @@ import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeListener
 import livewallpaper.aod.screenlock.zipper.utilities.getRandomColor
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_colo
 
 object NativeAdsSplash {
 
@@ -300,6 +301,9 @@ object NativeAdsSplash {
         try {
             (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_button))
             (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+            (adView.findViewById<TextView>(R.id.custom_headline)!!).setTextColor(ColorStateList.valueOf(Color.parseColor(id_ads_text_colo)))
+            (adView.findViewById<TextView>(R.id.custom_body)!!).setTextColor(ColorStateList.valueOf(Color.parseColor(id_ads_text_colo)))
+
         } catch (e: Exception) {
             e.printStackTrace()
         }

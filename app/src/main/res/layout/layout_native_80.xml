@@ -7,6 +7,7 @@
     android:layout_height="@dimen/_65sdp"
     android:padding="@dimen/_5sdp"
     android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/layoutMedia"
     android:background="@drawable/button_rate_bg">
 
         <androidx.constraintlayout.widget.ConstraintLayout
