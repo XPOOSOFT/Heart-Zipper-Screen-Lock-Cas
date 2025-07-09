@@ -49,7 +49,7 @@ object AdsManager {
                             "C4D52198B0C0E23A383A8C386E4DE7E5",
                             "0606A8A3B58F68943FF8F44212120F61",
                             "C4D52198B0C0E23A383A8C386E4DE7E5",
-                            "619E7BD5EC272E8C9ADA1B25AAD9283F",
+                            "4482FD1C9B039A733B15F74B5244B5E4",
                         )
                     )
                     .build()

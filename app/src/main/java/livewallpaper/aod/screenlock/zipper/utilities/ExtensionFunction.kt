@@ -81,6 +81,7 @@ var val_ad_native_password_screen = true
 var val_ad_native_list_data_screen = true
 var val_ad_native_intro_screen = true
 var val_ad_native_language_screen = true
+var val_ad_native_language_screen_second = true
 var val_ad_native_loading_screen = true
 var val_ad_native_reward_screen = true
 

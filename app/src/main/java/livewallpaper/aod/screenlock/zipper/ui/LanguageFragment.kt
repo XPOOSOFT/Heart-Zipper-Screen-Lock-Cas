@@ -41,6 +41,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.setLocaleMain
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_language_screen
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen
+import livewallpaper.aod.screenlock.zipper.utilities.val_ad_native_language_screen_second
 import livewallpaper.aod.screenlock.zipper.utilities.val_is_inapp_splash
 
 
@@ -379,7 +380,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
 
     private fun showNativeSecond(nativeExitAdTop: FrameLayout, adViewTop: TextView?) {
         Log.d("Language Screen", "loadNative()")
-        if (val_ad_native_language_screen) {
+        if (val_ad_native_language_screen_second) {
             adViewTop?.visibility = View.VISIBLE
         } else {
             adViewTop?.visibility = View.GONE
@@ -393,7 +394,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         ) as NativeAdView
         adsManager?.nativeAds()?.loadNativeAd(
             activity ?: return,
-            val_ad_native_language_screen,
+            val_ad_native_language_screen_second,
             id_language_native_second,
             object : NativeListener {
                 override fun nativeAdLoaded(currentNativeAd: NativeAd?) {

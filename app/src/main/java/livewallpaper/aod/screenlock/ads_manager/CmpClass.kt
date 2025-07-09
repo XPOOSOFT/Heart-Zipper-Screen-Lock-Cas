@@ -17,7 +17,7 @@ class CmpClass(val activity: Activity) {
 
     fun initilaizeCMP() {
         val debugSettings = ConsentDebugSettings.Builder(activity)
-            .addTestDeviceHashedId("05E5BE681AD5F24502796F98C8ACB518")
+            .addTestDeviceHashedId("4482FD1C9B039A733B15F74B5244B5E4")
             .build()
         val params = ConsentRequestParameters.Builder()
             .setConsentDebugSettings(debugSettings)

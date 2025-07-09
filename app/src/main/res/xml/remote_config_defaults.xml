@@ -66,6 +66,11 @@
     </entry>
 
     <entry>
+        <key>val_ad_native_language_screen_second</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
         <key>val_ad_native_sound_screen</key>
         <value>true</value>
     </entry>
