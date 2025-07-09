@@ -41,6 +41,7 @@ import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeCallBack
 import livewallpaper.aod.screenlock.ads_manager.interfaces.NativeType
 import livewallpaper.aod.screenlock.ads_manager.loadTwoInterAds
 import livewallpaper.aod.screenlock.ads_manager.showTwoInterAd
+import livewallpaper.aod.screenlock.ads_manager.showTwoInterAdStart
 import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.adapter.MainMenuAdapter
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentMainMenuBinding
@@ -71,6 +72,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_adaptive_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_collapsable_banner
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.interLanguageScreen
 import livewallpaper.aod.screenlock.zipper.utilities.isFirstEnable
 import livewallpaper.aod.screenlock.zipper.utilities.isMainAdsShow
 import livewallpaper.aod.screenlock.zipper.utilities.isNetworkAvailable
@@ -187,19 +189,25 @@ class MainAppFragment : Fragment() {
             }
 
         _binding?.topLay?.languageBtn?.clickWithThrottle {
-            adsManager?.let {
-                showTwoInterAd(
-                    ads = it,
-                    activity = activity ?: return@clickWithThrottle,
-                    remoteConfigNormal = val_ad_inter_language_screen_front,
-                    adIdNormal = id_inter_main_medium,
-                    tagClass = "language_screen",
-                    isBackPress = false,
-                    layout = _binding?.adsLay ?: return@clickWithThrottle,
-                ) {
-                    findNavController().navigate(R.id.LanguageFragment)
+            if(interLanguageScreen==1){
+                adsManager?.let {
+                    showTwoInterAdStart(
+                        ads = it,
+                        activity = activity ?: return@clickWithThrottle,
+                        remoteConfigNormal = true,
+                        adIdNormal = id_inter_main_medium,
+                        tagClass = "language_screen",
+                        isBackPress = false,
+                        layout = _binding?.adsLay ?: return@clickWithThrottle,
+                    ) {
+                        findNavController().navigate(R.id.LanguageFragment)
+                    }
                 }
+            }else{
+                firebaseAnalytics("MainMenu_language_btn", "MainMenu_language_btn -->  Click")
+                findNavController().navigate(R.id.LanguageFragment)
             }
+
         }
         _binding?.setting?.clickWithThrottle {
             adsManager?.let {

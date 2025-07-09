@@ -69,15 +69,21 @@ import livewallpaper.aod.screenlock.zipper.utilities.theme_all
 import livewallpaper.aod.screenlock.zipper.utilities.enable_first
 import livewallpaper.aod.screenlock.zipper.utilities.apply_password
 import livewallpaper.aod.screenlock.zipper.utilities.firstCounter
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_bg
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_button
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_text_color
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_color
+import livewallpaper.aod.screenlock.zipper.utilities.id_language_native_second
 import livewallpaper.aod.screenlock.zipper.utilities.setting_fragment
 import livewallpaper.aod.screenlock.zipper.utilities.sound_select
 import livewallpaper.aod.screenlock.zipper.utilities.security_question
 import livewallpaper.aod.screenlock.zipper.utilities.id_splash_native
+import livewallpaper.aod.screenlock.zipper.utilities.interLanguageScreen
 import livewallpaper.aod.screenlock.zipper.utilities.inter_frequency_count
 import livewallpaper.aod.screenlock.zipper.utilities.isFlowOne
 import livewallpaper.aod.screenlock.zipper.utilities.isMainAdsShow
 import livewallpaper.aod.screenlock.zipper.utilities.language_bottom
+import livewallpaper.aod.screenlock.zipper.utilities.language_bottom_second
 import livewallpaper.aod.screenlock.zipper.utilities.on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOnboarding
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOpenLanguageNew
@@ -280,10 +286,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         banner_type = remoteConfig.getLong("banner_type").toInt()
         id_inter_counter = remoteConfig.getLong("id_inter_counter").toInt()
         appUpdateType = remoteConfig.getLong("appUpdateType").toInt()
+        interLanguageScreen = remoteConfig.getLong("interLanguageScreen").toInt()
         id_frequency_counter = remoteConfig.getLong("id_frequency_counter").toInt()
         val_inapp_frequency = remoteConfig.getLong("val_inapp_frequency").toInt()
 
         id_inter_main_medium = remoteConfig.getString("id_inter_main_medium")
+        id_language_native_second = remoteConfig.getString("id_language_native_second")
         id_native_screen = remoteConfig.getString("id_native_screen")
         id_app_open_screen = remoteConfig.getString("id_app_open_screen")
         id_adaptive_banner = remoteConfig.getString("id_adaptive_banner")
@@ -301,6 +309,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         sessionOnboarding = remoteConfig.getLong("sessionOnboarding").toInt()
         id_ads_button = remoteConfig.getString("id_ads_button")
         id_ads_bg = remoteConfig.getString("id_ads_bg")
+        id_ads_splash_button = remoteConfig.getString("id_ads_splash_button")
+        id_ads_splash_bg = remoteConfig.getString("id_ads_splash_bg")
+        id_ads_splash_text_color = remoteConfig.getString("id_ads_splash_text_color")
         id_ads_text_color = remoteConfig.getString("id_ads_text_color")
 
 //        Log.d("remote_ids", "$val_inapp_frequency")
@@ -437,6 +448,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
             val language_bottom1 = dataMap["language_bottom"]?.map { it.native_design_type }
             language_bottom1?.forEach {
                 language_bottom = it.toInt()
+            }
+            val language_bottom_second1 = dataMap["language_bottom_second"]?.map { it.native_design_type }
+            language_bottom_second1?.forEach {
+                language_bottom_second = it.toInt()
             }
 
             val on_bord_native1 = dataMap["on_bord_native"]?.map { it.native_design_type }

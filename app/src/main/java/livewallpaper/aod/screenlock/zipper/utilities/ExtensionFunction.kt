@@ -63,7 +63,7 @@ var counter = 0
 var firstCounter = 0
 var isSplash = true
 
-//var native_precashe_counter = 3
+var interLanguageScreen = 1
 //var native_precashe_copunt_current = 0
 
 var isFlowOne = true
@@ -123,6 +123,7 @@ var sessionOnboarding = 1
 
 var splash_bottom = 2
 var language_bottom = 2
+var language_bottom_second = 2
 var home_native = 2
 var on_bord_native = 2
 var thankyou_bottom = 2
@@ -152,8 +153,10 @@ var inter_frequency_count = 0
 var id_frequency_counter = 10
 var val_inapp_frequency = 10
 var id_inter_counter = 0
+
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
+var id_language_native_second = ""
 var id_app_open_screen = ""
 var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
@@ -166,6 +169,10 @@ var Wallpaper_Cat = ""
 var id_ads_button = "#F3202F"
 var id_ads_bg = "#232323"
 var id_ads_text_color = "#232323"
+
+var id_ads_splash_button = "#F3202F"
+var id_ads_splash_bg = "#232323"
+var id_ads_splash_text_color = "#232323"
 
 const val NOTIFY_CHANNEL_ID = "AppNameBackgroundService"
 

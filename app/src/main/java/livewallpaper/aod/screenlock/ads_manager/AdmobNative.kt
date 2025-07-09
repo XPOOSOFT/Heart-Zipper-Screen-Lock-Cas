@@ -1,6 +1,8 @@
 package livewallpaper.aod.screenlock.ads_manager
 
 import android.app.Activity
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +32,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import livewallpaper.aod.screenlock.zipper.utilities.convertDpToPixel
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_bg
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_button
+import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_color
 
 /**
  * @Author:Javed Khan
@@ -251,6 +256,16 @@ class AdmobNative {
                     adView?.headlineView = adView?.findViewById(R.id.custom_headline)
                     adView?.bodyView = adView?.findViewById(R.id.custom_body)
                     adView?.mediaView = adView?.findViewById(R.id.custom_media)
+
+                    try {
+                        (adView?.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_button))
+                        (adView?.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList = ColorStateList.valueOf(Color.parseColor(id_ads_bg))
+                        (adView?.findViewById<TextView>(R.id.custom_headline)!!).setTextColor(ColorStateList.valueOf(Color.parseColor(id_ads_text_color)))
+                        (adView?.findViewById<TextView>(R.id.custom_body)!!).setTextColor(ColorStateList.valueOf(Color.parseColor(id_ads_text_color)))
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
 
                     (adView?.headlineView as TextView).text = ad.headline
                     if (ad.body == null) {
