@@ -24,7 +24,8 @@ import livewallpaper.aod.screenlock.zipper.utilities.IS_INTRO
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
-import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_on_bord_Screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.sessionOpenLanguageNew
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
@@ -94,7 +95,7 @@ class OnBordScreenFragment :
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_on_bording_screen,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_on_bord_Screen,
                             tagClass = "on_bord",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -213,7 +214,7 @@ class OnBordScreenFragment :
                                 ads = it,
                                 activity = activity ?: requireActivity(),
                                 remoteConfigNormal = val_on_bording_screen,
-                                adIdNormal = id_inter_main_medium,
+                                adIdNormal = id_inter_on_bord_Screen,
                                 tagClass = "on_bord",
                                 isBackPress = true,
                                 layout = adsLay
@@ -328,7 +329,7 @@ class OnBordScreenFragment :
         admobNative.loadNativeAds(
             activity,
             _binding?.nativeExitAd!!,
-            id_native_screen,
+            id_on_bord_native,
             if (val_ad_native_intro_screen)
                 1 else 0,
             isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),

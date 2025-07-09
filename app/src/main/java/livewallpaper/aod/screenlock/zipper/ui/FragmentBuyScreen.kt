@@ -21,7 +21,7 @@ import livewallpaper.aod.screenlock.zipper.R
 import livewallpaper.aod.screenlock.zipper.databinding.FragmentPremiumScreenBinding
 import livewallpaper.aod.screenlock.zipper.utilities.BaseFragment
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
-import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_inapp_Screen
 import livewallpaper.aod.screenlock.zipper.utilities.isSplash
 import livewallpaper.aod.screenlock.zipper.utilities.setupBackPressedCallback
 import livewallpaper.aod.screenlock.zipper.utilities.val_ad_inter_in_app
@@ -98,7 +98,6 @@ class FragmentBuyScreen  :
                         _binding?.butBtn?.text =
                             "${getString(R.string.purchase)} : ${productDetail.pricingDetails[0].price}"
                     }
-
                 }
             }
 
@@ -109,7 +108,7 @@ class FragmentBuyScreen  :
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_in_app,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_inapp_Screen,
                             tagClass = "in_app_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -145,7 +144,7 @@ class FragmentBuyScreen  :
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_in_app,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_inapp_Screen,
                             tagClass = "in_app_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -167,7 +166,7 @@ class FragmentBuyScreen  :
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_in_app,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_inapp_Screen,
                             tagClass = "in_app_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let

@@ -73,7 +73,12 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_text_color
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_color
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_inapp_Screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_language_Screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_on_bord_Screen
+import livewallpaper.aod.screenlock.zipper.utilities.id_language_native
 import livewallpaper.aod.screenlock.zipper.utilities.id_language_native_second
+import livewallpaper.aod.screenlock.zipper.utilities.id_on_bord_native
 import livewallpaper.aod.screenlock.zipper.utilities.setting_fragment
 import livewallpaper.aod.screenlock.zipper.utilities.sound_select
 import livewallpaper.aod.screenlock.zipper.utilities.security_question
@@ -301,6 +306,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
         apiKey = remoteConfig.getString("apiKey")
         Wallpaper_Cat = remoteConfig.getString("Wallpaper_Cat")
         id_inter_splash_Screen = remoteConfig.getString("id_inter_splash_Screen")
+        id_language_native = remoteConfig.getString("id_language_native")
+        id_on_bord_native = remoteConfig.getString("id_on_bord_native")
+        id_inter_language_Screen = remoteConfig.getString("id_inter_language_Screen")
+        id_inter_on_bord_Screen = remoteConfig.getString("id_inter_on_bord_Screen")
+        id_inter_inapp_Screen = remoteConfig.getString("id_inter_inapp_Screen")
         id_collapsable_banner = remoteConfig.getString("id_collapsable_banner")
         id_splash_native = remoteConfig.getString("id_splash_native")
         id_inter_watch_ads_Screen = remoteConfig.getString("id_inter_watch_ads_Screen")

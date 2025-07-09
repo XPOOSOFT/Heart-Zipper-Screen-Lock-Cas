@@ -30,7 +30,9 @@ import livewallpaper.aod.screenlock.zipper.utilities.LANG_SCREEN
 import livewallpaper.aod.screenlock.zipper.utilities.clickWithThrottle
 import livewallpaper.aod.screenlock.zipper.utilities.firebaseAnalytics
 import livewallpaper.aod.screenlock.zipper.utilities.getNativeLayout
+import livewallpaper.aod.screenlock.zipper.utilities.id_inter_language_Screen
 import livewallpaper.aod.screenlock.zipper.utilities.id_inter_main_medium
+import livewallpaper.aod.screenlock.zipper.utilities.id_language_native
 import livewallpaper.aod.screenlock.zipper.utilities.id_language_native_second
 import livewallpaper.aod.screenlock.zipper.utilities.id_native_screen
 import livewallpaper.aod.screenlock.zipper.utilities.interLanguageScreen
@@ -108,7 +110,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_language_screen,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_language_Screen,
                             tagClass = "language_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -183,7 +185,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_language_screen,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_language_Screen,
                             tagClass = "language_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -241,7 +243,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
                             ads = it,
                             activity = activity ?: requireActivity(),
                             remoteConfigNormal = val_ad_inter_language_screen,
-                            adIdNormal = id_inter_main_medium,
+                            adIdNormal = id_inter_language_Screen,
                             tagClass = "language_first",
                             isBackPress = true,
                             layout = _binding?.adsLay ?: return@let
@@ -273,7 +275,7 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         admobNative.loadNativeAds(
             activity,
             _binding?.nativeExitAd!!,
-            id_native_screen,
+            id_language_native,
             if (val_ad_native_language_screen)
                 1 else 0,
             isAppPurchased = BillingUtil(activity ?: return).checkPurchased(activity ?: return),
@@ -340,29 +342,6 @@ class LanguageFragment : BaseFragment<FragmentLanguageBinding>(FragmentLanguageB
         list1.add(LanguageModel(getString(R.string.urdu), "ur", R.drawable.urdu, false))
         list = list1
         Log.d("adapter", "onBindViewHolder: Mian${list?.size}")
-    }
-
-    private fun insertAds() {
-        val adPosition = 5
-        val repeatAdPosition = 10
-        var currentPos = adPosition
-        while (currentPos < list?.size!!) {
-            list?.add(currentPos, LanguageModel("Ad", "", 0, false))
-            currentPos += repeatAdPosition
-        }
-        languageGridAdapter =
-            LanguageGridAdapter(list ?: return, adsManager ?: return, activity ?: return,
-                clickItem = {
-                    positionSelected = it.country_code
-                    languageGridAdapter?.selectLanguage(positionSelected)
-                    _binding?.forwardBtn?.visibility = View.VISIBLE
-                }
-            )
-        if (!isLangScreen) {
-            languageGridAdapter?.selectLanguage(positionSelected)
-        }
-        _binding?.conversationDetail?.adapter = languageGridAdapter
-        Log.d("adapter_insertAds", "onBindViewHolder: ${list?.size}")
     }
 
     private fun loadNativeSecond() {
