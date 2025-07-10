@@ -45,8 +45,8 @@ android {
         applicationId = "com.heartzipperlock.lovezipper.romanticlockscreen.securelock.roselock"
         minSdk = 24
         targetSdk = 35
-        versionCode = 86
-        versionName = "26.6"
+        versionCode = 87
+        versionName = "26.7"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         setProperty("archivesBaseName", "LoveHeartLockScreen_v$versionName($versionCode)")

@@ -30,6 +30,7 @@ import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_bg
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_button
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_splash_text_color
 import livewallpaper.aod.screenlock.zipper.utilities.id_ads_text_color
+import androidx.core.graphics.toColorInt
 
 object NativeAdsSplash {
 
@@ -181,18 +182,18 @@ object NativeAdsSplash {
 
 
         try {
-            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(id_ads_button))
+            (adView.findViewById<TextView>(R.id.custom_call_to_action)!!).backgroundTintList =
+                ColorStateList.valueOf(id_ads_button.toColorInt())
             (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
                 ColorStateList.valueOf(Color.parseColor(id_ads_bg))
             (adView.findViewById<TextView>(R.id.custom_headline)!!).setTextColor(
                 ColorStateList.valueOf(
-                    Color.parseColor(id_ads_text_color)
+                    id_ads_text_color.toColorInt()
                 )
             )
             (adView.findViewById<TextView>(R.id.custom_body)!!).setTextColor(
                 ColorStateList.valueOf(
-                    Color.parseColor(id_ads_text_color)
+                    id_ads_text_color.toColorInt()
                 )
             )
 
@@ -254,18 +255,18 @@ object NativeAdsSplash {
 //        adView.starRatingView = adView.findViewById(R.id.custom_stars)
         adView.mediaView = adView.findViewById(R.id.custom_media)
         try {
-            (adView.findViewById<Button>(R.id.custom_call_to_action)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(id_ads_splash_button))
+            (adView.findViewById<TextView>(R.id.custom_call_to_action)!!).backgroundTintList =
+                ColorStateList.valueOf(id_ads_splash_button.toColorInt())
             (adView.findViewById<NativeAdView>(R.id.layoutMedia)!!).backgroundTintList =
-                ColorStateList.valueOf(Color.parseColor(id_ads_splash_bg))
+                ColorStateList.valueOf(id_ads_splash_bg.toColorInt())
             (adView.findViewById<TextView>(R.id.custom_headline)!!).setTextColor(
                 ColorStateList.valueOf(
-                    Color.parseColor(id_ads_splash_text_color)
+                    id_ads_splash_text_color.toColorInt()
                 )
             )
             (adView.findViewById<TextView>(R.id.custom_body)!!).setTextColor(
                 ColorStateList.valueOf(
-                    Color.parseColor(id_ads_splash_text_color)
+                    id_ads_splash_text_color.toColorInt()
                 )
             )
 

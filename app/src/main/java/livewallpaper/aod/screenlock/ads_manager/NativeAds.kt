@@ -444,50 +444,6 @@ object NativeAds {
     }
 
     @SuppressLint("ResourceType")
-    fun nativeViewPolicy(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
-
-        adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
-        adView.iconView = adView.findViewById(R.id.custom_app_icon)
-        adView.headlineView = adView.findViewById(R.id.custom_headline)
-        adView.bodyView = adView.findViewById(R.id.custom_body)
-
-        (adView.headlineView as TextView).text = nativeAd.headline
-
-        if (nativeAd.callToAction == null) {
-            adView.callToActionView?.visibility = View.INVISIBLE
-        } else {
-            adView.callToActionView?.visibility = View.VISIBLE
-            (adView.callToActionView as TextView).text = nativeAd.callToAction
-        }
-
-        if (nativeAd.icon == null) {
-            adView.iconView?.visibility = View.INVISIBLE
-        } else {
-            (adView.iconView as ImageView).setImageDrawable(
-                nativeAd.icon?.drawable
-            )
-            adView.iconView?.visibility = View.VISIBLE
-        }
-
-        if (nativeAd.body == null) {
-            adView.bodyView?.visibility = View.INVISIBLE
-        } else {
-            adView.bodyView?.visibility = View.VISIBLE
-            (adView.bodyView as TextView).text = nativeAd.body
-        }
-
-//        if (nativeAd.advertiser == null) {
-//            adView.advertiserView?.visibility = View.INVISIBLE
-//        } else {
-//            (adView.advertiserView as TextView).text = nativeAd.advertiser
-//            adView.advertiserView?.visibility = View.VISIBLE
-//        }
-
-        adView.setNativeAd(nativeAd)
-
-    }
-
-    @SuppressLint("ResourceType")
     fun nativeViewMedia(context : Context, nativeAd: NativeAd, adView: NativeAdView) {
         adView.callToActionView = adView.findViewById(R.id.custom_call_to_action)
         adView.iconView = adView.findViewById<ImageView>(R.id.custom_app_icon)!!
