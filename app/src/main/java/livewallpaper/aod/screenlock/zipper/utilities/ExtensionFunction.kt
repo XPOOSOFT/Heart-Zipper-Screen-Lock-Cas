@@ -157,11 +157,11 @@ var id_inter_counter = 0
 
 var id_inter_main_medium = if (isDebug()) "ca-app-pub-3940256099942544/1033173712" else ""
 var id_native_screen = ""
-var id_language_native_second = ""
 var id_app_open_screen = ""
 var id_adaptive_banner = ""
 var id_inter_splash_Screen = ""
 var id_language_native = ""
+var id_language_native_second = ""
 var id_on_bord_native = ""
 var id_inter_language_Screen = ""
 var id_inter_on_bord_Screen = ""
