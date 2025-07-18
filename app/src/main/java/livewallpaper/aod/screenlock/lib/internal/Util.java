@@ -15,12 +15,10 @@
  *    limitations under the License.
  */
 
-package livewallpaper.aod.screenlock.internal;
+package livewallpaper.aod.screenlock.lib.internal;
 
-import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 
 import java.util.ArrayDeque;
 import java.util.Objects;

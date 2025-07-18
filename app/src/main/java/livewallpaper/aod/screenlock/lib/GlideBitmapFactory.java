@@ -15,7 +15,7 @@
  *    limitations under the License.
  */
 
-package livewallpaper.aod.screenlock;
+package livewallpaper.aod.screenlock.lib;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
@@ -30,7 +30,7 @@ import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
-import livewallpaper.aod.screenlock.internal.Util;
+import livewallpaper.aod.screenlock.lib.internal.Util;
 
 /**
  * Created by amitshekhar on 18/06/16.

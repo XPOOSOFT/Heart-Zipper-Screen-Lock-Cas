@@ -15,31 +15,27 @@
  *    limitations under the License.
  */
 
-package livewallpaper.aod.screenlock.internal;
+package livewallpaper.aod.screenlock.lib.internal;
 
-import java.util.Queue;
+import android.graphics.Bitmap;
 
 /**
  * Created by amitshekhar on 17/06/16.
  */
-abstract class BaseKeyPool<T extends Poolable> {
-    private static final int MAX_SIZE = 20;
-    private final Queue<T> keyPool = Util.createQueue(MAX_SIZE);
+public interface BitmapPool {
 
-    protected T get() {
-        T result = keyPool.poll();
-        if (result == null) {
-            result = create();
-        }
-        return result;
-    }
+    int getMaxSize();
 
-    public void offer(T key) {
-        if (keyPool.size() < MAX_SIZE) {
-            keyPool.offer(key);
-        }
-    }
+    void setSizeMultiplier(float sizeMultiplier);
 
-    protected abstract T create();
+    void put(Bitmap bitmap);
+
+    Bitmap get(int width, int height, Bitmap.Config config);
+
+    Bitmap getDirty(int width, int height, Bitmap.Config config);
+
+    void clearMemory();
+
+    void trimMemory(int level);
 }
 

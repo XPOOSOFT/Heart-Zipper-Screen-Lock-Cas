@@ -15,7 +15,7 @@
  *    limitations under the License.
  */
 
-package livewallpaper.aod.screenlock.internal;
+package livewallpaper.aod.screenlock.lib.internal;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

@@ -15,16 +15,16 @@
  *    limitations under the License.
  */
 
-package livewallpaper.aod.screenlock;
+package livewallpaper.aod.screenlock.lib;
 
 import android.graphics.Bitmap;
 import android.os.Build;
 
 import java.util.Set;
 
-import livewallpaper.aod.screenlock.internal.BitmapPool;
-import livewallpaper.aod.screenlock.internal.BitmapPoolAdapter;
-import livewallpaper.aod.screenlock.internal.LruBitmapPool;
+import livewallpaper.aod.screenlock.lib.internal.BitmapPool;
+import livewallpaper.aod.screenlock.lib.internal.BitmapPoolAdapter;
+import livewallpaper.aod.screenlock.lib.internal.LruBitmapPool;
 
 /**
  * Created by amitshekhar on 17/06/16.
